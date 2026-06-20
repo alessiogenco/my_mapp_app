@@ -1,0 +1,7 @@
+{"template":"app","empty":true}
+
+setState(() {
+  // ...
+  _counter++;
+  _counter--;
+});
