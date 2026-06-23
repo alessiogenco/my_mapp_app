@@ -10,7 +10,8 @@ final List<Place> places = [
     "rating": 8,
     "priceLevel": 2,
     "vibes": ["cozy", "date", "locals", "family", "friends"],
-    "notes": "Eccelente scelta di prodotti locali di grande qualita in un trullo con giardino caratteristico"
+    "notes":
+        "Eccelente scelta di prodotti locali di grande qualita in un trullo con giardino caratteristico",
   }),
   Place.fromJson({
     "id": "cols",
@@ -21,9 +22,10 @@ final List<Place> places = [
     "rating": 7,
     "priceLevel": 1,
     "vibes": ["coffee", "date", "authentic", "coworkers", "solo"],
-    "notes": "Passione e originalita nella scelta delle miscele di caffe', grande professionalita', e gentilezza dello staff"
+    "notes":
+        "Passione e originalita nella scelta delle miscele di caffe', grande professionalita', e gentilezza dello staff",
   }),
-    Place.fromJson({
+  Place.fromJson({
     "id": "ristorante_gli_ulivi",
     "name": "Ristorante Gli Ulivi",
     "category": "restaurant",
@@ -32,6 +34,7 @@ final List<Place> places = [
     "rating": 7,
     "priceLevel": 2,
     "vibes": ["family", "locals", "friends", "touristy"],
-    "notes": "Istituzione alberobellese nell'offerta di piatti locali e buona pizza"
+    "notes":
+        "Istituzione alberobellese nell'offerta di piatti locali e buona pizza",
   }),
 ];

@@ -43,3 +43,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Local secrets/configuration
+# This file can contain your personal Mapbox token.
+# Keep it local: do not commit it to Git.
+/mapbox.env.json
