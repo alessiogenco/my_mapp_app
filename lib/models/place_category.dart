@@ -1,3 +1,19 @@
+const allowedPlaceCategories = {
+  'restaurant',
+  'steakhouse',
+  'pub',
+  'coffee_bar',
+  'cocktail_bar',
+  'beer_bar',
+  'bakery_sweet',
+  'bakery_savory',
+  'gelateria',
+};
+
+bool isKnownPlaceCategory(String category) {
+  return allowedPlaceCategories.contains(category);
+}
+
 String emojiForCategory(String category) {
   return switch (category) {
     'restaurant' => '\u{1F35D}',

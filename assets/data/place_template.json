@@ -1,0 +1,15 @@
+{
+  "id": "nome_locale",
+  "name": "Nome Locale",
+  "city": "Alberobello",
+  "category": "restaurant",
+  "rating": 7,
+  "priceLevel": 2,
+  "lat": 40.78565142,
+  "lng": 17.23836116,
+  "vibes": ["cozy", "locals", "friends"],
+  "notes": "Scrivi qui una descrizione breve e utile.",
+  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Nome%20Locale%20Alberobello",
+  "googlePlaceId": "",
+  "photoAsset": ""
+}

@@ -9,6 +9,7 @@ class Place {
   final int priceLevel;
   final List<String> vibes;
   final String notes;
+  final String? googleMapsUrl;
   final String? googlePlaceId;
   final String? photoAsset;
 
@@ -23,6 +24,7 @@ class Place {
     required this.priceLevel,
     required this.vibes,
     required this.notes,
+    this.googleMapsUrl,
     this.googlePlaceId,
     this.photoAsset,
   });
@@ -33,15 +35,37 @@ class Place {
       name: json['name'],
       city: json['city'] ?? '',
       category: json['category'],
-      lat: json['lat'],
-      lng: json['lng'],
+      lat: (json['lat'] as num).toDouble(),
+      lng: (json['lng'] as num).toDouble(),
       rating: json['rating'],
       priceLevel: json['priceLevel'],
       vibes: _normalizeVibes(List<String>.from(json['vibes'] ?? [])),
       notes: json['notes'] ?? '',
-      googlePlaceId: json['googlePlaceId'],
-      photoAsset: json['photoAsset'],
+      googleMapsUrl: _optionalString(json['googleMapsUrl']),
+      googlePlaceId: _optionalString(json['googlePlaceId']),
+      photoAsset: _optionalString(json['photoAsset']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'city': city,
+      'category': category,
+      'rating': rating,
+      'priceLevel': priceLevel,
+      'lat': lat,
+      'lng': lng,
+      'vibes': vibes,
+      'notes': notes,
+      if (googleMapsUrl != null && googleMapsUrl!.isNotEmpty)
+        'googleMapsUrl': googleMapsUrl,
+      if (googlePlaceId != null && googlePlaceId!.isNotEmpty)
+        'googlePlaceId': googlePlaceId,
+      if (photoAsset != null && photoAsset!.isNotEmpty)
+        'photoAsset': photoAsset,
+    };
   }
 }
 
@@ -54,4 +78,13 @@ String _normalizeVibe(String vibe) {
     'beers' => 'beer',
     _ => vibe.trim().toLowerCase(),
   };
+}
+
+String? _optionalString(dynamic value) {
+  if (value is! String) {
+    return null;
+  }
+
+  final trimmedValue = value.trim();
+  return trimmedValue.isEmpty ? null : trimmedValue;
 }

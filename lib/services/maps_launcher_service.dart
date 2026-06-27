@@ -5,6 +5,10 @@ class MapsLauncherService {
   const MapsLauncherService();
 
   Uri buildPlaceUrl(Place place) {
+    if (place.googleMapsUrl != null && place.googleMapsUrl!.isNotEmpty) {
+      return Uri.parse(place.googleMapsUrl!);
+    }
+
     final location = place.city.isEmpty
         ? '${place.name}, ${place.lat}, ${place.lng}'
         : '${place.name}, ${place.city}';
