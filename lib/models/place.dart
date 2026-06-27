@@ -37,10 +37,21 @@ class Place {
       lng: json['lng'],
       rating: json['rating'],
       priceLevel: json['priceLevel'],
-      vibes: List<String>.from(json['vibes'] ?? []),
+      vibes: _normalizeVibes(List<String>.from(json['vibes'] ?? [])),
       notes: json['notes'] ?? '',
       googlePlaceId: json['googlePlaceId'],
       photoAsset: json['photoAsset'],
     );
   }
+}
+
+List<String> _normalizeVibes(List<String> vibes) {
+  return vibes.map(_normalizeVibe).toSet().toList()..sort();
+}
+
+String _normalizeVibe(String vibe) {
+  return switch (vibe.trim().toLowerCase()) {
+    'beers' => 'beer',
+    _ => vibe.trim().toLowerCase(),
+  };
 }

@@ -3,9 +3,15 @@ import 'package:my_map_app/models/place.dart';
 import 'package:my_map_app/models/place_category.dart';
 
 class PlaceMarker extends StatelessWidget {
-  const PlaceMarker({required this.place, required this.onTap, super.key});
+  const PlaceMarker({
+    required this.place,
+    required this.isSaved,
+    required this.onTap,
+    super.key,
+  });
 
   final Place place;
+  final bool isSaved;
   final VoidCallback onTap;
 
   @override
@@ -18,7 +24,9 @@ class PlaceMarker extends StatelessWidget {
           color: Colors.white.withValues(alpha: 0.94),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: const Color(0xFF1687C9).withValues(alpha: 0.24),
+            color: isSaved
+                ? const Color(0xFFF6A800).withValues(alpha: 0.7)
+                : const Color(0xFF1687C9).withValues(alpha: 0.24),
           ),
           boxShadow: [
             BoxShadow(
@@ -47,6 +55,14 @@ class PlaceMarker extends StatelessWidget {
                 ),
               ),
             ),
+            if (isSaved) ...[
+              const SizedBox(width: 5),
+              const Icon(
+                Icons.bookmark_rounded,
+                color: Color(0xFFF6A800),
+                size: 17,
+              ),
+            ],
           ],
         ),
       ),

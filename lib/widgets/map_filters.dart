@@ -7,9 +7,12 @@ class MapFilters extends StatelessWidget {
     required this.maxPriceLevel,
     required this.selectedVibes,
     required this.availableVibes,
+    required this.showOnlySaved,
+    required this.savedCount,
     required this.onCategoryChanged,
     required this.onPriceChanged,
     required this.onVibesChanged,
+    required this.onSavedOnlyChanged,
     required this.onReset,
     super.key,
   });
@@ -18,15 +21,19 @@ class MapFilters extends StatelessWidget {
   final int? maxPriceLevel;
   final Set<String> selectedVibes;
   final List<String> availableVibes;
+  final bool showOnlySaved;
+  final int savedCount;
   final ValueChanged<String?> onCategoryChanged;
   final ValueChanged<int?> onPriceChanged;
   final ValueChanged<Set<String>> onVibesChanged;
+  final ValueChanged<bool> onSavedOnlyChanged;
   final VoidCallback onReset;
 
   bool get _hasActiveFilters {
     return selectedCategory != null ||
         maxPriceLevel != null ||
-        selectedVibes.isNotEmpty;
+        selectedVibes.isNotEmpty ||
+        showOnlySaved;
   }
 
   String get _categoryLabel {
@@ -38,50 +45,80 @@ class MapFilters extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlassPanel(
-      child: Row(
-        children: [
-          Expanded(
-            child: _FilterButton(
-              icon: Icons.restaurant_menu_rounded,
-              label: _categoryLabel,
-              isActive: selectedCategory != null,
-              onTap: () => _showCategoryPicker(context),
-            ),
-          ),
-          const SizedBox(width: 3),
-          Expanded(
-            child: _FilterButton(
-              icon: Icons.payments_rounded,
-              label: maxPriceLevel == null
-                  ? 'Prezzo'
-                  : '≤ ${_priceLabel(maxPriceLevel!)}',
-              isActive: maxPriceLevel != null,
-              onTap: () => _showPricePicker(context),
-            ),
-          ),
-          const SizedBox(width: 3),
-          Expanded(
-            child: _FilterButton(
-              icon: Icons.auto_awesome_rounded,
-              label: selectedVibes.isEmpty
-                  ? 'Vibes'
-                  : 'Vibes · ${selectedVibes.length}',
-              isActive: selectedVibes.isNotEmpty,
-              onTap: () => _showVibesPicker(context),
-            ),
-          ),
-          if (_hasActiveFilters) ...[
-            const SizedBox(width: 3),
-            Tooltip(
-              message: 'Azzera filtri',
-              child: IconButton.filledTonal(
-                onPressed: onReset,
-                icon: const Icon(Icons.close_rounded, size: 19),
-                visualDensity: VisualDensity.compact,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            SizedBox(
+              width: 118,
+              child: _FilterButton(
+                icon: Icons.restaurant_menu_rounded,
+                label: _categoryLabel,
+                isActive: selectedCategory != null,
+                onTap: () => _showCategoryPicker(context),
               ),
             ),
+            const SizedBox(width: 3),
+            SizedBox(
+              width: 104,
+              child: _FilterButton(
+                icon: Icons.payments_rounded,
+                label: maxPriceLevel == null
+                    ? 'Prezzo'
+                    : '≤ ${_priceLabel(maxPriceLevel!)}',
+                isActive: maxPriceLevel != null,
+                onTap: () => _showPricePicker(context),
+              ),
+            ),
+            const SizedBox(width: 3),
+            SizedBox(
+              width: 104,
+              child: _FilterButton(
+                icon: Icons.auto_awesome_rounded,
+                label: selectedVibes.isEmpty
+                    ? 'Vibes'
+                    : 'Vibes · ${selectedVibes.length}',
+                isActive: selectedVibes.isNotEmpty,
+                onTap: () => _showVibesPicker(context),
+              ),
+            ),
+            const SizedBox(width: 3),
+            SizedBox(
+              width: savedCount == 0 ? 104 : 116,
+              child: _FilterButton(
+                icon: showOnlySaved
+                    ? Icons.bookmark_rounded
+                    : Icons.bookmark_border_rounded,
+                label: savedCount == 0 ? 'Salvati' : 'Salvati $savedCount',
+                isActive: showOnlySaved,
+                onTap: savedCount == 0
+                    ? () {
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Apri un locale e tocca Salva per aggiungerlo.',
+                              ),
+                            ),
+                          );
+                      }
+                    : () => onSavedOnlyChanged(!showOnlySaved),
+              ),
+            ),
+            if (_hasActiveFilters) ...[
+              const SizedBox(width: 3),
+              Tooltip(
+                message: 'Azzera filtri',
+                child: IconButton.filledTonal(
+                  onPressed: onReset,
+                  icon: const Icon(Icons.close_rounded, size: 19),
+                  visualDensity: VisualDensity.compact,
+                ),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

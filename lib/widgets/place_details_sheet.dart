@@ -3,27 +3,53 @@ import 'package:my_map_app/models/place.dart';
 import 'package:my_map_app/models/place_category.dart';
 import 'package:my_map_app/services/maps_launcher_service.dart';
 
-Future<void> showPlaceDetailsSheet(BuildContext context, Place place) {
+Future<void> showPlaceDetailsSheet(
+  BuildContext context,
+  Place place, {
+  required bool isSaved,
+  required ValueChanged<bool> onSavedChanged,
+}) {
   return showModalBottomSheet<void>(
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
-    builder: (context) => PlaceDetailsSheet(place: place),
+    builder: (context) => PlaceDetailsSheet(
+      place: place,
+      initialIsSaved: isSaved,
+      onSavedChanged: onSavedChanged,
+    ),
   );
 }
 
-class PlaceDetailsSheet extends StatelessWidget {
+class PlaceDetailsSheet extends StatefulWidget {
   const PlaceDetailsSheet({
     required this.place,
+    required this.initialIsSaved,
+    required this.onSavedChanged,
     this.mapsLauncher = const MapsLauncherService(),
     super.key,
   });
 
   final Place place;
+  final bool initialIsSaved;
+  final ValueChanged<bool> onSavedChanged;
   final MapsLauncherService mapsLauncher;
 
+  @override
+  State<PlaceDetailsSheet> createState() => _PlaceDetailsSheetState();
+}
+
+class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
+  late bool _isSaved;
+
+  @override
+  void initState() {
+    super.initState();
+    _isSaved = widget.initialIsSaved;
+  }
+
   Future<void> _openGoogleMaps(BuildContext context) async {
-    final opened = await mapsLauncher.openPlace(place);
+    final opened = await widget.mapsLauncher.openPlace(widget.place);
     if (!opened && context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Impossibile aprire Google Maps.')),
@@ -31,9 +57,17 @@ class PlaceDetailsSheet extends StatelessWidget {
     }
   }
 
+  void _toggleSaved() {
+    setState(() {
+      _isSaved = !_isSaved;
+    });
+    widget.onSavedChanged(_isSaved);
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final place = widget.place;
 
     return SafeArea(
       top: false,
@@ -106,7 +140,7 @@ class PlaceDetailsSheet extends StatelessWidget {
                   children: place.vibes
                       .map(
                         (vibe) => Chip(
-                          label: Text(vibe),
+                          label: Text(_displayVibe(vibe)),
                           backgroundColor: const Color(0xFFEAF5FB),
                           side: BorderSide.none,
                         ),
@@ -125,6 +159,26 @@ class PlaceDetailsSheet extends StatelessWidget {
                 ),
               ],
               const SizedBox(height: 22),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: _toggleSaved,
+                  icon: Icon(
+                    _isSaved
+                        ? Icons.bookmark_rounded
+                        : Icons.bookmark_border_rounded,
+                  ),
+                  label: Text(_isSaved ? 'Salvato' : 'Salva locale'),
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    textStyle: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
               SizedBox(
                 width: double.infinity,
                 child: FilledButton.icon(
@@ -281,4 +335,9 @@ List<Color> _colorsForCategory(String category) {
     'gelateria' => const [Color(0xFF4D9EB4), Color(0xFF7FD0C5)],
     _ => const [Color(0xFF1687C9), Color(0xFF53B9C9)],
   };
+}
+
+String _displayVibe(String vibe) {
+  final normalized = vibe.replaceAll('_', ' ').replaceAll('-', ' ');
+  return '${normalized[0].toUpperCase()}${normalized.substring(1)}';
 }

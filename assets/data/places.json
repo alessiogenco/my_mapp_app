@@ -86,7 +86,7 @@
     "drinks": 6,
     "atmosphere": 6,
     "valueForMoney": 6,
-    "vibes": ["friends", "casual", "beers"],
+    "vibes": ["friends", "casual", "beer"],
     "notes": "Discreta pizza e buona proposta di birre artigianali e commerciali"
   },
   {
@@ -122,7 +122,7 @@
     "drinks": 6,
     "atmosphere": 6,
     "valueForMoney": 7,
-    "vibes": ["panini", "friends", "casual", "beers", "coworkers"],
+    "vibes": ["panini", "friends", "casual", "beer", "coworkers"],
     "notes": "Istituzione alberobellese ed uno dei primi pub nel paese con buoni panini, piadine e birre, design originale"
   },
   {

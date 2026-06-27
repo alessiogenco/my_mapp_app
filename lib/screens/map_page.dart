@@ -30,6 +30,8 @@ class _MapPageState extends State<MapPage> {
   String? _selectedCategory;
   int? _maxPriceLevel;
   Set<String> _selectedVibes = {};
+  Set<String> _savedPlaceIds = {};
+  bool _showOnlySaved = false;
   bool _isLoadingPlaces = true;
   bool _isSearchingCity = false;
   String? _placesError;
@@ -44,6 +46,9 @@ class _MapPageState extends State<MapPage> {
       }
       if (_selectedVibes.isNotEmpty &&
           !_selectedVibes.any(place.vibes.contains)) {
+        return false;
+      }
+      if (_showOnlySaved && !_savedPlaceIds.contains(place.id)) {
         return false;
       }
       return true;
@@ -140,6 +145,21 @@ class _MapPageState extends State<MapPage> {
       ..showSnackBar(SnackBar(content: Text(message)));
   }
 
+  void _setPlaceSaved(Place place, bool isSaved) {
+    setState(() {
+      if (isSaved) {
+        _savedPlaceIds = {..._savedPlaceIds, place.id};
+      } else {
+        _savedPlaceIds = _savedPlaceIds.where((id) => id != place.id).toSet();
+        if (_savedPlaceIds.isEmpty) {
+          _showOnlySaved = false;
+        }
+      }
+    });
+
+    _showMessage(isSaved ? 'Locale salvato.' : 'Locale rimosso dai salvati.');
+  }
+
   Widget _buildMapContent() {
     if (_isLoadingPlaces) {
       return const Center(child: CircularProgressIndicator());
@@ -190,7 +210,13 @@ class _MapPageState extends State<MapPage> {
               height: 50,
               child: PlaceMarker(
                 place: place,
-                onTap: () => showPlaceDetailsSheet(context, place),
+                isSaved: _savedPlaceIds.contains(place.id),
+                onTap: () => showPlaceDetailsSheet(
+                  context,
+                  place,
+                  isSaved: _savedPlaceIds.contains(place.id),
+                  onSavedChanged: (isSaved) => _setPlaceSaved(place, isSaved),
+                ),
               ),
             );
           }).toList(),
@@ -273,6 +299,8 @@ class _MapPageState extends State<MapPage> {
                       maxPriceLevel: _maxPriceLevel,
                       selectedVibes: _selectedVibes,
                       availableVibes: _availableVibes,
+                      showOnlySaved: _showOnlySaved,
+                      savedCount: _savedPlaceIds.length,
                       onCategoryChanged: (value) {
                         setState(() {
                           _selectedCategory = value;
@@ -288,11 +316,17 @@ class _MapPageState extends State<MapPage> {
                           _selectedVibes = value;
                         });
                       },
+                      onSavedOnlyChanged: (value) {
+                        setState(() {
+                          _showOnlySaved = value;
+                        });
+                      },
                       onReset: () {
                         setState(() {
                           _selectedCategory = null;
                           _maxPriceLevel = null;
                           _selectedVibes = {};
+                          _showOnlySaved = false;
                         });
                       },
                     ),
