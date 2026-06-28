@@ -31,15 +31,15 @@ String emojiForCategory(String category) {
 
 String labelForCategory(String category) {
   return switch (category) {
-    'restaurant' => 'Ristorante',
+    'restaurant' => 'Restaurant',
     'steakhouse' => 'Steakhouse',
     'pub' => 'Pub',
-    'coffee_bar' => 'Caffetteria',
+    'coffee_bar' => 'Coffee bar',
     'cocktail_bar' => 'Cocktail bar',
-    'beer_bar' => 'Birreria',
-    'bakery_sweet' => 'Pasticceria',
-    'bakery_savory' => 'Panetteria',
-    'gelateria' => 'Gelateria',
-    _ => 'Locale',
+    'beer_bar' => 'Beer bar',
+    'bakery_sweet' => 'Pastry shop',
+    'bakery_savory' => 'Bakery',
+    'gelateria' => 'Gelato shop',
+    _ => 'Place',
   };
 }

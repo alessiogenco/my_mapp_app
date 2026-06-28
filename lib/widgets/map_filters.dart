@@ -86,7 +86,7 @@ class MapFilters extends StatelessWidget {
               child: _FilterButton(
                 icon: Icons.payments_rounded,
                 label: maxPriceLevel == null
-                    ? 'Prezzo'
+                    ? 'Price'
                     : '≤ ${_priceLabel(maxPriceLevel!)}',
                 isActive: maxPriceLevel != null,
                 onTap: () => _showPricePicker(context),
@@ -111,7 +111,7 @@ class MapFilters extends StatelessWidget {
                 icon: showOnlySaved
                     ? Icons.bookmark_rounded
                     : Icons.bookmark_border_rounded,
-                label: savedCount == 0 ? 'Salvati' : 'Salvati $savedCount',
+                label: savedCount == 0 ? 'Saved' : 'Saved $savedCount',
                 isActive: showOnlySaved,
                 onTap: savedCount == 0
                     ? () {
@@ -120,7 +120,7 @@ class MapFilters extends StatelessWidget {
                           ..showSnackBar(
                             const SnackBar(
                               content: Text(
-                                'Apri un locale e tocca Salva per aggiungerlo.',
+                                'Open a place and tap Save to add it here.',
                               ),
                             ),
                           );
@@ -131,7 +131,7 @@ class MapFilters extends StatelessWidget {
             if (_hasActiveFilters) ...[
               const SizedBox(width: 3),
               Tooltip(
-                message: 'Azzera filtri',
+                message: 'Reset filters',
                 child: IconButton.filledTonal(
                   onPressed: onReset,
                   icon: const Icon(Icons.close_rounded, size: 19),
@@ -151,8 +151,8 @@ class MapFilters extends StatelessWidget {
       backgroundColor: Colors.transparent,
       builder: (sheetContext) {
         return _FilterSheet(
-          title: 'Scegli una categoria',
-          subtitle: 'Mostra solo i locali che ti interessano.',
+          title: 'Choose a category',
+          subtitle: 'Show only the places you are interested in.',
           children: _categoryOptions.map((option) {
             return ChoiceChip(
               selected: selectedCategory == option.value,
@@ -177,8 +177,8 @@ class MapFilters extends StatelessWidget {
       backgroundColor: Colors.transparent,
       builder: (sheetContext) {
         return _FilterSheet(
-          title: 'Scegli un’area',
-          subtitle: 'Filtra i locali in base alla zona.',
+          title: 'Choose an area',
+          subtitle: 'Filter places by location area.',
           children: options.map((area) {
             return ChoiceChip(
               selected: selectedArea == area,
@@ -186,7 +186,7 @@ class MapFilters extends StatelessWidget {
                 area == null ? Icons.all_inclusive_rounded : Icons.map,
                 size: 18,
               ),
-              label: Text(area == null ? 'Tutte' : labelForArea(area)),
+              label: Text(area == null ? 'All' : labelForArea(area)),
               onSelected: (_) {
                 onAreaChanged(area);
                 Navigator.pop(sheetContext);
@@ -204,8 +204,8 @@ class MapFilters extends StatelessWidget {
       backgroundColor: Colors.transparent,
       builder: (sheetContext) {
         return _FilterSheet(
-          title: 'Prezzo massimo',
-          subtitle: 'Mostra i locali entro il budget selezionato.',
+          title: 'Maximum price',
+          subtitle: 'Show places within the selected budget.',
           children: _priceOptions.map((price) {
             return ChoiceChip(
               selected: maxPriceLevel == price,
@@ -213,7 +213,7 @@ class MapFilters extends StatelessWidget {
                 price == null ? Icons.all_inclusive_rounded : Icons.payments,
                 size: 18,
               ),
-              label: Text(price == null ? 'Tutti' : _priceLabel(price)),
+              label: Text(price == null ? 'All' : _priceLabel(price)),
               onSelected: (_) {
                 onPriceChanged(price);
                 Navigator.pop(sheetContext);
@@ -236,13 +236,13 @@ class MapFilters extends StatelessWidget {
         return StatefulBuilder(
           builder: (context, setSheetState) {
             return _FilterSheet(
-              title: 'Scegli le vibes',
-              subtitle: 'Puoi selezionarne più di una.',
+              title: 'Choose vibes',
+              subtitle: 'You can select more than one.',
               footer: SizedBox(
                 width: double.infinity,
                 child: FilledButton(
                   onPressed: () => Navigator.pop(sheetContext),
-                  child: const Text('Fatto'),
+                  child: const Text('Done'),
                 ),
               ),
               children: availableVibes.map((vibe) {
@@ -423,14 +423,14 @@ String _displayVibe(String vibe) {
 const _categoryOptions = [
   _CategoryOption(
     value: null,
-    shortLabel: 'Categoria',
-    label: 'Tutte',
+    shortLabel: 'Category',
+    label: 'All',
     emoji: '🗺️',
   ),
   _CategoryOption(
     value: 'restaurant',
-    shortLabel: 'Ristoranti',
-    label: 'Ristoranti',
+    shortLabel: 'Restaurants',
+    label: 'Restaurants',
     emoji: '🍝',
   ),
   _CategoryOption(
@@ -460,14 +460,14 @@ const _categoryOptions = [
   ),
   _CategoryOption(
     value: 'bakery_savory',
-    shortLabel: 'Bakery salata',
-    label: 'Bakery salata',
+    shortLabel: 'Bakery',
+    label: 'Savory bakery',
     emoji: '🥪',
   ),
   _CategoryOption(
     value: 'bakery_sweet',
-    shortLabel: 'Pasticceria',
-    label: 'Bakery dolce',
+    shortLabel: 'Pastry',
+    label: 'Pastry shop',
     emoji: '🍰',
   ),
   _CategoryOption(

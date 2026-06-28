@@ -11,10 +11,10 @@ bool isKnownPlaceArea(String area) {
 
 String labelForArea(String area) {
   return switch (area) {
-    'cityCentre' => 'Centro',
-    'historicalCentre' => 'Centro storico',
-    'periphery' => 'Periferia',
-    'outsideCentre' => 'Fuori centro',
+    'cityCentre' => 'City centre',
+    'historicalCentre' => 'Historic centre',
+    'periphery' => 'Periphery',
+    'outsideCentre' => 'Outside centre',
     _ => 'Area',
   };
 }

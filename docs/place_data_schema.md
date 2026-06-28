@@ -1,14 +1,14 @@
 # Place data schema
 
-Questo documento descrive il formato consigliato per ogni locale in
+This document describes the recommended format for each place in
 `assets/data/places.json`.
 
-## Campi principali
+## Main fields
 
 ```json
 {
-  "id": "nome_locale_in_minuscolo",
-  "name": "Nome Locale",
+  "id": "place_name_lowercase",
+  "name": "Place Name",
   "city": "Alberobello",
   "category": "restaurant",
   "area": "cityCentre",
@@ -18,31 +18,31 @@ Questo documento descrive il formato consigliato per ogni locale in
   "lat": 40.78565142,
   "lng": 17.23836116,
   "vibes": ["cozy", "locals", "friends"],
-  "notes": "Breve descrizione utile per l'utente.",
-  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Nome%20Locale%20Alberobello",
+  "notes": "A short useful description for the user.",
+  "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Place%20Name%20Alberobello",
   "googlePlaceId": "",
   "photoAsset": ""
 }
 ```
 
-## Regole
+## Rules
 
-- `id`: unico, minuscolo, senza spazi. Usa `_` tra le parole.
-- `name`: nome mostrato nell'app.
-- `city`: città principale.
-- `category`: deve essere una delle categorie supportate.
-- `area`: deve essere una delle aree supportate.
-- `neighborhood`: quartiere o sotto-zona, opzionale.
-- `rating`: numero da `0` a `10`.
-- `priceLevel`: numero da `1` a `3`.
-- `lat` e `lng`: coordinate del locale.
-- `vibes`: tag brevi in inglese, minuscoli, senza duplicati.
-- `notes`: descrizione breve e utile.
-- `googleMapsUrl`: opzionale, ma consigliato se hai già il link esatto.
-- `googlePlaceId`: opzionale; utile più avanti con Google Places API.
-- `photoAsset`: opzionale; per ora può restare vuoto.
+- `id`: unique, lowercase, no spaces. Use `_` between words.
+- `name`: the name shown in the app.
+- `city`: the main city.
+- `category`: must be one of the supported categories.
+- `area`: must be one of the supported areas.
+- `neighborhood`: optional district or sub-area.
+- `rating`: number from `0` to `10`.
+- `priceLevel`: number from `1` to `3`.
+- `lat` and `lng`: place coordinates.
+- `vibes`: short lowercase English tags, without duplicates.
+- `notes`: short useful description.
+- `googleMapsUrl`: optional, but recommended when you have the exact link.
+- `googlePlaceId`: optional; useful later with Google Places API.
+- `photoAsset`: optional; it can stay empty for now.
 
-## Categorie supportate
+## Supported categories
 
 - `restaurant`
 - `steakhouse`
@@ -54,16 +54,16 @@ Questo documento descrive il formato consigliato per ogni locale in
 - `bakery_savory`
 - `gelateria`
 
-## Aree supportate
+## Supported areas
 
-- `cityCentre`: centro
-- `historicalCentre`: centro storico
-- `periphery`: periferia
-- `outsideCentre`: fuori centro
+- `cityCentre`: city centre
+- `historicalCentre`: historic centre
+- `periphery`: periphery
+- `outsideCentre`: outside centre
 
-## Vibes consigliate
+## Recommended vibes
 
-Puoi aggiungerne altre, ma conviene riusare queste quando possibile:
+You can add more, but it is better to reuse these when possible:
 
 - `aperitif`
 - `authentic`
@@ -86,4 +86,4 @@ Puoi aggiungerne altre, ma conviene riusare queste quando possibile:
 - `touristy`
 - `wine`
 
-Nota: l'app normalizza automaticamente `beers` in `beer`.
+Note: the app automatically normalizes `beers` to `beer`.

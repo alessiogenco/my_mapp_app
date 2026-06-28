@@ -53,7 +53,7 @@ class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
     final opened = await widget.mapsLauncher.openPlace(widget.place);
     if (!opened && context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Impossibile aprire Google Maps.')),
+        const SnackBar(content: Text('Could not open Google Maps.')),
       );
     }
   }
@@ -173,7 +173,7 @@ class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
                         ? Icons.bookmark_rounded
                         : Icons.bookmark_border_rounded,
                   ),
-                  label: Text(_isSaved ? 'Salvato' : 'Salva locale'),
+                  label: Text(_isSaved ? 'Saved' : 'Save place'),
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     textStyle: const TextStyle(
@@ -189,7 +189,7 @@ class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
                 child: FilledButton.icon(
                   onPressed: () => _openGoogleMaps(context),
                   icon: const Icon(Icons.map_rounded),
-                  label: const Text('Apri su Google Maps'),
+                  label: const Text('Open in Google Maps'),
                   style: FilledButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     textStyle: const TextStyle(
@@ -279,7 +279,7 @@ class _CategoryPlaceholder extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Immagine rappresentativa',
+                  'Representative image',
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.84),
                     fontSize: 12,

@@ -13,12 +13,12 @@ class PlaceRepository {
     final decodedData = jsonDecode(response);
 
     if (decodedData is! List) {
-      throw const FormatException('Il file dei locali non è una lista.');
+      throw const FormatException('The places file is not a list.');
     }
 
     final places = decodedData.map((item) {
       if (item is! Map<String, dynamic>) {
-        throw const FormatException('Un locale ha un formato non valido.');
+        throw const FormatException('A place has an invalid format.');
       }
       return Place.fromJson(item);
     }).toList();
@@ -33,50 +33,50 @@ class PlaceRepository {
 
     for (final place in places) {
       if (place.id.trim().isEmpty) {
-        throw const FormatException('Un locale ha id vuoto.');
+        throw const FormatException('A place has an empty id.');
       }
 
       if (!ids.add(place.id)) {
-        throw FormatException('Id locale duplicato: ${place.id}.');
+        throw FormatException('Duplicated place id: ${place.id}.');
       }
 
       if (place.name.trim().isEmpty) {
-        throw FormatException('Nome locale mancante per id ${place.id}.');
+        throw FormatException('Missing place name for id ${place.id}.');
       }
 
       if (!isKnownPlaceCategory(place.category)) {
         throw FormatException(
-          'Categoria non valida per ${place.name}: ${place.category}.',
+          'Invalid category for ${place.name}: ${place.category}.',
         );
       }
 
       if (!isKnownPlaceArea(place.area)) {
         throw FormatException(
-          'Area non valida per ${place.name}: ${place.area}.',
+          'Invalid area for ${place.name}: ${place.area}.',
         );
       }
 
       if (place.rating < 0 || place.rating > 10) {
         throw FormatException(
-          'Rating non valido per ${place.name}: ${place.rating}.',
+          'Invalid rating for ${place.name}: ${place.rating}.',
         );
       }
 
       if (place.priceLevel < 1 || place.priceLevel > 3) {
         throw FormatException(
-          'Prezzo non valido per ${place.name}: ${place.priceLevel}.',
+          'Invalid price level for ${place.name}: ${place.priceLevel}.',
         );
       }
 
       if (place.lat < -90 || place.lat > 90) {
         throw FormatException(
-          'Latitudine non valida per ${place.name}: ${place.lat}.',
+          'Invalid latitude for ${place.name}: ${place.lat}.',
         );
       }
 
       if (place.lng < -180 || place.lng > 180) {
         throw FormatException(
-          'Longitudine non valida per ${place.name}: ${place.lng}.',
+          'Invalid longitude for ${place.name}: ${place.lng}.',
         );
       }
 
@@ -87,7 +87,7 @@ class PlaceRepository {
           googleMapsUri.scheme != 'http' &&
           googleMapsUri.scheme != 'https') {
         throw FormatException(
-          'Google Maps URL non valido per ${place.name}: '
+          'Invalid Google Maps URL for ${place.name}: '
           '${place.googleMapsUrl}.',
         );
       }

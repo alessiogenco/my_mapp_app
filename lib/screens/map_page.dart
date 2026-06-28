@@ -98,7 +98,7 @@ class _MapPageState extends State<MapPage> {
     } catch (_) {
       if (!mounted) return;
       setState(() {
-        _placesError = 'Impossibile caricare i locali.';
+        _placesError = 'Could not load places.';
       });
     } finally {
       if (mounted) {
@@ -112,7 +112,7 @@ class _MapPageState extends State<MapPage> {
   Future<void> _searchCity(String city) async {
     final normalizedCity = city.trim();
     if (normalizedCity.isEmpty) {
-      _showMessage('Inserisci il nome di una città.');
+      _showMessage('Enter a city name.');
       return;
     }
 
@@ -123,7 +123,7 @@ class _MapPageState extends State<MapPage> {
     try {
       final location = await widget.geocodingService.searchCity(normalizedCity);
       if (location == null) {
-        _showMessage('Nessuna città trovata per “$normalizedCity”.');
+        _showMessage('No city found for “$normalizedCity”.');
         return;
       }
 
@@ -131,14 +131,14 @@ class _MapPageState extends State<MapPage> {
     } on GeocodingException catch (error) {
       final message = switch (error.type) {
         GeocodingFailureType.timeout =>
-          'La ricerca sta impiegando troppo tempo. Riprova.',
-        GeocodingFailureType.network => 'Errore di rete durante la ricerca.',
+          'The search is taking too long. Try again.',
+        GeocodingFailureType.network => 'Network error while searching.',
         GeocodingFailureType.invalidResponse =>
-          'La risposta della ricerca non è valida.',
+          'The search response is not valid.',
       };
       _showMessage(message);
     } catch (_) {
-      _showMessage('Impossibile completare la ricerca.');
+      _showMessage('Could not complete the search.');
     } finally {
       if (mounted) {
         setState(() {
@@ -167,7 +167,7 @@ class _MapPageState extends State<MapPage> {
       }
     });
 
-    _showMessage(isSaved ? 'Locale salvato.' : 'Locale rimosso dai salvati.');
+    _showMessage(isSaved ? 'Place saved.' : 'Place removed from saved.');
   }
 
   Widget _buildMapContent() {
@@ -185,7 +185,7 @@ class _MapPageState extends State<MapPage> {
             FilledButton.icon(
               onPressed: _loadPlaces,
               icon: const Icon(Icons.refresh),
-              label: const Text('Riprova'),
+              label: const Text('Try again'),
             ),
           ],
         ),
@@ -208,7 +208,7 @@ class _MapPageState extends State<MapPage> {
                 ? ' HTTP ${error.statusCode}'
                 : '';
             debugPrint(
-              'Errore caricamento tile$statusCode (${error.runtimeType})',
+              'Tile loading error$statusCode (${error.runtimeType})',
             );
           },
         ),
@@ -271,7 +271,7 @@ class _MapPageState extends State<MapPage> {
                           fontWeight: FontWeight.w600,
                         ),
                         decoration: InputDecoration(
-                          hintText: 'Cerca città (es: Milano)',
+                          hintText: 'Search city (e.g. Milan)',
                           hintStyle: const TextStyle(
                             color: Color(0xFF587789),
                             fontWeight: FontWeight.w500,
