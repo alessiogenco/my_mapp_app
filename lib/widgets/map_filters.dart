@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:my_map_app/models/place_area.dart';
 import 'package:my_map_app/widgets/glass_panel.dart';
 
 class MapFilters extends StatelessWidget {
   const MapFilters({
     required this.selectedCategory,
+    required this.selectedArea,
     required this.maxPriceLevel,
     required this.selectedVibes,
     required this.availableVibes,
+    required this.availableAreas,
     required this.showOnlySaved,
     required this.savedCount,
     required this.onCategoryChanged,
+    required this.onAreaChanged,
     required this.onPriceChanged,
     required this.onVibesChanged,
     required this.onSavedOnlyChanged,
@@ -18,12 +22,15 @@ class MapFilters extends StatelessWidget {
   });
 
   final String? selectedCategory;
+  final String? selectedArea;
   final int? maxPriceLevel;
   final Set<String> selectedVibes;
   final List<String> availableVibes;
+  final List<String> availableAreas;
   final bool showOnlySaved;
   final int savedCount;
   final ValueChanged<String?> onCategoryChanged;
+  final ValueChanged<String?> onAreaChanged;
   final ValueChanged<int?> onPriceChanged;
   final ValueChanged<Set<String>> onVibesChanged;
   final ValueChanged<bool> onSavedOnlyChanged;
@@ -31,6 +38,7 @@ class MapFilters extends StatelessWidget {
 
   bool get _hasActiveFilters {
     return selectedCategory != null ||
+        selectedArea != null ||
         maxPriceLevel != null ||
         selectedVibes.isNotEmpty ||
         showOnlySaved;
@@ -40,6 +48,10 @@ class MapFilters extends StatelessWidget {
     return _categoryOptions
         .firstWhere((option) => option.value == selectedCategory)
         .shortLabel;
+  }
+
+  String get _areaLabel {
+    return selectedArea == null ? 'Area' : labelForArea(selectedArea!);
   }
 
   @override
@@ -56,6 +68,16 @@ class MapFilters extends StatelessWidget {
                 label: _categoryLabel,
                 isActive: selectedCategory != null,
                 onTap: () => _showCategoryPicker(context),
+              ),
+            ),
+            const SizedBox(width: 3),
+            SizedBox(
+              width: 112,
+              child: _FilterButton(
+                icon: Icons.map_rounded,
+                label: _areaLabel,
+                isActive: selectedArea != null,
+                onTap: () => _showAreaPicker(context),
               ),
             ),
             const SizedBox(width: 3),
@@ -138,6 +160,35 @@ class MapFilters extends StatelessWidget {
               label: Text(option.label),
               onSelected: (_) {
                 onCategoryChanged(option.value);
+                Navigator.pop(sheetContext);
+              },
+            );
+          }).toList(),
+        );
+      },
+    );
+  }
+
+  Future<void> _showAreaPicker(BuildContext context) {
+    final options = <String?>[null, ...availableAreas];
+
+    return showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (sheetContext) {
+        return _FilterSheet(
+          title: 'Scegli un’area',
+          subtitle: 'Filtra i locali in base alla zona.',
+          children: options.map((area) {
+            return ChoiceChip(
+              selected: selectedArea == area,
+              avatar: Icon(
+                area == null ? Icons.all_inclusive_rounded : Icons.map,
+                size: 18,
+              ),
+              label: Text(area == null ? 'Tutte' : labelForArea(area)),
+              onSelected: (_) {
+                onAreaChanged(area);
                 Navigator.pop(sheetContext);
               },
             );

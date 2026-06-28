@@ -28,6 +28,7 @@ class _MapPageState extends State<MapPage> {
   final MapController _mapController = MapController();
   List<Place> _places = [];
   String? _selectedCategory;
+  String? _selectedArea;
   int? _maxPriceLevel;
   Set<String> _selectedVibes = {};
   Set<String> _savedPlaceIds = {};
@@ -39,6 +40,9 @@ class _MapPageState extends State<MapPage> {
   List<Place> get _filteredPlaces {
     return _places.where((place) {
       if (_selectedCategory != null && place.category != _selectedCategory) {
+        return false;
+      }
+      if (_selectedArea != null && place.area != _selectedArea) {
         return false;
       }
       if (_maxPriceLevel != null && place.priceLevel > _maxPriceLevel!) {
@@ -59,6 +63,12 @@ class _MapPageState extends State<MapPage> {
     final vibes = _places.expand((place) => place.vibes).toSet().toList();
     vibes.sort();
     return vibes;
+  }
+
+  List<String> get _availableAreas {
+    final areas = _places.map((place) => place.area).toSet().toList();
+    areas.sort();
+    return areas;
   }
 
   @override
@@ -296,14 +306,21 @@ class _MapPageState extends State<MapPage> {
                     const SizedBox(height: 10),
                     MapFilters(
                       selectedCategory: _selectedCategory,
+                      selectedArea: _selectedArea,
                       maxPriceLevel: _maxPriceLevel,
                       selectedVibes: _selectedVibes,
                       availableVibes: _availableVibes,
+                      availableAreas: _availableAreas,
                       showOnlySaved: _showOnlySaved,
                       savedCount: _savedPlaceIds.length,
                       onCategoryChanged: (value) {
                         setState(() {
                           _selectedCategory = value;
+                        });
+                      },
+                      onAreaChanged: (value) {
+                        setState(() {
+                          _selectedArea = value;
                         });
                       },
                       onPriceChanged: (value) {
@@ -324,6 +341,7 @@ class _MapPageState extends State<MapPage> {
                       onReset: () {
                         setState(() {
                           _selectedCategory = null;
+                          _selectedArea = null;
                           _maxPriceLevel = null;
                           _selectedVibes = {};
                           _showOnlySaved = false;

@@ -3,6 +3,8 @@
   "name": "Nome Locale",
   "city": "Alberobello",
   "category": "restaurant",
+  "area": "cityCentre",
+  "neighborhood": "",
   "rating": 7,
   "priceLevel": 2,
   "lat": 40.78565142,

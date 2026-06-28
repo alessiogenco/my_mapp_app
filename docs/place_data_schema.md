@@ -11,6 +11,8 @@ Questo documento descrive il formato consigliato per ogni locale in
   "name": "Nome Locale",
   "city": "Alberobello",
   "category": "restaurant",
+  "area": "cityCentre",
+  "neighborhood": "",
   "rating": 7,
   "priceLevel": 2,
   "lat": 40.78565142,
@@ -27,8 +29,10 @@ Questo documento descrive il formato consigliato per ogni locale in
 
 - `id`: unico, minuscolo, senza spazi. Usa `_` tra le parole.
 - `name`: nome mostrato nell'app.
-- `city`: città o zona principale.
+- `city`: città principale.
 - `category`: deve essere una delle categorie supportate.
+- `area`: deve essere una delle aree supportate.
+- `neighborhood`: quartiere o sotto-zona, opzionale.
 - `rating`: numero da `0` a `10`.
 - `priceLevel`: numero da `1` a `3`.
 - `lat` e `lng`: coordinate del locale.
@@ -50,6 +54,13 @@ Questo documento descrive il formato consigliato per ogni locale in
 - `bakery_savory`
 - `gelateria`
 
+## Aree supportate
+
+- `cityCentre`: centro
+- `historicalCentre`: centro storico
+- `periphery`: periferia
+- `outsideCentre`: fuori centro
+
 ## Vibes consigliate
 
 Puoi aggiungerne altre, ma conviene riusare queste quando possibile:
@@ -68,6 +79,7 @@ Puoi aggiungerne altre, ma conviene riusare queste quando possibile:
 - `friends`
 - `late-night`
 - `locals`
+- `lunch`
 - `panini`
 - `solo`
 - `street_food`

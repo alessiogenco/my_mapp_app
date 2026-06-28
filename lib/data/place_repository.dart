@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:my_map_app/models/place.dart';
+import 'package:my_map_app/models/place_area.dart';
 import 'package:my_map_app/models/place_category.dart';
 
 class PlaceRepository {
@@ -46,6 +47,12 @@ class PlaceRepository {
       if (!isKnownPlaceCategory(place.category)) {
         throw FormatException(
           'Categoria non valida per ${place.name}: ${place.category}.',
+        );
+      }
+
+      if (!isKnownPlaceArea(place.area)) {
+        throw FormatException(
+          'Area non valida per ${place.name}: ${place.area}.',
         );
       }
 

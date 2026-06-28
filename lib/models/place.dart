@@ -3,6 +3,8 @@ class Place {
   final String name;
   final String city;
   final String category;
+  final String area;
+  final String? neighborhood;
   final double lat;
   final double lng;
   final int rating;
@@ -18,12 +20,14 @@ class Place {
     required this.name,
     required this.city,
     required this.category,
+    required this.area,
     required this.lat,
     required this.lng,
     required this.rating,
     required this.priceLevel,
     required this.vibes,
     required this.notes,
+    this.neighborhood,
     this.googleMapsUrl,
     this.googlePlaceId,
     this.photoAsset,
@@ -35,6 +39,8 @@ class Place {
       name: json['name'],
       city: json['city'] ?? '',
       category: json['category'],
+      area: json['area'] ?? '',
+      neighborhood: _optionalString(json['neighborhood']),
       lat: (json['lat'] as num).toDouble(),
       lng: (json['lng'] as num).toDouble(),
       rating: json['rating'],
@@ -53,6 +59,9 @@ class Place {
       'name': name,
       'city': city,
       'category': category,
+      'area': area,
+      if (neighborhood != null && neighborhood!.isNotEmpty)
+        'neighborhood': neighborhood,
       'rating': rating,
       'priceLevel': priceLevel,
       'lat': lat,

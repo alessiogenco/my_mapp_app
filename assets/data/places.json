@@ -358,5 +358,43 @@
     "valueForMoney": 7,
     "vibes": ["cozy", "locals", "friends", "family", "touristy"],
     "notes": "Ristorante locale caratteristico in un trullo nel pieno centro storico di Alberobello frequentato da locals"
+  },
+  {
+    "id": "gulp_bari",
+    "name": "Gulp | Bari",
+    "city": "Bari",
+    "category": "pub",
+    "rating": 7,
+    "priceLevel": 2,
+    "openingHours": "",
+    "area": "outsideCentre",
+    "neighborhood": "Poggiofranco",
+    "lat": 41.098810594462094,  
+    "lng": 16.852552418210422,
+    "food": 7,
+    "drinks": 7,
+    "atmosphere": 7,
+    "valueForMoney": 7,
+    "vibes": ["friends", "coworkers", "family", "touristy", "lunch", "beer"],
+    "notes": "Ottimo locale per un pranzo con colleghi ed amici con una buona selezione di birre e piatti locali"
+  },
+  {
+    "id": "il_postaccio",
+    "name": "Il Postaccio",
+    "city": "Bari",
+    "category": "cocktail_bar",
+    "rating": 6,
+    "priceLevel": 1,
+    "openingHours": "",
+    "area": "outsideCentre",
+    "neighborhood": "Poggiofranco",
+    "lat": 41.09868200488316, 
+    "lng": 16.852364852104845,
+    "food": null,
+    "drinks": 7,
+    "atmosphere": 6,
+    "valueForMoney": 7,
+    "vibes": ["cocktails", "friends", "late-night", "date"],
+    "notes": "Istituzione barese per la proposta di cichetti (Chupitos)"
   }
 ]

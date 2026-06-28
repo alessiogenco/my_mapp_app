@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_map_app/models/place.dart';
+import 'package:my_map_app/models/place_area.dart';
 import 'package:my_map_app/models/place_category.dart';
 import 'package:my_map_app/services/maps_launcher_service.dart';
 
@@ -113,6 +114,10 @@ class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
                   _InfoPill(
                     icon: Icons.restaurant_menu_rounded,
                     label: labelForCategory(place.category),
+                  ),
+                  _InfoPill(
+                    icon: Icons.map_rounded,
+                    label: labelForArea(place.area),
                   ),
                   _InfoPill(
                     icon: Icons.star_rounded,
