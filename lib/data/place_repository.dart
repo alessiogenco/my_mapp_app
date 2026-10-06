@@ -62,10 +62,19 @@ class PlaceRepository {
         );
       }
 
-      if (place.priceLevel < 1 || place.priceLevel > 3) {
+      if (place.priceLevel < 1 || place.priceLevel > 5) {
         throw FormatException(
           'Invalid price level for ${place.name}: ${place.priceLevel}.',
         );
+      }
+
+      for (final ratingDetail in place.ratingDetails.entries) {
+        if (ratingDetail.value < 1 || ratingDetail.value > 10) {
+          throw FormatException(
+            'Invalid detailed rating for ${place.name}: '
+            '${ratingDetail.key}=${ratingDetail.value}.',
+          );
+        }
       }
 
       if (place.lat < -90 || place.lat > 90) {
@@ -89,6 +98,27 @@ class PlaceRepository {
         throw FormatException(
           'Invalid Google Maps URL for ${place.name}: '
           '${place.googleMapsUrl}.',
+        );
+      }
+
+      final websiteUri = place.websiteUrl == null
+          ? null
+          : Uri.tryParse(place.websiteUrl!);
+      if (websiteUri != null &&
+          websiteUri.scheme != 'http' &&
+          websiteUri.scheme != 'https') {
+        throw FormatException(
+          'Invalid website URL for ${place.name}: ${place.websiteUrl}.',
+        );
+      }
+
+      final instagramUri = place.instagramUrl == null
+          ? null
+          : Uri.tryParse(place.instagramUrl!);
+      if (instagramUri != null &&
+          (instagramUri.scheme != 'http' && instagramUri.scheme != 'https')) {
+        throw FormatException(
+          'Invalid Instagram URL for ${place.name}: ${place.instagramUrl}.',
         );
       }
     }

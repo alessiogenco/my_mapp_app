@@ -2,7 +2,11 @@ param(
     [ValidateSet("chrome", "edge", "windows")]
     [string] $Device = "chrome",
 
-    [switch] $Release
+    [switch] $Release,
+
+    # Keep one browser origin while developing so browser-local data,
+    # including the private Want to go list, survives app restarts.
+    [int] $WebPort = 7357
 )
 
 $ErrorActionPreference = "Stop"
@@ -50,6 +54,10 @@ $FlutterArgs = @(
 
 if ($Release) {
     $FlutterArgs += "--release"
+}
+
+if ($Device -eq "chrome" -or $Device -eq "edge") {
+    $FlutterArgs += "--web-port=$WebPort"
 }
 
 Write-Host ""

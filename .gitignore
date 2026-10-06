@@ -48,3 +48,6 @@ app.*.map.json
 # This file can contain your personal Mapbox token.
 # Keep it local: do not commit it to Git.
 /mapbox.env.json
+
+# Local backups created by the place writer while entering data.
+/assets/data/backups/

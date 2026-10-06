@@ -3,12 +3,13 @@ import 'package:my_map_app/models/place.dart';
 import 'package:my_map_app/models/place_area.dart';
 import 'package:my_map_app/models/place_category.dart';
 import 'package:my_map_app/services/maps_launcher_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Future<void> showPlaceDetailsSheet(
   BuildContext context,
   Place place, {
-  required bool isSaved,
-  required ValueChanged<bool> onSavedChanged,
+  required bool isWantToGo,
+  required ValueChanged<bool> onWantToGoChanged,
 }) {
   return showModalBottomSheet<void>(
     context: context,
@@ -16,8 +17,8 @@ Future<void> showPlaceDetailsSheet(
     backgroundColor: Colors.transparent,
     builder: (context) => PlaceDetailsSheet(
       place: place,
-      initialIsSaved: isSaved,
-      onSavedChanged: onSavedChanged,
+      initialIsWantToGo: isWantToGo,
+      onWantToGoChanged: onWantToGoChanged,
     ),
   );
 }
@@ -25,15 +26,15 @@ Future<void> showPlaceDetailsSheet(
 class PlaceDetailsSheet extends StatefulWidget {
   const PlaceDetailsSheet({
     required this.place,
-    required this.initialIsSaved,
-    required this.onSavedChanged,
+    required this.initialIsWantToGo,
+    required this.onWantToGoChanged,
     this.mapsLauncher = const MapsLauncherService(),
     super.key,
   });
 
   final Place place;
-  final bool initialIsSaved;
-  final ValueChanged<bool> onSavedChanged;
+  final bool initialIsWantToGo;
+  final ValueChanged<bool> onWantToGoChanged;
   final MapsLauncherService mapsLauncher;
 
   @override
@@ -41,12 +42,12 @@ class PlaceDetailsSheet extends StatefulWidget {
 }
 
 class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
-  late bool _isSaved;
+  late bool _isWantToGo;
 
   @override
   void initState() {
     super.initState();
-    _isSaved = widget.initialIsSaved;
+    _isWantToGo = widget.initialIsWantToGo;
   }
 
   Future<void> _openGoogleMaps(BuildContext context) async {
@@ -58,11 +59,47 @@ class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
     }
   }
 
-  void _toggleSaved() {
+  Future<void> _openWebsite(BuildContext context) async {
+    final websiteUrl = widget.place.websiteUrl;
+    if (websiteUrl == null || websiteUrl.isEmpty) {
+      return;
+    }
+
+    final opened = await launchUrl(
+      Uri.parse(websiteUrl),
+      mode: LaunchMode.externalApplication,
+    );
+
+    if (!opened && context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Could not open website.')),
+      );
+    }
+  }
+
+  Future<void> _openInstagram(BuildContext context) async {
+    final instagramUrl = widget.place.instagramUrl;
+    if (instagramUrl == null || instagramUrl.isEmpty) {
+      return;
+    }
+
+    final opened = await launchUrl(
+      Uri.parse(instagramUrl),
+      mode: LaunchMode.externalApplication,
+    );
+
+    if (!opened && context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Could not open Instagram.')),
+      );
+    }
+  }
+
+  void _toggleWantToGo() {
     setState(() {
-      _isSaved = !_isSaved;
+      _isWantToGo = !_isWantToGo;
     });
-    widget.onSavedChanged(_isSaved);
+    widget.onWantToGoChanged(_isWantToGo);
   }
 
   @override
@@ -126,10 +163,31 @@ class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
                   ),
                   _InfoPill(
                     icon: Icons.euro_rounded,
-                    label: List.filled(place.priceLevel, '€').join(),
+                    label: _priceLabel(place.priceLevel),
                   ),
                 ],
               ),
+              if (place.ratingDetails.isNotEmpty) ...[
+                const SizedBox(height: 18),
+                Text(
+                  'Detailed rating',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: place.ratingDetails.entries.map((entry) {
+                    return _InfoPill(
+                      icon: Icons.star_half_rounded,
+                      label: '${_displayVibe(entry.key)} ${entry.value}/10',
+                      iconColor: const Color(0xFFF6A800),
+                    );
+                  }).toList(),
+                ),
+              ],
               if (place.vibes.isNotEmpty) ...[
                 const SizedBox(height: 18),
                 Text(
@@ -163,17 +221,42 @@ class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
                   ),
                 ),
               ],
+              if (place.instagramUrl != null &&
+                  place.instagramUrl!.isNotEmpty) ...[
+                const SizedBox(height: 18),
+                Text(
+                  'Social',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                OutlinedButton.icon(
+                  onPressed: () => _openInstagram(context),
+                  icon: const Icon(Icons.camera_alt_rounded),
+                  label: const Text('Instagram'),
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 12,
+                    ),
+                    textStyle: const TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ],
               const SizedBox(height: 22),
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton.icon(
-                  onPressed: _toggleSaved,
+                  onPressed: _toggleWantToGo,
                   icon: Icon(
-                    _isSaved
-                        ? Icons.bookmark_rounded
-                        : Icons.bookmark_border_rounded,
+                    _isWantToGo
+                        ? Icons.explore_rounded
+                        : Icons.explore_outlined,
                   ),
-                  label: Text(_isSaved ? 'Saved' : 'Save place'),
+                  label: Text(
+                    _isWantToGo ? 'On your Want to go list' : 'Want to go',
+                  ),
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     textStyle: const TextStyle(
@@ -184,6 +267,24 @@ class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
                 ),
               ),
               const SizedBox(height: 10),
+              if (place.websiteUrl != null && place.websiteUrl!.isNotEmpty) ...[
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    onPressed: () => _openWebsite(context),
+                    icon: const Icon(Icons.language_rounded),
+                    label: const Text('Open website'),
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      textStyle: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+              ],
               SizedBox(
                 width: double.infinity,
                 child: FilledButton.icon(
@@ -329,6 +430,8 @@ class _InfoPill extends StatelessWidget {
 List<Color> _colorsForCategory(String category) {
   return switch (category) {
     'coffee_bar' => const [Color(0xFF8A5A44), Color(0xFFD5A06F)],
+    'sushi' => const [Color(0xFF237E83), Color(0xFF75C5C2)],
+    'chinese' || 'indian' => const [Color(0xFFB85A38), Color(0xFFE6A95C)],
     'cocktail_bar' || 'beer_bar' || 'pub' => const [
       Color(0xFF5744A1),
       Color(0xFFB46EC4),
@@ -345,4 +448,17 @@ List<Color> _colorsForCategory(String category) {
 String _displayVibe(String vibe) {
   final normalized = vibe.replaceAll('_', ' ').replaceAll('-', ' ');
   return '${normalized[0].toUpperCase()}${normalized.substring(1)}';
+}
+
+String _priceLabel(int priceLevel) {
+  final symbols = List.filled(priceLevel, '€').join();
+  final range = switch (priceLevel) {
+    1 => '0–15€',
+    2 => '15–35€',
+    3 => '35–70€',
+    4 => '70–100€',
+    _ => '100€+',
+  };
+
+  return '$symbols · $range';
 }

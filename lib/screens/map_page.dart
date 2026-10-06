@@ -1,24 +1,33 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:my_map_app/config/map_config.dart';
 import 'package:my_map_app/data/place_repository.dart';
+import 'package:my_map_app/data/want_to_go_repository.dart';
 import 'package:my_map_app/models/place.dart';
+import 'package:my_map_app/models/want_to_go_place.dart';
+import 'package:my_map_app/screens/add_place_page.dart';
+import 'package:my_map_app/screens/want_to_go_page.dart';
 import 'package:my_map_app/services/geocoding_service.dart';
 import 'package:my_map_app/widgets/glass_panel.dart';
 import 'package:my_map_app/widgets/map_filters.dart';
 import 'package:my_map_app/widgets/place_details_sheet.dart';
 import 'package:my_map_app/widgets/place_marker.dart';
+import 'package:my_map_app/widgets/want_to_go_marker.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({
     this.placeRepository = const PlaceRepository(),
     this.geocodingService = const GeocodingService(),
+    this.wantToGoRepository = const WantToGoRepository(),
     super.key,
   });
 
   final PlaceRepository placeRepository;
   final GeocodingService geocodingService;
+  final WantToGoRepository wantToGoRepository;
 
   @override
   State<MapPage> createState() => _MapPageState();
@@ -27,36 +36,124 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   final MapController _mapController = MapController();
   List<Place> _places = [];
-  String? _selectedCategory;
-  String? _selectedArea;
-  int? _maxPriceLevel;
+  Set<String> _selectedCategories = {};
+  RangeValues? _ratingRange;
+  Set<int> _selectedPriceLevels = {};
   Set<String> _selectedVibes = {};
-  Set<String> _savedPlaceIds = {};
-  bool _showOnlySaved = false;
+  Set<String> _wantToGoPlaceIds = {};
+  List<WantToGoPlace> _placesToTry = [];
+  bool _showOnlyWantToGo = false;
+  Set<String> _selectedWantToGoCities = {};
   bool _isLoadingPlaces = true;
   bool _isSearchingCity = false;
   String? _placesError;
 
   List<Place> get _filteredPlaces {
     return _places.where((place) {
-      if (_selectedCategory != null && place.category != _selectedCategory) {
+      if (_selectedCategories.isNotEmpty &&
+          !_selectedCategories.contains(place.category)) {
         return false;
       }
-      if (_selectedArea != null && place.area != _selectedArea) {
+      if (_ratingRange != null &&
+          (place.rating < _ratingRange!.start.round() ||
+              place.rating > _ratingRange!.end.round())) {
         return false;
       }
-      if (_maxPriceLevel != null && place.priceLevel > _maxPriceLevel!) {
+      if (_selectedPriceLevels.isNotEmpty &&
+          !_selectedPriceLevels.contains(place.priceLevel)) {
         return false;
       }
       if (_selectedVibes.isNotEmpty &&
           !_selectedVibes.any(place.vibes.contains)) {
         return false;
       }
-      if (_showOnlySaved && !_savedPlaceIds.contains(place.id)) {
+      if (_showOnlyWantToGo && !_wantToGoPlaceIds.contains(place.id)) {
+        return false;
+      }
+      if (_showOnlyWantToGo &&
+          _selectedWantToGoCities.isNotEmpty &&
+          !_isSelectedWantToGoCity(place.city)) {
         return false;
       }
       return true;
     }).toList();
+  }
+
+  bool get _hasCatalogFilters {
+    return _selectedCategories.isNotEmpty ||
+        _ratingRange != null ||
+        _selectedPriceLevels.isNotEmpty ||
+        _selectedVibes.isNotEmpty;
+  }
+
+  List<WantToGoPlace> get _visibleWantToGoPlaces {
+    if (!_showOnlyWantToGo || _hasCatalogFilters) return const [];
+    return _placesToTry
+        .where(
+          (place) =>
+              place.isVisibleOnMap &&
+              (_selectedWantToGoCities.isEmpty ||
+                  _isSelectedWantToGoCity(place.city)),
+        )
+        .toList();
+  }
+
+  List<String> get _availableWantToGoCities {
+    final citiesByNormalizedName = <String, String>{};
+
+    void addCity(String city) {
+      final normalizedCity = _normalizeCity(city);
+      if (normalizedCity.isEmpty) return;
+      citiesByNormalizedName.putIfAbsent(normalizedCity, () => city.trim());
+    }
+
+    for (final place in _placesToTry.where((place) => place.isVisibleOnMap)) {
+      addCity(place.city);
+    }
+    for (final place in _places.where(
+      (place) => _wantToGoPlaceIds.contains(place.id),
+    )) {
+      addCity(place.city);
+    }
+
+    final cities = citiesByNormalizedName.values.toList();
+    cities.sort((first, second) => first.toLowerCase().compareTo(second.toLowerCase()));
+    return cities;
+  }
+
+  bool _isSelectedWantToGoCity(String city) {
+    final normalizedCity = _normalizeCity(city);
+    return _selectedWantToGoCities.any(
+      (selectedCity) => _normalizeCity(selectedCity) == normalizedCity,
+    );
+  }
+
+  void _focusWantToGoCity(String city) {
+    final normalizedCity = _normalizeCity(city);
+    final points = <LatLng>[
+      ..._placesToTry
+          .where(
+            (place) =>
+                place.isVisibleOnMap && _normalizeCity(place.city) == normalizedCity,
+          )
+          .map((place) => LatLng(place.latitude!, place.longitude!)),
+      ..._places
+          .where(
+            (place) =>
+                _wantToGoPlaceIds.contains(place.id) &&
+                _normalizeCity(place.city) == normalizedCity,
+          )
+          .map((place) => LatLng(place.lat, place.lng)),
+    ];
+    if (points.isEmpty) return;
+
+    final latitude =
+        points.map((point) => point.latitude).reduce((sum, value) => sum + value) /
+        points.length;
+    final longitude =
+        points.map((point) => point.longitude).reduce((sum, value) => sum + value) /
+        points.length;
+    _mapController.move(LatLng(latitude, longitude), points.length == 1 ? 15 : 13);
   }
 
   List<String> get _availableVibes {
@@ -65,16 +162,17 @@ class _MapPageState extends State<MapPage> {
     return vibes;
   }
 
-  List<String> get _availableAreas {
-    final areas = _places.map((place) => place.area).toSet().toList();
-    areas.sort();
-    return areas;
+  List<int> get _availableRatings {
+    final ratings = _places.map((place) => place.rating).toSet().toList();
+    ratings.sort((first, second) => second.compareTo(first));
+    return ratings;
   }
 
   @override
   void initState() {
     super.initState();
     _loadPlaces();
+    _loadWantToGo();
   }
 
   @override
@@ -95,10 +193,15 @@ class _MapPageState extends State<MapPage> {
       setState(() {
         _places = loadedPlaces;
       });
-    } catch (_) {
+    } on FormatException catch (error) {
       if (!mounted) return;
       setState(() {
-        _placesError = 'Could not load places.';
+        _placesError = error.message;
+      });
+    } catch (error) {
+      if (!mounted) return;
+      setState(() {
+        _placesError = 'Could not load places: $error';
       });
     } finally {
       if (mounted) {
@@ -148,6 +251,44 @@ class _MapPageState extends State<MapPage> {
     }
   }
 
+  Future<void> _loadWantToGo() async {
+    try {
+      final data = await widget.wantToGoRepository.load();
+      if (!mounted) return;
+      setState(() {
+        _wantToGoPlaceIds = data.mappedPlaceIds;
+        _placesToTry = data.places;
+      });
+    } catch (_) {
+      debugPrint('Could not load Want to go data.');
+    }
+  }
+
+  Future<void> _saveWantToGo() async {
+    try {
+      await widget.wantToGoRepository.save(
+        WantToGoData(
+          mappedPlaceIds: _wantToGoPlaceIds,
+          places: _placesToTry,
+        ),
+      );
+    } catch (_) {
+      _showMessage('Could not save your Want to go list. Try again.');
+    }
+  }
+
+  Future<void> _openWantToGo() async {
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (_) => WantToGoPage(
+          mappedPlaces: _places,
+          repository: widget.wantToGoRepository,
+        ),
+      ),
+    );
+    await _loadWantToGo();
+  }
+
   void _showMessage(String message) {
     if (!mounted) return;
     ScaffoldMessenger.of(context)
@@ -155,19 +296,26 @@ class _MapPageState extends State<MapPage> {
       ..showSnackBar(SnackBar(content: Text(message)));
   }
 
-  void _setPlaceSaved(Place place, bool isSaved) {
+  void _setPlaceWantToGo(Place place, bool isWantToGo) {
     setState(() {
-      if (isSaved) {
-        _savedPlaceIds = {..._savedPlaceIds, place.id};
+      if (isWantToGo) {
+        _wantToGoPlaceIds = {..._wantToGoPlaceIds, place.id};
       } else {
-        _savedPlaceIds = _savedPlaceIds.where((id) => id != place.id).toSet();
-        if (_savedPlaceIds.isEmpty) {
-          _showOnlySaved = false;
+        _wantToGoPlaceIds = _wantToGoPlaceIds
+            .where((id) => id != place.id)
+            .toSet();
+        if (_wantToGoPlaceIds.isEmpty) {
+          _showOnlyWantToGo = false;
         }
       }
     });
 
-    _showMessage(isSaved ? 'Place saved.' : 'Place removed from saved.');
+    _showMessage(
+      isWantToGo
+          ? 'Added to your Want to go list.'
+          : 'Removed from your Want to go list.',
+    );
+    unawaited(_saveWantToGo());
   }
 
   Widget _buildMapContent() {
@@ -180,7 +328,17 @@ class _MapPageState extends State<MapPage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(_placesError!),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                _placesError!,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Color(0xFF102F40),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
             const SizedBox(height: 12),
             FilledButton.icon(
               onPressed: _loadPlaces,
@@ -213,23 +371,34 @@ class _MapPageState extends State<MapPage> {
           },
         ),
         MarkerLayer(
-          markers: _filteredPlaces.map((place) {
-            return Marker(
-              point: LatLng(place.lat, place.lng),
-              width: 140,
-              height: 50,
-              child: PlaceMarker(
-                place: place,
-                isSaved: _savedPlaceIds.contains(place.id),
-                onTap: () => showPlaceDetailsSheet(
-                  context,
-                  place,
-                  isSaved: _savedPlaceIds.contains(place.id),
-                  onSavedChanged: (isSaved) => _setPlaceSaved(place, isSaved),
+          markers: [
+            ..._filteredPlaces.map((place) {
+              return Marker(
+                point: LatLng(place.lat, place.lng),
+                width: 176,
+                height: 70,
+                child: PlaceMarker(
+                  place: place,
+                  isWantToGo: _wantToGoPlaceIds.contains(place.id),
+                  onTap: () => showPlaceDetailsSheet(
+                    context,
+                    place,
+                    isWantToGo: _wantToGoPlaceIds.contains(place.id),
+                    onWantToGoChanged: (isWantToGo) =>
+                        _setPlaceWantToGo(place, isWantToGo),
+                  ),
                 ),
-              ),
-            );
-          }).toList(),
+              );
+            }),
+            ..._visibleWantToGoPlaces.map((place) {
+              return Marker(
+                point: LatLng(place.latitude!, place.longitude!),
+                width: 176,
+                height: 70,
+                child: WantToGoMarker(place: place, onTap: _openWantToGo),
+              );
+            }),
+          ],
         ),
         const RichAttributionWidget(
           attributions: [
@@ -305,27 +474,31 @@ class _MapPageState extends State<MapPage> {
                     ),
                     const SizedBox(height: 10),
                     MapFilters(
-                      selectedCategory: _selectedCategory,
-                      selectedArea: _selectedArea,
-                      maxPriceLevel: _maxPriceLevel,
+                      selectedCategories: _selectedCategories,
+                      ratingRange: _ratingRange,
+                      selectedPriceLevels: _selectedPriceLevels,
                       selectedVibes: _selectedVibes,
                       availableVibes: _availableVibes,
-                      availableAreas: _availableAreas,
-                      showOnlySaved: _showOnlySaved,
-                      savedCount: _savedPlaceIds.length,
-                      onCategoryChanged: (value) {
+                      availableRatings: _availableRatings,
+                      showOnlyWantToGo: _showOnlyWantToGo,
+                      selectedWantToGoCities: _selectedWantToGoCities,
+                      availableWantToGoCities: _availableWantToGoCities,
+                      wantToGoCount:
+                          _wantToGoPlaceIds.length +
+                          _placesToTry.where((place) => place.isVisibleOnMap).length,
+                      onCategoriesChanged: (value) {
                         setState(() {
-                          _selectedCategory = value;
+                          _selectedCategories = value;
                         });
                       },
-                      onAreaChanged: (value) {
+                      onRatingRangeChanged: (value) {
                         setState(() {
-                          _selectedArea = value;
+                          _ratingRange = value;
                         });
                       },
-                      onPriceChanged: (value) {
+                      onPriceLevelsChanged: (value) {
                         setState(() {
-                          _maxPriceLevel = value;
+                          _selectedPriceLevels = value;
                         });
                       },
                       onVibesChanged: (value) {
@@ -333,18 +506,31 @@ class _MapPageState extends State<MapPage> {
                           _selectedVibes = value;
                         });
                       },
-                      onSavedOnlyChanged: (value) {
+                      onWantToGoOnlyChanged: (value) {
                         setState(() {
-                          _showOnlySaved = value;
+                          _showOnlyWantToGo = value;
+                          if (!value) {
+                            _selectedWantToGoCities = {};
+                          }
                         });
+                      },
+                      onWantToGoCitiesChanged: (value) {
+                        setState(() {
+                          _selectedWantToGoCities = value;
+                          _showOnlyWantToGo = true;
+                        });
+                        if (value.length == 1) {
+                          _focusWantToGoCity(value.single);
+                        }
                       },
                       onReset: () {
                         setState(() {
-                          _selectedCategory = null;
-                          _selectedArea = null;
-                          _maxPriceLevel = null;
+                          _selectedCategories = {};
+                          _ratingRange = null;
+                          _selectedPriceLevels = {};
                           _selectedVibes = {};
-                          _showOnlySaved = false;
+                          _showOnlyWantToGo = false;
+                          _selectedWantToGoCities = {};
                         });
                       },
                     ),
@@ -358,6 +544,32 @@ class _MapPageState extends State<MapPage> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          FloatingActionButton(
+            heroTag: 'addPlace',
+            mini: true,
+            backgroundColor: Colors.white.withValues(alpha: 0.94),
+            foregroundColor: const Color(0xFF137DB8),
+            tooltip: 'Add place',
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const AddPlacePage(),
+                ),
+              );
+            },
+            child: const Icon(Icons.edit_location_alt_rounded),
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton(
+            heroTag: 'wantToGo',
+            mini: true,
+            backgroundColor: Colors.white.withValues(alpha: 0.94),
+            foregroundColor: const Color(0xFF137DB8),
+            tooltip: 'Want to go list',
+            onPressed: _openWantToGo,
+            child: const Icon(Icons.explore_outlined),
+          ),
+          const SizedBox(height: 10),
           FloatingActionButton(
             heroTag: 'zoomIn',
             mini: true,
@@ -389,4 +601,8 @@ class _MapPageState extends State<MapPage> {
       ),
     );
   }
+}
+
+String _normalizeCity(String value) {
+  return value.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
 }

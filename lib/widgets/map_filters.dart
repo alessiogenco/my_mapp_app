@@ -1,57 +1,83 @@
 import 'package:flutter/material.dart';
-import 'package:my_map_app/models/place_area.dart';
 import 'package:my_map_app/widgets/glass_panel.dart';
 
 class MapFilters extends StatelessWidget {
   const MapFilters({
-    required this.selectedCategory,
-    required this.selectedArea,
-    required this.maxPriceLevel,
+    required this.selectedCategories,
+    required this.ratingRange,
+    required this.selectedPriceLevels,
     required this.selectedVibes,
     required this.availableVibes,
-    required this.availableAreas,
-    required this.showOnlySaved,
-    required this.savedCount,
-    required this.onCategoryChanged,
-    required this.onAreaChanged,
-    required this.onPriceChanged,
+    required this.availableRatings,
+    required this.showOnlyWantToGo,
+    required this.selectedWantToGoCities,
+    required this.availableWantToGoCities,
+    required this.wantToGoCount,
+    required this.onCategoriesChanged,
+    required this.onRatingRangeChanged,
+    required this.onPriceLevelsChanged,
     required this.onVibesChanged,
-    required this.onSavedOnlyChanged,
+    required this.onWantToGoOnlyChanged,
+    required this.onWantToGoCitiesChanged,
     required this.onReset,
     super.key,
   });
 
-  final String? selectedCategory;
-  final String? selectedArea;
-  final int? maxPriceLevel;
+  final Set<String> selectedCategories;
+  final RangeValues? ratingRange;
+  final Set<int> selectedPriceLevels;
   final Set<String> selectedVibes;
   final List<String> availableVibes;
-  final List<String> availableAreas;
-  final bool showOnlySaved;
-  final int savedCount;
-  final ValueChanged<String?> onCategoryChanged;
-  final ValueChanged<String?> onAreaChanged;
-  final ValueChanged<int?> onPriceChanged;
+  final List<int> availableRatings;
+  final bool showOnlyWantToGo;
+  final Set<String> selectedWantToGoCities;
+  final List<String> availableWantToGoCities;
+  final int wantToGoCount;
+  final ValueChanged<Set<String>> onCategoriesChanged;
+  final ValueChanged<RangeValues?> onRatingRangeChanged;
+  final ValueChanged<Set<int>> onPriceLevelsChanged;
   final ValueChanged<Set<String>> onVibesChanged;
-  final ValueChanged<bool> onSavedOnlyChanged;
+  final ValueChanged<bool> onWantToGoOnlyChanged;
+  final ValueChanged<Set<String>> onWantToGoCitiesChanged;
   final VoidCallback onReset;
 
   bool get _hasActiveFilters {
-    return selectedCategory != null ||
-        selectedArea != null ||
-        maxPriceLevel != null ||
+    return selectedCategories.isNotEmpty ||
+        ratingRange != null ||
+        selectedPriceLevels.isNotEmpty ||
         selectedVibes.isNotEmpty ||
-        showOnlySaved;
+        showOnlyWantToGo;
   }
 
   String get _categoryLabel {
-    return _categoryOptions
-        .firstWhere((option) => option.value == selectedCategory)
-        .shortLabel;
+    return selectedCategories.isEmpty
+        ? 'Category'
+        : 'Category · ${selectedCategories.length}';
   }
 
-  String get _areaLabel {
-    return selectedArea == null ? 'Area' : labelForArea(selectedArea!);
+  String get _ratingLabel {
+    if (ratingRange == null) return 'Rating';
+
+    final start = ratingRange!.start.round();
+    final end = ratingRange!.end.round();
+    return start == end ? '$start/10' : '$start–$end/10';
+  }
+
+  String get _priceLabel {
+    return selectedPriceLevels.isEmpty
+        ? 'Price'
+        : 'Price · ${selectedPriceLevels.length}';
+  }
+
+  String get _wantToGoLabel {
+    if (!showOnlyWantToGo) {
+      return wantToGoCount == 0 ? 'Want to go' : 'Want to go $wantToGoCount';
+    }
+    if (selectedWantToGoCities.isEmpty) return 'Want to go';
+    if (selectedWantToGoCities.length == 1) {
+      return selectedWantToGoCities.single;
+    }
+    return 'Cities · ${selectedWantToGoCities.length}';
   }
 
   @override
@@ -66,7 +92,7 @@ class MapFilters extends StatelessWidget {
               child: _FilterButton(
                 icon: Icons.restaurant_menu_rounded,
                 label: _categoryLabel,
-                isActive: selectedCategory != null,
+                isActive: selectedCategories.isNotEmpty,
                 onTap: () => _showCategoryPicker(context),
               ),
             ),
@@ -74,10 +100,10 @@ class MapFilters extends StatelessWidget {
             SizedBox(
               width: 112,
               child: _FilterButton(
-                icon: Icons.map_rounded,
-                label: _areaLabel,
-                isActive: selectedArea != null,
-                onTap: () => _showAreaPicker(context),
+                icon: Icons.star_rounded,
+                label: _ratingLabel,
+                isActive: ratingRange != null,
+                onTap: () => _showRatingPicker(context),
               ),
             ),
             const SizedBox(width: 3),
@@ -85,10 +111,8 @@ class MapFilters extends StatelessWidget {
               width: 104,
               child: _FilterButton(
                 icon: Icons.payments_rounded,
-                label: maxPriceLevel == null
-                    ? 'Price'
-                    : '≤ ${_priceLabel(maxPriceLevel!)}',
-                isActive: maxPriceLevel != null,
+                label: _priceLabel,
+                isActive: selectedPriceLevels.isNotEmpty,
                 onTap: () => _showPricePicker(context),
               ),
             ),
@@ -106,26 +130,30 @@ class MapFilters extends StatelessWidget {
             ),
             const SizedBox(width: 3),
             SizedBox(
-              width: savedCount == 0 ? 104 : 116,
+              width: showOnlyWantToGo && selectedWantToGoCities.length == 1
+                  ? 130
+                  : wantToGoCount == 0
+                  ? 108
+                  : 126,
               child: _FilterButton(
-                icon: showOnlySaved
-                    ? Icons.bookmark_rounded
-                    : Icons.bookmark_border_rounded,
-                label: savedCount == 0 ? 'Saved' : 'Saved $savedCount',
-                isActive: showOnlySaved,
-                onTap: savedCount == 0
+                icon: showOnlyWantToGo
+                    ? Icons.explore_rounded
+                    : Icons.explore_outlined,
+                label: _wantToGoLabel,
+                isActive: showOnlyWantToGo,
+                onTap: wantToGoCount == 0
                     ? () {
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
                           ..showSnackBar(
                             const SnackBar(
                               content: Text(
-                                'Open a place and tap Save to add it here.',
+                                'Open a place and tap Want to go to add it here.',
                               ),
                             ),
                           );
                       }
-                    : () => onSavedOnlyChanged(!showOnlySaved),
+                    : () => _showWantToGoPicker(context),
               ),
             ),
             if (_hasActiveFilters) ...[
@@ -146,80 +174,171 @@ class MapFilters extends StatelessWidget {
   }
 
   Future<void> _showCategoryPicker(BuildContext context) {
+    final localSelection = selectedCategories.toSet();
+
     return showModalBottomSheet<void>(
       context: context,
+      isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (sheetContext) {
-        return _FilterSheet(
-          title: 'Choose a category',
-          subtitle: 'Show only the places you are interested in.',
-          children: _categoryOptions.map((option) {
-            return ChoiceChip(
-              selected: selectedCategory == option.value,
-              avatar: Text(option.emoji),
-              label: Text(option.label),
-              onSelected: (_) {
-                onCategoryChanged(option.value);
-                Navigator.pop(sheetContext);
-              },
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            return _FilterSheet(
+              title: 'Choose categories',
+              subtitle: 'You can select more than one.',
+              footer: _MultiSelectFooter(
+                onClear: () {
+                  setSheetState(localSelection.clear);
+                  onCategoriesChanged(const {});
+                },
+                onDone: () => Navigator.pop(sheetContext),
+              ),
+              children: _categoryOptions
+                  .where((option) => option.value != null)
+                  .map((option) {
+                    final category = option.value!;
+                    return FilterChip(
+                      selected: localSelection.contains(category),
+                      avatar: Text(option.emoji),
+                      label: Text(option.label),
+                      onSelected: (isSelected) {
+                        setSheetState(() {
+                          if (isSelected) {
+                            localSelection.add(category);
+                          } else {
+                            localSelection.remove(category);
+                          }
+                        });
+                        onCategoriesChanged(Set.unmodifiable(localSelection));
+                      },
+                    );
+                  })
+                  .toList(),
             );
-          }).toList(),
+          },
         );
       },
     );
   }
 
-  Future<void> _showAreaPicker(BuildContext context) {
-    final options = <String?>[null, ...availableAreas];
+  Future<void> _showRatingPicker(BuildContext context) {
+    if (availableRatings.isEmpty) return Future.value();
+
+    final lowestRating = availableRatings.reduce(
+      (first, second) => first < second ? first : second,
+    );
+    final highestRating = availableRatings.reduce(
+      (first, second) => first > second ? first : second,
+    );
+    var localRange = ratingRange ??
+        RangeValues(lowestRating.toDouble(), highestRating.toDouble());
 
     return showModalBottomSheet<void>(
       context: context,
       backgroundColor: Colors.transparent,
       builder: (sheetContext) {
-        return _FilterSheet(
-          title: 'Choose an area',
-          subtitle: 'Filter places by location area.',
-          children: options.map((area) {
-            return ChoiceChip(
-              selected: selectedArea == area,
-              avatar: Icon(
-                area == null ? Icons.all_inclusive_rounded : Icons.map,
-                size: 18,
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            final start = localRange.start.round();
+            final end = localRange.end.round();
+            return _FilterSheet(
+              title: 'Rating range',
+              subtitle: 'Show places rated from $start to $end out of 10.',
+              footer: Row(
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      onRatingRangeChanged(null);
+                      Navigator.pop(sheetContext);
+                    },
+                    child: const Text('All ratings'),
+                  ),
+                  const Spacer(),
+                  FilledButton(
+                    onPressed: () {
+                      final includesAllRatings =
+                          localRange.start == lowestRating.toDouble() &&
+                          localRange.end == highestRating.toDouble();
+                      onRatingRangeChanged(
+                        includesAllRatings ? null : localRange,
+                      );
+                      Navigator.pop(sheetContext);
+                    },
+                    child: const Text('Apply'),
+                  ),
+                ],
               ),
-              label: Text(area == null ? 'All' : labelForArea(area)),
-              onSelected: (_) {
-                onAreaChanged(area);
-                Navigator.pop(sheetContext);
-              },
+              children: [
+                SizedBox(
+                  width: MediaQuery.sizeOf(context).width - 40,
+                  child: Column(
+                    children: [
+                      Text(
+                        '$start/10  –  $end/10',
+                        style: const TextStyle(fontWeight: FontWeight.w800),
+                      ),
+                      RangeSlider(
+                        values: localRange,
+                        min: lowestRating.toDouble(),
+                        max: highestRating.toDouble(),
+                        divisions: highestRating - lowestRating,
+                        labels: RangeLabels('$start/10', '$end/10'),
+                        onChanged: (values) {
+                          setSheetState(() {
+                            localRange = values;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             );
-          }).toList(),
+          },
         );
       },
     );
   }
 
   Future<void> _showPricePicker(BuildContext context) {
+    final localSelection = selectedPriceLevels.toSet();
+
     return showModalBottomSheet<void>(
       context: context,
+      isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (sheetContext) {
-        return _FilterSheet(
-          title: 'Maximum price',
-          subtitle: 'Show places within the selected budget.',
-          children: _priceOptions.map((price) {
-            return ChoiceChip(
-              selected: maxPriceLevel == price,
-              avatar: Icon(
-                price == null ? Icons.all_inclusive_rounded : Icons.payments,
-                size: 18,
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            return _FilterSheet(
+              title: 'Choose price ranges',
+              subtitle: 'You can select more than one average spend range.',
+              footer: _MultiSelectFooter(
+                onClear: () {
+                  setSheetState(localSelection.clear);
+                  onPriceLevelsChanged(const {});
+                },
+                onDone: () => Navigator.pop(sheetContext),
               ),
-              label: Text(price == null ? 'All' : _priceLabel(price)),
-              onSelected: (_) {
-                onPriceChanged(price);
-                Navigator.pop(sheetContext);
-              },
+              children: _priceOptions.map((price) {
+                return FilterChip(
+                  selected: localSelection.contains(price),
+                  avatar: const Icon(Icons.payments, size: 18),
+                  label: Text(_priceRangeLabel(price)),
+                  onSelected: (isSelected) {
+                    setSheetState(() {
+                      if (isSelected) {
+                        localSelection.add(price);
+                      } else {
+                        localSelection.remove(price);
+                      }
+                    });
+                    onPriceLevelsChanged(Set.unmodifiable(localSelection));
+                  },
+                );
+              }).toList(),
             );
-          }).toList(),
+          },
         );
       },
     );
@@ -238,12 +357,12 @@ class MapFilters extends StatelessWidget {
             return _FilterSheet(
               title: 'Choose vibes',
               subtitle: 'You can select more than one.',
-              footer: SizedBox(
-                width: double.infinity,
-                child: FilledButton(
-                  onPressed: () => Navigator.pop(sheetContext),
-                  child: const Text('Done'),
-                ),
+              footer: _MultiSelectFooter(
+                onClear: () {
+                  setSheetState(localSelection.clear);
+                  onVibesChanged(const {});
+                },
+                onDone: () => Navigator.pop(sheetContext),
               ),
               children: availableVibes.map((vibe) {
                 return FilterChip(
@@ -265,6 +384,90 @@ class MapFilters extends StatelessWidget {
           },
         );
       },
+    );
+  }
+
+  Future<void> _showWantToGoPicker(BuildContext context) {
+    final localSelection = selectedWantToGoCities.toSet();
+
+    return showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (sheetContext) {
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            return _FilterSheet(
+              title: 'Want to go',
+              subtitle: 'Choose cities to show only places you want to try.',
+              footer: Row(
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      onWantToGoOnlyChanged(false);
+                      Navigator.pop(sheetContext);
+                    },
+                    child: const Text('Hide'),
+                  ),
+                  const Spacer(),
+                  TextButton(
+                    onPressed: () {
+                      setSheetState(localSelection.clear);
+                      onWantToGoCitiesChanged(const {});
+                    },
+                    child: const Text('All cities'),
+                  ),
+                  const SizedBox(width: 8),
+                  FilledButton(
+                    onPressed: () {
+                      onWantToGoCitiesChanged(
+                        Set.unmodifiable(localSelection),
+                      );
+                      Navigator.pop(sheetContext);
+                    },
+                    child: const Text('Done'),
+                  ),
+                ],
+              ),
+              children: availableWantToGoCities.map((city) {
+                return FilterChip(
+                  selected: localSelection.contains(city),
+                  avatar: const Icon(Icons.location_city_rounded, size: 18),
+                  label: Text(city),
+                  onSelected: (isSelected) {
+                    setSheetState(() {
+                      if (isSelected) {
+                        localSelection.add(city);
+                      } else {
+                        localSelection.remove(city);
+                      }
+                    });
+                    onWantToGoCitiesChanged(Set.unmodifiable(localSelection));
+                  },
+                );
+              }).toList(),
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+class _MultiSelectFooter extends StatelessWidget {
+  const _MultiSelectFooter({required this.onClear, required this.onDone});
+
+  final VoidCallback onClear;
+  final VoidCallback onDone;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        TextButton(onPressed: onClear, child: const Text('Clear')),
+        const Spacer(),
+        FilledButton(onPressed: onDone, child: const Text('Done')),
+      ],
     );
   }
 }
@@ -411,8 +614,17 @@ class _CategoryOption {
   final String emoji;
 }
 
-String _priceLabel(int priceLevel) {
-  return List.filled(priceLevel, '€').join();
+String _priceRangeLabel(int priceLevel) {
+  final symbols = List.filled(priceLevel, '€').join();
+  final range = switch (priceLevel) {
+    1 => '0–15€',
+    2 => '15–35€',
+    3 => '35–70€',
+    4 => '70–100€',
+    _ => '100€+',
+  };
+
+  return '$symbols · $range';
 }
 
 String _displayVibe(String vibe) {
@@ -432,6 +644,36 @@ const _categoryOptions = [
     shortLabel: 'Restaurants',
     label: 'Restaurants',
     emoji: '🍝',
+  ),
+  _CategoryOption(
+    value: 'sushi',
+    shortLabel: 'Sushi',
+    label: 'Sushi',
+    emoji: '🍣',
+  ),
+  _CategoryOption(
+    value: 'chinese',
+    shortLabel: 'Chinese',
+    label: 'Chinese',
+    emoji: '🥡',
+  ),
+  _CategoryOption(
+    value: 'indian',
+    shortLabel: 'Indian',
+    label: 'Indian',
+    emoji: '🍛',
+  ),
+  _CategoryOption(
+    value: 'pizzeria',
+    shortLabel: 'Pizzeria',
+    label: 'Pizzeria',
+    emoji: '🍕',
+  ),
+  _CategoryOption(
+    value: 'panzerotteria',
+    shortLabel: 'Panzerotti',
+    label: 'Panzerotteria',
+    emoji: '🥟',
   ),
   _CategoryOption(
     value: 'steakhouse',
@@ -478,4 +720,4 @@ const _categoryOptions = [
   ),
 ];
 
-const _priceOptions = <int?>[null, 1, 2, 3];
+const _priceOptions = <int>[1, 2, 3, 4, 5];
