@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
@@ -7,6 +8,7 @@ import 'package:my_map_app/config/map_config.dart';
 import 'package:my_map_app/data/place_repository.dart';
 import 'package:my_map_app/data/want_to_go_repository.dart';
 import 'package:my_map_app/models/place.dart';
+import 'package:my_map_app/models/place_category.dart';
 import 'package:my_map_app/models/want_to_go_place.dart';
 import 'package:my_map_app/screens/add_place_page.dart';
 import 'package:my_map_app/screens/want_to_go_page.dart';
@@ -34,8 +36,12 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   static const _placesSourceId = 'my-locals-places-source';
   static const _badgeLayerId = 'my-locals-place-badges';
-  static const _badgeTextLayerId = 'my-locals-place-badge-text';
   static const _labelLayerId = 'my-locals-place-labels';
+  static const _markerImagePrefix = 'my-locals-category-marker-';
+  static const _wantToGoMarkerImageId = 'my-locals-want-to-go-marker';
+  static const _defaultMarkerImageId = 'my-locals-default-marker';
+  static const _labelImageId = 'my-locals-place-label';
+  static const _wantToGoLabelImageId = 'my-locals-want-to-go-label';
 
   final ViewportController _viewportController = ViewportController();
   MapboxMap? _mapboxMap;
@@ -371,50 +377,18 @@ class _MapPageState extends State<MapPage> {
 
     _isStyleReady = false;
     try {
+      await _addMarkerImages(map);
       await map.addSource(
         GeoJsonSource(id: _placesSourceId, data: _placesGeoJson()),
       );
       await map.addLayer(
-        CircleLayer(
+        SymbolLayer(
           id: _badgeLayerId,
           sourceId: _placesSourceId,
           slot: 'top',
-          circleRadius: 17,
-          circleColorExpression: [
-            'case',
-            [
-              '==',
-              ['get', 'kind'],
-              'want',
-            ],
-            '#FFF6DA',
-            '#FFFFFF',
-          ],
-          circleStrokeWidth: 2.5,
-          circleStrokeColorExpression: [
-            'case',
-            [
-              '==',
-              ['get', 'kind'],
-              'want',
-            ],
-            '#E5AD28',
-            '#197EAF',
-          ],
-        ),
-      );
-      await map.addLayer(
-        SymbolLayer(
-          id: _badgeTextLayerId,
-          sourceId: _placesSourceId,
-          slot: 'top',
-          textFieldExpression: ['get', 'badge'],
-          textSize: 11,
-          textAnchor: TextAnchor.CENTER,
-          textJustify: TextJustify.CENTER,
-          textColor: const Color(0xFF12374D).toARGB32(),
-          textAllowOverlap: true,
-          textIgnorePlacement: true,
+          iconImageExpression: ['get', 'icon'],
+          iconAllowOverlap: true,
+          iconIgnorePlacement: true,
         ),
       );
       await map.addLayer(
@@ -423,12 +397,16 @@ class _MapPageState extends State<MapPage> {
           sourceId: _placesSourceId,
           slot: 'top',
           minZoom: 11,
+          iconImageExpression: ['get', 'labelIcon'],
+          iconTextFit: IconTextFit.BOTH,
+          iconTextFitPadding: const <double>[3, 8, 3, 8],
+          iconOffset: const <double>[0, 1.1],
           textFieldExpression: ['get', 'name'],
           textSize: 12,
           textMaxWidth: 12,
           textAnchor: TextAnchor.TOP,
           textJustify: TextJustify.CENTER,
-          textOffset: const [0, 1.65],
+          textOffset: const <double>[0, 2.2],
           textColorExpression: [
             'case',
             [
@@ -439,8 +417,6 @@ class _MapPageState extends State<MapPage> {
             '#805400',
             '#0B2E41',
           ],
-          textHaloColor: Colors.white.toARGB32(),
-          textHaloWidth: 2.4,
           textAllowOverlap: false,
         ),
       );
@@ -449,6 +425,138 @@ class _MapPageState extends State<MapPage> {
     } catch (error) {
       debugPrint('Could not set up the Mapbox place layers: $error');
     }
+  }
+
+  Future<void> _addMarkerImages(MapboxMap map) async {
+    for (final category in allowedPlaceCategories) {
+      await map.addImage(
+        _markerImageIdForCategory(category),
+        1,
+        await _buildMarkerImage(
+          emojiForCategory(category),
+          borderColor: const Color(0xFFD7E3E8),
+        ),
+      );
+    }
+    await map.addImage(
+      _defaultMarkerImageId,
+      1,
+      await _buildMarkerImage(
+        emojiForCategory(''),
+        borderColor: const Color(0xFFD7E3E8),
+      ),
+    );
+    await map.addImage(
+      _wantToGoMarkerImageId,
+      1,
+      await _buildMarkerImage(
+        '🧭',
+        borderColor: const Color(0xFFF2C55A),
+      ),
+    );
+    await map.addImage(
+      _labelImageId,
+      1,
+      await _buildLabelImage(borderColor: const Color(0xFFD7E3E8)),
+      stretchX: [ImageStretches(first: 8, second: 16)],
+      stretchY: [ImageStretches(first: 8, second: 16)],
+      content: ImageContent(left: 8, top: 4, right: 16, bottom: 20),
+    );
+    await map.addImage(
+      _wantToGoLabelImageId,
+      1,
+      await _buildLabelImage(borderColor: const Color(0xFFF2C55A)),
+      stretchX: [ImageStretches(first: 8, second: 16)],
+      stretchY: [ImageStretches(first: 8, second: 16)],
+      content: ImageContent(left: 8, top: 4, right: 16, bottom: 20),
+    );
+  }
+
+  Future<StyleImage> _buildMarkerImage(
+    String emoji, {
+    required Color borderColor,
+  }) async {
+    const width = 58.0;
+    const height = 44.0;
+    final recorder = ui.PictureRecorder();
+    final canvas = Canvas(recorder);
+    final bounds = Rect.fromLTWH(1, 1, width - 2, height - 2);
+    final markerShape = RRect.fromRectAndRadius(
+      bounds,
+      const Radius.circular(22),
+    );
+    final path = Path()..addRRect(markerShape);
+
+    canvas.drawShadow(path, const Color(0x330D2A3B), 5, false);
+    canvas.drawRRect(markerShape, Paint()..color = Colors.white);
+    canvas.drawRRect(
+      markerShape,
+      Paint()
+        ..color = borderColor
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.5,
+    );
+
+    final textPainter = TextPainter(
+      text: TextSpan(
+        text: emoji,
+        style: const TextStyle(fontSize: 22, height: 1),
+      ),
+      textDirection: TextDirection.ltr,
+    )..layout(maxWidth: width);
+    textPainter.paint(
+      canvas,
+      Offset(
+        (width - textPainter.width) / 2,
+        (height - textPainter.height) / 2,
+      ),
+    );
+
+    final image = await recorder
+        .endRecording()
+        .toImage(width.toInt(), height.toInt());
+    try {
+      return await StyleImage.fromImage(image);
+    } finally {
+      image.dispose();
+    }
+  }
+
+  Future<StyleImage> _buildLabelImage({required Color borderColor}) async {
+    const size = 24.0;
+    final recorder = ui.PictureRecorder();
+    final canvas = Canvas(recorder);
+    final bounds = Rect.fromLTWH(1, 1, size - 2, size - 2);
+    final labelShape = RRect.fromRectAndRadius(
+      bounds,
+      const Radius.circular(8),
+    );
+    final path = Path()..addRRect(labelShape);
+
+    canvas.drawShadow(path, const Color(0x240D2A3B), 3, false);
+    canvas.drawRRect(labelShape, Paint()..color = Colors.white);
+    canvas.drawRRect(
+      labelShape,
+      Paint()
+        ..color = borderColor
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1,
+    );
+
+    final image = await recorder
+        .endRecording()
+        .toImage(size.toInt(), size.toInt());
+    try {
+      return await StyleImage.fromImage(image);
+    } finally {
+      image.dispose();
+    }
+  }
+
+  String _markerImageIdForCategory(String category) {
+    return allowedPlaceCategories.contains(category)
+        ? '$_markerImagePrefix$category'
+        : _defaultMarkerImageId;
   }
 
   void _onMapFeatureTap(
@@ -540,7 +648,8 @@ class _MapPageState extends State<MapPage> {
           latitude: place.lat,
           longitude: place.lng,
           kind: 'catalog',
-          badge: '★ ${place.rating}',
+          icon: _markerImageIdForCategory(place.category),
+          labelIcon: _labelImageId,
         ),
       for (final place in _visibleWantToGoPlaces)
         _mapFeature(
@@ -550,7 +659,8 @@ class _MapPageState extends State<MapPage> {
           latitude: place.latitude!,
           longitude: place.longitude!,
           kind: 'want',
-          badge: '⚑',
+          icon: _wantToGoMarkerImageId,
+          labelIcon: _wantToGoLabelImageId,
         ),
     ];
 
@@ -564,7 +674,8 @@ class _MapPageState extends State<MapPage> {
     required double latitude,
     required double longitude,
     required String kind,
-    required String badge,
+    required String icon,
+    required String labelIcon,
   }) {
     return {
       'type': 'Feature',
@@ -577,7 +688,8 @@ class _MapPageState extends State<MapPage> {
         'placeId': placeId,
         'name': name,
         'kind': kind,
-        'badge': badge,
+        'icon': icon,
+        'labelIcon': labelIcon,
       },
     };
   }
