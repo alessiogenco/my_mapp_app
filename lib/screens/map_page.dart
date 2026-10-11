@@ -346,6 +346,9 @@ class _MapPageState extends State<MapPage> {
 
   void _onMapCreated(MapboxMap mapboxMap) {
     _mapboxMap = mapboxMap;
+    unawaited(
+      mapboxMap.scaleBar.updateSettings(ScaleBarSettings(enabled: false)),
+    );
     mapboxMap.addInteraction(
       TapInteraction(
         FeaturesetDescriptor(layerId: _badgeLayerId),
@@ -479,12 +482,18 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  void _moveMapTo(double latitude, double longitude, double zoom) {
+  void _moveMapTo(
+    double latitude,
+    double longitude,
+    double zoom, {
+    bool animated = true,
+  }) {
     _viewportController.moveTo(
       CameraViewportState(
         center: Point(coordinates: Position(longitude, latitude)),
         zoom: zoom,
       ),
+      transition: animated ? const DefaultViewportTransition() : null,
     );
   }
 
@@ -497,6 +506,7 @@ class _MapPageState extends State<MapPage> {
       camera.center.coordinates.lat.toDouble(),
       camera.center.coordinates.lng.toDouble(),
       (camera.zoom + delta).clamp(1, 22).toDouble(),
+      animated: false,
     );
   }
 
