@@ -1,8 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 import 'package:my_map_app/config/map_config.dart';
 import 'package:my_map_app/data/place_repository.dart';
 import 'package:my_map_app/data/want_to_go_repository.dart';
@@ -14,8 +14,6 @@ import 'package:my_map_app/services/geocoding_service.dart';
 import 'package:my_map_app/widgets/glass_panel.dart';
 import 'package:my_map_app/widgets/map_filters.dart';
 import 'package:my_map_app/widgets/place_details_sheet.dart';
-import 'package:my_map_app/widgets/place_marker.dart';
-import 'package:my_map_app/widgets/want_to_go_marker.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({
@@ -34,7 +32,15 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  final MapController _mapController = MapController();
+  static const _placesSourceId = 'my-locals-places-source';
+  static const _badgeLayerId = 'my-locals-place-badges';
+  static const _badgeTextLayerId = 'my-locals-place-badge-text';
+  static const _labelLayerId = 'my-locals-place-labels';
+
+  final ViewportController _viewportController = ViewportController();
+  MapboxMap? _mapboxMap;
+  bool _isStyleReady = false;
+
   List<Place> _places = [];
   Set<String> _selectedCategories = {};
   RangeValues? _ratingRange;
@@ -117,7 +123,9 @@ class _MapPageState extends State<MapPage> {
     }
 
     final cities = citiesByNormalizedName.values.toList();
-    cities.sort((first, second) => first.toLowerCase().compareTo(second.toLowerCase()));
+    cities.sort(
+      (first, second) => first.toLowerCase().compareTo(second.toLowerCase()),
+    );
     return cities;
   }
 
@@ -130,30 +138,45 @@ class _MapPageState extends State<MapPage> {
 
   void _focusWantToGoCity(String city) {
     final normalizedCity = _normalizeCity(city);
-    final points = <LatLng>[
+    final latitudes = <double>[
       ..._placesToTry
           .where(
             (place) =>
-                place.isVisibleOnMap && _normalizeCity(place.city) == normalizedCity,
+                place.isVisibleOnMap &&
+                _normalizeCity(place.city) == normalizedCity,
           )
-          .map((place) => LatLng(place.latitude!, place.longitude!)),
+          .map((place) => place.latitude!),
       ..._places
           .where(
             (place) =>
                 _wantToGoPlaceIds.contains(place.id) &&
                 _normalizeCity(place.city) == normalizedCity,
           )
-          .map((place) => LatLng(place.lat, place.lng)),
+          .map((place) => place.lat),
     ];
-    if (points.isEmpty) return;
+    final longitudes = <double>[
+      ..._placesToTry
+          .where(
+            (place) =>
+                place.isVisibleOnMap &&
+                _normalizeCity(place.city) == normalizedCity,
+          )
+          .map((place) => place.longitude!),
+      ..._places
+          .where(
+            (place) =>
+                _wantToGoPlaceIds.contains(place.id) &&
+                _normalizeCity(place.city) == normalizedCity,
+          )
+          .map((place) => place.lng),
+    ];
+    if (latitudes.isEmpty) return;
 
-    final latitude =
-        points.map((point) => point.latitude).reduce((sum, value) => sum + value) /
-        points.length;
-    final longitude =
-        points.map((point) => point.longitude).reduce((sum, value) => sum + value) /
-        points.length;
-    _mapController.move(LatLng(latitude, longitude), points.length == 1 ? 15 : 13);
+    final latitude = latitudes.reduce((sum, value) => sum + value) /
+        latitudes.length;
+    final longitude = longitudes.reduce((sum, value) => sum + value) /
+        longitudes.length;
+    _moveMapTo(latitude, longitude, latitudes.length == 1 ? 15 : 13);
   }
 
   List<String> get _availableVibes {
@@ -177,7 +200,7 @@ class _MapPageState extends State<MapPage> {
 
   @override
   void dispose() {
-    _mapController.dispose();
+    _viewportController.dispose();
     super.dispose();
   }
 
@@ -193,6 +216,7 @@ class _MapPageState extends State<MapPage> {
       setState(() {
         _places = loadedPlaces;
       });
+      _refreshMapFeatures();
     } on FormatException catch (error) {
       if (!mounted) return;
       setState(() {
@@ -230,7 +254,7 @@ class _MapPageState extends State<MapPage> {
         return;
       }
 
-      _mapController.move(LatLng(location.latitude, location.longitude), 13);
+      _moveMapTo(location.latitude, location.longitude, 13);
     } on GeocodingException catch (error) {
       final message = switch (error.type) {
         GeocodingFailureType.timeout =>
@@ -259,6 +283,7 @@ class _MapPageState extends State<MapPage> {
         _wantToGoPlaceIds = data.mappedPlaceIds;
         _placesToTry = data.places;
       });
+      _refreshMapFeatures();
     } catch (_) {
       debugPrint('Could not load Want to go data.');
     }
@@ -309,6 +334,7 @@ class _MapPageState extends State<MapPage> {
         }
       }
     });
+    _refreshMapFeatures();
 
     _showMessage(
       isWantToGo
@@ -316,6 +342,234 @@ class _MapPageState extends State<MapPage> {
           : 'Removed from your Want to go list.',
     );
     unawaited(_saveWantToGo());
+  }
+
+  void _onMapCreated(MapboxMap mapboxMap) {
+    _mapboxMap = mapboxMap;
+    mapboxMap.addInteraction(
+      TapInteraction(
+        FeaturesetDescriptor(layerId: _badgeLayerId),
+        _onMapFeatureTap,
+      ),
+      interactionID: 'my-locals-tap-badge',
+    );
+    mapboxMap.addInteraction(
+      TapInteraction(
+        FeaturesetDescriptor(layerId: _labelLayerId),
+        _onMapFeatureTap,
+      ),
+      interactionID: 'my-locals-tap-label',
+    );
+  }
+
+  Future<void> _onStyleLoaded(StyleLoadedEventData _) async {
+    final map = _mapboxMap;
+    if (map == null) return;
+
+    _isStyleReady = false;
+    try {
+      await map.addSource(
+        GeoJsonSource(id: _placesSourceId, data: _placesGeoJson()),
+      );
+      await map.addLayer(
+        CircleLayer(
+          id: _badgeLayerId,
+          sourceId: _placesSourceId,
+          slot: 'top',
+          circleRadius: 17,
+          circleColorExpression: [
+            'case',
+            [
+              '==',
+              ['get', 'kind'],
+              'want',
+            ],
+            '#FFF6DA',
+            '#FFFFFF',
+          ],
+          circleStrokeWidth: 2.5,
+          circleStrokeColorExpression: [
+            'case',
+            [
+              '==',
+              ['get', 'kind'],
+              'want',
+            ],
+            '#E5AD28',
+            '#197EAF',
+          ],
+        ),
+      );
+      await map.addLayer(
+        SymbolLayer(
+          id: _badgeTextLayerId,
+          sourceId: _placesSourceId,
+          slot: 'top',
+          textFieldExpression: ['get', 'badge'],
+          textSize: 11,
+          textAnchor: TextAnchor.CENTER,
+          textJustify: TextJustify.CENTER,
+          textColor: const Color(0xFF12374D).toARGB32(),
+          textAllowOverlap: true,
+          textIgnorePlacement: true,
+        ),
+      );
+      await map.addLayer(
+        SymbolLayer(
+          id: _labelLayerId,
+          sourceId: _placesSourceId,
+          slot: 'top',
+          minZoom: 11,
+          textFieldExpression: ['get', 'name'],
+          textSize: 12,
+          textMaxWidth: 12,
+          textAnchor: TextAnchor.TOP,
+          textJustify: TextJustify.CENTER,
+          textOffset: const [0, 1.65],
+          textColorExpression: [
+            'case',
+            [
+              '==',
+              ['get', 'kind'],
+              'want',
+            ],
+            '#805400',
+            '#0B2E41',
+          ],
+          textHaloColor: Colors.white.toARGB32(),
+          textHaloWidth: 2.4,
+          textAllowOverlap: false,
+        ),
+      );
+      _isStyleReady = true;
+      await _updateMapFeatures();
+    } catch (error) {
+      debugPrint('Could not set up the Mapbox place layers: $error');
+    }
+  }
+
+  void _onMapFeatureTap(
+    TypedFeaturesetFeature<FeaturesetDescriptor> feature,
+    MapContentGestureContext _,
+  ) {
+    final kind = feature.properties['kind'];
+    final placeId = feature.properties['placeId'];
+    if (kind is! String || placeId is! String) return;
+
+    if (kind == 'want') {
+      unawaited(_openWantToGo());
+      return;
+    }
+
+    Place? selectedPlace;
+    for (final place in _places) {
+      if (place.id == placeId) {
+        selectedPlace = place;
+        break;
+      }
+    }
+    if (selectedPlace == null) return;
+
+    final place = selectedPlace;
+    showPlaceDetailsSheet(
+      context,
+      place,
+      isWantToGo: _wantToGoPlaceIds.contains(place.id),
+      onWantToGoChanged: (isWantToGo) => _setPlaceWantToGo(place, isWantToGo),
+    );
+  }
+
+  void _moveMapTo(double latitude, double longitude, double zoom) {
+    _viewportController.moveTo(
+      CameraViewportState(
+        center: Point(coordinates: Position(longitude, latitude)),
+        zoom: zoom,
+      ),
+    );
+  }
+
+  Future<void> _adjustZoom(double delta) async {
+    final map = _mapboxMap;
+    if (map == null) return;
+
+    final camera = await map.getCameraState();
+    _moveMapTo(
+      camera.center.coordinates.lat.toDouble(),
+      camera.center.coordinates.lng.toDouble(),
+      (camera.zoom + delta).clamp(1, 22).toDouble(),
+    );
+  }
+
+  void _refreshMapFeatures() {
+    unawaited(_updateMapFeatures());
+  }
+
+  Future<void> _updateMapFeatures() async {
+    final map = _mapboxMap;
+    if (!_isStyleReady || map == null) return;
+
+    try {
+      await map.setStyleSourceProperty(
+        _placesSourceId,
+        'data',
+        _placesGeoJson(),
+      );
+    } catch (error) {
+      debugPrint('Could not update Mapbox places: $error');
+    }
+  }
+
+  String _placesGeoJson() {
+    var featureId = 0;
+    final features = <Map<String, dynamic>>[
+      for (final place in _filteredPlaces)
+        _mapFeature(
+          featureId: featureId++,
+          placeId: place.id,
+          name: place.name,
+          latitude: place.lat,
+          longitude: place.lng,
+          kind: 'catalog',
+          badge: '★ ${place.rating}',
+        ),
+      for (final place in _visibleWantToGoPlaces)
+        _mapFeature(
+          featureId: featureId++,
+          placeId: place.id,
+          name: place.name,
+          latitude: place.latitude!,
+          longitude: place.longitude!,
+          kind: 'want',
+          badge: '⚑',
+        ),
+    ];
+
+    return jsonEncode({'type': 'FeatureCollection', 'features': features});
+  }
+
+  Map<String, dynamic> _mapFeature({
+    required int featureId,
+    required String placeId,
+    required String name,
+    required double latitude,
+    required double longitude,
+    required String kind,
+    required String badge,
+  }) {
+    return {
+      'type': 'Feature',
+      'id': featureId,
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [longitude, latitude],
+      },
+      'properties': {
+        'placeId': placeId,
+        'name': name,
+        'kind': kind,
+        'badge': badge,
+      },
+    };
   }
 
   Widget _buildMapContent() {
@@ -350,66 +604,35 @@ class _MapPageState extends State<MapPage> {
       );
     }
 
-    return FlutterMap(
-      mapController: _mapController,
-      options: const MapOptions(
-        initialCenter: LatLng(40.7857, 17.2370),
-        initialZoom: 14,
-        maxZoom: MapConfig.maxZoom,
+    if (!MapConfig.usesMapbox) {
+      return const Center(
+        child: Padding(
+          padding: EdgeInsets.all(28),
+          child: Text(
+            'Mapbox needs its local public token. Start the app with '
+            'the project run script or its local mapbox.env.json file.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color(0xFF102F40),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+      );
+    }
+
+    return MapWidget(
+      styleUri: MapboxStyles.STANDARD,
+      viewport: CameraViewportState(
+        center: Point(coordinates: Position(17.2370, 40.7857)),
+        zoom: 14,
       ),
-      children: [
-        TileLayer(
-          urlTemplate: MapConfig.tileUrl,
-          subdomains: MapConfig.subdomains,
-          errorTileCallback: (_, error, _) {
-            final statusCode = error is NetworkImageLoadException
-                ? ' HTTP ${error.statusCode}'
-                : '';
-            debugPrint(
-              'Tile loading error$statusCode (${error.runtimeType})',
-            );
-          },
-        ),
-        MarkerLayer(
-          markers: [
-            ..._filteredPlaces.map((place) {
-              return Marker(
-                point: LatLng(place.lat, place.lng),
-                width: 176,
-                height: 70,
-                child: PlaceMarker(
-                  place: place,
-                  isWantToGo: _wantToGoPlaceIds.contains(place.id),
-                  onTap: () => showPlaceDetailsSheet(
-                    context,
-                    place,
-                    isWantToGo: _wantToGoPlaceIds.contains(place.id),
-                    onWantToGoChanged: (isWantToGo) =>
-                        _setPlaceWantToGo(place, isWantToGo),
-                  ),
-                ),
-              );
-            }),
-            ..._visibleWantToGoPlaces.map((place) {
-              return Marker(
-                point: LatLng(place.latitude!, place.longitude!),
-                width: 176,
-                height: 70,
-                child: WantToGoMarker(place: place, onTap: _openWantToGo),
-              );
-            }),
-          ],
-        ),
-        const RichAttributionWidget(
-          attributions: [
-            TextSourceAttribution('OpenStreetMap contributors'),
-            if (MapConfig.usesMapbox)
-              TextSourceAttribution('Mapbox')
-            else
-              TextSourceAttribution('OpenTopoMap (CC-BY-SA)'),
-          ],
-        ),
-      ],
+      viewportController: _viewportController,
+      onMapCreated: _onMapCreated,
+      onStyleLoadedListener: _onStyleLoaded,
+      onMapLoadErrorListener: (error) {
+        debugPrint('Mapbox map loading error: $error');
+      },
     );
   }
 
@@ -485,26 +708,32 @@ class _MapPageState extends State<MapPage> {
                       availableWantToGoCities: _availableWantToGoCities,
                       wantToGoCount:
                           _wantToGoPlaceIds.length +
-                          _placesToTry.where((place) => place.isVisibleOnMap).length,
+                          _placesToTry
+                              .where((place) => place.isVisibleOnMap)
+                              .length,
                       onCategoriesChanged: (value) {
                         setState(() {
                           _selectedCategories = value;
                         });
+                        _refreshMapFeatures();
                       },
                       onRatingRangeChanged: (value) {
                         setState(() {
                           _ratingRange = value;
                         });
+                        _refreshMapFeatures();
                       },
                       onPriceLevelsChanged: (value) {
                         setState(() {
                           _selectedPriceLevels = value;
                         });
+                        _refreshMapFeatures();
                       },
                       onVibesChanged: (value) {
                         setState(() {
                           _selectedVibes = value;
                         });
+                        _refreshMapFeatures();
                       },
                       onWantToGoOnlyChanged: (value) {
                         setState(() {
@@ -513,12 +742,14 @@ class _MapPageState extends State<MapPage> {
                             _selectedWantToGoCities = {};
                           }
                         });
+                        _refreshMapFeatures();
                       },
                       onWantToGoCitiesChanged: (value) {
                         setState(() {
                           _selectedWantToGoCities = value;
                           _showOnlyWantToGo = true;
                         });
+                        _refreshMapFeatures();
                         if (value.length == 1) {
                           _focusWantToGoCity(value.single);
                         }
@@ -532,6 +763,7 @@ class _MapPageState extends State<MapPage> {
                           _showOnlyWantToGo = false;
                           _selectedWantToGoCities = {};
                         });
+                        _refreshMapFeatures();
                       },
                     ),
                   ],
@@ -575,12 +807,7 @@ class _MapPageState extends State<MapPage> {
             mini: true,
             backgroundColor: Colors.white.withValues(alpha: 0.94),
             foregroundColor: const Color(0xFF137DB8),
-            onPressed: () {
-              _mapController.move(
-                _mapController.camera.center,
-                _mapController.camera.zoom + 1,
-              );
-            },
+            onPressed: () => _adjustZoom(1),
             child: const Icon(Icons.add),
           ),
           const SizedBox(height: 10),
@@ -589,12 +816,7 @@ class _MapPageState extends State<MapPage> {
             mini: true,
             backgroundColor: Colors.white.withValues(alpha: 0.94),
             foregroundColor: const Color(0xFF137DB8),
-            onPressed: () {
-              _mapController.move(
-                _mapController.camera.center,
-                _mapController.camera.zoom - 1,
-              );
-            },
+            onPressed: () => _adjustZoom(-1),
             child: const Icon(Icons.remove),
           ),
         ],

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+import 'package:my_map_app/config/map_config.dart';
 import 'package:my_map_app/screens/map_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  MapboxOptions.setAccessToken(MapConfig.mapboxAccessToken);
   runApp(const MyApp());
 }
 

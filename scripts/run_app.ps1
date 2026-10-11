@@ -1,5 +1,5 @@
 param(
-    [ValidateSet("chrome", "edge", "windows")]
+    [ValidateSet("chrome", "edge", "web-server", "windows")]
     [string] $Device = "chrome",
 
     [switch] $Release,
@@ -15,6 +15,10 @@ $ProjectRoot = Split-Path -Parent $PSScriptRoot
 $EnvFile = Join-Path $ProjectRoot "mapbox.env.json"
 
 Set-Location $ProjectRoot
+
+if ($Device -eq "windows") {
+    throw "La nuova mappa Mapbox Standard funziona su Chrome, Edge e Android, non come app desktop Windows. Rilancia con -Device chrome, edge o web-server."
+}
 
 if (-not (Test-Path $EnvFile)) {
     Write-Host ""
@@ -56,7 +60,7 @@ if ($Release) {
     $FlutterArgs += "--release"
 }
 
-if ($Device -eq "chrome" -or $Device -eq "edge") {
+if ($Device -eq "chrome" -or $Device -eq "edge" -or $Device -eq "web-server") {
     $FlutterArgs += "--web-port=$WebPort"
 }
 
