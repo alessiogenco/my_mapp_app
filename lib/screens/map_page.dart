@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 import 'package:my_map_app/config/map_config.dart';
 import 'package:my_map_app/data/place_repository.dart';
@@ -35,6 +36,7 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   static const _placesSourceId = 'my-locals-places-source';
+  static const _markerBackgroundLayerId = 'my-locals-place-backgrounds';
   static const _badgeLayerId = 'my-locals-place-badges';
   static const _labelLayerId = 'my-locals-place-labels';
   static const _markerImagePrefix = 'my-locals-category-marker-';
@@ -382,6 +384,26 @@ class _MapPageState extends State<MapPage> {
         GeoJsonSource(id: _placesSourceId, data: _placesGeoJson()),
       );
       await map.addLayer(
+        CircleLayer(
+          id: _markerBackgroundLayerId,
+          sourceId: _placesSourceId,
+          slot: 'top',
+          circleRadius: 22,
+          circleColor: Colors.white.toARGB32(),
+          circleStrokeWidth: 1.5,
+          circleStrokeColorExpression: [
+            'case',
+            [
+              '==',
+              ['get', 'kind'],
+              'want',
+            ],
+            '#F2C55A',
+            '#D7E3E8',
+          ],
+        ),
+      );
+      await map.addLayer(
         SymbolLayer(
           id: _badgeLayerId,
           sourceId: _placesSourceId,
@@ -429,30 +451,21 @@ class _MapPageState extends State<MapPage> {
 
   Future<void> _addMarkerImages(MapboxMap map) async {
     for (final category in allowedPlaceCategories) {
-      await map.addImage(
+      await _addAssetImage(
+        map,
         _markerImageIdForCategory(category),
-        1,
-        await _buildMarkerImage(
-          _iconForCategory(category),
-          borderColor: const Color(0xFFD7E3E8),
-        ),
+        'assets/markers/$category.png',
       );
     }
-    await map.addImage(
+    await _addAssetImage(
+      map,
       _defaultMarkerImageId,
-      1,
-      await _buildMarkerImage(
-        Icons.place_outlined,
-        borderColor: const Color(0xFFD7E3E8),
-      ),
+      'assets/markers/default.png',
     );
-    await map.addImage(
+    await _addAssetImage(
+      map,
       _wantToGoMarkerImageId,
-      1,
-      await _buildMarkerImage(
-        Icons.explore_outlined,
-        borderColor: const Color(0xFFF2C55A),
-      ),
+      'assets/markers/want_to_go.png',
     );
     await map.addImage(
       _labelImageId,
@@ -472,59 +485,22 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  Future<StyleImage> _buildMarkerImage(
-    IconData icon, {
-    required Color borderColor,
-  }) async {
-    const width = 58.0;
-    const height = 44.0;
-    final recorder = ui.PictureRecorder();
-    final canvas = Canvas(recorder);
-    final bounds = Rect.fromLTWH(1, 1, width - 2, height - 2);
-    final markerShape = RRect.fromRectAndRadius(
-      bounds,
-      const Radius.circular(22),
-    );
-    final path = Path()..addRRect(markerShape);
-
-    canvas.drawShadow(path, const Color(0x330D2A3B), 5, false);
-    canvas.drawRRect(markerShape, Paint()..color = Colors.white);
-    canvas.drawRRect(
-      markerShape,
-      Paint()
-        ..color = borderColor
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.5,
-    );
-
-    final textPainter = TextPainter(
-      text: TextSpan(
-        text: String.fromCharCode(icon.codePoint),
-        style: TextStyle(
-          color: const Color(0xFF137DB8),
-          fontFamily: icon.fontFamily,
-          fontSize: 21,
-          height: 1,
+  Future<void> _addAssetImage(
+    MapboxMap map,
+    String imageId,
+    String assetPath,
+  ) async {
+    final byteData = await rootBundle.load(assetPath);
+    await map.addImage(
+      imageId,
+      2,
+      StyleImage.bytes(
+        byteData.buffer.asUint8List(
+          byteData.offsetInBytes,
+          byteData.lengthInBytes,
         ),
       ),
-      textDirection: TextDirection.ltr,
-    )..layout(maxWidth: width);
-    textPainter.paint(
-      canvas,
-      Offset(
-        (width - textPainter.width) / 2,
-        (height - textPainter.height) / 2,
-      ),
     );
-
-    final image = await recorder
-        .endRecording()
-        .toImage(width.toInt(), height.toInt());
-    try {
-      return await StyleImage.fromImage(image);
-    } finally {
-      image.dispose();
-    }
   }
 
   Future<StyleImage> _buildLabelImage({required Color borderColor}) async {
@@ -562,25 +538,6 @@ class _MapPageState extends State<MapPage> {
     return allowedPlaceCategories.contains(category)
         ? '$_markerImagePrefix$category'
         : _defaultMarkerImageId;
-  }
-
-  IconData _iconForCategory(String category) {
-    return switch (category) {
-      'restaurant' => Icons.restaurant_outlined,
-      'sushi' => Icons.set_meal_outlined,
-      'chinese' => Icons.ramen_dining_outlined,
-      'indian' => Icons.rice_bowl_outlined,
-      'pizzeria' => Icons.local_pizza_outlined,
-      'panzerotteria' => Icons.fastfood_outlined,
-      'steakhouse' => Icons.outdoor_grill_outlined,
-      'pub' => Icons.lunch_dining_outlined,
-      'coffee_bar' => Icons.coffee_outlined,
-      'cocktail_bar' => Icons.local_bar_outlined,
-      'beer_bar' => Icons.sports_bar_outlined,
-      'bakery_sweet' || 'bakery_savory' => Icons.bakery_dining_outlined,
-      'gelateria' => Icons.icecream_outlined,
-      _ => Icons.place_outlined,
-    };
   }
 
   void _onMapFeatureTap(
