@@ -433,7 +433,7 @@ class _MapPageState extends State<MapPage> {
         _markerImageIdForCategory(category),
         1,
         await _buildMarkerImage(
-          emojiForCategory(category),
+          _iconForCategory(category),
           borderColor: const Color(0xFFD7E3E8),
         ),
       );
@@ -442,7 +442,7 @@ class _MapPageState extends State<MapPage> {
       _defaultMarkerImageId,
       1,
       await _buildMarkerImage(
-        emojiForCategory(''),
+        Icons.place_outlined,
         borderColor: const Color(0xFFD7E3E8),
       ),
     );
@@ -450,7 +450,7 @@ class _MapPageState extends State<MapPage> {
       _wantToGoMarkerImageId,
       1,
       await _buildMarkerImage(
-        '🧭',
+        Icons.explore_outlined,
         borderColor: const Color(0xFFF2C55A),
       ),
     );
@@ -473,7 +473,7 @@ class _MapPageState extends State<MapPage> {
   }
 
   Future<StyleImage> _buildMarkerImage(
-    String emoji, {
+    IconData icon, {
     required Color borderColor,
   }) async {
     const width = 58.0;
@@ -499,8 +499,14 @@ class _MapPageState extends State<MapPage> {
 
     final textPainter = TextPainter(
       text: TextSpan(
-        text: emoji,
-        style: const TextStyle(fontSize: 22, height: 1),
+        text: String.fromCharCode(icon.codePoint),
+        style: TextStyle(
+          color: const Color(0xFF137DB8),
+          fontFamily: icon.fontFamily,
+          fontPackage: icon.fontPackage,
+          fontSize: 21,
+          height: 1,
+        ),
       ),
       textDirection: TextDirection.ltr,
     )..layout(maxWidth: width);
@@ -557,6 +563,25 @@ class _MapPageState extends State<MapPage> {
     return allowedPlaceCategories.contains(category)
         ? '$_markerImagePrefix$category'
         : _defaultMarkerImageId;
+  }
+
+  IconData _iconForCategory(String category) {
+    return switch (category) {
+      'restaurant' => Icons.restaurant_outlined,
+      'sushi' => Icons.set_meal_outlined,
+      'chinese' => Icons.ramen_dining_outlined,
+      'indian' => Icons.rice_bowl_outlined,
+      'pizzeria' => Icons.local_pizza_outlined,
+      'panzerotteria' => Icons.fastfood_outlined,
+      'steakhouse' => Icons.outdoor_grill_outlined,
+      'pub' => Icons.lunch_dining_outlined,
+      'coffee_bar' => Icons.coffee_outlined,
+      'cocktail_bar' => Icons.local_bar_outlined,
+      'beer_bar' => Icons.sports_bar_outlined,
+      'bakery_sweet' || 'bakery_savory' => Icons.bakery_dining_outlined,
+      'gelateria' => Icons.icecream_outlined,
+      _ => Icons.place_outlined,
+    };
   }
 
   void _onMapFeatureTap(
