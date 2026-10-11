@@ -503,7 +503,6 @@ class _MapPageState extends State<MapPage> {
         style: TextStyle(
           color: const Color(0xFF137DB8),
           fontFamily: icon.fontFamily,
-          fontPackage: icon.fontPackage,
           fontSize: 21,
           height: 1,
         ),
