@@ -355,13 +355,6 @@ class _MapPageState extends State<MapPage> {
   void _onMapCreated(MapboxMap mapboxMap) {
     _mapboxMap = mapboxMap;
     unawaited(
-      mapboxMap.setStyleImportConfigProperty(
-        'basemap',
-        'showPointOfInterestLabels',
-        false,
-      ),
-    );
-    unawaited(
       mapboxMap.scaleBar.updateSettings(ScaleBarSettings(enabled: false)),
     );
     mapboxMap.addInteraction(
@@ -386,6 +379,11 @@ class _MapPageState extends State<MapPage> {
 
     _isStyleReady = false;
     try {
+      await map.setStyleImportConfigProperty(
+        'basemap',
+        'showPointOfInterestLabels',
+        false,
+      );
       await _addMarkerImages(map);
       await map.addSource(
         GeoJsonSource(id: _placesSourceId, data: _placesGeoJson()),
