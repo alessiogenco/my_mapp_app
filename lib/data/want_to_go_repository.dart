@@ -35,6 +35,12 @@ class WantToGoRepository {
 
   WantToGoData decodeBackup(String rawBackup) {
     final decodedData = jsonDecode(rawBackup);
+    // Browser local storage stores strings as JSON string values. Accept that
+    // representation too, so a backup copied from browser developer tools can
+    // be imported without first editing it by hand.
+    if (decodedData is String) {
+      return decodeBackup(decodedData);
+    }
     if (decodedData is! Map) {
       throw const FormatException('The backup is not a valid object.');
     }
