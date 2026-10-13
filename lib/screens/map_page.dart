@@ -355,6 +355,13 @@ class _MapPageState extends State<MapPage> {
   void _onMapCreated(MapboxMap mapboxMap) {
     _mapboxMap = mapboxMap;
     unawaited(
+      mapboxMap.setStyleImportConfigProperty(
+        'basemap',
+        'showPointOfInterestLabels',
+        false,
+      ),
+    );
+    unawaited(
       mapboxMap.scaleBar.updateSettings(ScaleBarSettings(enabled: false)),
     );
     mapboxMap.addInteraction(
