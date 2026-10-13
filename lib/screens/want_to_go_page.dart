@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:my_map_app/data/want_to_go_repository.dart';
 import 'package:my_map_app/models/place.dart';
 import 'package:my_map_app/models/place_category.dart';
@@ -299,6 +300,119 @@ class _WantToGoPageState extends State<WantToGoPage> {
     );
   }
 
+  Future<void> _showExportBackup() async {
+    final backup = widget.repository.encodeBackup(_data);
+    await showDialog<void>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Text('Copy Want to go backup'),
+          content: SingleChildScrollView(
+            child: SelectableText(
+              backup,
+              style: const TextStyle(fontFamily: 'monospace', fontSize: 12),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Close'),
+            ),
+            FilledButton.icon(
+              onPressed: () async {
+                await Clipboard.setData(ClipboardData(text: backup));
+                if (!dialogContext.mounted) return;
+                Navigator.pop(dialogContext);
+                _showMessage('Backup copied. Paste it on your other device.');
+              },
+              icon: const Icon(Icons.copy_rounded),
+              label: const Text('Copy backup'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _showImportBackup() async {
+    final controller = TextEditingController();
+    try {
+      final backup = await showDialog<String>(
+        context: context,
+        builder: (dialogContext) {
+          return AlertDialog(
+            title: const Text('Import Want to go backup'),
+            content: TextField(
+              controller: controller,
+              minLines: 8,
+              maxLines: 14,
+              decoration: const InputDecoration(
+                hintText: 'Paste the backup copied from your other device.',
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(dialogContext),
+                child: const Text('Cancel'),
+              ),
+              FilledButton.icon(
+                onPressed: () => Navigator.pop(dialogContext, controller.text),
+                icon: const Icon(Icons.download_rounded),
+                label: const Text('Import'),
+              ),
+            ],
+          );
+        },
+      );
+      if (backup == null || backup.trim().isEmpty) return;
+      await _importBackup(backup);
+    } finally {
+      controller.dispose();
+    }
+  }
+
+  Future<void> _importBackup(String rawBackup) async {
+    WantToGoData importedData;
+    try {
+      importedData = widget.repository.decodeBackup(rawBackup);
+    } on FormatException {
+      _showMessage(
+        'That backup is not valid. Copy the entire backup and try again.',
+      );
+      return;
+    } on TypeError {
+      _showMessage(
+        'That backup is not valid. Copy the entire backup and try again.',
+      );
+      return;
+    }
+
+    final mergedData = _mergeWantToGoData(_data, importedData);
+    final saved = await _saveData(mergedData);
+    if (!saved) return;
+
+    _showMessage('Want to go list imported. Existing places were kept.');
+  }
+
+  WantToGoData _mergeWantToGoData(
+    WantToGoData current,
+    WantToGoData imported,
+  ) {
+    final placesByNameAndCity = <String, WantToGoPlace>{};
+    for (final place in [...current.places, ...imported.places]) {
+      final key =
+          '${place.name.trim().toLowerCase()}|${place.city.trim().toLowerCase()}';
+      placesByNameAndCity.putIfAbsent(key, () => place);
+    }
+    final places = placesByNameAndCity.values.toList()
+      ..sort((first, second) => second.createdAt.compareTo(first.createdAt));
+
+    return WantToGoData(
+      mappedPlaceIds: {...current.mappedPlaceIds, ...imported.mappedPlaceIds},
+      places: places,
+    );
+  }
+
   Future<void> _openGoogleMaps(String url) async {
     final opened = await launchUrl(
       Uri.parse(url),
@@ -322,6 +436,33 @@ class _WantToGoPageState extends State<WantToGoPage> {
       appBar: AppBar(
         title: const Text('Want to go'),
         actions: [
+          PopupMenuButton<_WantToGoBackupAction>(
+            tooltip: 'Backup options',
+            onSelected: (action) async {
+              switch (action) {
+                case _WantToGoBackupAction.export:
+                  await _showExportBackup();
+                case _WantToGoBackupAction.import:
+                  await _showImportBackup();
+              }
+            },
+            itemBuilder: (context) => const [
+              PopupMenuItem(
+                value: _WantToGoBackupAction.export,
+                child: ListTile(
+                  leading: Icon(Icons.copy_rounded),
+                  title: Text('Copy backup'),
+                ),
+              ),
+              PopupMenuItem(
+                value: _WantToGoBackupAction.import,
+                child: ListTile(
+                  leading: Icon(Icons.download_rounded),
+                  title: Text('Import backup'),
+                ),
+              ),
+            ],
+          ),
           if (_isSaving)
             const Padding(
               padding: EdgeInsets.all(16),
@@ -343,7 +484,7 @@ class _WantToGoPageState extends State<WantToGoPage> {
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 96),
               children: [
                 const Text(
-                  'Private to this device. Flagged places appear on the map but are not part of the curated list.',
+                  'Private to this device. Use the menu to make a backup for another device. Flagged places appear on the map but are not part of the curated list.',
                   style: TextStyle(color: Color(0xFF58717E)),
                 ),
                 const SizedBox(height: 22),
@@ -404,6 +545,8 @@ class _WantToGoPageState extends State<WantToGoPage> {
     );
   }
 }
+
+enum _WantToGoBackupAction { export, import }
 
 class _WantToGoAddResult {
   const _WantToGoAddResult({required this.saved, required this.message});

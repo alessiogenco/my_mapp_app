@@ -16,24 +16,7 @@ class WantToGoRepository {
     }
 
     try {
-      final decodedData = jsonDecode(rawData);
-      if (decodedData is! Map<String, dynamic>) {
-        return const WantToGoData();
-      }
-
-      final mappedPlaceIds = (decodedData['mappedPlaceIds'] as List? ?? const [])
-          .whereType<String>()
-          .toSet();
-      final places = (decodedData['places'] as List? ?? const [])
-          .whereType<Map<String, dynamic>>()
-          .map(WantToGoPlace.fromJson)
-          .toList()
-        ..sort((first, second) => second.createdAt.compareTo(first.createdAt));
-
-      return WantToGoData(
-        mappedPlaceIds: mappedPlaceIds,
-        places: places,
-      );
+      return decodeBackup(rawData);
     } on FormatException {
       return const WantToGoData();
     } on TypeError {
@@ -43,11 +26,20 @@ class WantToGoRepository {
 
   Future<void> save(WantToGoData data) async {
     final preferences = SharedPreferencesAsync();
-    final encodedData = jsonEncode({
-      'mappedPlaceIds': data.mappedPlaceIds.toList()..sort(),
-      'places': data.places.map((place) => place.toJson()).toList(),
-    });
-    await preferences.setString(_storageKey, encodedData);
+    await preferences.setString(_storageKey, encodeBackup(data));
+  }
+
+  String encodeBackup(WantToGoData data) {
+    return jsonEncode(data.toJson());
+  }
+
+  WantToGoData decodeBackup(String rawBackup) {
+    final decodedData = jsonDecode(rawBackup);
+    if (decodedData is! Map) {
+      throw const FormatException('The backup is not a valid object.');
+    }
+
+    return WantToGoData.fromJson(Map<String, dynamic>.from(decodedData));
   }
 }
 
@@ -59,4 +51,36 @@ class WantToGoData {
 
   final Set<String> mappedPlaceIds;
   final List<WantToGoPlace> places;
+
+  factory WantToGoData.fromJson(Map<String, dynamic> json) {
+    final rawPlaces = json['places'];
+    if (rawPlaces != null && rawPlaces is! List) {
+      throw const FormatException('The backup has invalid places.');
+    }
+
+    final places = <WantToGoPlace>[];
+    final rawPlaceList = rawPlaces as List? ?? const <Object>[];
+    for (final rawPlace in rawPlaceList) {
+      if (rawPlace is! Map) {
+        throw const FormatException('The backup has an invalid place.');
+      }
+      places.add(WantToGoPlace.fromJson(Map<String, dynamic>.from(rawPlace)));
+    }
+    places.sort((first, second) => second.createdAt.compareTo(first.createdAt));
+
+    return WantToGoData(
+      mappedPlaceIds: (json['mappedPlaceIds'] as List? ?? const [])
+          .whereType<String>()
+          .toSet(),
+      places: places,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'format': 'my_map_app.want_to_go.v1',
+      'mappedPlaceIds': mappedPlaceIds.toList()..sort(),
+      'places': places.map((place) => place.toJson()).toList(),
+    };
+  }
 }
