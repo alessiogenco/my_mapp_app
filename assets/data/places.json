@@ -2370,8 +2370,8 @@
       "service": 8,
       "value": 7
     },
-    "lat": 45.3999653,
-    "lng": 11.8755545,
+    "lat": 45.40012346993062,
+    "lng": 11.875554496741044,
     "vibes": [
       "cozy",
       "date",
@@ -2386,5 +2386,117 @@
     "websiteUrl": "http://modena.passandoper.com/",
     "instagramUrl": "https://www.instagram.com/passandopermodena/",
     "googleMapsUrl": "https://www.google.com/maps/place/Passando+Per+Modena/@45.4025523,11.8733188,14.75z/data=!4m6!3m5!1s0x477eda53183b6357:0xaea6103598c2dd33!8m2!3d45.3999653!4d11.8755545!16s%2Fg%2F11fy2k36ct?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "busa_dei_briganti_pub_padova",
+    "name": "Busa dei Briganti Pub Padova",
+    "city": "Padova",
+    "category": "pub",
+    "area": "cityCentre",
+    "rating": 6,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 7,
+      "location": 7,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 45.3999653,
+    "lng": 11.8755545,
+    "vibes": [
+      "beer",
+      "casual",
+      "coworkers",
+      "dinner",
+      "friends",
+      "panini",
+      "street_food"
+    ],
+    "notes": "Buon pub a Padova dove assaggiare panini e burgers con ottima selezione di bire artigianali e commerciali. Consigliato per una piacevole serata con amici.",
+    "googleMapsUrl": "https://www.google.com/maps/place/Busa+dei+Briganti+Pub+Padova/@45.4114779,11.8621843,14z/data=!4m14!1m7!3m6!1s0x477eda53183b6357:0xaea6103598c2dd33!2sPassando+Per+Modena!8m2!3d45.3999653!4d11.8755545!16s%2Fg%2F11fy2k36ct!3m5!1s0x477eda385a7ccbd3:0x87f5eb87ad9dac21!8m2!3d45.4114779!4d11.8621843!16s%2Fg%2F11c5_4h960?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "la_mafaldina",
+    "name": "La Mafaldina",
+    "city": "Padova",
+    "category": "pizzeria",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 2,
+    "ratingDetails": {
+      "food": 9,
+      "location": 8,
+      "service": 8,
+      "value": 8
+    },
+    "lat": 45.4087482,
+    "lng": 11.8781975,
+    "vibes": [
+      "beer",
+      "cozy",
+      "date",
+      "dinner",
+      "family",
+      "friends",
+      "locals",
+      "pizza",
+      "wine"
+    ],
+    "notes": "Ottima pizzeria a Padova con ottimo impasto napoletano e ingredienti di qualita'. Pizza soffice e non molto pesante. E' consigliata la prenotazione, specie durante il week-end. Locale molto ampio con atmosfera piacevole con molti posti e sedere sia all'interno che all'esterno.",
+    "websiteUrl": "http://www.lamafaldina.it/",
+    "googleMapsUrl": "https://www.google.com/maps/place/La+Mafaldina/@45.4103926,11.8714883,19.29z/data=!4m6!3m5!1s0x477edb460305bce9:0x4b50d51660e0ec89!8m2!3d45.4087482!4d11.8781975!16s%2Fg%2F11vfb5__x6?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "gelateria_portogallo",
+    "name": "Gelateria Portogallo",
+    "city": "Padova",
+    "category": "gelateria",
+    "area": "cityCentre",
+    "rating": 9,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 9,
+      "location": 8,
+      "service": 8,
+      "value": 9
+    },
+    "lat": 45.4006929,
+    "lng": 11.8759604,
+    "vibes": [
+      "coffee",
+      "family",
+      "friends",
+      "gelato",
+      "locals",
+      "takeaway"
+    ],
+    "notes": "Ottima gelateria artigianale a Padova con una grande varieta' di gusti. E' da considerare la fila e l'attesa per essere serviti ma lo staff e' molto veloce e gentile. Una delle migliori gelateria in citta'. Super consigliato durante una passeggiata in centro.",
+    "websiteUrl": "https://www.gelaterieportogallo.it/",
+    "googleMapsUrl": "https://www.google.com/maps/place/Gelateria+Portogallo/@45.4006929,11.8733855,17z/data=!3m1!4b1!4m6!3m5!1s0x477edbac397f9667:0x17dd69edcb443e91!8m2!3d45.4006929!4d11.8759604!16s%2Fg%2F11k6xvhsfx?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "ichiban_ramen_padova",
+    "name": "Ichiban Ramen Padova",
+    "city": "Padova",
+    "category": "sushi",
+    "area": "cityCentre",
+    "rating": 6,
+    "priceLevel": 2,
+    "ratingDetails": {
+      "food": 6,
+      "location": 7,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 45.4031507,
+    "lng": 11.8793587,
+    "vibes": [
+      "casual",
+      "coworkers",
+      "dinner",
+      "friends"
+    ],
+    "notes": "Ristorante giapponese a Padova in cui provare un buon ramen. La location richiama l'ambientazione anime che puo' attrarre gli amanti del genere.",
+    "googleMapsUrl": "https://www.google.com/maps/place/Ichiban+Ramen+Padova/@45.4031507,11.8769769,18z/data=!4m10!1m2!2m1!1sramen!3m6!1s0x477edb1597be6921:0xf96e6e1a507426d9!8m2!3d45.4031507!4d11.8793587!15sCgVyYW1lbloHIgVyYW1lbpIBEHJhbWVuX3Jlc3RhdXJhbnSaASRDaGREU1VoTk1HOW5TMFZKUTBGblNVTXRkWEEyYnpGQlJSQULgAQD6AQQIABA8!16s%2Fg%2F11j7j2m_dk?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D"
   }
 ]
