@@ -5,6 +5,7 @@ import 'package:my_map_app/models/place.dart';
 import 'package:my_map_app/models/place_category.dart';
 import 'package:my_map_app/models/want_to_go_place.dart';
 import 'package:my_map_app/services/geocoding_service.dart';
+import 'package:my_map_app/services/want_to_go_backup_file_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class WantToGoPage extends StatefulWidget {
@@ -334,6 +335,18 @@ class _WantToGoPageState extends State<WantToGoPage> {
     );
   }
 
+  Future<void> _downloadBackupFile() async {
+    final saved = await downloadWantToGoBackup(
+      contents: widget.repository.encodeBackup(_data),
+      fileName: 'want-to-go-backup-${_backupDateLabel(DateTime.now())}.json',
+    );
+    if (!saved) {
+      _showMessage('Use Copy backup on this version of the app.');
+      return;
+    }
+    _showMessage('Backup file downloaded. Import it on your other device.');
+  }
+
   Future<void> _showImportBackup() async {
     final controller = TextEditingController();
     try {
@@ -369,6 +382,12 @@ class _WantToGoPageState extends State<WantToGoPage> {
     } finally {
       controller.dispose();
     }
+  }
+
+  Future<void> _importBackupFile() async {
+    final backup = await pickWantToGoBackup();
+    if (backup == null || backup.trim().isEmpty) return;
+    await _importBackup(backup);
   }
 
   Future<void> _importBackup(String rawBackup) async {
@@ -442,25 +461,45 @@ class _WantToGoPageState extends State<WantToGoPage> {
               switch (action) {
                 case _WantToGoBackupAction.export:
                   await _showExportBackup();
+                case _WantToGoBackupAction.download:
+                  await _downloadBackupFile();
                 case _WantToGoBackupAction.import:
                   await _showImportBackup();
+                case _WantToGoBackupAction.importFile:
+                  await _importBackupFile();
               }
             },
-            itemBuilder: (context) => const [
-              PopupMenuItem(
+            itemBuilder: (context) => [
+              const PopupMenuItem(
                 value: _WantToGoBackupAction.export,
                 child: ListTile(
                   leading: Icon(Icons.copy_rounded),
                   title: Text('Copy backup'),
                 ),
               ),
-              PopupMenuItem(
+              if (supportsWantToGoBackupFiles)
+                const PopupMenuItem(
+                  value: _WantToGoBackupAction.download,
+                  child: ListTile(
+                    leading: Icon(Icons.download_rounded),
+                    title: Text('Download backup file'),
+                  ),
+                ),
+              const PopupMenuItem(
                 value: _WantToGoBackupAction.import,
                 child: ListTile(
-                  leading: Icon(Icons.download_rounded),
+                  leading: Icon(Icons.content_paste_rounded),
                   title: Text('Import backup'),
                 ),
               ),
+              if (supportsWantToGoBackupFiles)
+                const PopupMenuItem(
+                  value: _WantToGoBackupAction.importFile,
+                  child: ListTile(
+                    leading: Icon(Icons.upload_file_rounded),
+                    title: Text('Import backup file'),
+                  ),
+                ),
             ],
           ),
           if (_isSaving)
@@ -546,7 +585,7 @@ class _WantToGoPageState extends State<WantToGoPage> {
   }
 }
 
-enum _WantToGoBackupAction { export, import }
+enum _WantToGoBackupAction { export, download, import, importFile }
 
 class _WantToGoAddResult {
   const _WantToGoAddResult({required this.saved, required this.message});
@@ -1068,6 +1107,11 @@ double _parseCoordinate(String value) {
 double? _tryParseCoordinate(String? value) {
   if (value == null || value.trim().isEmpty) return null;
   return double.tryParse(value.trim().replaceAll(',', '.'));
+}
+
+String _backupDateLabel(DateTime value) {
+  String twoDigits(int number) => number.toString().padLeft(2, '0');
+  return '${value.year}${twoDigits(value.month)}${twoDigits(value.day)}';
 }
 
 CityLocation? _coordinatesFromGoogleMapsUrl(String? value) {
