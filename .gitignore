@@ -49,5 +49,9 @@ app.*.map.json
 # Keep it local: do not commit it to Git.
 /mapbox.env.json
 
+# Future Supabase project URL and publishable key. Keep the personal project
+# configuration on each development machine, never in the repository.
+/supabase.env.json
+
 # Local backups created by the place writer while entering data.
 /assets/data/backups/
