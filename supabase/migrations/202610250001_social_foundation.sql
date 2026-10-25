@@ -3,6 +3,8 @@
 -- It is deliberately independent from assets/data/places.json: place_id uses
 -- the existing stable JSON id until curated places move to the database.
 
+begin;
+
 create extension if not exists pgcrypto;
 
 create table public.profiles (
@@ -202,3 +204,5 @@ with check (auth.uid() = author_id and status = 'pending');
 create policy "members can withdraw pending submissions"
 on public.place_submissions for delete to authenticated
 using (auth.uid() = author_id and status = 'pending');
+
+commit;
