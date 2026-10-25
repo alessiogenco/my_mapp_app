@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 import 'package:my_map_app/config/map_config.dart';
+import 'package:my_map_app/config/social_config.dart';
 import 'package:my_map_app/screens/map_page.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MapboxOptions.setAccessToken(MapConfig.mapboxAccessToken);
+  try {
+    await SocialConfig.initialize();
+  } catch (error) {
+    debugPrint('Could not initialize social features: $error');
+  }
   runApp(const MyApp());
 }
 

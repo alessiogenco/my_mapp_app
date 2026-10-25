@@ -24,6 +24,24 @@ Al primo avvio lo script chiede il **public token** Mapbox (quello che inizia
 con `pk.`) e lo salva soltanto nel file locale `mapbox.env.json`. Il file è
 escluso da Git e non deve essere condiviso.
 
+## Account e funzionalità social
+
+La mappa resta utilizzabile anche senza account. Per attivare login, profilo e
+le future funzioni sociali, copia una volta il modello locale:
+
+```powershell
+Copy-Item .\supabase.env.example.json .\supabase.env.json
+```
+
+Poi apri `supabase.env.json` e inserisci il **Project URL** e la
+**publishable key** del tuo progetto Supabase, disponibili dal pulsante
+`Connect` nella dashboard. Non incollare mai qui la service-role key e non
+caricare `supabase.env.json` su GitHub: è escluso automaticamente da Git.
+
+Lo script `run_app.ps1` legge il file locale e abilita l'icona Account nella
+mappa. Da lì ogni persona potrà creare un proprio profilo e scegliere se
+condividere i voti con gli amici accettati.
+
 ## Mappa
 
 L'app usa Mapbox Standard su browser e Android. I dati dei locali restano in

@@ -13,6 +13,7 @@ $ErrorActionPreference = "Stop"
 
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
 $EnvFile = Join-Path $ProjectRoot "mapbox.env.json"
+$SupabaseEnvFile = Join-Path $ProjectRoot "supabase.env.json"
 
 Set-Location $ProjectRoot
 
@@ -55,6 +56,20 @@ $FlutterArgs = @(
     $Device,
     "--dart-define-from-file=mapbox.env.json"
 )
+
+if (Test-Path $SupabaseEnvFile) {
+    $SupabaseConfig = Get-Content -Raw -Path $SupabaseEnvFile | ConvertFrom-Json
+    $SupabaseUrl = [string]$SupabaseConfig.SUPABASE_URL
+    $SupabaseKey = [string]$SupabaseConfig.SUPABASE_PUBLISHABLE_KEY
+
+    if (-not [string]::IsNullOrWhiteSpace($SupabaseUrl) -and -not [string]::IsNullOrWhiteSpace($SupabaseKey)) {
+        $FlutterArgs += "--dart-define=SUPABASE_URL=$SupabaseUrl"
+        $FlutterArgs += "--dart-define=SUPABASE_PUBLISHABLE_KEY=$SupabaseKey"
+        Write-Host "Social features are enabled for this local run." -ForegroundColor Cyan
+    } else {
+        Write-Host "supabase.env.json is incomplete, so social features stay disabled." -ForegroundColor Yellow
+    }
+}
 
 if ($Release) {
     $FlutterArgs += "--release"
