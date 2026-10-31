@@ -164,7 +164,7 @@ class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
                   ),
                   _InfoPill(
                     icon: Icons.euro_rounded,
-                    label: _priceLabel(place.priceLevel),
+                    label: priceLabelFor(place.priceLevel, place.currencyCode),
                   ),
                 ],
               ),
@@ -451,17 +451,4 @@ List<Color> _colorsForCategory(String category) {
 String _displayVibe(String vibe) {
   final normalized = vibe.replaceAll('_', ' ').replaceAll('-', ' ');
   return '${normalized[0].toUpperCase()}${normalized.substring(1)}';
-}
-
-String _priceLabel(int priceLevel) {
-  final symbols = List.filled(priceLevel, '€').join();
-  final range = switch (priceLevel) {
-    1 => '0–15€',
-    2 => '15–35€',
-    3 => '35–70€',
-    4 => '70–100€',
-    _ => '100€+',
-  };
-
-  return '$symbols · $range';
 }

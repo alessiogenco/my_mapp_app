@@ -64,6 +64,14 @@ foreach ($Place in $Places) {
         Add-Issue "$($Place.id) has an empty name."
     }
 
+    if ($Place.countryCode -notmatch '^[A-Z]{2}$') {
+        Add-Issue "$Label has invalid countryCode: $($Place.countryCode)."
+    }
+
+    if ($Place.currencyCode -notmatch '^[A-Z]{3}$') {
+        Add-Issue "$Label has invalid currencyCode: $($Place.currencyCode)."
+    }
+
     if ($AllowedCategories -notcontains $Place.category) {
         Add-Issue "$Label has invalid category: $($Place.category)."
     }
@@ -105,6 +113,14 @@ foreach ($Place in $Places) {
         Add-Issue "$Label has no vibes."
     }
 
+    if ($null -ne $Place.foodTags) {
+        foreach ($FoodTag in $Place.foodTags) {
+            if ([string]::IsNullOrWhiteSpace($FoodTag) -or $FoodTag -notmatch '^[a-z0-9_]+$') {
+                Add-Issue "$Label has invalid food tag: $FoodTag."
+            }
+        }
+    }
+
     foreach ($UrlField in @("websiteUrl", "instagramUrl", "googleMapsUrl")) {
         $Url = $Place.$UrlField
         if (-not [string]::IsNullOrWhiteSpace($Url) -and $Url -notmatch "^https?://") {
@@ -118,6 +134,8 @@ foreach ($Place in $Places) {
 
 Write-Host "Places: $($Places.Count)" -ForegroundColor Cyan
 Write-Host "Cities: $(( $Places.city | Sort-Object -Unique ) -join ', ')"
+Write-Host "Countries: $(( $Places.countryCode | Sort-Object -Unique ) -join ', ')"
+Write-Host "Currencies: $(( $Places.currencyCode | Sort-Object -Unique ) -join ', ')"
 Write-Host "Categories: $(( $Places.category | Sort-Object -Unique ) -join ', ')"
 Write-Host "Areas: $(( $Places.area | Sort-Object -Unique ) -join ', ')"
 

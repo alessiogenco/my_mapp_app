@@ -25,7 +25,9 @@
     ],
     "notes": "Eccelente scelta di piatti locali rivisitati di grande qualita' e trullo con giardino caratteristico",
     "instagramUrl": "https://www.instagram.com/ristorantetrullogarden/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Trullo+Garden/@40.785522,17.2357839,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b263eb035c23:0xde0848980b828bcd!8m2!3d40.785522!4d17.2383588!16s%2Fg%2F11c1mzbhj0?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Trullo+Garden/@40.785522,17.2357839,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b263eb035c23:0xde0848980b828bcd!8m2!3d40.785522!4d17.2383588!16s%2Fg%2F11c1mzbhj0?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "cols",
@@ -54,7 +56,9 @@
       "takeaway"
     ],
     "notes": "Passione e originalita nella scelta delle miscele di caffe e grande professionalita' e gentilezza dello staff",
-    "googleMapsUrl": "https://www.google.com/maps/place/Cols/@40.779568,17.232946,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3e1d225ca03:0x4eda899e119c9cf8!8m2!3d40.779568!4d17.2355209!16s%2Fg%2F11y6ys9ymc?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Cols/@40.779568,17.232946,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3e1d225ca03:0x4eda899e119c9cf8!8m2!3d40.779568!4d17.2355209!16s%2Fg%2F11y6ys9ymc?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "ristorante_gli_ulivi",
@@ -81,7 +85,9 @@
     ],
     "notes": "Istituzione nell'offerta di piatti locali e buona pizza",
     "websiteUrl": "https://www.ristorantegliulivialberobello.it/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Ristorante+Gli+Ulivi/@40.7851773,17.2438152,17z/data=!3m2!4b1!5s0x1347b2897c2fa45d:0xca06e24071096a49!4m6!3m5!1s0x1347b2897f8f7ac7:0xfbd8f48410c808ce!8m2!3d40.7851773!4d17.2463901!16s%2Fg%2F1tfn6f3j?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Ristorante+Gli+Ulivi/@40.7851773,17.2438152,17z/data=!3m2!4b1!5s0x1347b2897c2fa45d:0xca06e24071096a49!4m6!3m5!1s0x1347b2897f8f7ac7:0xfbd8f48410c808ce!8m2!3d40.7851773!4d17.2463901!16s%2Fg%2F1tfn6f3j?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "la_lira_focacceria",
@@ -110,7 +116,9 @@
       "touristy"
     ],
     "notes": "Ottima focapizza con buon impasto e diversi gusti ma il locale non offre posti a sedere grande cordialita del personale",
-    "googleMapsUrl": "https://www.google.com/maps/place/La+Lira+Focacceria/@40.7828091,17.2351188,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b2635c92ecdb:0xbe30d958cc46adc7!8m2!3d40.7828091!4d17.2376937!16s%2Fg%2F1q6j6f530?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/La+Lira+Focacceria/@40.7828091,17.2351188,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b2635c92ecdb:0xbe30d958cc46adc7!8m2!3d40.7828091!4d17.2376937!16s%2Fg%2F1q6j6f530?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "republic_19",
@@ -139,7 +147,9 @@
     ],
     "notes": "Buona pizza e ampia scelta di birre sia artigianali e commerciali",
     "instagramUrl": "https://www.instagram.com/republic19alberobello/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Republic+19/@40.7834163,17.2328717,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3f824f6f461:0x33a526d359af69f7!8m2!3d40.7834163!4d17.2354466!16s%2Fg%2F11j1z4mbpq?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Republic+19/@40.7834163,17.2328717,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3f824f6f461:0x33a526d359af69f7!8m2!3d40.7834163!4d17.2354466!16s%2Fg%2F11j1z4mbpq?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "la_pagnottella",
@@ -168,7 +178,9 @@
       "touristy"
     ],
     "notes": "Buona qualita di prodotti locali per i panini e bella vista della zona storica",
-    "googleMapsUrl": "https://www.google.com/maps/place/La+Pagnottella+-+Alberobello/@40.7835631,17.2383164,20.33z/data=!4m6!3m5!1s0x1347b2637165fd53:0x6fbbb1a01a994228!8m2!3d40.7835429!4d17.2385513!16s%2Fg%2F11g9qt5nyg?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/La+Pagnottella+-+Alberobello/@40.7835631,17.2383164,20.33z/data=!4m6!3m5!1s0x1347b2637165fd53:0x6fbbb1a01a994228!8m2!3d40.7835429!4d17.2385513!16s%2Fg%2F11g9qt5nyg?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "pub_crash",
@@ -194,7 +206,9 @@
       "panini"
     ],
     "notes": "Istituzione alberobellese ed uno dei primi pub nel paese con buoni panini, piadine e birre, design originale",
-    "googleMapsUrl": "https://www.google.com/maps/place/Pub+%22Crash%22/@40.7873002,17.236749,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b26171da8c5b:0x966b40672e53d920!8m2!3d40.7873002!4d17.2393239!16s%2Fg%2F11cs2wwn80?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Pub+%22Crash%22/@40.7873002,17.236749,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b26171da8c5b:0x966b40672e53d920!8m2!3d40.7873002!4d17.2393239!16s%2Fg%2F11cs2wwn80?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "cibum_macelleria_ristogrill",
@@ -223,7 +237,9 @@
       "wine"
     ],
     "notes": "Qualita eccellente della carne con proposta variegata di carni sia locale ed internazionale. Otimma proposta di vini. Staff cordiale. Grande numero di posti a sedere nel locale. Consigliati anche gli antipasti locali.",
-    "googleMapsUrl": "https://www.google.com/maps/place/CIBUM+-+Macelleria+Ristogrill/@40.7811738,17.2422001,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b35de2ed0219:0x628ad593d2461916!8m2!3d40.7811738!4d17.244775!16s%2Fg%2F11j1m60ygr?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/CIBUM+-+Macelleria+Ristogrill/@40.7811738,17.2422001,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b35de2ed0219:0x628ad593d2461916!8m2!3d40.7811738!4d17.244775!16s%2Fg%2F11j1m60ygr?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "la_bottega_del_gelato",
@@ -252,7 +268,9 @@
     ],
     "notes": "Ottimo gelato artigianale e torte semi-fredde in pieno centro ad Alberobello",
     "websiteUrl": "https://labottegadelgelatoalberobello.com/",
-    "googleMapsUrl": "https://www.google.com/maps/place/La+Bottega+del+Gelato/@40.7840541,17.2344495,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3e86ea05f9f:0x7bc4eaae284a6ad2!8m2!3d40.7840541!4d17.2370244!16s%2Fg%2F11s416ync3?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/La+Bottega+del+Gelato/@40.7840541,17.2344495,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3e86ea05f9f:0x7bc4eaae284a6ad2!8m2!3d40.7840541!4d17.2370244!16s%2Fg%2F11s416ync3?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "marla_ispirazioni_di_gusto",
@@ -260,8 +278,14 @@
     "city": "Alberobello",
     "category": "bakery_sweet",
     "area": "periphery",
-    "rating": 6,
+    "rating": 7,
     "priceLevel": 1,
+    "ratingDetails": {
+      "food": 7,
+      "location": 6,
+      "service": 7,
+      "value": 7
+    },
     "lat": 40.78700134,
     "lng": 17.23017235,
     "vibes": [
@@ -299,7 +323,9 @@
       "late-night"
     ],
     "notes": "Ottimo locale sia per colazioni che post serata con buoni cocktail ad Alberobello. Buon numero di posti a sedere sia all'interno che all'esterno.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Bar+%22L'incontro+Lounge%22/@40.781536,17.2411926,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b288112249ff:0xfb941f6c362be4a6!8m2!3d40.781536!4d17.2437675!16s%2Fg%2F12hlsj75p?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Bar+%22L'incontro+Lounge%22/@40.781536,17.2411926,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b288112249ff:0xfb941f6c362be4a6!8m2!3d40.781536!4d17.2437675!16s%2Fg%2F12hlsj75p?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "malart",
@@ -326,7 +352,9 @@
       "touristy"
     ],
     "notes": "Buona proposta di birre artigianali ad Alberobello",
-    "googleMapsUrl": "https://www.google.com/maps/place/Malart/@40.7817792,17.2343489,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b31636263221:0x28e169d46097bb5f!8m2!3d40.7817792!4d17.2369238!16s%2Fg%2F11t6g7zd3d?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Malart/@40.7817792,17.2343489,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b31636263221:0x28e169d46097bb5f!8m2!3d40.7817792!4d17.2369238!16s%2Fg%2F11t6g7zd3d?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "braceria_la_fontana",
@@ -354,7 +382,9 @@
       "wine"
     ],
     "notes": "Buona carne locale nel pieno centro storico di Alberobello con posti a sedere all'esterno. Consigliate le bombeette.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Braceria+%22La+Fontana%22/@40.7829358,17.2344446,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b264a0719ef3:0x35408b65cc7d8482!8m2!3d40.7829358!4d17.2370195!16s%2Fg%2F11d_7v5md7?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Braceria+%22La+Fontana%22/@40.7829358,17.2344446,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b264a0719ef3:0x35408b65cc7d8482!8m2!3d40.7829358!4d17.2370195!16s%2Fg%2F11d_7v5md7?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "atelier_spiralis",
@@ -381,7 +411,9 @@
     ],
     "notes": "Locale con ottimi cocktail nel cuore di Alberobello, da considerare i pochi posti a sedere e le ridotte dimensioni del locale. Consigliata prenotazione.",
     "instagramUrl": "https://www.instagram.com/gianvito_barnaba/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Atelier+Spiralis/@40.782845,17.2349038,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3ca8c150f9f:0x11a81f71a84a849b!8m2!3d40.782845!4d17.2374787!16s%2Fg%2F11tp51bk73?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Atelier+Spiralis/@40.782845,17.2349038,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3ca8c150f9f:0x11a81f71a84a849b!8m2!3d40.782845!4d17.2374787!16s%2Fg%2F11tp51bk73?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "bagia_alberobello",
@@ -410,7 +442,9 @@
     "notes": "Buona scelta per aperitivi e cocktails con molti posti a sedere all'esterno nel pieno centro storico di Alberobello. Posizione eccellente del locale.",
     "websiteUrl": "https://www.facebook.com/BagiaCafe",
     "instagramUrl": "https://www.instagram.com/bagia_alberobello/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Bagi%C3%A0+Alberobello/@40.7827723,17.2350629,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b2635e2e0f01:0xcb0aba353d54007!8m2!3d40.7827723!4d17.2376378!16s%2Fg%2F11btvg99b0?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Bagi%C3%A0+Alberobello/@40.7827723,17.2350629,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b2635e2e0f01:0xcb0aba353d54007!8m2!3d40.7827723!4d17.2376378!16s%2Fg%2F11btvg99b0?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "ristorante_trullo_d_oro",
@@ -418,16 +452,24 @@
     "city": "Alberobello",
     "category": "restaurant",
     "area": "cityCentre",
-    "rating": 7,
+    "rating": 8,
     "priceLevel": 3,
+    "ratingDetails": {
+      "food": 8,
+      "location": 8,
+      "service": 7,
+      "value": 7
+    },
     "lat": 40.78507699,
     "lng": 17.23753865,
     "vibes": [
       "cozy",
       "date",
       "family",
+      "friends",
       "locals",
-      "touristy"
+      "touristy",
+      "wine"
     ],
     "notes": "Caratteristico ristorante all'interno di un trullo con buoni piatti locali consigliato per turisti",
     "googleMapsUrl": "https://www.google.com/maps/place/Ristorante+Trullo+D'Oro/@40.7850323,17.2349625,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b26389a1aaf5:0x4a84b2b7b4063b5d!8m2!3d40.7850323!4d17.2375374!16s%2Fg%2F1tf211jj?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D"
@@ -458,7 +500,9 @@
       "touristy"
     ],
     "notes": "Buona bakery con eccellente proposta di dolci lievitati caratteristici e focaccia pugliese e taralli",
-    "googleMapsUrl": "https://www.google.com/maps/place/Profumi+dal+Ponte/@40.7847557,17.2294368,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b26570b8c2f9:0x8727fa8d1950dedd!8m2!3d40.7847557!4d17.2320117!16s%2Fg%2F11fxx4238q?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Profumi+dal+Ponte/@40.7847557,17.2294368,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b26570b8c2f9:0x8727fa8d1950dedd!8m2!3d40.7847557!4d17.2320117!16s%2Fg%2F11fxx4238q?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "delizie",
@@ -485,7 +529,9 @@
     ],
     "notes": "Istituzione alberobellese per dolci e pasticceria locale",
     "websiteUrl": "https://www.facebook.com/pasticceriatedeschi/?locale=it_IT",
-    "googleMapsUrl": "https://www.google.com/maps/place/Delizie/@40.7829999,17.2281993,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b264a046e00f:0x26e255fc897e204!8m2!3d40.7829999!4d17.2307742!16s%2Fg%2F1tdhhhfb?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Delizie/@40.7829999,17.2281993,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b264a046e00f:0x26e255fc897e204!8m2!3d40.7829999!4d17.2307742!16s%2Fg%2F1tdhhhfb?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "evo_ristorante",
@@ -515,7 +561,9 @@
     ],
     "notes": "Consacrato dal format televisivo \"4 ristoranti\" il migliore ristorante in zona, propone un ottima rivisitazione di piatti locali in chiave moderna. Prenotazione richiesta con largo anticipo.",
     "websiteUrl": "https://www.evoristorante.com/",
-    "googleMapsUrl": "https://www.google.com/maps/place/EVO+Ristorante/@40.7874591,17.2324609,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b2669b7e8803:0xa61ce6bd21a80af1!8m2!3d40.7874591!4d17.2350358!16s%2Fg%2F11bw795jks?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/EVO+Ristorante/@40.7874591,17.2324609,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b2669b7e8803:0xa61ce6bd21a80af1!8m2!3d40.7874591!4d17.2350358!16s%2Fg%2F11bw795jks?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "casa_nova_il_ristorante",
@@ -545,7 +593,9 @@
     ],
     "notes": "Ristorante locale caratteristico in un trullo nel pieno centro storico di Alberobello",
     "websiteUrl": "http://www.casanovailristorante.it/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Casa+Nova+Il+Ristorante/@40.7826206,17.2349241,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b2635a2ecc83:0x540b4e2c0e571965!8m2!3d40.7826206!4d17.237499!16s%2Fg%2F1tv6t318?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Casa+Nova+Il+Ristorante/@40.7826206,17.2349241,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b2635a2ecc83:0x540b4e2c0e571965!8m2!3d40.7826206!4d17.237499!16s%2Fg%2F1tv6t318?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "gulp_bari",
@@ -574,7 +624,9 @@
     ],
     "notes": "Ottimo locale per un pranzo con colleghi ed amici con una buona selezione di birre e piatti locali",
     "websiteUrl": "http://www.gulpbari.it/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Gulp+%7C+Bari/@41.0987386,16.8499938,17z/data=!3m1!4b1!4m6!3m5!1s0x1347e91b1f7f7d49:0x27021c3024d4d8eb!8m2!3d41.0987386!4d16.8525687!16s%2Fg%2F11g_r_1zq?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Gulp+%7C+Bari/@41.0987386,16.8499938,17z/data=!3m1!4b1!4m6!3m5!1s0x1347e91b1f7f7d49:0x27021c3024d4d8eb!8m2!3d41.0987386!4d16.8525687!16s%2Fg%2F11g_r_1zq?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "il_postaccio",
@@ -601,7 +653,9 @@
       "late-night"
     ],
     "notes": "Istituzione barese per la proposta di cichetti (Chupitos) in un'ottime zona residenziale a Bari",
-    "googleMapsUrl": "https://www.google.com/maps/place/Il+Postaccio/@41.0986276,16.8497863,17z/data=!3m1!4b1!4m6!3m5!1s0x1347e91b177c1fa3:0x941116f5fbf1c552!8m2!3d41.0986276!4d16.8523612!16s%2Fg%2F11cmj05cz6?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Il+Postaccio/@41.0986276,16.8497863,17z/data=!3m1!4b1!4m6!3m5!1s0x1347e91b177c1fa3:0x941116f5fbf1c552!8m2!3d41.0986276!4d16.8523612!16s%2Fg%2F11cmj05cz6?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "rosticceria_oriente",
@@ -630,7 +684,9 @@
     ],
     "notes": "Street-food barese per la proposta di rustici, focaccia e panini di ottima qualita'",
     "instagramUrl": "https://www.instagram.com/rosticceriaoriente/",
-    "googleMapsUrl": "https://maps.app.goo.gl/iB2H7AEokinYUS2s9"
+    "googleMapsUrl": "https://maps.app.goo.gl/iB2H7AEokinYUS2s9",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "pizzeria_di_cosimo_mauro",
@@ -659,7 +715,9 @@
       "takeaway"
     ],
     "notes": "Istituzione barese per panzerotti al forno e fritti anche di diversa size e con diversi gusti. Posto super autentico e consigliato per chi vuole assaggiare il vero panzerotto barese",
-    "googleMapsUrl": "https://maps.app.goo.gl/LwUW8jusxeKkSk3D7"
+    "googleMapsUrl": "https://maps.app.goo.gl/LwUW8jusxeKkSk3D7",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "le_officine_clandestine",
@@ -687,7 +745,9 @@
       "panini"
     ],
     "notes": "Pub carino in zona Campus universitario a Bari con ottima scelta di birre, antipasti e panini",
-    "googleMapsUrl": "https://maps.app.goo.gl/uaQ8qQHvN8T5XuuR7"
+    "googleMapsUrl": "https://maps.app.goo.gl/uaQ8qQHvN8T5XuuR7",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "factory_pub",
@@ -713,7 +773,9 @@
     ],
     "notes": "Pub famoso a Bari per i suoi burgers e birre, carino per una serata tra amici e colleghi",
     "websiteUrl": "https://www.factorypub.it/",
-    "googleMapsUrl": "https://maps.app.goo.gl/Xpss6wxnsHoNAeE2A"
+    "googleMapsUrl": "https://maps.app.goo.gl/Xpss6wxnsHoNAeE2A",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "manicomio_drinks_foods",
@@ -741,7 +803,9 @@
       "wine"
     ],
     "notes": "Cocktail bar in pieno centro a Bari aperto fino a tarda serata e ottimo per serate con amici e socializzare",
-    "googleMapsUrl": "https://maps.app.goo.gl/wre3JjNWv8jt63Se9"
+    "googleMapsUrl": "https://maps.app.goo.gl/wre3JjNWv8jt63Se9",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "timeout_play_around_food",
@@ -771,7 +835,9 @@
     ],
     "notes": "Uno dei pub piu' famosi di Bari noto per lo stile unico del locale con ambientazione sportiva con ottimi panini e ideale per guardare partite",
     "instagramUrl": "https://www.instagram.com/timeoutbari/",
-    "googleMapsUrl": "https://maps.app.goo.gl/4eYHX7SU7x7c62dXA"
+    "googleMapsUrl": "https://maps.app.goo.gl/4eYHX7SU7x7c62dXA",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "piccinni_28",
@@ -801,7 +867,9 @@
     "notes": "Buona pizzeria nel cuore della citta' di Bari con molti posti a sedere all'interno e all'esterno in un patio caratteristico",
     "websiteUrl": "http://www.piccinni28.com/",
     "instagramUrl": "https://www.instagram.com/piccinni28/",
-    "googleMapsUrl": "https://maps.app.goo.gl/SqivwujjbJyhR7pY9"
+    "googleMapsUrl": "https://maps.app.goo.gl/SqivwujjbJyhR7pY9",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "bakery_santa_rita",
@@ -831,7 +899,9 @@
       "touristy"
     ],
     "notes": "Focacceria storica a Bari nella citta' vecchia, ottima proposta per chi vuole assaggiare tra le piu' autentiche focacce della citta'. Consigliati anche i rustici.",
-    "googleMapsUrl": "https://maps.app.goo.gl/b5deR31qRU7BLHxf8"
+    "googleMapsUrl": "https://maps.app.goo.gl/b5deR31qRU7BLHxf8",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "gelateria_gentile",
@@ -862,7 +932,9 @@
     ],
     "notes": "Storica istituzione barese per gelati artigianali con una grande varieta' di gusti e scelta. Da considerare la possibilita' di fare la fila ma la qualita' del gelato merita l'attesa.",
     "websiteUrl": "http://www.gelateriagentile.it/",
-    "googleMapsUrl": "https://maps.app.goo.gl/o4PziAdHXR6kq5TX8"
+    "googleMapsUrl": "https://maps.app.goo.gl/o4PziAdHXR6kq5TX8",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "pizzeria_di_cosimo",
@@ -892,7 +964,9 @@
       "touristy"
     ],
     "notes": "Storica istituzione barese per veri panzerotti baresi fritti e al forno con diverse farciture, generalmente pochi posti a sedere all'esterno ma takeaway consigliato",
-    "googleMapsUrl": "https://maps.app.goo.gl/F6dRvF3Vi3uSg3Hb7"
+    "googleMapsUrl": "https://maps.app.goo.gl/F6dRvF3Vi3uSg3Hb7",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "pescaria",
@@ -924,7 +998,9 @@
     ],
     "notes": "Primo loacale in Puglia per la proposta di panini al pesce, diventato poi di tendenza in Italia. Ottima qualita' del pesce crudo. Posti a sedere ma takeaway consigliato. Da considerare la possibile attesa in coda per accedere al locale.",
     "websiteUrl": "https://www.pescaria.it/",
-    "googleMapsUrl": "https://maps.app.goo.gl/9fjeVQdvxRjNXByD7"
+    "googleMapsUrl": "https://maps.app.goo.gl/9fjeVQdvxRjNXByD7",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "ristorante_bar_pizzeria_porto_rosso",
@@ -954,7 +1030,9 @@
     "notes": "Ristorante/bar a Monopoli con bella terrazza vista mare e citta'. Ideale per un aperitivo con una piacevole atmosfera o per assaggiare seafood a km 0",
     "websiteUrl": "https://ristoranteportorosso.netlify.app/",
     "instagramUrl": "https://www.instagram.com/portorosso_monopoli/",
-    "googleMapsUrl": "https://maps.app.goo.gl/C96gMT9BApWPDty39"
+    "googleMapsUrl": "https://maps.app.goo.gl/C96gMT9BApWPDty39",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "n24_bar_vin_con_cucina",
@@ -964,6 +1042,12 @@
     "area": "historicalCentre",
     "rating": 7,
     "priceLevel": 2,
+    "ratingDetails": {
+      "food": 7,
+      "location": 7,
+      "service": 8,
+      "value": 7
+    },
     "lat": 40.95370874341072,
     "lng": 17.3058405112411,
     "vibes": [
@@ -971,8 +1055,11 @@
       "cocktails",
       "cozy",
       "date",
+      "family",
       "friends",
-      "late-night"
+      "late-night",
+      "locals",
+      "wine"
     ],
     "notes": "Ristorante e cocktail bar in pieno centro storico a Monopoli, ideale la sera per assaggiare piatti locali a base di pesce accompagnati da buon vino e cocktail post serata",
     "googleMapsUrl": "https://www.google.com/maps/place/N24+Bar+%C3%A0+Vin+-+con+cucina/@40.9538708,17.3045155,18z/data=!4m6!3m5!1s0x13463526859197b7:0xe5852c608f414291!8m2!3d40.9536536!4d17.3055559!16s%2Fg%2F11g8gd91gn?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D"
@@ -1003,7 +1090,9 @@
       "wine"
     ],
     "notes": "Locale ad Alberobello fuori da l centro storico frequentato da locals per la buona qualita' della pizza e antipasti locali",
-    "googleMapsUrl": "https://www.google.com/maps/place/Arboris+Belli+Pizzeria+con+cucina/@40.7651649,17.2172966,14z/data=!3m1!5s0x1347ad857a0b792b:0xa6cfc2837a339ba8!4m6!3m5!1s0x1347ad85779a99a9:0xa54ca325e815c13!8m2!3d40.7651635!4d17.2318605!16s%2Fg%2F1tr6pk9s?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Arboris+Belli+Pizzeria+con+cucina/@40.7651649,17.2172966,14z/data=!3m1!5s0x1347ad857a0b792b:0xa6cfc2837a339ba8!4m6!3m5!1s0x1347ad85779a99a9:0xa54ca325e815c13!8m2!3d40.7651635!4d17.2318605!16s%2Fg%2F1tr6pk9s?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "pietranuda",
@@ -1031,7 +1120,9 @@
       "wine"
     ],
     "notes": "Ottima qualita' della carne e gentilezza del personale che rendono questo locale un punto di riferimento per assaggiare carne locale in zona Valle d'Itria. Buon numero di posti a sedere sia all'interno che all'esterno in periodo estivo",
-    "googleMapsUrl": "https://www.google.com/maps/place/Pietranuda/@40.7547662,17.323749,17z/data=!3m2!4b1!5s0x1346528337a976fb:0x26b8f691778f933b!4m6!3m5!1s0x13465283366b18cb:0x6b71088614fa5f24!8m2!3d40.7547662!4d17.3263239!16s%2Fg%2F11bx56l841?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Pietranuda/@40.7547662,17.323749,17z/data=!3m2!4b1!5s0x1346528337a976fb:0x26b8f691778f933b!4m6!3m5!1s0x13465283366b18cb:0x6b71088614fa5f24!8m2!3d40.7547662!4d17.3263239!16s%2Fg%2F11bx56l841?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "serena_nardelli_lieviteria_artigianale_senza_lattosio",
@@ -1058,7 +1149,9 @@
     "notes": "Nuova proposta a Locorotondo di cornetti e sfoglie artigianali di ottima qualita'. Ideale per colazioni nei pressi della valle d'itria",
     "websiteUrl": "https://serenanardelli.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio",
     "instagramUrl": "https://www.instagram.com/serenanardelli_locorotondo/",
-    "googleMapsUrl": "https://www.google.com/maps/place/SERENA+NARDELLI+Lieviteria+Artigianale+Senza+Lattosio/@40.7566044,17.3206876,15.75z/data=!4m6!3m5!1s0x134653bd59148739:0xaea6b618bad95f4b!8m2!3d40.7561968!4d17.3213507!16s%2Fg%2F11ysdcv7gr?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/SERENA+NARDELLI+Lieviteria+Artigianale+Senza+Lattosio/@40.7566044,17.3206876,15.75z/data=!4m6!3m5!1s0x134653bd59148739:0xaea6b618bad95f4b!8m2!3d40.7561968!4d17.3213507!16s%2Fg%2F11ysdcv7gr?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "mandragora_pozioni_porzioni",
@@ -1092,7 +1185,9 @@
     "notes": "Cocktail bar nel pieno centro storico di Locorotondo con posti all'interno e all'esterno, ideale per il post serata con amici. Otiima opzione per aperitivi e piatti locali",
     "websiteUrl": "https://www.mandragorabistrot.it/",
     "instagramUrl": "https://www.instagram.com/mandragora_pozionieporzioni/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Mandragora+Pozioni+%26+Porzioni/@40.7526655,17.3284151,21z/data=!4m6!3m5!1s0x1346532aa753cfa3:0xbeb30ce1cb8abcbc!8m2!3d40.7526866!4d17.3284132!16s%2Fg%2F11hzzqkhzb?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Mandragora+Pozioni+%26+Porzioni/@40.7526655,17.3284151,21z/data=!4m6!3m5!1s0x1346532aa753cfa3:0xbeb30ce1cb8abcbc!8m2!3d40.7526866!4d17.3284132!16s%2Fg%2F11hzzqkhzb?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "la_tradizione_fornello_pugliese",
@@ -1123,7 +1218,9 @@
     "notes": "Istituzione pugliese per la qualita' di carne con variegata scelta. Grande numero di posti a sedere ma prenotazione consigliata",
     "websiteUrl": "http://bracerialatradizione.it/",
     "instagramUrl": "https://www.instagram.com/latradizione.braceria/",
-    "googleMapsUrl": "https://www.google.com/maps/place/La+Tradizione+-+Fornello+Pugliese/@40.8902801,16.8999091,12z/data=!4m6!3m5!1s0x1347bdd7461508e7:0xa58fffa0ee28980a!8m2!3d40.8902801!4d16.9489029!16s%2Fg%2F1tfdhvdt?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/La+Tradizione+-+Fornello+Pugliese/@40.8902801,16.8999091,12z/data=!4m6!3m5!1s0x1347bdd7461508e7:0xa58fffa0ee28980a!8m2!3d40.8902801!4d16.9489029!16s%2Fg%2F1tfdhvdt?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "carloquinto",
@@ -1154,7 +1251,9 @@
     "notes": "Ristorante a Monopoli rinomato per la buona scelta di cocktail. Consigliato nel post serata.",
     "websiteUrl": "http://www.carloquinto.it/",
     "instagramUrl": "https://www.instagram.com/carloquintomonopoli/",
-    "googleMapsUrl": "https://www.google.com/maps/place/CarloQuinto/@40.9532671,17.3055993,19.29z/data=!4m6!3m5!1s0x134635269c102cdb:0xbc430babfd8a3d8c!8m2!3d40.9532201!4d17.3062614!16s%2Fg%2F11b6hqwtnn?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/CarloQuinto/@40.9532671,17.3055993,19.29z/data=!4m6!3m5!1s0x134635269c102cdb:0xbc430babfd8a3d8c!8m2!3d40.9532201!4d17.3062614!16s%2Fg%2F11b6hqwtnn?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "baldovino_winebar",
@@ -1181,7 +1280,9 @@
     ],
     "notes": "Buon cocktail bar in ottima ona in centro a Monopoli. I cocktail classici molto bilanciati sono consigliati. Ideale per il post serata in centro storico.",
     "instagramUrl": "https://www.instagram.com/baldovinowinebar/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Baldovino+Winebar/@40.9521135,17.3058007,20z/data=!4m6!3m5!1s0x134635243bcca207:0x1a4ff104f6ec45f3!8m2!3d40.9521135!4d17.3059921!16s%2Fg%2F11b6nm52gg?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Baldovino+Winebar/@40.9521135,17.3058007,20z/data=!4m6!3m5!1s0x134635243bcca207:0x1a4ff104f6ec45f3!8m2!3d40.9521135!4d17.3059921!16s%2Fg%2F11b6nm52gg?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "francesco_urbano_chocol_atelier",
@@ -1210,7 +1311,9 @@
     "notes": "Eccellente proposta a Monopoli di dolci locali, Francesco propone delle creazioni originali di cioccolato adattate ai sapori pugliesi. Consigliati anche i tour degustazioni i quali sono un plus del locale. Grande esperienza e professionalita' i quali sono un punto di forza del locale. Attraverso il suo sito e' possibile ordinare e ricevere i suoi prodotti.",
     "websiteUrl": "https://urbano-chocol-atelier.myshopify.com/",
     "instagramUrl": "https://www.instagram.com/francesco__urbano/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Francesco+Urbano+Chocol-Atelier/@40.9557546,17.2833306,15z/data=!4m14!1m7!3m6!1s0x1347cb94a623b969:0x517ac9befc624e7!2sPescaria!8m2!3d40.9947147!4d17.219381!16s%2Fg%2F11c4bgffsv!3m5!1s0x1347c1e489a41b03:0x5902386e7a20dc49!8m2!3d40.9554681!4d17.2893983!16s%2Fg%2F11f57ssmwg?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Francesco+Urbano+Chocol-Atelier/@40.9557546,17.2833306,15z/data=!4m14!1m7!3m6!1s0x1347cb94a623b969:0x517ac9befc624e7!2sPescaria!8m2!3d40.9947147!4d17.219381!16s%2Fg%2F11c4bgffsv!3m5!1s0x1347c1e489a41b03:0x5902386e7a20dc49!8m2!3d40.9554681!4d17.2893983!16s%2Fg%2F11f57ssmwg?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "alchemy_bar_and_things",
@@ -1240,7 +1343,9 @@
     ],
     "notes": "Locale rinomato a Monopoli per la proposta di cocktail originali, bilanciati e creativi. Locale con posti a sedere all'esterno il quale puo' essere particolarmente affollato durante il week-end.",
     "instagramUrl": "https://www.instagram.com/alchemico.barecose/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Alchemy+Bar+and+Things/@40.9530193,17.3011289,18.75z/data=!4m8!3m7!1s0x1346352f51fd85bb:0x148698a126994e5b!8m2!3d40.9531201!4d17.3008986!9m1!1b1!16s%2Fg%2F11c549ss4n?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Alchemy+Bar+and+Things/@40.9530193,17.3011289,18.75z/data=!4m8!3m7!1s0x1346352f51fd85bb:0x148698a126994e5b!8m2!3d40.9531201!4d17.3008986!9m1!1b1!16s%2Fg%2F11c549ss4n?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "carn_risto_macelleria",
@@ -1268,7 +1373,9 @@
     ],
     "notes": "Buona braceria in centro a Locorotondo ad un passo dal centro storico con un'ottima scelta di carni locali. La tagliata d'angus e la varieta' di bombette sono un punto di forza. Super raccomandato. I locale ofre posti a sedere durante l'estate e posti all'interno.",
     "websiteUrl": "https://carne-risto.com/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Carn'%C3%A9+risto-macelleria/@40.7529562,17.3303095,20z/data=!4m10!1m2!2m1!1scarne'!3m6!1s0x13465283f9de78a9:0xaada14fca781a0df!8m2!3d40.7529562!4d17.330905!15sCgZjYXJuZSdaByIFY2FybmWSAQpyZXN0YXVyYW50mgEjQ2haRFNVaE5NRzluUzBWSlEwRm5TVVJNTFRWUFVtUjNFQUXgAQD6AQQIABAw!16s%2Fg%2F11dxl9ty16?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Carn'%C3%A9+risto-macelleria/@40.7529562,17.3303095,20z/data=!4m10!1m2!2m1!1scarne'!3m6!1s0x13465283f9de78a9:0xaada14fca781a0df!8m2!3d40.7529562!4d17.330905!15sCgZjYXJuZSdaByIFY2FybmWSAQpyZXN0YXVyYW50mgEjQ2haRFNVaE5NRzluUzBWSlEwRm5TVVJNTFRWUFVtUjNFQUXgAQD6AQQIABAw!16s%2Fg%2F11dxl9ty16?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "l_arte_dell_arrosto_macelleria_braceria",
@@ -1295,7 +1402,9 @@
       "wine"
     ],
     "notes": "Buona macelleria in centro a Martina franca particolarmente consigliato per l'ampia scelta di bombette di alta qualita'. Ottimi anche gli antipasti locali. Grande locale con molti tavoli e posti a sedere all'interno. E' disponibile anche il servizio d'asporto tramite just eat.",
-    "googleMapsUrl": "https://www.google.com/maps/place/L%E2%80%99+Arte+dell%E2%80%99+Arrosto+Macelleria+Braceria/@40.7064763,17.3268307,15z/data=!4m6!3m5!1s0x13465308c25a9fc5:0x278321feb39b0389!8m2!3d40.7064358!4d17.3330141!16s%2Fg%2F11c5_1v4mm?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/L%E2%80%99+Arte+dell%E2%80%99+Arrosto+Macelleria+Braceria/@40.7064763,17.3268307,15z/data=!4m6!3m5!1s0x13465308c25a9fc5:0x278321feb39b0389!8m2!3d40.7064358!4d17.3330141!16s%2Fg%2F11c5_1v4mm?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "maccaroni_trattoria_italianissima",
@@ -1325,7 +1434,9 @@
     "notes": "Buon risorante a Monopoli in zona Procaccia. Consigliati i primi piatti a base di pesce e non male aperitivi e dessert. Ottima scoperta. Il locale presente un buon numero di posti all'interno e all'esterno.",
     "websiteUrl": "https://maccaroni-trattoria.it/",
     "instagramUrl": "https://www.instagram.com/maccaroni.trattoria/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Maccaroni+-+Trattoria+Italianissima/@40.9452281,17.298572,16z/data=!4m6!3m5!1s0x134635002e18ef05:0x9cad5b07cf1f8564!8m2!3d40.9452281!4d17.307828!16s%2Fg%2F11ychflthr?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Maccaroni+-+Trattoria+Italianissima/@40.9452281,17.298572,16z/data=!4m6!3m5!1s0x134635002e18ef05:0x9cad5b07cf1f8564!8m2!3d40.9452281!4d17.307828!16s%2Fg%2F11ychflthr?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "diplomatico",
@@ -1355,7 +1466,9 @@
     "notes": "Cocktail bar in pieno centro storico a Polignano, consigiato per lun buon cocktail nel post serata.",
     "websiteUrl": "http://www.bediplomatico.com/",
     "instagramUrl": "https://www.instagram.com/diplomatico_blend_experience/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Diplomatico/@40.9964027,17.2139636,16z/data=!4m6!3m5!1s0x1347cb91e10b2cf5:0x465caa9771f1c84e!8m2!3d40.9964027!4d17.2191134!16s%2Fg%2F11h53zc2gy?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Diplomatico/@40.9964027,17.2139636,16z/data=!4m6!3m5!1s0x1347cb91e10b2cf5:0x465caa9771f1c84e!8m2!3d40.9964027!4d17.2191134!16s%2Fg%2F11h53zc2gy?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "savi",
@@ -1383,7 +1496,9 @@
     ],
     "notes": "Una delle piu' rinomate creperia in tutta la Puglia nota per l'ampia scelta di crepes sia dolci che salate gourmet. Ingredienti di prima scelta e di ottima qualita'. Super consigliato in particolare per gli amanti del dolce e dessert.",
     "instagramUrl": "https://www.instagram.com/savicreperia/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Sav%C3%AC/@41.0076134,16.8419686,11z/data=!4m6!3m5!1s0x1347c816bf2370bf:0x975afe3a806c902a!8m2!3d40.9607761!4d17.1200718!16s%2Fg%2F1td8fntz?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Sav%C3%AC/@41.0076134,16.8419686,11z/data=!4m6!3m5!1s0x1347c816bf2370bf:0x975afe3a806c902a!8m2!3d40.9607761!4d17.1200718!16s%2Fg%2F1td8fntz?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "caf_mir",
@@ -1408,7 +1523,9 @@
       "late-night"
     ],
     "notes": "Cocktail bar famoso nel barese per la l'originale proposta di chupitos con una nota particolare per i diversi assenzi disponibili. Ottimo per un post serata simpatico tra amici in zona Rutigliano. Staff molto simpatico e sorprendente...",
-    "googleMapsUrl": "https://www.google.com/maps/place/caf%C3%A8+mir%C3%B2/@41.0115275,17.0040322,17z/data=!3m1!4b1!4m6!3m5!1s0x1347c12d2d6ab3b1:0x16266f03da322128!8m2!3d41.0115275!4d17.0066071!16s%2Fg%2F11cmy79x12?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/caf%C3%A8+mir%C3%B2/@41.0115275,17.0040322,17z/data=!3m1!4b1!4m6!3m5!1s0x1347c12d2d6ab3b1:0x16266f03da322128!8m2!3d41.0115275!4d17.0066071!16s%2Fg%2F11cmy79x12?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "400_gradi",
@@ -1438,7 +1555,9 @@
     "notes": "Buona pizzeria a Matera con un'ottimo impasto napoletano. Pizza leggera con ingredienti locali di grande qualita'.",
     "websiteUrl": "https://www.400gradipizzeria.com/",
     "instagramUrl": "https://www.instagram.com/400gradipizzeriamatera/",
-    "googleMapsUrl": "https://www.google.com/maps/place/400+Gradi/@40.6689803,16.5976144,15.75z/data=!4m6!3m5!1s0x13477fb85f20f6f1:0xc6a5bc158ee9a3df!8m2!3d40.6712262!4d16.6060683!16s%2Fg%2F11t5jmtfmy?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/400+Gradi/@40.6689803,16.5976144,15.75z/data=!4m6!3m5!1s0x13477fb85f20f6f1:0xc6a5bc158ee9a3df!8m2!3d40.6712262!4d16.6060683!16s%2Fg%2F11t5jmtfmy?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "caffe_plebiscito",
@@ -1467,7 +1586,9 @@
       "locals"
     ],
     "notes": "Buon bar in pieno centro a Ginosa ideale per colazioni, aperitivi, e cocktails nel post serata.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Caff%C3%A8+Plebiscito/@40.5792057,16.7589175,20.25z/data=!4m6!3m5!1s0x134770e560e7df43:0x4d153f5b7a6bfef2!8m2!3d40.5793461!4d16.7590781!16s%2Fg%2F11f3s92yml?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Caff%C3%A8+Plebiscito/@40.5792057,16.7589175,20.25z/data=!4m6!3m5!1s0x134770e560e7df43:0x4d153f5b7a6bfef2!8m2!3d40.5793461!4d16.7590781!16s%2Fg%2F11f3s92yml?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "ribecco_vito",
@@ -1496,7 +1617,9 @@
     ],
     "notes": "Buona scelta di antipasti e carni locali in pieno cento a Ginosa. Locale con un grande numero di posti a sedere.",
     "websiteUrl": "http://www.macelleriaribecco.it/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Ribecco+Vito/@40.5804403,16.7476836,16.46z/data=!4m10!1m2!2m1!1sMacelleria+GINOSA!3m6!1s0x134770e5677d7ca7:0x7d05d55de199b4b6!8m2!3d40.5798069!4d16.7528482!15sChFNYWNlbGxlcmlhIEdJTk9TQVoTIhFtYWNlbGxlcmlhIGdpbm9zYZIBDGJ1dGNoZXJfc2hvcJoBJENoZERTVWhOTUc5blMwVkpRMEZuU1VSaWVITXRTMmRCUlJBQuABAPoBBAgAEC0!16s%2Fg%2F1thbn1fg?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Ribecco+Vito/@40.5804403,16.7476836,16.46z/data=!4m10!1m2!2m1!1sMacelleria+GINOSA!3m6!1s0x134770e5677d7ca7:0x7d05d55de199b4b6!8m2!3d40.5798069!4d16.7528482!15sChFNYWNlbGxlcmlhIEdJTk9TQVoTIhFtYWNlbGxlcmlhIGdpbm9zYZIBDGJ1dGNoZXJfc2hvcJoBJENoZERTVWhOTUc5blMwVkpRMEZuU1VSaWVITXRTMmRCUlJBQuABAPoBBAgAEC0!16s%2Fg%2F1thbn1fg?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "feola_massimiliano_premiata_pizzeria_napoletana",
@@ -1527,7 +1650,9 @@
     ],
     "notes": "Ottima pizzeria con impasto napoletano a Ginosa. Nota positiva la qualita' dei prodotti locali. Efficiente servizio take away e delivery. Consigliatissimo in zona.",
     "websiteUrl": "http://www.feolamassimiliano.com/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Feola+Massimiliano+%7C+Premiata+Pizzeria+Napoletana/@40.5743494,16.7524856,17z/data=!4m10!1m2!2m1!1spizzeria+ginosa!3m6!1s0x13477118bb8b3d5f:0xa97d869523fe1734!8m2!3d40.5743494!4d16.7572492!15sCg9waXp6ZXJpYSBnaW5vc2FaESIPcGl6emVyaWEgZ2lub3NhkgEQcGl6emFfcmVzdGF1cmFudOABAA!16s%2Fg%2F11t7rg668n?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Feola+Massimiliano+%7C+Premiata+Pizzeria+Napoletana/@40.5743494,16.7524856,17z/data=!4m10!1m2!2m1!1spizzeria+ginosa!3m6!1s0x13477118bb8b3d5f:0xa97d869523fe1734!8m2!3d40.5743494!4d16.7572492!15sCg9waXp6ZXJpYSBnaW5vc2FaESIPcGl6emVyaWEgZ2lub3NhkgEQcGl6emFfcmVzdGF1cmFudOABAA!16s%2Fg%2F11t7rg668n?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "la_barchetta_morsi_di_mare",
@@ -1554,7 +1679,9 @@
       "wine"
     ],
     "notes": "Buon ristorante a base di pesce a Campomarino di Maruggio. Servizio non eccellente come velocita' e attenzione del cliente. Degna di nota la buona qualita' del pesce.",
-    "googleMapsUrl": "https://www.google.com/maps/place/La+Barchetta+-+Morsi+di+Mare/@40.3014767,17.5563831,15.71z/data=!4m8!3m7!1s0x1346e9215da40ffd:0xeebc3b8d18d984cf!8m2!3d40.2995422!4d17.5636216!9m1!1b1!16s%2Fg%2F11h1m45mxg?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/La+Barchetta+-+Morsi+di+Mare/@40.3014767,17.5563831,15.71z/data=!4m8!3m7!1s0x1346e9215da40ffd:0xeebc3b8d18d984cf!8m2!3d40.2995422!4d17.5636216!9m1!1b1!16s%2Fg%2F11h1m45mxg?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "birreria_paninoteca_felix",
@@ -1585,7 +1712,9 @@
     "notes": "Pub istituzione a Castellana e dintorni con ottimi panini e burgers. Si consiglia la prenotazione in anticipo. Staff gentile e cordiale. Ampia selezione di birre.",
     "websiteUrl": "https://www.leggimenu.it/menu/birreriafelix?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleAOmSLVleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaf7JdBBq2EHemIuDsUn1gmjlmUV0rnGoMRbgonrqQiRryIGKJvJsZOC19HstA_aem_DaQpl34-MoUx5q36hvLKcA",
     "instagramUrl": "https://www.instagram.com/birreriapaninotecafelix/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Birreria+Paninoteca+Felix/@40.8871519,17.1596069,16.04z/data=!4m10!1m2!2m1!1spub+castelllana!3m6!1s0x1347b6eb087c0fcb:0xe7208566cf66118b!8m2!3d40.8837623!4d17.1692848!15sCg5wdWIgY2FzdGVsbGFuYVoQIg5wdWIgY2FzdGVsbGFuYZIBA3B1YuABAA!16s%2Fg%2F124ynfn6t?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Birreria+Paninoteca+Felix/@40.8871519,17.1596069,16.04z/data=!4m10!1m2!2m1!1spub+castelllana!3m6!1s0x1347b6eb087c0fcb:0xe7208566cf66118b!8m2!3d40.8837623!4d17.1692848!15sCg5wdWIgY2FzdGVsbGFuYVoQIg5wdWIgY2FzdGVsbGFuYZIBA3B1YuABAA!16s%2Fg%2F124ynfn6t?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "bakery_spiga_d_oro_di_rivizzigno_pasquale",
@@ -1614,7 +1743,9 @@
     ],
     "notes": "Panificio e focacceria storica sulla strada per il Capitolo. Ideale per piatti caldi e freddi d'asporto. Offre un'ampia scelta di focacce e panzerotti di grande qualita' con ricette locali. Servizio veloce ed efficiente.",
     "websiteUrl": "http://www.panificiospigadoro.com/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Bakery+Spiga+D'Oro+Di+Rivizzigno+Pasquale/@40.8917574,17.3291163,13z/data=!4m6!3m5!1s0x13464af37c5026e3:0x34ce9d750f1e40a0!8m2!3d40.8915701!4d17.3292898!16s%2Fg%2F1v70yt7d?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Bakery+Spiga+D'Oro+Di+Rivizzigno+Pasquale/@40.8917574,17.3291163,13z/data=!4m6!3m5!1s0x13464af37c5026e3:0x34ce9d750f1e40a0!8m2!3d40.8915701!4d17.3292898!16s%2Fg%2F1v70yt7d?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "pasticceria_caroli",
@@ -1642,7 +1773,9 @@
     ],
     "notes": "Buon bar con caffe' espresso a Locorotondo. Ottima anche la pasticceria locale ed i gelati. Locale ideale per colazioni e aperitivi con posti a sedere all'interno e esterno.",
     "websiteUrl": "http://www.pasticceriacaroli.it/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Pasticceria+Caroli/@40.7578329,17.3198001,19z/data=!4m6!3m5!1s0x1346529dd93fcc37:0x2b1c60615785c201!8m2!3d40.7578329!4d17.3201829!16s%2Fg%2F1txv7pzt?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Pasticceria+Caroli/@40.7578329,17.3198001,19z/data=!4m6!3m5!1s0x1346529dd93fcc37:0x2b1c60615785c201!8m2!3d40.7578329!4d17.3201829!16s%2Fg%2F1txv7pzt?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "sweet_passion_micoli_di_vito_sas",
@@ -1672,7 +1805,9 @@
     ],
     "notes": "Pasticceria e bar rinomato a Locorotondo per la buona pasticceria locale e caffe' espresso. Ideale per colazioni e aperitivi.",
     "websiteUrl": "https://dolcepassionepasticceria.it/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Sweet+Passion+Micoli+Di+Vito+Sas/@40.7587512,17.3316987,17z/data=!4m6!3m5!1s0x13464d7e7bf4e34d:0xfba7fe46b32e52c5!8m2!3d40.7587403!4d17.3316656!16s%2Fg%2F1tf8jwtd?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Sweet+Passion+Micoli+Di+Vito+Sas/@40.7587512,17.3316987,17z/data=!4m6!3m5!1s0x13464d7e7bf4e34d:0xfba7fe46b32e52c5!8m2!3d40.7587403!4d17.3316656!16s%2Fg%2F1tf8jwtd?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "il_graffio",
@@ -1701,7 +1836,9 @@
     ],
     "notes": "Ristorante a due passi da una delle spiagge piu' suggestive della Puglia. Location immersa nel verde con atmosfera tranquilla e romantica. Consigliatissimi i primi a base di pesce di ottima qualita'. Buona anche la pizza ed i dessert. Consigliata la prenotazione specie durante la stagione estiva.",
     "instagramUrl": "https://www.instagram.com/il_graffio_/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Il+Graffio/@40.2951662,17.7826414,17z/data=!3m2!4b1!5s0x1346914a4fc182a1:0x34446b87a812d287!4m6!3m5!1s0x13469116dc69ce01:0x4c1a09eff9880341!8m2!3d40.2951662!4d17.7852163!16s%2Fg%2F11flg1d20p?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Il+Graffio/@40.2951662,17.7826414,17z/data=!3m2!4b1!5s0x1346914a4fc182a1:0x34446b87a812d287!4m6!3m5!1s0x13469116dc69ce01:0x4c1a09eff9880341!8m2!3d40.2951662!4d17.7852163!16s%2Fg%2F11flg1d20p?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "fly_sunset_emotion",
@@ -1731,7 +1868,9 @@
     "notes": "Cocktail bar con vista incredibile sul mare. Buoni cocktails con ampia scelta di gin da gustare sulla spiaggia di Porto Cesareo. Degni di nota gli aperitivi molto ricchi sia caldi che freddi. Ideale sia per l' happy hour nel pomeriggio che post serata.",
     "websiteUrl": "http://www.flysunsetemotion.com/",
     "instagramUrl": "https://www.instagram.com/flysunsetemotion/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Fly+Sunset+Emotion/@40.2658795,17.8270159,12z/data=!4m6!3m5!1s0x134699927dd2a82b:0x72c4f7c2a7bbd90d!8m2!3d40.265798!4d17.8851144!16s%2Fg%2F11g98mwdzw?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Fly+Sunset+Emotion/@40.2658795,17.8270159,12z/data=!4m6!3m5!1s0x134699927dd2a82b:0x72c4f7c2a7bbd90d!8m2!3d40.265798!4d17.8851144!16s%2Fg%2F11g98mwdzw?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "caff_vergnano_1882",
@@ -1764,7 +1903,9 @@
     ],
     "notes": "Bar in zona Campus a Bari ideale per colazioni, aperitivi, e pranzo. Molto frequentato da universitari per il buon caffe' espresso e per la qualita' del cibo. Location carina con volte in vista in pietra  con un gran numero di posti a sedere. Consigliato a pranzo anche con menu giornaliero.",
     "websiteUrl": "http://www.caffevergnano.com/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Caff%C3%A8+Vergnano+1882/@41.1127528,16.8695445,15.75z/data=!4m10!1m2!2m1!1sCaff%C3%A8+Vergnano!3m6!1s0x1347e846099e537b:0x5f08efb1b04f362f!8m2!3d41.1105267!4d16.8836851!15sCg9DYWZmw6ggVmVyZ25hbm8iA4gBAVoRIg9jYWZmw6ggdmVyZ25hbm-SAQtjb2ZmZWVfc2hvcOABAA!16s%2Fg%2F1hc3rq2nr?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Caff%C3%A8+Vergnano+1882/@41.1127528,16.8695445,15.75z/data=!4m10!1m2!2m1!1sCaff%C3%A8+Vergnano!3m6!1s0x1347e846099e537b:0x5f08efb1b04f362f!8m2!3d41.1105267!4d16.8836851!15sCg9DYWZmw6ggVmVyZ25hbm8iA4gBAVoRIg9jYWZmw6ggdmVyZ25hbm-SAQtjb2ZmZWVfc2hvcOABAA!16s%2Fg%2F1hc3rq2nr?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "rem_restaurant_pizza",
@@ -1793,7 +1934,9 @@
     ],
     "notes": "Buon ristorante a Leverano con grande scelta di primi piatti locali e ottime pizze. Buona anche la selezione di birre artigianali salentine. Locale carino con molti posti a sedere. Consigliato per chi si trova nei pressi di Leverano.",
     "websiteUrl": "https://remerestaurantepizza.it/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Rem%C3%A8+Restaurant+%26+Pizza/@40.2919957,17.9012672,11z/data=!4m6!3m5!1s0x13469c535dc136e5:0x778a25840aaf791e!8m2!3d40.2920378!4d17.9993438!16s%2Fg%2F11c5sr1mcp?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Rem%C3%A8+Restaurant+%26+Pizza/@40.2919957,17.9012672,11z/data=!4m6!3m5!1s0x13469c535dc136e5:0x778a25840aaf791e!8m2!3d40.2920378!4d17.9993438!16s%2Fg%2F11c5sr1mcp?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "l_angolino_di_via_matteotti",
@@ -1822,7 +1965,9 @@
       "takeaway"
     ],
     "notes": "L'angolino di Via Matteotti e' un' ottimo locale dove poter assaggiare puccie salentine con ingredienti locali di buona qualita'. Consigliatissimo per chi si trova nei pressi di Lecce e vuole un pranzo veloce. Consigliate le birre salentine artigianali. La puccia con polpo e' un plus.",
-    "googleMapsUrl": "https://www.google.com/maps/place/L'angolino+di+Via+Matteotti/@40.3541331,18.1668275,15z/data=!4m6!3m5!1s0x13442ee41a9328f7:0x5f0c8a53aaaddc6e!8m2!3d40.3541331!4d18.173506!16s%2Fg%2F11b7hhjdw_?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/L'angolino+di+Via+Matteotti/@40.3541331,18.1668275,15z/data=!4m6!3m5!1s0x13442ee41a9328f7:0x5f0c8a53aaaddc6e!8m2!3d40.3541331!4d18.173506!16s%2Fg%2F11b7hhjdw_?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "le_due_sorelle_cucina_di_mare",
@@ -1852,7 +1997,9 @@
     "notes": "Buoni primi e secondi piatti a base di pesce di grande qualita'. Cozze e polpo sono una specialita' del locale preparate con ricette locali. Il design del locale non e' elegantissimo ma e' una buona scelta per chi si trova nei pressi di Torre dell' Orso.",
     "websiteUrl": "https://restaurant.risteco.app/le-due-sorelle-cucina-di-mare",
     "instagramUrl": "https://www.instagram.com/leduesorellecucinadimare/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Le+Due+Sorelle+cucina+di+mare/@40.2863961,18.3905291,13.5z/data=!3m1!5s0x134437fdf5c1f99b:0x16783ed052e980b4!4m6!3m5!1s0x134437fdf3e59437:0x7350f124f89e7977!8m2!3d40.273366!4d18.4274008!16s%2Fg%2F11f3hyq5b5?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Le+Due+Sorelle+cucina+di+mare/@40.2863961,18.3905291,13.5z/data=!3m1!5s0x134437fdf5c1f99b:0x16783ed052e980b4!4m6!3m5!1s0x134437fdf3e59437:0x7350f124f89e7977!8m2!3d40.273366!4d18.4274008!16s%2Fg%2F11f3hyq5b5?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "al_trabucco_da_mimi",
@@ -1885,7 +2032,9 @@
     "notes": "Ristorante consacrato dal format televisimo \"4 ristoranti\" come miglior ristorante nel Gargano. Suggestiva location con vista mare ed un originalissimo trabucco. La qualita' dei piatti e' eccellente grazie all'attenta scelta degli ingredienti e delle preparazioni. Innovazione e tradizione si fondono molto bene fornendo una grande esperienza culinaria.",
     "websiteUrl": "http://www.altrabucco.com/",
     "instagramUrl": "https://www.instagram.com/altrabucco/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Al+Trabucco+da+Mim%C3%AC/@41.9451253,16.0263615,15.25z/data=!4m9!3m8!1s0x1337b1131a9047f5:0x53611acf602cc196!5m2!4m1!1i2!8m2!3d41.9476472!4d16.0303912!16s%2Fg%2F1vfhk3b0?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Al+Trabucco+da+Mim%C3%AC/@41.9451253,16.0263615,15.25z/data=!4m9!3m8!1s0x1337b1131a9047f5:0x53611acf602cc196!5m2!4m1!1i2!8m2!3d41.9476472!4d16.0303912!16s%2Fg%2F1vfhk3b0?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "il_vecchio_e_il_mare",
@@ -1918,7 +2067,9 @@
     "notes": "Ristorante a Trani con vista incantevole sul mare. Buona scelta di primi piatti e vini. Ideale per un cocktail nel post serata a Trani.",
     "websiteUrl": "http://www.vecchioeilmare.it/",
     "instagramUrl": "https://www.instagram.com/vecchioeilmare/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Il+vecchio+e+il+mare/@41.281216,16.4223297,16.29z/data=!3m1!5s0x1338040c19545839:0x7337e393d8bb3527!4m6!3m5!1s0x1338040c1c10142b:0xf306f5daff2b22aa!8m2!3d41.2805779!4d16.4224295!16s%2Fg%2F11b86qp505?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Il+vecchio+e+il+mare/@41.281216,16.4223297,16.29z/data=!3m1!5s0x1338040c19545839:0x7337e393d8bb3527!4m6!3m5!1s0x1338040c1c10142b:0xf306f5daff2b22aa!8m2!3d41.2805779!4d16.4224295!16s%2Fg%2F11b86qp505?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "caffe_letterario_monopoli",
@@ -1944,7 +2095,9 @@
       "touristy"
     ],
     "notes": "Buon bar in centro storico a Monopoli per assaggiare un buon espresso e fare colazione. E' possibile assaggiare anche colazioni internazionali. Locale carino con design che richiama un caffe leterario.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Caff%C3%A8+Letterario+-+Monopoli/@40.9536649,17.3003534,17z/data=!4m10!1m2!2m1!1smnopoli+bar!3m6!1s0x13463519d6569b13:0xd4033c51061c82e3!8m2!3d40.9536589!4d17.3051372!15sCgxtb25vcG9saSBiYXJaDiIMbW9ub3BvbGkgYmFykgEEY2FmZZoBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQyMXJlRlZJWkZoVE1XeFpXVlU1TmxGNlZrTlhWRVl3Vkdwc2IxWlZSUkFC4AEA-gEECAAQOw!16s%2Fg%2F11f7t8k1k5?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Caff%C3%A8+Letterario+-+Monopoli/@40.9536649,17.3003534,17z/data=!4m10!1m2!2m1!1smnopoli+bar!3m6!1s0x13463519d6569b13:0xd4033c51061c82e3!8m2!3d40.9536589!4d17.3051372!15sCgxtb25vcG9saSBiYXJaDiIMbW9ub3BvbGkgYmFykgEEY2FmZZoBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQyMXJlRlZJWkZoVE1XeFpXVlU1TmxGNlZrTlhWRVl3Vkdwc2IxWlZSUkFC4AEA-gEECAAQOw!16s%2Fg%2F11f7t8k1k5?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "saleblu",
@@ -1975,7 +2128,9 @@
     "notes": "Incantevole ristorante in una nota contrada di Monopoli con vista suggestiva ad un passo dal mare. Piatti gourmet ed elaborati di alto livello che esaltano i prodotti locali con una nota particolare per la freschezza del pesce. Ottima la selezione di vini e champagne Esperienza unica da consigliare specie per una serata romantica.",
     "websiteUrl": "https://www.peschierahotel.com/saleblu-restaurant/",
     "instagramUrl": "https://www.instagram.com/saleblu_lapeschiera/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Saleblu/@40.9014619,17.3549038,16z/data=!4m6!3m5!1s0x13464a72bc173889:0x59af48ae771528fb!8m2!3d40.9014619!4d17.3600536!16s%2Fg%2F11d_d3dhpp?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Saleblu/@40.9014619,17.3549038,16z/data=!4m6!3m5!1s0x13464a72bc173889:0x59af48ae771528fb!8m2!3d40.9014619!4d17.3600536!16s%2Fg%2F11d_d3dhpp?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "dolcezze_fratelli_fittipaldi_cornettaro_il_baffone",
@@ -2004,7 +2159,9 @@
       "takeaway"
     ],
     "notes": "Istituzione barese per i cornetti in zona Poggiofranco a Bari. Ideale per gustare cornetti baresi e sfoglie locali. Aperto durante la notte e consigliato el post serata.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Dolcezze+-+Fratelli+Fittipaldi+(Cornettaro+Il+Baffone)/@41.0924641,16.8559922,17z/data=!4m10!1m2!2m1!1scornetteria!3m6!1s0x1347e908ddab265b:0x596ad95705626f4b!8m2!3d41.0925207!4d16.8605627!15sCgtjb3JuZXR0ZXJpYVoNIgtjb3JuZXR0ZXJpYZIBCWNha2Vfc2hvcOABAA!16s%2Fg%2F11btxctsmp?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Dolcezze+-+Fratelli+Fittipaldi+(Cornettaro+Il+Baffone)/@41.0924641,16.8559922,17z/data=!4m10!1m2!2m1!1scornetteria!3m6!1s0x1347e908ddab265b:0x596ad95705626f4b!8m2!3d41.0925207!4d16.8605627!15sCgtjb3JuZXR0ZXJpYVoNIgtjb3JuZXR0ZXJpYZIBCWNha2Vfc2hvcOABAA!16s%2Fg%2F11btxctsmp?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "focacceria_fiore_rosticceria",
@@ -2032,7 +2189,9 @@
       "takeaway"
     ],
     "notes": "Focacceria famosa a Bari in cui poter assaggiare l'originale focaccia barese al pomodoro. Consigliato per un pranzo veloce take away.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Focacceria+Fiore+Rosticceria/@41.097065,16.8531225,20z/data=!4m11!1m2!2m1!1scornetteria!3m7!1s0x1347e9052fa9ed03:0xaf5ee016ac6d7947!8m2!3d41.0972365!4d16.853888!9m1!1b1!16s%2Fg%2F11g887mgyg?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Focacceria+Fiore+Rosticceria/@41.097065,16.8531225,20z/data=!4m11!1m2!2m1!1scornetteria!3m7!1s0x1347e9052fa9ed03:0xaf5ee016ac6d7947!8m2!3d41.0972365!4d16.853888!9m1!1b1!16s%2Fg%2F11g887mgyg?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "il_rustico",
@@ -2059,7 +2218,9 @@
       "locals"
     ],
     "notes": "Locale super rinomato per l'ambiente molto cordiale e caratteristico in cui poter provare la vera atmosfera barese. Il Rustico  propone un menu fisso di antipasti e con buona pizza barese ad un prezzo fisso. Non e' possibile prenotare ed e' necessario fare la fila ed i tempi di attesa possono dipendere dall'orario e dal giorno della settimana. La location e' appunto molto \"Rustica\" tipica da osteria.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Il+Rustico/@41.1222092,16.8660427,17.5z/data=!3m1!5s0x1347e8f54e68dcdf:0x4ac455dd213a03ab!4m6!3m5!1s0x1347e8f54e10ca81:0x4d2cdcfa634fc570!8m2!3d41.12269!4d16.8642062!16s%2Fg%2F11b7q4fz6d?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Il+Rustico/@41.1222092,16.8660427,17.5z/data=!3m1!5s0x1347e8f54e68dcdf:0x4ac455dd213a03ab!4m6!3m5!1s0x1347e8f54e10ca81:0x4d2cdcfa634fc570!8m2!3d41.12269!4d16.8642062!16s%2Fg%2F11b7q4fz6d?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "bacio_di_latte",
@@ -2089,7 +2250,9 @@
     ],
     "notes": "Bar carino in zona stazione centrale a Bari in cui poter assaggiare una buona colazione con espresso e cornetto. Buona pasticceria locale ed antipasti.",
     "websiteUrl": "http://www.baciodilattebari.it/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Bacio+di+Latte/@41.1251481,16.8680207,19z/data=!4m10!1m2!2m1!1sbacio+di+latte!3m6!1s0x1347e9407fb1ff8b:0xf4ed3be62176c86!8m2!3d41.1251481!4d16.8692116!15sCg5iYWNpbyBkaSBsYXR0ZSIDiAEBWhAiDmJhY2lvIGRpIGxhdHRlkgELY29mZmVlX3Nob3DgAQA!16s%2Fg%2F11fjz9fzj7?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Bacio+di+Latte/@41.1251481,16.8680207,19z/data=!4m10!1m2!2m1!1sbacio+di+latte!3m6!1s0x1347e9407fb1ff8b:0xf4ed3be62176c86!8m2!3d41.1251481!4d16.8692116!15sCg5iYWNpbyBkaSBsYXR0ZSIDiAEBWhAiDmJhY2lvIGRpIGxhdHRlkgELY29mZmVlX3Nob3DgAQA!16s%2Fg%2F11fjz9fzj7?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "pasticceria_fanelli_cornetteria",
@@ -2118,7 +2281,9 @@
       "takeaway"
     ],
     "notes": "Nota cornetteria a Bari in zona Campus universitario. Aperto a tarda notte e super consigliato per assaggiare buoni cornetti baresi con diversi ingredienti e gusti. Il locale rappresenta un'instituzione a Bari. Posto frequentato da universitari nel post serata.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Pasticceria+Fanelli+Cornetteria/@41.1139218,16.8753482,17.25z/data=!4m6!3m5!1s0x1347e85ad8e03347:0x358a744ad1b7f90f!8m2!3d41.1138822!4d16.8758641!16s%2Fg%2F11ckx2d9k6?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Pasticceria+Fanelli+Cornetteria/@41.1139218,16.8753482,17.25z/data=!4m6!3m5!1s0x1347e85ad8e03347:0x358a744ad1b7f90f!8m2!3d41.1138822!4d16.8758641!16s%2Fg%2F11ckx2d9k6?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "sfogliatelle_attanasio",
@@ -2146,7 +2311,9 @@
       "takeaway"
     ],
     "notes": "Sfogliatelle Attanasio non e' solo una pasticceria iconica a Napoli ma anche in Italia. Posto super rinomato per la qualita' delle sfogliatelle e pasticceria locale di ottima qualita'. Lo staff e' gentile e molto veloce. Il locale si presta bene per una veloce colazione a Napoli. E' da riportare la notevole fila che spesso bisogna effettuare per poter accedere ed essere serviti. Posto super caratteristico da provare",
-    "googleMapsUrl": "https://www.google.com/maps/place/Sfogliatelle+Attanasio/@40.8581757,14.2342386,13.83z/data=!3m1!5s0x133b08142aba0261:0x4e1fc1e18d33ee9d!4m6!3m5!1s0x133b081682111c13:0x6d5c9e4e46ecba20!8m2!3d40.8532124!4d14.2689761!16s%2Fg%2F11b7grpcc4?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Sfogliatelle+Attanasio/@40.8581757,14.2342386,13.83z/data=!3m1!5s0x133b08142aba0261:0x4e1fc1e18d33ee9d!4m6!3m5!1s0x133b081682111c13:0x6d5c9e4e46ecba20!8m2!3d40.8532124!4d14.2689761!16s%2Fg%2F11b7grpcc4?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "pizzeria_antonio_sorbillo",
@@ -2177,7 +2344,9 @@
       "wine"
     ],
     "notes": "Una delle migliori pizze a Napoli ed in Italia. Molto rinomata e frequentata e' diventata una tappa fissa per chi si trova a Napoli. Ottimo impasto molto leggero. La pizza friarielli e salsiccia e' da provare.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Pizzeria+Antonio+Sorbillo/@40.8504865,14.2365609,15z/data=!3m1!5s0x133b084247a7173f:0x5e0bd3d1fdb20cdc!4m10!1m2!2m1!1sSorbillo!3m6!1s0x133b09779143de6f:0xd5e48b6ecdb5954b!8m2!3d40.8504865!4d14.2556153!15sCghTb3JiaWxsbyIDiAEBWgoiCHNvcmJpbGxvkgEQcGl6emFfcmVzdGF1cmFudJoBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQycHNTRk5GYUZGTlZrWjVZVVJTUjFGc09UWmtla0pWWVdwV05sWXpZeEFC4AEA-gEECAAQSQ!16s%2Fg%2F11sgx7xwgm?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Pizzeria+Antonio+Sorbillo/@40.8504865,14.2365609,15z/data=!3m1!5s0x133b084247a7173f:0x5e0bd3d1fdb20cdc!4m10!1m2!2m1!1sSorbillo!3m6!1s0x133b09779143de6f:0xd5e48b6ecdb5954b!8m2!3d40.8504865!4d14.2556153!15sCghTb3JiaWxsbyIDiAEBWgoiCHNvcmJpbGxvkgEQcGl6emFfcmVzdGF1cmFudJoBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQycHNTRk5GYUZGTlZrWjVZVVJTUjFGc09UWmtla0pWWVdwV05sWXpZeEFC4AEA-gEECAAQSQ!16s%2Fg%2F11sgx7xwgm?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "locale_palermo_osteria_cocktail_bar",
@@ -2211,7 +2380,9 @@
     ],
     "notes": "Locale in centro a Palermo in cui assaggiare piatti locali e coktails. Bella la location con design tradizionale ed autentico. Molti posti a sedere sia all'interno che all'esterno. Consigliato dai primi piatti al dessert. Da provare il tiramisu'.",
     "websiteUrl": "https://www.localepalermo.it/",
-    "googleMapsUrl": "https://www.google.com/maps/place/LOCALE+PALERMO+%E2%80%93+Osteria+%26+Cocktail+Bar/@38.122521,13.3587388,16z/data=!4m6!3m5!1s0x1319e5f5e7100001:0x3dcf08088853c98!8m2!3d38.1222471!4d13.3599809!16s%2Fg%2F11fy_4bkyx?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/LOCALE+PALERMO+%E2%80%93+Osteria+%26+Cocktail+Bar/@38.122521,13.3587388,16z/data=!4m6!3m5!1s0x1319e5f5e7100001:0x3dcf08088853c98!8m2!3d38.1222471!4d13.3599809!16s%2Fg%2F11fy_4bkyx?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "donnafrancalab_arancine_gourmet_e_pasticceria",
@@ -2239,7 +2410,9 @@
       "touristy"
     ],
     "notes": "Posto in cui assaggiare ottime arancine palermitane con una grande varieta' di gusti. Ottimo per chi si trova di passaggio a Palermo e cerca un pranzo veloce.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Donnafrancalab+-+arancine+gourmet+e+pasticceria/@38.118088,13.3596698,17z/data=!3m1!5s0x1319e5f545033351:0x1fb08af219d0be23!4m6!3m5!1s0x1319e5d093794021:0x5eb1f17d1472d731!8m2!3d38.1183428!4d13.359676!16s%2Fg%2F11k9rd29_r?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Donnafrancalab+-+arancine+gourmet+e+pasticceria/@38.118088,13.3596698,17z/data=!3m1!5s0x1319e5f545033351:0x1fb08af219d0be23!4m6!3m5!1s0x1319e5d093794021:0x5eb1f17d1472d731!8m2!3d38.1183428!4d13.359676!16s%2Fg%2F11k9rd29_r?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "cannoli",
@@ -2267,7 +2440,9 @@
     ],
     "notes": "Ottimo posto per assaggiare i tradizionali cannoli siciliani farciti al momento con diversi topping. Da provare anche la granita.",
     "websiteUrl": "https://www.cannolieco.it/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Cannoli/@38.1183428,13.3571011,17z/data=!4m6!3m5!1s0x1319e5f54a6d2dc9:0xcdb5c62cc33180dd!8m2!3d38.1176916!4d13.3600794!16s%2Fg%2F11f3n2ylxw?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Cannoli/@38.1183428,13.3571011,17z/data=!4m6!3m5!1s0x1319e5f54a6d2dc9:0xcdb5c62cc33180dd!8m2!3d38.1176916!4d13.3600794!16s%2Fg%2F11f3n2ylxw?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "m_mortadella_lab",
@@ -2298,7 +2473,9 @@
     "notes": "Locale a Bologna in cui provare un ottimo panino con la mortadella e diversi condimenti di ottima qualita'. Consigliato per una sosta veloce in zona. Non prevede posti a sedere ma effettua solo servizio take away. Da considerare la fila nelle ore piu' affollate della giornata.",
     "websiteUrl": "http://www.momortadellalab.it/",
     "instagramUrl": "https://www.instagram.com/mortadellalab/",
-    "googleMapsUrl": "https://www.google.com/maps/place/M%C3%B2+Mortadella+Lab/@44.493357,11.3376074,15.5z/data=!4m6!3m5!1s0x477fd58296a7146f:0x4aa7c22fe53b0628!8m2!3d44.4978179!4d11.3426615!16s%2Fg%2F11h2qnzxt0?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/M%C3%B2+Mortadella+Lab/@44.493357,11.3376074,15.5z/data=!4m6!3m5!1s0x477fd58296a7146f:0x4aa7c22fe53b0628!8m2!3d44.4978179!4d11.3426615!16s%2Fg%2F11h2qnzxt0?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "trattoria_da_adriano",
@@ -2329,7 +2506,9 @@
     ],
     "notes": "Buon osteria a Bergamo in cui poter assaggiare primi piatti di qualita'. Ideale per un pranzo tra colleghi in una pausa lavoro. Ottima la pizza napoletana proposta e piatti napoletani. Moltissimi posti a sedere sia all'interno che esterno.",
     "websiteUrl": "http://www.trattoriadaadriano.it/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Trattoria+Da+Adriano/@45.6950267,9.6641765,17z/data=!3m1!4b1!4m6!3m5!1s0x47815111e866fa71:0xc955fc7604cd5f5d!8m2!3d45.6950267!4d9.6667514!16s%2Fg%2F1td7m4ts?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Trattoria+Da+Adriano/@45.6950267,9.6641765,17z/data=!3m1!4b1!4m6!3m5!1s0x47815111e866fa71:0xc955fc7604cd5f5d!8m2!3d45.6950267!4d9.6667514!16s%2Fg%2F1td7m4ts?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "mercato_centrale_milano",
@@ -2354,7 +2533,9 @@
       "wine"
     ],
     "notes": "Mercato in zona stazione centrale a Milano in cui poter provare cucina italiana ed internazionale. Grandissima selezione di cibo di ottima qualita'. Consigliato per un pranzo veloce in pausa lavoro e per sperimentare cucina internazionale. Consigliati i primi piatti e la proposta di vini italiani.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Mercato+Centrale+Milano/@45.4746017,9.2079818,14.25z/data=!3m1!5s0x4786c6dac59b464b:0xb22ccd0f0ccc7685!4m6!3m5!1s0x4786c7a38316c785:0xf6da9a2008baf8be!8m2!3d45.4866698!4d9.2035192!16s%2Fg%2F11nxql3yk5?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Mercato+Centrale+Milano/@45.4746017,9.2079818,14.25z/data=!3m1!5s0x4786c6dac59b464b:0xb22ccd0f0ccc7685!4m6!3m5!1s0x4786c7a38316c785:0xf6da9a2008baf8be!8m2!3d45.4866698!4d9.2035192!16s%2Fg%2F11nxql3yk5?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "passando_per_modena",
@@ -2385,7 +2566,9 @@
     "notes": "Locale in cui poter assaggiare piatti emiliani e modenesi a Padova. Piacevole e tranquilla atmosfera con molti posti a sedere che garantiscono una tranquilla serata. Ottimi i tortellini e la selezione di antipasti e salumi locali. Ottimo servizio. Da provare.",
     "websiteUrl": "http://modena.passandoper.com/",
     "instagramUrl": "https://www.instagram.com/passandopermodena/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Passando+Per+Modena/@45.4025523,11.8733188,14.75z/data=!4m6!3m5!1s0x477eda53183b6357:0xaea6103598c2dd33!8m2!3d45.3999653!4d11.8755545!16s%2Fg%2F11fy2k36ct?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Passando+Per+Modena/@45.4025523,11.8733188,14.75z/data=!4m6!3m5!1s0x477eda53183b6357:0xaea6103598c2dd33!8m2!3d45.3999653!4d11.8755545!16s%2Fg%2F11fy2k36ct?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "busa_dei_briganti_pub_padova",
@@ -2413,7 +2596,9 @@
       "street_food"
     ],
     "notes": "Buon pub a Padova dove assaggiare panini e burgers con ottima selezione di bire artigianali e commerciali. Consigliato per una piacevole serata con amici.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Busa+dei+Briganti+Pub+Padova/@45.4114779,11.8621843,14z/data=!4m14!1m7!3m6!1s0x477eda53183b6357:0xaea6103598c2dd33!2sPassando+Per+Modena!8m2!3d45.3999653!4d11.8755545!16s%2Fg%2F11fy2k36ct!3m5!1s0x477eda385a7ccbd3:0x87f5eb87ad9dac21!8m2!3d45.4114779!4d11.8621843!16s%2Fg%2F11c5_4h960?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Busa+dei+Briganti+Pub+Padova/@45.4114779,11.8621843,14z/data=!4m14!1m7!3m6!1s0x477eda53183b6357:0xaea6103598c2dd33!2sPassando+Per+Modena!8m2!3d45.3999653!4d11.8755545!16s%2Fg%2F11fy2k36ct!3m5!1s0x477eda385a7ccbd3:0x87f5eb87ad9dac21!8m2!3d45.4114779!4d11.8621843!16s%2Fg%2F11c5_4h960?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "la_mafaldina",
@@ -2444,7 +2629,9 @@
     ],
     "notes": "Ottima pizzeria a Padova con ottimo impasto napoletano e ingredienti di qualita'. Pizza soffice e non molto pesante. E' consigliata la prenotazione, specie durante il week-end. Locale molto ampio con atmosfera piacevole con molti posti e sedere sia all'interno che all'esterno.",
     "websiteUrl": "http://www.lamafaldina.it/",
-    "googleMapsUrl": "https://www.google.com/maps/place/La+Mafaldina/@45.4103926,11.8714883,19.29z/data=!4m6!3m5!1s0x477edb460305bce9:0x4b50d51660e0ec89!8m2!3d45.4087482!4d11.8781975!16s%2Fg%2F11vfb5__x6?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/La+Mafaldina/@45.4103926,11.8714883,19.29z/data=!4m6!3m5!1s0x477edb460305bce9:0x4b50d51660e0ec89!8m2!3d45.4087482!4d11.8781975!16s%2Fg%2F11vfb5__x6?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "gelateria_portogallo",
@@ -2472,7 +2659,9 @@
     ],
     "notes": "Ottima gelateria artigianale a Padova con una grande varieta' di gusti. E' da considerare la fila e l'attesa per essere serviti ma lo staff e' molto veloce e gentile. Una delle migliori gelateria in citta'. Super consigliato durante una passeggiata in centro.",
     "websiteUrl": "https://www.gelaterieportogallo.it/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Gelateria+Portogallo/@45.4006929,11.8733855,17z/data=!3m1!4b1!4m6!3m5!1s0x477edbac397f9667:0x17dd69edcb443e91!8m2!3d45.4006929!4d11.8759604!16s%2Fg%2F11k6xvhsfx?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Gelateria+Portogallo/@45.4006929,11.8733855,17z/data=!3m1!4b1!4m6!3m5!1s0x477edbac397f9667:0x17dd69edcb443e91!8m2!3d45.4006929!4d11.8759604!16s%2Fg%2F11k6xvhsfx?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "ichiban_ramen_padova",
@@ -2497,7 +2686,9 @@
       "friends"
     ],
     "notes": "Ristorante giapponese a Padova in cui provare un buon ramen. La location richiama l'ambientazione anime che puo' attrarre gli amanti del genere.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Ichiban+Ramen+Padova/@45.4031507,11.8769769,18z/data=!4m10!1m2!2m1!1sramen!3m6!1s0x477edb1597be6921:0xf96e6e1a507426d9!8m2!3d45.4031507!4d11.8793587!15sCgVyYW1lbloHIgVyYW1lbpIBEHJhbWVuX3Jlc3RhdXJhbnSaASRDaGREU1VoTk1HOW5TMFZKUTBGblNVTXRkWEEyYnpGQlJSQULgAQD6AQQIABA8!16s%2Fg%2F11j7j2m_dk?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Ichiban+Ramen+Padova/@45.4031507,11.8769769,18z/data=!4m10!1m2!2m1!1sramen!3m6!1s0x477edb1597be6921:0xf96e6e1a507426d9!8m2!3d45.4031507!4d11.8793587!15sCgVyYW1lbloHIgVyYW1lbpIBEHJhbWVuX3Jlc3RhdXJhbnSaASRDaGREU1VoTk1HOW5TMFZKUTBGblNVTXRkWEEyYnpGQlJSQULgAQD6AQQIABA8!16s%2Fg%2F11j7j2m_dk?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "paninoteca_da_antonio_e_daniele",
@@ -2529,7 +2720,9 @@
       "takeaway"
     ],
     "notes": "Ottima paninoteca a Siracusa in cui poter assaggiare carne locale. Consigliato il panino con carne di cavallo con aggiunta di vari condimenti. Buona soluzione per chi si trova di passaggio o cerca un luogo in cui mangiare a tarda serata.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Paninoteca+da+Antonio+e+Daniele/@37.0649649,15.2907047,16z/data=!4m15!1m8!3m7!1s0x1310bcbd6032335f:0x23f1662792d46f58!2s93014+Mussomeli,+Free+municipal+consortium+of+Caltanissetta,+Italy!3b1!8m2!3d37.5806461!4d13.7529698!16zL20vMGR6NXNk!3m5!1s0x1313cea00ebde689:0x1dc16ae37e69ec93!8m2!3d37.0658155!4d15.2892758!16s%2Fg%2F11bwkhqdv9?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Paninoteca+da+Antonio+e+Daniele/@37.0649649,15.2907047,16z/data=!4m15!1m8!3m7!1s0x1310bcbd6032335f:0x23f1662792d46f58!2s93014+Mussomeli,+Free+municipal+consortium+of+Caltanissetta,+Italy!3b1!8m2!3d37.5806461!4d13.7529698!16zL20vMGR6NXNk!3m5!1s0x1313cea00ebde689:0x1dc16ae37e69ec93!8m2!3d37.0658155!4d15.2892758!16s%2Fg%2F11bwkhqdv9?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "piazza_archimede_caffe_alta_pasticceria_siciliana",
@@ -2561,7 +2754,9 @@
       "touristy"
     ],
     "notes": "Buon bar in un ottima posizione super centrale ad Ortigia (Siracusa). Conisigliato per un'ottima colazione con pasticceria locale e buon caffe' espresso. Offre anche piatti caldi per il pranzo e numerosi posti a sedere all'esterno.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Piazza+Archimede+Caffe+-+Alta+Pasticceria+Siciliana/@37.0649649,15.2907047,16z/data=!4m15!1m8!3m7!1s0x1310bcbd6032335f:0x23f1662792d46f58!2s93014+Mussomeli,+Free+municipal+consortium+of+Caltanissetta,+Italy!3b1!8m2!3d37.5806461!4d13.7529698!16zL20vMGR6NXNk!3m5!1s0x1313cc1eeb1f8c8b:0x1728b2d717fa5f72!8m2!3d37.0609731!4d15.2939211!16s%2Fg%2F11c438y71l?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Piazza+Archimede+Caffe+-+Alta+Pasticceria+Siciliana/@37.0649649,15.2907047,16z/data=!4m15!1m8!3m7!1s0x1310bcbd6032335f:0x23f1662792d46f58!2s93014+Mussomeli,+Free+municipal+consortium+of+Caltanissetta,+Italy!3b1!8m2!3d37.5806461!4d13.7529698!16zL20vMGR6NXNk!3m5!1s0x1313cc1eeb1f8c8b:0x1728b2d717fa5f72!8m2!3d37.0609731!4d15.2939211!16s%2Fg%2F11c438y71l?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "farini",
@@ -2591,7 +2786,9 @@
     ],
     "notes": "Buon bar a Venezia in cui fare colazione e assaggiare pasticceria italiana e locale. Consigliate le focacce ripiene e pizza al trancio. Buona soluzione per chi cerca un pranzo al volo in zona Venezia.",
     "websiteUrl": "https://farini.com/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Farini/@45.4368832,12.3309073,16z/data=!3m1!5s0x477eb1c4330a9783:0x4594f97b7aba072!4m6!3m5!1s0x477eb1db69410d2b:0xc2b4c400be9a10a1!8m2!3d45.4383468!4d12.3338932!16s%2Fg%2F11bx1qmcgx?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Farini/@45.4368832,12.3309073,16z/data=!3m1!5s0x477eb1c4330a9783:0x4594f97b7aba072!4m6!3m5!1s0x477eb1db69410d2b:0xc2b4c400be9a10a1!8m2!3d45.4383468!4d12.3338932!16s%2Fg%2F11bx1qmcgx?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "i_porci_comodi",
@@ -2627,7 +2824,9 @@
     ],
     "notes": "Ottima paninoteca in zona universitaria a Pisa. Grande scelta e varieta' di salumi e formaggi localli di buona qualita'. Super consigliato il tagliere. E' possibile inoltre assaggiare piatti caldi ad un buon prezzo. Ideale per un pranzo a Pisa a due passi dall'universita'.",
     "websiteUrl": "https://iporcicomodi.da.delivery/",
-    "googleMapsUrl": "https://www.google.com/maps/place/I+Porci+Comodi/@43.6771978,10.7694573,9z/data=!4m6!3m5!1s0x12d591a1c9512673:0x72c6bf64f8a00440!8m2!3d43.7179457!4d10.3982338!16s%2Fg%2F11c52b_m_x?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/I+Porci+Comodi/@43.6771978,10.7694573,9z/data=!4m6!3m5!1s0x12d591a1c9512673:0x72c6bf64f8a00440!8m2!3d43.7179457!4d10.3982338!16s%2Fg%2F11c52b_m_x?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "galleria_iginio_massari_verona",
@@ -2656,7 +2855,9 @@
     ],
     "notes": "Rinomatissima pasticceria Iginio Massari a Verona. Location super centrale a Verona a due passi dall'arena con numerosi posti a sedere in cui non e' necessaria la prenotazione. Altissimo livello di pasticceria italiala che soddisfa le buone aspettative e la fama del locale. Ottimo il maritozzo con panna e crema e lemon tart. Da provare anche il caffe' espresso con miscela arabica di qualita'",
     "websiteUrl": "https://www.iginiomassari.it/",
-    "googleMapsUrl": "https://www.google.com/maps/place/Galleria+Iginio+Massari+Verona/@45.4439369,10.9947445,17z/data=!3m1!4b1!4m6!3m5!1s0x477f5f26c6bd1b4d:0xb51c5c201efe18f7!8m2!3d45.4439369!4d10.9973194!16s%2Fg%2F11qpt4hgv4?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Galleria+Iginio+Massari+Verona/@45.4439369,10.9947445,17z/data=!3m1!4b1!4m6!3m5!1s0x477f5f26c6bd1b4d:0xb51c5c201efe18f7!8m2!3d45.4439369!4d10.9973194!16s%2Fg%2F11qpt4hgv4?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "eroica_caff_padova",
@@ -2691,6 +2892,8 @@
     ],
     "notes": "Fantastica location per gli amanti del ciclismo. Ottima proposta di aperitivi con focacce a diversi gusti. Consigliato anche per chi vuole pranzare in zona ad un buon prezzo. Gran numero di posti a sedere all'interno del locale.",
     "websiteUrl": "http://www.eroica.cc/it",
-    "googleMapsUrl": "https://www.google.com/maps/place/Eroica+Caff%C3%A8+Padova/@45.40839,11.874195,17z/data=!3m1!4b1!4m6!3m5!1s0x477edb8e4876ea57:0x6c5b4808e3b84e2f!8m2!3d45.40839!4d11.874195!16s%2Fg%2F11h597tys7?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Eroica+Caff%C3%A8+Padova/@45.40839,11.874195,17z/data=!3m1!4b1!4m6!3m5!1s0x477edb8e4876ea57:0x6c5b4808e3b84e2f!8m2!3d45.40839!4d11.874195!16s%2Fg%2F11h597tys7?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   }
 ]

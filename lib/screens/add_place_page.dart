@@ -19,6 +19,8 @@ class _AddPlacePageState extends State<AddPlacePage> {
   final _idController = TextEditingController();
   final _nameController = TextEditingController();
   final _cityController = TextEditingController(text: 'Alberobello');
+  final _countryCodeController = TextEditingController(text: 'IT');
+  final _currencyCodeController = TextEditingController(text: 'EUR');
   final _neighborhoodController = TextEditingController();
   final _latController = TextEditingController();
   final _lngController = TextEditingController();
@@ -29,6 +31,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
   final _googleMapsUrlController = TextEditingController();
   final _googlePlaceIdController = TextEditingController();
   final _photoAssetController = TextEditingController();
+  final _foodTagsController = TextEditingController();
 
   String _category = 'restaurant';
   String _area = 'cityCentre';
@@ -70,6 +73,8 @@ class _AddPlacePageState extends State<AddPlacePage> {
     _idController.dispose();
     _nameController.dispose();
     _cityController.dispose();
+    _countryCodeController.dispose();
+    _currencyCodeController.dispose();
     _neighborhoodController.dispose();
     _latController.dispose();
     _lngController.dispose();
@@ -80,6 +85,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
     _googleMapsUrlController.dispose();
     _googlePlaceIdController.dispose();
     _photoAssetController.dispose();
+    _foodTagsController.dispose();
     super.dispose();
   }
 
@@ -112,6 +118,8 @@ class _AddPlacePageState extends State<AddPlacePage> {
       id: _idController.text.trim(),
       name: _nameController.text.trim(),
       city: _cityController.text.trim(),
+      countryCode: _countryCodeController.text.trim().toUpperCase(),
+      currencyCode: _currencyCodeController.text.trim().toUpperCase(),
       category: _category,
       area: _area,
       neighborhood: _optionalText(_neighborhoodController),
@@ -119,6 +127,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
       lng: double.parse(_lngController.text.trim()),
       rating: _rating,
       priceLevel: _priceLevel,
+      foodTags: _parseTags(_foodTagsController.text),
       ratingDetails: _buildRatingDetails(),
       vibes: _selectedVibes.toList()..sort(),
       notes: _notesController.text.trim(),
@@ -203,6 +212,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
     _googleMapsUrlController.clear();
     _googlePlaceIdController.clear();
     _photoAssetController.clear();
+    _foodTagsController.clear();
     setState(() {
       _selectedVibes.clear();
       _editingPlaceId = null;
@@ -220,6 +230,8 @@ class _AddPlacePageState extends State<AddPlacePage> {
     _isAutoGeneratingId = false;
     _nameController.text = place.name;
     _cityController.text = place.city;
+    _countryCodeController.text = place.countryCode;
+    _currencyCodeController.text = place.currencyCode;
     _neighborhoodController.text = place.neighborhood ?? '';
     _latController.text = place.lat.toString();
     _lngController.text = place.lng.toString();
@@ -229,6 +241,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
     _googleMapsUrlController.text = place.googleMapsUrl ?? '';
     _googlePlaceIdController.text = place.googlePlaceId ?? '';
     _photoAssetController.text = place.photoAsset ?? '';
+    _foodTagsController.text = place.foodTags.join(', ');
 
     setState(() {
       _editingPlaceId = place.id;
@@ -660,6 +673,18 @@ class _AddPlacePageState extends State<AddPlacePage> {
                     validator: _required,
                   ),
                   _TextInput(
+                    controller: _countryCodeController,
+                    label: 'Country code',
+                    helperText: 'Two letters: IT, GB, NO, ES…',
+                    validator: _validateCountryCode,
+                  ),
+                  _TextInput(
+                    controller: _currencyCodeController,
+                    label: 'Currency',
+                    helperText: 'Three letters: EUR, GBP, NOK…',
+                    validator: _validateCurrencyCode,
+                  ),
+                  _TextInput(
                     controller: _googleMapsUrlController,
                     label: 'Google Maps URL',
                     helperText:
@@ -734,7 +759,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
                     onChanged: (value) => setState(() => _rating = value),
                   ),
                   _NumberStepper(
-                    label: 'Price level',
+                    label: 'Price level (${_currencyCodeController.text.trim().toUpperCase()})',
                     value: _priceLevel,
                     min: 1,
                     max: 5,
@@ -782,6 +807,11 @@ class _AddPlacePageState extends State<AddPlacePage> {
                         controller: _neighborhoodController,
                         label: 'Neighborhood',
                         helperText: 'Optional, e.g. Poggiofranco.',
+                      ),
+                      _TextInput(
+                        controller: _foodTagsController,
+                        label: 'Food tags',
+                        helperText: 'Optional. Comma-separated, e.g. meat, grill.',
                       ),
                       _DetailedRatingEditor(
                         foodRating: _foodRating,
@@ -1347,6 +1377,18 @@ String? _validateId(String? value) {
   return isValid ? null : 'Use only lowercase letters, numbers and _.';
 }
 
+String? _validateCountryCode(String? value) {
+  return RegExp(r'^[A-Za-z]{2}$').hasMatch(value?.trim() ?? '')
+      ? null
+      : 'Use a two-letter code, e.g. IT, GB or NO.';
+}
+
+String? _validateCurrencyCode(String? value) {
+  return RegExp(r'^[A-Za-z]{3}$').hasMatch(value?.trim() ?? '')
+      ? null
+      : 'Use a three-letter code, e.g. EUR, GBP or NOK.';
+}
+
 String? _validateLatitude(String? value) {
   final parsedValue = _parseRequiredDouble(value);
   if (parsedValue == null) {
@@ -1424,6 +1466,16 @@ String _slugify(String value) {
 String _normalizeVibe(String value) {
   final normalized = value.trim().toLowerCase().replaceAll(' ', '_');
   return normalized == 'beers' ? 'beer' : normalized;
+}
+
+List<String> _parseTags(String value) {
+  return value
+      .split(',')
+      .map((tag) => tag.trim().toLowerCase().replaceAll(' ', '_'))
+      .where((tag) => tag.isNotEmpty)
+      .toSet()
+      .toList()
+    ..sort();
 }
 
 String _displayVibe(String vibe) {

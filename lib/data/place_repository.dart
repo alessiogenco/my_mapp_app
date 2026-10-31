@@ -44,6 +44,18 @@ class PlaceRepository {
         throw FormatException('Missing place name for id ${place.id}.');
       }
 
+      if (!RegExp(r'^[A-Z]{2}$').hasMatch(place.countryCode)) {
+        throw FormatException(
+          'Invalid country code for ${place.name}: ${place.countryCode}.',
+        );
+      }
+
+      if (!RegExp(r'^[A-Z]{3}$').hasMatch(place.currencyCode)) {
+        throw FormatException(
+          'Invalid currency code for ${place.name}: ${place.currencyCode}.',
+        );
+      }
+
       if (!isKnownPlaceCategory(place.category)) {
         throw FormatException(
           'Invalid category for ${place.name}: ${place.category}.',
@@ -73,6 +85,14 @@ class PlaceRepository {
           throw FormatException(
             'Invalid detailed rating for ${place.name}: '
             '${ratingDetail.key}=${ratingDetail.value}.',
+          );
+        }
+      }
+
+      for (final foodTag in place.foodTags) {
+        if (!RegExp(r'^[a-z0-9_]+$').hasMatch(foodTag)) {
+          throw FormatException(
+            'Invalid food tag for ${place.name}: $foodTag.',
           );
         }
       }
