@@ -2498,5 +2498,199 @@
     ],
     "notes": "Ristorante giapponese a Padova in cui provare un buon ramen. La location richiama l'ambientazione anime che puo' attrarre gli amanti del genere.",
     "googleMapsUrl": "https://www.google.com/maps/place/Ichiban+Ramen+Padova/@45.4031507,11.8769769,18z/data=!4m10!1m2!2m1!1sramen!3m6!1s0x477edb1597be6921:0xf96e6e1a507426d9!8m2!3d45.4031507!4d11.8793587!15sCgVyYW1lbloHIgVyYW1lbpIBEHJhbWVuX3Jlc3RhdXJhbnSaASRDaGREU1VoTk1HOW5TMFZKUTBGblNVTXRkWEEyYnpGQlJSQULgAQD6AQQIABA8!16s%2Fg%2F11j7j2m_dk?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "paninoteca_da_antonio_e_daniele",
+    "name": "Paninoteca da Antonio e Daniele",
+    "city": "Siracusa",
+    "category": "bakery_savory",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 8,
+      "location": 5,
+      "service": 7,
+      "value": 9
+    },
+    "lat": 37.0658155,
+    "lng": 15.2892758,
+    "vibes": [
+      "beer",
+      "casual",
+      "dinner",
+      "friends",
+      "late-night",
+      "locals",
+      "lunch",
+      "panini",
+      "solo",
+      "street_food",
+      "takeaway"
+    ],
+    "notes": "Ottima paninoteca a Siracusa in cui poter assaggiare carne locale. Consigliato il panino con carne di cavallo con aggiunta di vari condimenti. Buona soluzione per chi si trova di passaggio o cerca un luogo in cui mangiare a tarda serata.",
+    "googleMapsUrl": "https://www.google.com/maps/place/Paninoteca+da+Antonio+e+Daniele/@37.0649649,15.2907047,16z/data=!4m15!1m8!3m7!1s0x1310bcbd6032335f:0x23f1662792d46f58!2s93014+Mussomeli,+Free+municipal+consortium+of+Caltanissetta,+Italy!3b1!8m2!3d37.5806461!4d13.7529698!16zL20vMGR6NXNk!3m5!1s0x1313cea00ebde689:0x1dc16ae37e69ec93!8m2!3d37.0658155!4d15.2892758!16s%2Fg%2F11bwkhqdv9?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "piazza_archimede_caffe_alta_pasticceria_siciliana",
+    "name": "Piazza Archimede Caffe - Alta Pasticceria Siciliana",
+    "city": "Siracusa",
+    "neighborhood": "Ortigia",
+    "category": "bakery_sweet",
+    "area": "cityCentre",
+    "rating": 6,
+    "priceLevel": 2,
+    "ratingDetails": {
+      "food": 6,
+      "location": 6,
+      "service": 6,
+      "value": 7
+    },
+    "lat": 37.0609731,
+    "lng": 15.2939211,
+    "vibes": [
+      "breakfast",
+      "coffee",
+      "family",
+      "friends",
+      "gelato",
+      "lunch",
+      "outdoor_seating",
+      "solo",
+      "takeaway",
+      "touristy"
+    ],
+    "notes": "Buon bar in un ottima posizione super centrale ad Ortigia (Siracusa). Conisigliato per un'ottima colazione con pasticceria locale e buon caffe' espresso. Offre anche piatti caldi per il pranzo e numerosi posti a sedere all'esterno.",
+    "googleMapsUrl": "https://www.google.com/maps/place/Piazza+Archimede+Caffe+-+Alta+Pasticceria+Siciliana/@37.0649649,15.2907047,16z/data=!4m15!1m8!3m7!1s0x1310bcbd6032335f:0x23f1662792d46f58!2s93014+Mussomeli,+Free+municipal+consortium+of+Caltanissetta,+Italy!3b1!8m2!3d37.5806461!4d13.7529698!16zL20vMGR6NXNk!3m5!1s0x1313cc1eeb1f8c8b:0x1728b2d717fa5f72!8m2!3d37.0609731!4d15.2939211!16s%2Fg%2F11c438y71l?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "farini",
+    "name": "Farini",
+    "city": "Venezia",
+    "category": "bakery_sweet",
+    "area": "cityCentre",
+    "rating": 6,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 6,
+      "location": 7,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 45.4383468,
+    "lng": 12.3338932,
+    "vibes": [
+      "aperitif",
+      "breakfast",
+      "coffee",
+      "lunch",
+      "panini",
+      "pizza",
+      "takeaway",
+      "touristy"
+    ],
+    "notes": "Buon bar a Venezia in cui fare colazione e assaggiare pasticceria italiana e locale. Consigliate le focacce ripiene e pizza al trancio. Buona soluzione per chi cerca un pranzo al volo in zona Venezia.",
+    "websiteUrl": "https://farini.com/",
+    "googleMapsUrl": "https://www.google.com/maps/place/Farini/@45.4368832,12.3309073,16z/data=!3m1!5s0x477eb1c4330a9783:0x4594f97b7aba072!4m6!3m5!1s0x477eb1db69410d2b:0xc2b4c400be9a10a1!8m2!3d45.4383468!4d12.3338932!16s%2Fg%2F11bx1qmcgx?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "i_porci_comodi",
+    "name": "I Porci Comodi",
+    "city": "Pisa",
+    "category": "bakery_savory",
+    "area": "cityCentre",
+    "neighborhood": "Universita'",
+    "rating": 8,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 8,
+      "location": 6,
+      "service": 7,
+      "value": 8
+    },
+    "lat": 43.7179457,
+    "lng": 10.3982338,
+    "vibes": [
+      "aperitif",
+      "authentic",
+      "beer",
+      "casual",
+      "friends",
+      "hidden_gem",
+      "locals",
+      "lunch",
+      "outdoor_seating",
+      "panini",
+      "solo",
+      "street_food",
+      "takeaway"
+    ],
+    "notes": "Ottima paninoteca in zona universitaria a Pisa. Grande scelta e varieta' di salumi e formaggi localli di buona qualita'. Super consigliato il tagliere. E' possibile inoltre assaggiare piatti caldi ad un buon prezzo. Ideale per un pranzo a Pisa a due passi dall'universita'.",
+    "websiteUrl": "https://iporcicomodi.da.delivery/",
+    "googleMapsUrl": "https://www.google.com/maps/place/I+Porci+Comodi/@43.6771978,10.7694573,9z/data=!4m6!3m5!1s0x12d591a1c9512673:0x72c6bf64f8a00440!8m2!3d43.7179457!4d10.3982338!16s%2Fg%2F11c52b_m_x?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "galleria_iginio_massari_verona",
+    "name": "Galleria Iginio Massari Verona",
+    "city": "Verona",
+    "category": "bakery_sweet",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 9,
+      "location": 8,
+      "service": 9,
+      "value": 9
+    },
+    "lat": 45.4439369,
+    "lng": 10.9973194,
+    "vibes": [
+      "authentic",
+      "breakfast",
+      "coffee",
+      "date",
+      "friends",
+      "gelato",
+      "takeaway"
+    ],
+    "notes": "Rinomatissima pasticceria Iginio Massari a Verona. Location super centrale a Verona a due passi dall'arena con numerosi posti a sedere in cui non e' necessaria la prenotazione. Altissimo livello di pasticceria italiala che soddisfa le buone aspettative e la fama del locale. Ottimo il maritozzo con panna e crema e lemon tart. Da provare anche il caffe' espresso con miscela arabica di qualita'",
+    "websiteUrl": "https://www.iginiomassari.it/",
+    "googleMapsUrl": "https://www.google.com/maps/place/Galleria+Iginio+Massari+Verona/@45.4439369,10.9947445,17z/data=!3m1!4b1!4m6!3m5!1s0x477f5f26c6bd1b4d:0xb51c5c201efe18f7!8m2!3d45.4439369!4d10.9973194!16s%2Fg%2F11qpt4hgv4?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "eroica_caff_padova",
+    "name": "Eroica Caffè Padova",
+    "city": "Padova",
+    "category": "coffee_bar",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 7,
+      "location": 8,
+      "service": 7,
+      "value": 8
+    },
+    "lat": 45.40839,
+    "lng": 11.874195,
+    "vibes": [
+      "aperitif",
+      "authentic",
+      "beer",
+      "breakfast",
+      "casual",
+      "coffee",
+      "coworkers",
+      "date",
+      "locals",
+      "lunch",
+      "panini",
+      "pizza",
+      "solo"
+    ],
+    "notes": "Fantastica location per gli amanti del ciclismo. Ottima proposta di aperitivi con focacce a diversi gusti. Consigliato anche per chi vuole pranzare in zona ad un buon prezzo. Gran numero di posti a sedere all'interno del locale.",
+    "websiteUrl": "http://www.eroica.cc/it",
+    "googleMapsUrl": "https://www.google.com/maps/place/Eroica+Caff%C3%A8+Padova/@45.40839,11.874195,17z/data=!3m1!4b1!4m6!3m5!1s0x477edb8e4876ea57:0x6c5b4808e3b84e2f!8m2!3d45.40839!4d11.874195!16s%2Fg%2F11h597tys7?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D"
   }
 ]
