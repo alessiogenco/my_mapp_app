@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_map_app/config/social_config.dart';
+import 'package:my_map_app/screens/friends_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AccountPage extends StatefulWidget {
@@ -297,6 +298,23 @@ class _AccountPageState extends State<AccountPage> {
             child: FilledButton(
               onPressed: _isSaving ? null : _saveProfile,
               child: Text(_isSaving ? 'Saving…' : 'Save profile'),
+            ),
+          ),
+          const SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            child: OutlinedButton.icon(
+              onPressed: _isSaving
+                  ? null
+                  : () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => const FriendsPage(),
+                        ),
+                      );
+                    },
+              icon: const Icon(Icons.people_outline_rounded),
+              label: const Text('Friends and affinity'),
             ),
           ),
           const SizedBox(height: 10),
