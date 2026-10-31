@@ -7,6 +7,18 @@ Social features explain *who recommends a place* and help friends discover
 recommendations from people whose tastes are compatible. They do not publish
 every Google Maps place or turn the map into a public review feed.
 
+## Authentication priority
+
+Before inviting friends broadly, add **Continue with Google** as the primary
+account path. It should create or link a My Locals profile, prefill available
+name/avatar information only with the member's consent, and always leave the
+member in control of their visible name, username and privacy settings.
+
+Add **Sign in with Apple** as the equivalent path for iPhone users. Apple does
+not normally provide an avatar, so initials or a member-chosen image remain a
+safe fallback. Existing email/password accounts need an explicit provider-link
+flow to prevent duplicate profiles.
+
 ## The member experience
 
 1. A member creates an account and adds a friend by username or invitation.
