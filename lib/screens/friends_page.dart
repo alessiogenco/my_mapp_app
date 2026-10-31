@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_map_app/config/social_config.dart';
+import 'package:my_map_app/screens/affinity_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// A deliberately small first social surface: members can find a person by
@@ -298,8 +299,19 @@ class _FriendsPageState extends State<FriendsPage> {
                   userId: user.id,
                   builder: (_, person) => _PersonTile(
                     person: person,
-                    subtitle: 'Affinity will appear after enough shared ratings.',
-                    trailing: const Icon(Icons.people_alt_outlined),
+                    subtitle: 'Open taste affinity',
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => AffinityPage(
+                            friendId: person.id,
+                            friendName: person.displayName,
+                            friendHandle: person.handle,
+                          ),
+                        ),
+                      );
+                    },
+                    trailing: const Icon(Icons.chevron_right_rounded),
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -388,11 +400,13 @@ class _PersonTile extends StatelessWidget {
   const _PersonTile({
     required this.person,
     this.subtitle,
+    this.onTap,
     required this.trailing,
   });
 
   final _Person person;
   final String? subtitle;
+  final VoidCallback? onTap;
   final Widget trailing;
 
   @override
@@ -406,6 +420,7 @@ class _PersonTile extends StatelessWidget {
         leading: CircleAvatar(child: Text(initials)),
         title: Text(person.displayName.trim().isEmpty ? '@${person.handle}' : person.displayName),
         subtitle: Text(subtitle ?? '@${person.handle}'),
+        onTap: onTap,
         trailing: trailing,
       ),
     );

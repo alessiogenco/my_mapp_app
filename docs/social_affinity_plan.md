@@ -18,24 +18,40 @@ every Google Maps place or turn the map into a public review feed.
 5. The friend page shows an affinity label, evidence and a short explanation;
    for example: `82% · reliable · 9 places rated in common`.
 
-## Affinity model, version 1
+## Affinity model, version 2
 
-The first version is deliberately explainable and uses three signals:
+Affinity is calculated only from places that both friends rated. City is useful
+for filtering the map, but is not itself a taste signal, so it does not affect
+the score. A missing optional detail is excluded rather than interpreted as a
+disagreement.
 
 | Signal | Weight | What it compares |
 | --- | ---: | --- |
-| Same places | 60% | Difference between the two 1--10 ratings for places both members rated. |
-| Categories | 25% | Average ratings for common categories, weighted by how many places support each category. |
-| Cities | 15% | Average ratings for common cities, also weighted by evidence. |
+| Overall | 35% | Difference between the two 1--10 ratings for the same places. |
+| Food | 25% | Difference between optional food ratings on the same places. |
+| Location | 20% | Difference between optional location ratings on the same places. |
+| Service | 10% | Difference between optional service ratings on the same places. |
+| Value | 10% | Difference between optional value-for-money ratings on the same places. |
 
-The score is 0--100. It is **reliable only after at least five places have
-been rated by both people**. Until then the app labels it as preliminary, even
-if the numerical score happens to be high. This prevents a superficial match
-from looking more certain than it is.
+The app displays one global score and four separate dimensions. For example,
+two friends can have `Location 92%` and `Food 48%`; the difference is useful
+information, not an error hidden inside a single average.
 
-Future signals can be added only after enough real data exists: vibe patterns,
-price preference, rating-detail agreement and recommendation acceptance. They
-should not silently replace the initial three signals.
+Each comparison uses the distance between two 1--10 values: equal values give
+100%, a one-point difference gives about 89%, and opposite values give 0%.
+The global score only uses components for which both people supplied data and
+normalizes their weights again.
+
+A dimension becomes reliable after five detailed ratings in common. The global
+score is **reliable after at least five places have been rated by both people**.
+Its separate evidence value keeps growing with the shared sample: two matching
+ratings can show a strong match but low evidence, while 100 matching ratings
+show the same match with very high evidence. Until five shared places it is
+labelled preliminary.
+
+Future signals such as shared vibes and price preferences can be displayed as
+context, but should not silently change the affinity score without an explicit
+product decision.
 
 ## Data needed in the backend
 

@@ -23,6 +23,10 @@ class _PersonalPlaceRatingCardState extends State<PersonalPlaceRatingCard> {
   bool _isSaving = false;
   int? _rating;
   bool _isRecommended = false;
+  int? _foodRating;
+  int? _locationRating;
+  int? _serviceRating;
+  int? _valueRating;
 
   User? get _user =>
       SocialConfig.isAvailable ? SocialConfig.client.auth.currentUser : null;
@@ -54,10 +58,15 @@ class _PersonalPlaceRatingCardState extends State<PersonalPlaceRatingCard> {
           .eq('place_id', widget.place.id)
           .maybeSingle();
       if (!mounted) return;
+      final details = row?['rating_details'] as Map<String, dynamic>? ?? const {};
       setState(() {
         _rating = (row?['rating'] as num?)?.toInt();
         _noteController.text = row?['note'] as String? ?? '';
         _isRecommended = row?['is_recommended'] == true;
+        _foodRating = (details['food'] as num?)?.toInt();
+        _locationRating = (details['location'] as num?)?.toInt();
+        _serviceRating = (details['service'] as num?)?.toInt();
+        _valueRating = (details['value'] as num?)?.toInt();
       });
     } on PostgrestException catch (error) {
       _showMessage(error.message);
@@ -79,6 +88,12 @@ class _PersonalPlaceRatingCardState extends State<PersonalPlaceRatingCard> {
         'user_id': user.id,
         'place_id': widget.place.id,
         'rating': rating,
+        'rating_details': {
+          if (_foodRating != null) 'food': _foodRating,
+          if (_locationRating != null) 'location': _locationRating,
+          if (_serviceRating != null) 'service': _serviceRating,
+          if (_valueRating != null) 'value': _valueRating,
+        },
         'note': _noteController.text.trim().isEmpty
             ? null
             : _noteController.text.trim(),
@@ -126,11 +141,23 @@ class _PersonalPlaceRatingCardState extends State<PersonalPlaceRatingCard> {
             : _PersonalRatingEditor(
                 rating: _rating!,
                 isRecommended: _isRecommended,
+                foodRating: _foodRating,
+                locationRating: _locationRating,
+                serviceRating: _serviceRating,
+                valueRating: _valueRating,
                 noteController: _noteController,
                 isSaving: _isSaving,
                 onRatingChanged: (value) => setState(() => _rating = value),
                 onRecommendedChanged: (value) =>
                     setState(() => _isRecommended = value),
+                onFoodRatingChanged: (value) =>
+                    setState(() => _foodRating = value),
+                onLocationRatingChanged: (value) =>
+                    setState(() => _locationRating = value),
+                onServiceRatingChanged: (value) =>
+                    setState(() => _serviceRating = value),
+                onValueRatingChanged: (value) =>
+                    setState(() => _valueRating = value),
                 onSave: _saveRating,
               ),
       ),
@@ -197,19 +224,35 @@ class _PersonalRatingEditor extends StatelessWidget {
   const _PersonalRatingEditor({
     required this.rating,
     required this.isRecommended,
+    required this.foodRating,
+    required this.locationRating,
+    required this.serviceRating,
+    required this.valueRating,
     required this.noteController,
     required this.isSaving,
     required this.onRatingChanged,
     required this.onRecommendedChanged,
+    required this.onFoodRatingChanged,
+    required this.onLocationRatingChanged,
+    required this.onServiceRatingChanged,
+    required this.onValueRatingChanged,
     required this.onSave,
   });
 
   final int rating;
   final bool isRecommended;
+  final int? foodRating;
+  final int? locationRating;
+  final int? serviceRating;
+  final int? valueRating;
   final TextEditingController noteController;
   final bool isSaving;
   final ValueChanged<int> onRatingChanged;
   final ValueChanged<bool> onRecommendedChanged;
+  final ValueChanged<int?> onFoodRatingChanged;
+  final ValueChanged<int?> onLocationRatingChanged;
+  final ValueChanged<int?> onServiceRatingChanged;
+  final ValueChanged<int?> onValueRatingChanged;
   final VoidCallback onSave;
 
   @override
@@ -250,6 +293,39 @@ class _PersonalRatingEditor extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4),
+        ExpansionTile(
+          tilePadding: EdgeInsets.zero,
+          childrenPadding: EdgeInsets.zero,
+          title: const Text('Detailed rating (optional)'),
+          subtitle: const Text('Food, location, service and value for money.'),
+          children: [
+            _OptionalDetailRating(
+              label: 'Food',
+              rating: foodRating,
+              isSaving: isSaving,
+              onChanged: onFoodRatingChanged,
+            ),
+            _OptionalDetailRating(
+              label: 'Location',
+              rating: locationRating,
+              isSaving: isSaving,
+              onChanged: onLocationRatingChanged,
+            ),
+            _OptionalDetailRating(
+              label: 'Service',
+              rating: serviceRating,
+              isSaving: isSaving,
+              onChanged: onServiceRatingChanged,
+            ),
+            _OptionalDetailRating(
+              label: 'Value for money',
+              rating: valueRating,
+              isSaving: isSaving,
+              onChanged: onValueRatingChanged,
+            ),
+          ],
+        ),
+        const SizedBox(height: 4),
         TextField(
           controller: noteController,
           enabled: !isSaving,
@@ -269,6 +345,60 @@ class _PersonalRatingEditor extends StatelessWidget {
             icon: const Icon(Icons.bookmark_added_outlined),
             label: Text(isSaving ? 'Saving…' : 'Save your rating'),
           ),
+        ),
+      ],
+    );
+  }
+}
+
+class _OptionalDetailRating extends StatelessWidget {
+  const _OptionalDetailRating({
+    required this.label,
+    required this.rating,
+    required this.isSaving,
+    required this.onChanged,
+  });
+
+  final String label;
+  final int? rating;
+  final bool isSaving;
+  final ValueChanged<int?> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final currentRating = rating;
+    if (currentRating == null) {
+      return Align(
+        alignment: Alignment.centerLeft,
+        child: TextButton.icon(
+          onPressed: isSaving ? null : () => onChanged(7),
+          icon: const Icon(Icons.add_rounded),
+          label: Text('Add $label rating'),
+        ),
+      );
+    }
+
+    return Column(
+      children: [
+        Row(
+          children: [
+            Text(label, style: const TextStyle(fontWeight: FontWeight.w700)),
+            const Spacer(),
+            Text('$currentRating/10'),
+            IconButton(
+              onPressed: isSaving ? null : () => onChanged(null),
+              tooltip: 'Clear $label rating',
+              icon: const Icon(Icons.close_rounded),
+            ),
+          ],
+        ),
+        Slider(
+          value: currentRating.toDouble(),
+          min: 1,
+          max: 10,
+          divisions: 9,
+          label: '$currentRating/10',
+          onChanged: isSaving ? null : (value) => onChanged(value.round()),
         ),
       ],
     );

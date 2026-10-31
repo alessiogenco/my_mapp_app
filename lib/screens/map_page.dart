@@ -13,6 +13,7 @@ import 'package:my_map_app/models/place_category.dart';
 import 'package:my_map_app/models/want_to_go_place.dart';
 import 'package:my_map_app/screens/account_page.dart';
 import 'package:my_map_app/screens/add_place_page.dart';
+import 'package:my_map_app/screens/friends_page.dart';
 import 'package:my_map_app/screens/want_to_go_page.dart';
 import 'package:my_map_app/services/geocoding_service.dart';
 import 'package:my_map_app/widgets/glass_panel.dart';
@@ -885,6 +886,22 @@ class _MapPageState extends State<MapPage> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          FloatingActionButton(
+            heroTag: 'friends',
+            mini: true,
+            backgroundColor: Colors.white.withValues(alpha: 0.94),
+            foregroundColor: const Color(0xFF137DB8),
+            tooltip: 'Friends and affinity',
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const FriendsPage(),
+                ),
+              );
+            },
+            child: const Icon(Icons.people_alt_outlined),
+          ),
+          const SizedBox(height: 10),
           FloatingActionButton(
             heroTag: 'account',
             mini: true,

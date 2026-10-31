@@ -3,8 +3,8 @@ import 'dart:math' as math;
 import 'package:my_map_app/models/place.dart';
 import 'package:my_map_app/social/social_place_rating.dart';
 
-/// Ratings belonging to one member. The future social backend will assemble
-/// this input after checking that both members accepted the friendship.
+/// Ratings belonging to one member. The social layer assembles this input only
+/// after the two members have an accepted friendship and opted into sharing.
 class TasteProfile {
   const TasteProfile({required this.memberId, required this.ratings});
 
@@ -12,56 +12,98 @@ class TasteProfile {
   final List<SocialPlaceRating> ratings;
 }
 
-/// An explainable, non-public estimate of how similarly two members rate
-/// places. A low confidence result must be presented as preliminary.
+/// One explainable facet of taste agreement.
+///
+/// A missing value means that the pair has not rated that facet on a common
+/// place. It never means that they disagree.
+class TasteAffinityDimension {
+  const TasteAffinityDimension({
+    required this.id,
+    required this.agreement,
+    required this.comparedPlaces,
+  });
+
+  final String id;
+  final double agreement;
+  final int comparedPlaces;
+
+  bool get hasEvidence => comparedPlaces > 0;
+  int? get score => hasEvidence ? (agreement * 100).round() : null;
+  bool get isReliable => comparedPlaces >= 5;
+
+  String get evidenceLabel {
+    if (!hasEvidence) return 'No shared detail yet';
+    return isReliable ? 'Reliable' : 'Preliminary';
+  }
+}
+
+/// An explainable, private estimate of how similarly two members rate places.
+///
+/// The global score is useful only alongside [confidence]. Individual
+/// dimensions intentionally remain visible: two people may agree strongly on
+/// location but disagree on food, for example.
 class TasteAffinity {
   const TasteAffinity({
     required this.score,
     required this.confidence,
     required this.sharedRatedPlaces,
-    required this.sharedCategories,
-    required this.sharedCities,
-    required this.ratingAgreement,
-    required this.categoryAgreement,
-    required this.cityAgreement,
+    required this.overall,
+    required this.food,
+    required this.location,
+    required this.service,
+    required this.value,
   });
 
-  /// Similarity from 0 to 100. It is meaningful only together with
-  /// [confidence] and is not intended as a ranking of people.
-  final int score;
+  /// Similarity from 0 to 100, or null when there are no shared ratings.
+  final int? score;
 
   /// Amount of evidence behind the score, from 0 to 100.
   final int confidence;
   final int sharedRatedPlaces;
-  final int sharedCategories;
-  final int sharedCities;
 
-  /// Each component is normalized from 0.0 (opposite tastes) to 1.0.
-  final double ratingAgreement;
-  final double categoryAgreement;
-  final double cityAgreement;
+  final TasteAffinityDimension overall;
+  final TasteAffinityDimension food;
+  final TasteAffinityDimension location;
+  final TasteAffinityDimension service;
+  final TasteAffinityDimension value;
 
-  /// Five shared rated places are the minimum for a dependable result.
-  bool get isReliable => sharedRatedPlaces >= 5 && confidence >= 55;
+  List<TasteAffinityDimension> get details => [
+        food,
+        location,
+        service,
+        value,
+      ];
+
+  /// Five common overall ratings are the first meaningful threshold. The
+  /// separate confidence value continues growing as the shared sample grows.
+  bool get isReliable => overall.comparedPlaces >= 5 && score != null;
 
   String get evidenceLabel {
-    if (isReliable) return 'Reliable';
-    if (sharedRatedPlaces == 0) return 'Not enough shared ratings yet';
-    return 'Preliminary';
+    if (score == null) return 'Not enough shared ratings yet';
+    return isReliable ? 'Reliable' : 'Preliminary';
   }
 }
 
-/// Calculates affinity using only data that can later be explained in the UI.
+/// Calculates affinity from ratings for the same curated places.
 ///
-/// Weighting: 60% agreement on the same places, 25% similarity between
-/// category preferences and 15% similarity between city preferences. Missing
-/// signals are excluded rather than treated as disagreement.
+/// Global weighting:
+/// - 35% overall rating agreement
+/// - 25% food agreement
+/// - 20% location agreement
+/// - 10% service agreement
+/// - 10% value-for-money agreement
+///
+/// Missing optional details are omitted and the available weights are
+/// normalized again. This prevents an unanswered field from being interpreted
+/// as a negative rating.
 class TasteAffinityCalculator {
   const TasteAffinityCalculator();
 
-  static const _samePlaceWeight = 0.60;
-  static const _categoryWeight = 0.25;
-  static const _cityWeight = 0.15;
+  static const _overallWeight = 0.35;
+  static const _foodWeight = 0.25;
+  static const _locationWeight = 0.20;
+  static const _serviceWeight = 0.10;
+  static const _valueWeight = 0.10;
 
   TasteAffinity calculate({
     required TasteProfile first,
@@ -73,189 +115,137 @@ class TasteAffinityCalculator {
     final sharedPlaceIds = firstRatings.keys
         .where(secondRatings.containsKey)
         .where(placesById.containsKey)
-        .toList();
+        .toList(growable: false);
 
-    final ratingAgreement = _samePlaceAgreement(
-      firstRatings,
-      secondRatings,
-      sharedPlaceIds,
+    final overall = _agreementFor(
+      id: 'overall',
+      first: firstRatings,
+      second: secondRatings,
+      sharedPlaceIds: sharedPlaceIds,
+      valueFor: (rating) => rating.rating,
     );
-    final categoryComparison = _dimensionAgreement(
-      firstRatings,
-      secondRatings,
-      placesById,
-      (place) => place.category,
+    final food = _agreementFor(
+      id: 'food',
+      first: firstRatings,
+      second: secondRatings,
+      sharedPlaceIds: sharedPlaceIds,
+      valueFor: (rating) => rating.ratingDetails['food'],
     );
-    final cityComparison = _dimensionAgreement(
-      firstRatings,
-      secondRatings,
-      placesById,
-      (place) => place.city,
+    final location = _agreementFor(
+      id: 'location',
+      first: firstRatings,
+      second: secondRatings,
+      sharedPlaceIds: sharedPlaceIds,
+      valueFor: (rating) => rating.ratingDetails['location'],
+    );
+    final service = _agreementFor(
+      id: 'service',
+      first: firstRatings,
+      second: secondRatings,
+      sharedPlaceIds: sharedPlaceIds,
+      valueFor: (rating) => rating.ratingDetails['service'],
+    );
+    final value = _agreementFor(
+      id: 'value',
+      first: firstRatings,
+      second: secondRatings,
+      sharedPlaceIds: sharedPlaceIds,
+      valueFor: (rating) => rating.ratingDetails['value'],
     );
 
     final components = <_AffinityComponent>[
-      if (sharedPlaceIds.isNotEmpty)
-        _AffinityComponent(ratingAgreement, _samePlaceWeight),
-      if (categoryComparison.comparedDimensions > 0)
-        _AffinityComponent(categoryComparison.agreement, _categoryWeight),
-      if (cityComparison.comparedDimensions > 0)
-        _AffinityComponent(cityComparison.agreement, _cityWeight),
+      if (overall.hasEvidence) _AffinityComponent(overall, _overallWeight),
+      if (food.hasEvidence) _AffinityComponent(food, _foodWeight),
+      if (location.hasEvidence) _AffinityComponent(location, _locationWeight),
+      if (service.hasEvidence) _AffinityComponent(service, _serviceWeight),
+      if (value.hasEvidence) _AffinityComponent(value, _valueWeight),
     ];
     final totalWeight = components.fold<double>(
       0,
-      (total, component) => total + component.weight,
+      (sum, component) => sum + component.weight,
     );
     final score = totalWeight == 0
-        ? 0
+        ? null
         : (components.fold<double>(
-                  0,
-                  (total, component) => total + component.value * component.weight,
-                ) /
-                totalWeight *
-                100)
-            .round();
+                    0,
+                    (sum, component) =>
+                        sum + component.dimension.agreement * component.weight,
+                  ) /
+                  totalWeight *
+                  100)
+              .round()
+              .clamp(0, 100)
+              .toInt();
 
-    final confidence = (_evidence(sharedPlaceIds.length, target: 8) * 0.70 +
-                _evidence(categoryComparison.evidence, target: 10) * 0.20 +
-                _evidence(cityComparison.evidence, target: 6) * 0.10) *
-            100)
-        .round();
+    final confidence = (_overallEvidence(overall.comparedPlaces) * 100)
+        .round()
+        .clamp(0, 100)
+        .toInt();
 
     return TasteAffinity(
-      score: score.clamp(0, 100).toInt(),
-      confidence: confidence.clamp(0, 100).toInt(),
+      score: score,
+      confidence: confidence,
       sharedRatedPlaces: sharedPlaceIds.length,
-      sharedCategories: categoryComparison.comparedDimensions,
-      sharedCities: cityComparison.comparedDimensions,
-      ratingAgreement: ratingAgreement,
-      categoryAgreement: categoryComparison.agreement,
-      cityAgreement: cityComparison.agreement,
+      overall: overall,
+      food: food,
+      location: location,
+      service: service,
+      value: value,
     );
   }
 
   Map<String, SocialPlaceRating> _ratingsByPlace(
     List<SocialPlaceRating> ratings,
-  ) {
-    return {for (final rating in ratings) rating.placeId: rating};
-  }
+  ) => {for (final rating in ratings) rating.placeId: rating};
 
-  double _samePlaceAgreement(
-    Map<String, SocialPlaceRating> first,
-    Map<String, SocialPlaceRating> second,
-    List<String> sharedPlaceIds,
-  ) {
-    if (sharedPlaceIds.isEmpty) return 0;
-    final total = sharedPlaceIds.fold<double>(
-      0,
-      (sum, placeId) =>
-          sum + _agreement(first[placeId]!.rating, second[placeId]!.rating),
-    );
-    return total / sharedPlaceIds.length;
-  }
-
-  _DimensionComparison _dimensionAgreement(
-    Map<String, SocialPlaceRating> firstRatings,
-    Map<String, SocialPlaceRating> secondRatings,
-    Map<String, Place> placesById,
-    String Function(Place place) dimensionForPlace,
-  ) {
-    final firstByDimension = _ratingsByDimension(
-      firstRatings,
-      placesById,
-      dimensionForPlace,
-    );
-    final secondByDimension = _ratingsByDimension(
-      secondRatings,
-      placesById,
-      dimensionForPlace,
-    );
-    final sharedDimensions = firstByDimension.keys
-        .where(secondByDimension.containsKey)
-        .toList();
-    if (sharedDimensions.isEmpty) return const _DimensionComparison.empty();
-
-    var agreementTotal = 0.0;
-    var evidence = 0;
-    for (final dimension in sharedDimensions) {
-      final firstStats = firstByDimension[dimension]!;
-      final secondStats = secondByDimension[dimension]!;
-      final sharedEvidence =
-          math.min(firstStats.count, secondStats.count).toInt();
-      agreementTotal +=
-          _agreement(firstStats.average, secondStats.average) * sharedEvidence;
-      evidence += sharedEvidence;
+  TasteAffinityDimension _agreementFor({
+    required String id,
+    required Map<String, SocialPlaceRating> first,
+    required Map<String, SocialPlaceRating> second,
+    required List<String> sharedPlaceIds,
+    required int? Function(SocialPlaceRating rating) valueFor,
+  }) {
+    var total = 0.0;
+    var count = 0;
+    for (final placeId in sharedPlaceIds) {
+      final firstValue = valueFor(first[placeId]!);
+      final secondValue = valueFor(second[placeId]!);
+      if (firstValue == null || secondValue == null) continue;
+      if (firstValue < 1 || firstValue > 10 || secondValue < 1 || secondValue > 10) {
+        continue;
+      }
+      total += _agreement(firstValue, secondValue);
+      count += 1;
     }
-
-    return _DimensionComparison(
-      agreement: evidence == 0 ? 0 : agreementTotal / evidence,
-      comparedDimensions: sharedDimensions.length,
-      evidence: evidence,
+    return TasteAffinityDimension(
+      id: id,
+      agreement: count == 0 ? 0 : total / count,
+      comparedPlaces: count,
     );
   }
 
-  Map<String, _RatingStats> _ratingsByDimension(
-    Map<String, SocialPlaceRating> ratings,
-    Map<String, Place> placesById,
-    String Function(Place place) dimensionForPlace,
-  ) {
-    final sums = <String, int>{};
-    final counts = <String, int>{};
-    for (final entry in ratings.entries) {
-      final place = placesById[entry.key];
-      if (place == null) continue;
-      final dimension = dimensionForPlace(place).trim();
-      if (dimension.isEmpty) continue;
-      sums.update(dimension, (sum) => sum + entry.value.rating,
-          ifAbsent: () => entry.value.rating);
-      counts.update(dimension, (count) => count + 1, ifAbsent: () => 1);
-    }
-    return {
-      for (final dimension in sums.keys)
-        dimension: _RatingStats(
-          total: sums[dimension]!,
-          count: counts[dimension]!,
-        ),
-    };
-  }
+  double _agreement(num first, num second) =>
+      (1 - (first - second).abs() / 9).clamp(0, 1).toDouble();
 
-  double _agreement(num first, num second) {
-    return (1 - (first - second).abs() / 9).clamp(0, 1).toDouble();
-  }
+  /// Evidence must distinguish two matching ratings from 100 matching ratings.
+  /// Five shared places are the first useful threshold (50%); after that the
+  /// curve grows more slowly, so every additional shared place still matters
+  /// without letting a large sample grow beyond 100%.
+  double _overallEvidence(int sharedPlaces) {
+    if (sharedPlaces <= 0) return 0;
+    if (sharedPlaces < 5) return sharedPlaces / 10;
 
-  double _evidence(int actual, {required int target}) {
-    return (actual / target).clamp(0, 1).toDouble();
+    const growthWindow = 15.0;
+    return (0.5 +
+            0.5 * (1 - math.exp(-(sharedPlaces - 5) / growthWindow)))
+        .clamp(0, 1)
+        .toDouble();
   }
 }
 
 class _AffinityComponent {
-  const _AffinityComponent(this.value, this.weight);
+  const _AffinityComponent(this.dimension, this.weight);
 
-  final double value;
+  final TasteAffinityDimension dimension;
   final double weight;
-}
-
-class _DimensionComparison {
-  const _DimensionComparison({
-    required this.agreement,
-    required this.comparedDimensions,
-    required this.evidence,
-  });
-
-  const _DimensionComparison.empty()
-      : agreement = 0,
-        comparedDimensions = 0,
-        evidence = 0;
-
-  final double agreement;
-  final int comparedDimensions;
-  final int evidence;
-}
-
-class _RatingStats {
-  const _RatingStats({required this.total, required this.count});
-
-  final int total;
-  final int count;
-
-  double get average => total / count;
 }
