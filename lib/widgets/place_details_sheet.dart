@@ -3,6 +3,7 @@ import 'package:my_map_app/models/place.dart';
 import 'package:my_map_app/models/place_area.dart';
 import 'package:my_map_app/models/place_category.dart';
 import 'package:my_map_app/services/maps_launcher_service.dart';
+import 'package:my_map_app/widgets/personal_place_rating_card.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Future<void> showPlaceDetailsSheet(
@@ -221,6 +222,8 @@ class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
                   ),
                 ),
               ],
+              const SizedBox(height: 18),
+              PersonalPlaceRatingCard(place: place),
               if (place.instagramUrl != null &&
                   place.instagramUrl!.isNotEmpty) ...[
                 const SizedBox(height: 18),
