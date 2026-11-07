@@ -2895,5 +2895,531 @@
     "googleMapsUrl": "https://www.google.com/maps/place/Eroica+Caff%C3%A8+Padova/@45.40839,11.874195,17z/data=!3m1!4b1!4m6!3m5!1s0x477edb8e4876ea57:0x6c5b4808e3b84e2f!8m2!3d45.40839!4d11.874195!16s%2Fg%2F11h597tys7?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
     "currencyCode": "EUR"
+  },
+  {
+    "id": "braes_dundee",
+    "name": "Braes Dundee",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "pub",
+    "area": "cityCentre",
+    "rating": 6,
+    "priceLevel": 1,
+    "foodTags": [
+      "burgers",
+      "fries"
+    ],
+    "ratingDetails": {
+      "food": 6,
+      "location": 6,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 56.456647,
+    "lng": -2.9788781,
+    "vibes": [
+      "beer",
+      "casual",
+      "cocktails",
+      "coworkers",
+      "dinner",
+      "friends",
+      "late-night",
+      "lunch",
+      "pizza"
+    ],
+    "notes": "Popular with Dundee students for its events and football screenings. It has a good selection of beers and a solid casual menu of burgers, chicken wings and fries. A good nearby choice for an informal night out with friends.",
+    "websiteUrl": "http://www.braesdundee.com/",
+    "googleMapsUrl": "https://www.google.com/maps/place/Braes+Dundee/@56.4745185,-3.0492328,12z/data=!3m1!5s0x48865cbf3273594d:0xa1452588f3e2fa5a!4m10!1m2!2m1!1sBraes!3m6!1s0x48865cbf3204abe1:0xe7dbcfd4f50eecd3!8m2!3d56.456647!4d-2.9788781!15sCgVCcmFlc1oHIgVicmFlc5IBA3B1YpoBI0NoWkRTVWhOTUc5blMwVkpRMEZuU1VOd2FuUlVXVUZuRUFF4AEA-gEECAAQPg!16s%2Fg%2F1vlqpsb2?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "duke_s_corner",
+    "name": "Duke's Corner",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "pub",
+    "area": "cityCentre",
+    "neighborhood": "Campus UoD",
+    "rating": 7,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 7,
+      "location": 6,
+      "service": 7,
+      "value": 7
+    },
+    "lat": 56.46,
+    "lng": -2.9788889,
+    "vibes": [
+      "beer",
+      "casual",
+      "coworkers",
+      "dinner",
+      "friends",
+      "late-night",
+      "locals",
+      "outdoor_seating",
+      "panini"
+    ],
+    "notes": "One of the main pubs around the University of Dundee campus, ideal for pints from local and international breweries with friends. The food menu includes a solid selection of burgers; try the \"Scot Man\" burger with haggis. It is also a good place to watch football, with plenty of indoor and outdoor tables and a lively atmosphere.",
+    "websiteUrl": "http://www.dukescorner.co.uk/",
+    "googleMapsUrl": "https://www.google.com/maps/place/Duke's+Corner/@56.4599999,-2.9837598,17z/data=!3m2!4b1!5s0x48865cc0b66cb5e5:0xca77318641942638!4m6!3m5!1s0x48865cc0b4292f83:0xfa6a699b8cddd525!8m2!3d56.46!4d-2.9788889!16s%2Fg%2F1hc1qpn6g?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "molly_malones",
+    "name": "Molly Malones",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "pub",
+    "area": "cityCentre",
+    "neighborhood": "Campus UoD",
+    "rating": 6,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 6,
+      "location": 6,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 56.4595756,
+    "lng": -2.9796976,
+    "vibes": [
+      "beer",
+      "burgers",
+      "casual",
+      "dinner",
+      "friends",
+      "late-night",
+      "locals",
+      "panini"
+    ],
+    "notes": "A relaxed pub near the University of Dundee campus, ideal for a pint with friends and a lively night out. Often a good choice for live music.",
+    "websiteUrl": "https://www.belhaven.co.uk/pubs/angus/molly-malones?utm_source=g_places&utm_medium=locations&utm_campaign=UC_pubpage",
+    "googleMapsUrl": "https://www.google.com/maps/place/Molly+Malones/@56.4596324,-2.9824831,17z/data=!4m6!3m5!1s0x48865cc74d74df5d:0xea8df40fcfa18f0b!8m2!3d56.4595756!4d-2.9796976!16s%2Fg%2F1v16pwkv?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "clark_s_bakery_ltd",
+    "name": "Clark's Bakery Ltd",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "bakery_savory",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 8,
+      "location": 6,
+      "service": 7,
+      "value": 8
+    },
+    "lat": 56.4593276,
+    "lng": -2.9933148,
+    "vibes": [
+      "authentic",
+      "breakfast",
+      "casual",
+      "family",
+      "late-night",
+      "locals",
+      "lunch",
+      "panini",
+      "solo",
+      "street_food",
+      "takeaway"
+    ],
+    "notes": "A Dundee takeaway institution, known for panini, pizza, cakes and local Scottish pies. It is often open through the night and has several branches around town, making it a convenient option for a quick meal in the city centre.",
+    "websiteUrl": "http://clarksbakery.co.uk/",
+    "googleMapsUrl": "https://www.google.com/maps/place/Clark's+Bakery+Ltd/@56.4593276,-2.9946023,18z/data=!4m6!3m5!1s0x488643192f059807:0xf4d5278b7d722ecd!8m2!3d56.4593276!4d-2.9933148!16s%2Fg%2F1tqcksxw?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "luigi_s_pizzeria",
+    "name": "Luigi's Pizzeria",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "pizzeria",
+    "area": "cityCentre",
+    "rating": 6,
+    "priceLevel": 1,
+    "foodTags": [
+      "dessert",
+      "nduja",
+      "pizza"
+    ],
+    "ratingDetails": {
+      "food": 7,
+      "location": 5,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 56.471891,
+    "lng": -2.9764363,
+    "vibes": [
+      "casual",
+      "delivery",
+      "family",
+      "friends",
+      "locals",
+      "takeaway"
+    ],
+    "notes": "A good Neapolitan-style pizzeria in Dundee, with Italian ingredients and local pizza variations. Its delivery service is reliable. Although it can feel slightly overpriced for the standard pizza size, it is still a good option in Dundee.",
+    "websiteUrl": "http://www.luigispizzeria.co.uk/",
+    "googleMapsUrl": "https://www.google.com/maps/place/Luigi's+Pizzeria/@56.471891,-2.9790112,17z/data=!3m1!4b1!4m6!3m5!1s0x48865cdd1a5c6933:0x48e8bdbbd0b236c6!8m2!3d56.471891!4d-2.9764363!16s%2Fg%2F1tf2rt4q?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "taza_restaurant",
+    "name": "Taza Restaurant",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "indian",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 2,
+    "ratingDetails": {
+      "food": 7,
+      "location": 6,
+      "service": 6,
+      "value": 8
+    },
+    "lat": 56.461628405000944,
+    "lng": -2.962942744896878,
+    "vibes": [
+      "buffet",
+      "coworkers",
+      "dinner",
+      "family",
+      "friends",
+      "locals",
+      "street_food"
+    ],
+    "notes": "A casual Indian restaurant in Dundee with a buffet that makes it easy to try dishes from starters to desserts. The choice is wide, the food is good quality and the fixed menu price offers good value. There are plenty of indoor tables, so booking is usually unnecessary.",
+    "websiteUrl": "http://www.taza.co.uk/",
+    "googleMapsUrl": "https://www.google.com/maps/place/Taza+Restaurant/@56.4595866,-2.9744063,16.57z/data=!4m14!1m7!3m6!1s0x48865cdd1a5c6933:0x48e8bdbbd0b236c6!2sLuigi's+Pizzeria!8m2!3d56.471891!4d-2.9764363!16s%2Fg%2F1tf2rt4q!3m5!1s0x48865ceda8b27f87:0x1d9ff89ccab6f40!8m2!3d56.4615573!4d-2.9629642!16s%2Fg%2F1tdq5l3p?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "empire_state_coffee_artisan_roasters",
+    "name": "Empire State Coffee Artisan Roasters",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "coffee_bar",
+    "area": "cityCentre",
+    "rating": 6,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 6,
+      "location": 6,
+      "service": 6,
+      "value": 7
+    },
+    "lat": 56.45909982370733,
+    "lng": -2.9697787612955477,
+    "vibes": [
+      "breakfast",
+      "casual",
+      "coffee",
+      "coworkers",
+      "date",
+      "friends",
+      "solo"
+    ],
+    "notes": "A coffee bar near Dundee railway station serving a decent espresso and good local pastries. It has plenty of seating across two floors, making it suitable for breakfast, meeting friends or a casual date. Worth a visit for its selection of Italian products.",
+    "websiteUrl": "http://empirestatecoffee.co.uk/",
+    "googleMapsUrl": "https://www.google.com/maps/place/Empire+State+Coffee+Artisan+Roasters/@56.4590168,-2.9714846,17z/data=!3m1!4b1!4m14!1m7!3m6!1s0x48865cdd1a5c6933:0x48e8bdbbd0b236c6!2sLuigi's+Pizzeria!8m2!3d56.471891!4d-2.9764363!16s%2Fg%2F1tf2rt4q!3m5!1s0x48865ceab0465509:0xdf371c6a8a52a00!8m2!3d56.4590168!4d-2.9697559!16s%2Fg%2F11xnb6ncm?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "caffe_nero",
+    "name": "Caffè Nero",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "coffee_bar",
+    "area": "cityCentre",
+    "neighborhood": "City centre",
+    "rating": 6,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 6,
+      "location": 6,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 56.4626888,
+    "lng": -2.9688289,
+    "vibes": [
+      "breakfast",
+      "coffee",
+      "date",
+      "family",
+      "friends",
+      "locals",
+      "solo",
+      "takeaway"
+    ],
+    "notes": "A British chain of Italian-style coffee shops with a decent espresso. A convenient choice for breakfast, a coffee with friends or a takeaway coffee.",
+    "websiteUrl": "https://caffenero.com/uk/store/dundee-471/?utm_source=GMB&utm_medium=organic&utm_campaign=dundee",
+    "googleMapsUrl": "https://www.google.com/maps/place/Caff%C3%A8+Nero/@56.4625731,-2.9699004,19z/data=!4m6!3m5!1s0x48865cebad301505:0x5ec09a637de5b7bc!8m2!3d56.4626888!4d-2.9688289!16s%2Fg%2F1hc2_r3lq?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "mandarin_garden",
+    "name": "Mandarin Garden",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "chinese",
+    "area": "cityCentre",
+    "neighborhood": "Campus UoD",
+    "rating": 7,
+    "priceLevel": 2,
+    "ratingDetails": {
+      "food": 7,
+      "location": 6,
+      "service": 7,
+      "value": 7
+    },
+    "lat": 56.4588464,
+    "lng": -2.9771947,
+    "vibes": [
+      "beer",
+      "casual",
+      "coworkers",
+      "delivery",
+      "dinner",
+      "family",
+      "friends",
+      "takeaway"
+    ],
+    "notes": "A casual Peking-style restaurant in Dundee, recommended by locals and Chinese friends. It offers good-quality food and a wide choice of dishes; try the duck and noodles. There is plenty of indoor seating, but booking is advisable.",
+    "websiteUrl": "http://www.mandaringarden.co.uk/",
+    "googleMapsUrl": "https://www.google.com/maps/place/Mandarin+Garden/@56.4590732,-2.977923,19z/data=!4m6!3m5!1s0x48865cc09dc33aa9:0xdad2a2d25b8babab!8m2!3d56.4588464!4d-2.9771947!16s%2Fg%2F1tfh470j?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "super_snack",
+    "name": "Super Snack",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "bakery_savory",
+    "area": "cityCentre",
+    "neighborhood": "UoD campus",
+    "rating": 6,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 6,
+      "location": 6,
+      "service": 6,
+      "value": 7
+    },
+    "lat": 56.457374,
+    "lng": -2.9759174,
+    "vibes": [
+      "friends",
+      "locals",
+      "lunch",
+      "panini",
+      "street_food",
+      "takeaway"
+    ],
+    "notes": "Super Snack is a popular Dundee sandwich shop, well known for its wide selection of panini. Near the University of Dundee campus, it is a convenient fast-lunch option for students and local workers.",
+    "websiteUrl": "https://supersnackonline.co.uk/3pPI",
+    "googleMapsUrl": "https://www.google.com/maps/place/Super+Snack/@56.4573399,-2.9763479,20z/data=!4m6!3m5!1s0x48865cbf0b5c76b7:0x4c876e2d01ce32b4!8m2!3d56.457374!4d-2.9759174!16s%2Fg%2F1tm8k4kz?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "the_george_orwell",
+    "name": "The George Orwell",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "pub",
+    "area": "cityCentre",
+    "rating": 6,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 6,
+      "location": 7,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 56.4561959,
+    "lng": -2.9860775,
+    "vibes": [
+      "beer",
+      "casual",
+      "friends",
+      "late-night",
+      "locals"
+    ],
+    "notes": "A popular student pub on Perth Road, close to the University of Dundee campus. With live music and a lively atmosphere, it is ideal for an evening with friends and a few pints.",
+    "googleMapsUrl": "https://www.google.com/maps/place/The+George+Orwell/@56.4562091,-2.9864276,19z/data=!4m6!3m5!1s0x48865cb82e54fe91:0x5205a836bcce77b8!8m2!3d56.4561959!4d-2.9860775!16s%2Fg%2F11cn957tpv?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "canton_house",
+    "name": "Canton House",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "chinese",
+    "area": "cityCentre",
+    "neighborhood": "Perth Road",
+    "rating": 6,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 6,
+      "location": 5,
+      "service": 5,
+      "value": 6
+    },
+    "lat": 56.4561396,
+    "lng": -2.9936993,
+    "vibes": [
+      "casual",
+      "coworkers",
+      "family",
+      "friends",
+      "locals",
+      "solo",
+      "takeaway"
+    ],
+    "notes": "A Cantonese restaurant in Dundee that works well for takeaway. The noodles with pork, beef or duck are good, and the overall food quality is decent.",
+    "googleMapsUrl": "https://www.google.com/maps/place/Canton+House/@56.4561134,-2.9938649,21z/data=!4m6!3m5!1s0x488643498ae874f5:0xb1ba2e0ebecd4ae7!8m2!3d56.4561396!4d-2.9936993!16s%2Fg%2F1hc0tdrsn?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "dundee_contemporary_arts",
+    "name": "Dundee Contemporary Arts",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "restaurant",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 2,
+    "foodTags": [
+      "cocktails"
+    ],
+    "ratingDetails": {
+      "food": 7,
+      "location": 7,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 56.4573264,
+    "lng": -2.9750128,
+    "vibes": [
+      "aperitif",
+      "burgers",
+      "cocktails",
+      "coworkers",
+      "cozy",
+      "date",
+      "family",
+      "friends",
+      "locals",
+      "outdoor_seating",
+      "wine"
+    ],
+    "notes": "A restaurant and cocktail bar on Perth Road, close to the University of Dundee campus. Located inside Dundee Contemporary Arts, alongside its cinema, it has plenty of indoor seating and suits dinner with family or friends, a date, or cocktails.",
+    "googleMapsUrl": "https://www.google.com/maps/place/Dundee+Contemporary+Arts/@56.4571324,-2.9756964,19z/data=!4m9!1m2!2m1!1sgelato+dundee!3m5!1s0x48865cbfa109cec7:0x61fe186f99fa91bc!8m2!3d56.4573264!4d-2.9750128!16zL20vMGRyNWN4?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "v_a_dundee",
+    "name": "V&A Dundee",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "restaurant",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 2,
+    "ratingDetails": {
+      "food": 8,
+      "location": 8,
+      "service": 7,
+      "value": 7
+    },
+    "lat": 56.4574567,
+    "lng": -2.9670241,
+    "vibes": [
+      "cocktails",
+      "date",
+      "dinner",
+      "family",
+      "friends",
+      "hidden_gem",
+      "locals",
+      "outdoor_seating",
+      "touristy",
+      "wine"
+    ],
+    "notes": "A restaurant and cocktail bar inside one of Scotland's most iconic buildings. It offers excellent views over the River Tay and good-quality food, especially salmon and other seafood. A strong choice for a more formal dinner with friends or coworkers.",
+    "googleMapsUrl": "https://www.google.com/maps/place/V%26A+Dundee/@56.457242,-2.9718152,17z/data=!3m1!5s0x48865c94e92b6cc7:0x135cd97e78f83fe1!4m9!1m2!2m1!1sgelato+dundee!3m5!1s0x48865c94ef2e1813:0xdbe239afe0c5eb00!8m2!3d56.4574567!4d-2.9670241!16s%2Fg%2F11g4bq1cjf?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "draffens",
+    "name": "Draffens",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "cocktail_bar",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 1,
+    "foodTags": [
+      "cocktails"
+    ],
+    "ratingDetails": {
+      "food": 8,
+      "location": 9,
+      "service": 8,
+      "value": 8
+    },
+    "lat": 56.459443,
+    "lng": -2.9711987,
+    "vibes": [
+      "casual",
+      "cocktails",
+      "coworkers",
+      "date",
+      "friends",
+      "hidden_gem",
+      "late-night",
+      "locals"
+    ],
+    "notes": "A hidden gem in Dundee for cocktails in an unusual setting. Worth visiting for the quality of the drinks and its distinctive atmosphere.",
+    "googleMapsUrl": "https://www.google.com/maps/place/Draffens/@56.459489,-2.9712946,21z/data=!4m6!3m5!1s0x48865ceab02ac58b:0xdb0b4524e656e6fb!8m2!3d56.459443!4d-2.9711987!16s%2Fg%2F11hb3p_9r9?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "the_manchurian_dim_sum_restaurant",
+    "name": "The Manchurian | Dim Sum Restaurant 翠竹軒",
+    "city": "Dundee",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "chinese",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 2,
+    "ratingDetails": {
+      "food": 7,
+      "location": 6,
+      "service": 7,
+      "value": 6
+    },
+    "lat": 56.4618734,
+    "lng": -2.9659176,
+    "vibes": [
+      "casual",
+      "coworkers",
+      "dinner",
+      "family",
+      "friends",
+      "takeaway"
+    ],
+    "notes": "One of Dundee's best-known Chinese restaurants, recommended by local and Chinese diners. It serves good-quality food and classic starters; try the noodles and dumplings. A Chinese supermarket downstairs is useful for buying Chinese ingredients and products.",
+    "websiteUrl": "http://manchurianchineserestaurant.co.uk/NO4G",
+    "googleMapsUrl": "https://www.google.com/maps/place/The+Manchurian+%7C+Dim+Sum+Restaurant+%E7%BF%A0%E7%AB%B9%E8%BB%92/@56.463622,-2.9692811,18z/data=!3m1!5s0x48865ceb77e57317:0xcea701ddaa9cf708!4m6!3m5!1s0x48865ceb9e030737:0xbc3d738240d3d55c!8m2!3d56.4618734!4d-2.9659176!16s%2Fg%2F11b67h73ym?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
   }
 ]
