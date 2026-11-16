@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import 'package:my_map_app/models/place.dart';
 import 'package:my_map_app/models/place_area.dart';
 import 'package:my_map_app/models/place_category.dart';
@@ -8,9 +10,20 @@ import 'package:my_map_app/models/place_category.dart';
 class PlaceRepository {
   const PlaceRepository();
 
+  static final Uri _localWriterPlacesUri = Uri.parse(
+    'http://127.0.0.1:8787/places',
+  );
+
   Future<List<Place>> loadPlaces() async {
-    final response = await rootBundle.loadString('assets/data/places.json');
-    final decodedData = jsonDecode(response);
+    final localPlaces = await _loadPlacesFromLocalWriter();
+
+    // The local place writer can update this asset while the debug app is
+    // running. Drop Flutter's cached copy before reading, so returning from
+    // Add place refreshes the map without requiring a full app restart.
+    rootBundle.evict('assets/data/places.json');
+    final placeData = localPlaces ??
+        await rootBundle.loadString('assets/data/places.json');
+    final decodedData = jsonDecode(placeData);
 
     if (decodedData is! List) {
       throw const FormatException('The places file is not a list.');
@@ -26,6 +39,19 @@ class PlaceRepository {
     _validatePlaces(places);
 
     return places;
+  }
+
+  Future<String?> _loadPlacesFromLocalWriter() async {
+    try {
+      final response = await http
+          .get(_localWriterPlacesUri)
+          .timeout(const Duration(milliseconds: 900));
+      return response.statusCode == 200 ? response.body : null;
+    } on TimeoutException {
+      return null;
+    } on http.ClientException {
+      return null;
+    }
   }
 
   void _validatePlaces(List<Place> places) {

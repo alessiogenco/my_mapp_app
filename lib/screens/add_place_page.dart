@@ -1,11 +1,15 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_map_app/config/social_config.dart';
 import 'package:my_map_app/models/place.dart';
 import 'package:my_map_app/models/place_area.dart';
 import 'package:my_map_app/models/place_category.dart';
+import 'package:my_map_app/social/google_place_search_result.dart';
+import 'package:my_map_app/social/google_place_search_service.dart';
 
 class AddPlacePage extends StatefulWidget {
   const AddPlacePage({super.key});
@@ -19,9 +23,10 @@ class _AddPlacePageState extends State<AddPlacePage> {
   final _idController = TextEditingController();
   final _nameController = TextEditingController();
   final _cityController = TextEditingController(text: 'Alberobello');
-  final _countryCodeController = TextEditingController(text: 'IT');
-  final _currencyCodeController = TextEditingController(text: 'EUR');
+  final _countryCodeController = TextEditingController();
+  final _currencyCodeController = TextEditingController();
   final _neighborhoodController = TextEditingController();
+  final _streetAddressController = TextEditingController();
   final _latController = TextEditingController();
   final _lngController = TextEditingController();
   final _customVibeController = TextEditingController();
@@ -32,6 +37,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
   final _googlePlaceIdController = TextEditingController();
   final _photoAssetController = TextEditingController();
   final _foodTagsController = TextEditingController();
+  final _googlePlaceSearchService = const GooglePlaceSearchService();
 
   String _category = 'restaurant';
   String _area = 'cityCentre';
@@ -49,8 +55,12 @@ class _AddPlacePageState extends State<AddPlacePage> {
   String? _exportJson;
   bool _isLoadingExistingPlaces = false;
   bool _isSavingToProject = false;
+  bool _isSearchingGooglePlaces = false;
+  bool _isResolvingAutomaticCoordinates = false;
+  bool _needsAddressLookup = false;
   bool _idWasEdited = false;
   bool _isAutoGeneratingId = false;
+  List<GooglePlaceSearchResult> _googlePlaceResults = const [];
 
   @override
   void initState() {
@@ -76,6 +86,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
     _countryCodeController.dispose();
     _currencyCodeController.dispose();
     _neighborhoodController.dispose();
+    _streetAddressController.dispose();
     _latController.dispose();
     _lngController.dispose();
     _customVibeController.dispose();
@@ -109,8 +120,25 @@ class _AddPlacePageState extends State<AddPlacePage> {
       return null;
     }
 
+    if (_validateCountryCode(_countryCodeController.text) != null ||
+        _validateCurrencyCode(_currencyCodeController.text) != null) {
+      _showSnackBar(
+        'Select the correct Google Place so country and currency can be filled automatically.',
+      );
+      return null;
+    }
+
     if (_selectedVibes.isEmpty) {
       _showSnackBar('Select or add at least one vibe.');
+      return null;
+    }
+
+    final latitude = _parseRequiredDouble(_latController.text);
+    final longitude = _parseRequiredDouble(_lngController.text);
+    if (latitude == null || longitude == null) {
+      _showSnackBar(
+        'Select a Google Place and let the address lookup find the map point before saving.',
+      );
       return null;
     }
 
@@ -123,8 +151,8 @@ class _AddPlacePageState extends State<AddPlacePage> {
       category: _category,
       area: _area,
       neighborhood: _optionalText(_neighborhoodController),
-      lat: double.parse(_latController.text.trim()),
-      lng: double.parse(_lngController.text.trim()),
+      lat: latitude,
+      lng: longitude,
       rating: _rating,
       priceLevel: _priceLevel,
       foodTags: _parseTags(_foodTagsController.text),
@@ -202,7 +230,10 @@ class _AddPlacePageState extends State<AddPlacePage> {
     _idController.clear();
     _isAutoGeneratingId = false;
     _nameController.clear();
+    _countryCodeController.clear();
+    _currencyCodeController.clear();
     _neighborhoodController.clear();
+    _streetAddressController.clear();
     _latController.clear();
     _lngController.clear();
     _customVibeController.clear();
@@ -220,6 +251,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
       _locationRating = 0;
       _serviceRating = 0;
       _valueRating = 0;
+      _needsAddressLookup = false;
     });
   }
 
@@ -233,6 +265,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
     _countryCodeController.text = place.countryCode;
     _currencyCodeController.text = place.currencyCode;
     _neighborhoodController.text = place.neighborhood ?? '';
+    _streetAddressController.clear();
     _latController.text = place.lat.toString();
     _lngController.text = place.lng.toString();
     _notesController.text = place.notes;
@@ -258,6 +291,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
       _selectedVibes
         ..clear()
         ..addAll(place.vibes);
+      _needsAddressLookup = false;
       _generatedJson = const JsonEncoder.withIndent('  ').convert(
         place.toJson(),
       );
@@ -396,14 +430,12 @@ class _AddPlacePageState extends State<AddPlacePage> {
     RegExpMatch? match;
     for (final pattern in coordinatePatterns) {
       match = pattern.firstMatch(decodedUrl);
-      if (match != null) {
-        break;
-      }
+      if (match != null) break;
     }
 
     if (match == null) {
       _showSnackBar(
-        'No coordinates found. Use the expanded Google Maps web link or fill them manually.',
+        'No coordinates found. Paste the expanded Google Maps web link, then try again.',
       );
       return;
     }
@@ -420,9 +452,12 @@ class _AddPlacePageState extends State<AddPlacePage> {
       return;
     }
 
-    _latController.text = latitude.toString();
-    _lngController.text = longitude.toString();
-    _showSnackBar('Coordinates added from the Google Maps link.');
+    setState(() {
+      _latController.text = latitude.toString();
+      _lngController.text = longitude.toString();
+      _needsAddressLookup = false;
+    });
+    _showSnackBar('Coordinates extracted from the Google Maps link.');
   }
 
   Map<String, int> _buildRatingDetails() {
@@ -606,6 +641,168 @@ class _AddPlacePageState extends State<AddPlacePage> {
     }
   }
 
+  Future<void> _searchGooglePlaces() async {
+    final name = _nameController.text.trim();
+    final city = _cityController.text.trim();
+    if (name.length < 2 || city.length < 2) {
+      _showSnackBar('Enter the place name and city first.');
+      return;
+    }
+    if (!SocialConfig.isAvailable ||
+        SocialConfig.client.auth.currentUser == null) {
+      _showSnackBar('Sign in before using secure Google place search.');
+      return;
+    }
+
+    setState(() => _isSearchingGooglePlaces = true);
+    try {
+      final results = await _googlePlaceSearchService.search(
+        name: name,
+        city: city,
+        // Country is supplied by Place Details after the member selects the
+        // venue. Avoid biasing an international search with the country left
+        // over from the previous place.
+        countryCode: '',
+      );
+      if (!mounted) return;
+      setState(() => _googlePlaceResults = results);
+      if (results.isEmpty) {
+        _showSnackBar('No Google results found. Check the spelling or city.');
+      }
+    } on GooglePlaceSearchException catch (error) {
+      _showSnackBar(error.message);
+    } finally {
+      if (mounted) {
+        setState(() => _isSearchingGooglePlaces = false);
+      }
+    }
+  }
+
+  void _selectGooglePlace(GooglePlaceSearchResult result) {
+    final query = '${_nameController.text.trim()} ${_cityController.text.trim()}'
+        .trim();
+    final mapsUrl = Uri.https('www.google.com', '/maps/search/', {
+      'api': '1',
+      'query': query,
+      'query_place_id': result.placeId,
+    }).toString();
+
+    setState(() {
+      // We retain only the Place ID. The Google name and address remain
+      // selection-time data and are intentionally not copied into places.json.
+      _googlePlaceIdController.text = result.placeId;
+      _googleMapsUrlController.text = mapsUrl;
+      _streetAddressController.text = result.address;
+      _googlePlaceResults = const [];
+      // A selected place must never retain coordinates from the previous
+      // record. They are filled again only after a new safe lookup succeeds.
+      _latController.clear();
+      _lngController.clear();
+      // These values belong to the previous form entry until Place Details
+      // returns the selected venue's country.
+      _countryCodeController.clear();
+      _currencyCodeController.clear();
+      _needsAddressLookup = false;
+    });
+    unawaited(_completeGooglePlaceSelection(result.placeId));
+  }
+
+  Future<void> _completeGooglePlaceSelection(String placeId) async {
+    // The country returned by Google keeps the independent coordinate search
+    // focused on the right country (for example, GB rather than a leftover
+    // country from the previous entry).
+    await _loadGooglePlaceDetails(placeId);
+    if (!mounted || _googlePlaceIdController.text.trim() != placeId) return;
+    await _resolveCoordinatesAfterGoogleSelection();
+  }
+
+  Future<void> _loadGooglePlaceDetails(String placeId) async {
+    try {
+      final details = await _googlePlaceSearchService.loadPlaceDetails(
+        placeId: placeId,
+      );
+      if (!mounted) return;
+      // Ignore a delayed answer if the editor now points at a different place.
+      if (_googlePlaceIdController.text.trim() != placeId) return;
+
+      final countryCode = details.countryCode;
+      setState(() {
+        if (details.googleMapsUrl != null) {
+          _googleMapsUrlController.text = details.googleMapsUrl!;
+        }
+        if (details.address != null) {
+          _streetAddressController.text = details.address!;
+        }
+        if (countryCode != null) {
+          _countryCodeController.text = countryCode;
+          _currencyCodeController.text = defaultCurrencyForCountry(countryCode);
+        }
+      });
+      if (countryCode != null) {
+        _showSnackBar(
+          'Google details loaded: $countryCode · ${defaultCurrencyForCountry(countryCode)}.',
+        );
+      } else if (details.googleMapsUrl != null) {
+        _showSnackBar('Official Google Maps link loaded.');
+      }
+    } on GooglePlaceSearchException {
+      // The stable Maps URL created from the Place ID remains a valid fallback.
+    }
+  }
+
+  Future<void> _resolveCoordinatesAfterGoogleSelection() async {
+    final name = _nameController.text.trim();
+    final city = _cityController.text.trim();
+    if (name.length < 2 || city.length < 2) {
+      _showSnackBar('Google link added. Add coordinates before saving.');
+      return;
+    }
+
+    if (mounted) {
+      setState(() {
+        _isResolvingAutomaticCoordinates = true;
+      });
+    }
+    try {
+      // Resolve the permanent Mapbox marker through our server rather than
+      // calling the public geographic service from the browser directly.
+      final location = await _googlePlaceSearchService.resolveCoordinates(
+        name: name,
+        city: city,
+        address: _streetAddressController.text.trim(),
+        countryCode: _countryCodeController.text.trim(),
+      );
+      if (!mounted) return;
+      if (location == null) {
+        setState(() {
+          _needsAddressLookup = true;
+        });
+        _showSnackBar(
+          'Coordinates were not found automatically. Add the street address below to try again.',
+        );
+        return;
+      }
+
+      setState(() {
+        _latController.text = location.latitude.toStringAsFixed(6);
+        _lngController.text = location.longitude.toStringAsFixed(6);
+        _needsAddressLookup = false;
+      });
+      _showSnackBar('Google link and coordinates added automatically.');
+    } on GooglePlaceSearchException {
+      setState(() {
+        _needsAddressLookup = true;
+      });
+      _showSnackBar(
+        'Coordinates could not be verified automatically. Add the street address below to try again.',
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _isResolvingAutomaticCoordinates = false);
+      }
+    }
+  }
+
   void _showSnackBar(String message) {
     if (!mounted) {
       return;
@@ -630,9 +827,8 @@ class _AddPlacePageState extends State<AddPlacePage> {
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
           children: [
             Text(
-              'Fast entry: fill the main fields and save directly. The ID is '
-              'generated automatically; optional and technical fields are '
-              'kept below.',
+              'Search and select the correct Google Place first. Country, '
+              'currency, Maps link and coordinates are completed automatically.',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: const Color(0xFF58717E),
               ),
@@ -672,23 +868,19 @@ class _AddPlacePageState extends State<AddPlacePage> {
                     label: 'City',
                     validator: _required,
                   ),
-                  _TextInput(
-                    controller: _countryCodeController,
-                    label: 'Country code',
-                    helperText: 'Two letters: IT, GB, NO, ES…',
-                    validator: _validateCountryCode,
-                  ),
-                  _TextInput(
-                    controller: _currencyCodeController,
-                    label: 'Currency',
-                    helperText: 'Three letters: EUR, GBP, NOK…',
-                    validator: _validateCurrencyCode,
+                  _GooglePlaceLookupCard(
+                    isSearching: _isSearchingGooglePlaces,
+                    results: _googlePlaceResults,
+                    enabled: SocialConfig.isAvailable &&
+                        SocialConfig.client.auth.currentUser != null,
+                    onSearch: _searchGooglePlaces,
+                    onSelected: _selectGooglePlace,
                   ),
                   _TextInput(
                     controller: _googleMapsUrlController,
                     label: 'Google Maps URL',
                     helperText:
-                        'Optional. A Google Maps search opens automatically from name and city; a full link can fill coordinates.',
+                        'After Google selection, the official direct link replaces the temporary search link when available.',
                     validator: _validateOptionalUrl,
                   ),
                   Align(
@@ -699,6 +891,51 @@ class _AddPlacePageState extends State<AddPlacePage> {
                       label: const Text('Extract coordinates from link'),
                     ),
                   ),
+                  if (_isResolvingAutomaticCoordinates)
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 12),
+                      child: LinearProgressIndicator(),
+                    ),
+                  if (_needsAddressLookup)
+                    Container(
+                      width: double.infinity,
+                      margin: const EdgeInsets.only(bottom: 12),
+                      padding: const EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFFF6E8),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: const Color(0xFFF0D29A)),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'This place is missing from open map data',
+                            style: TextStyle(fontWeight: FontWeight.w800),
+                          ),
+                          const SizedBox(height: 4),
+                          const Text(
+                            'Add only the street address. We will find the point automatically and do not save this field.',
+                          ),
+                          const SizedBox(height: 12),
+                          _TextInput(
+                            controller: _streetAddressController,
+                            label: 'Street address',
+                            helperText: 'For example: 30 Hawley Crescent, NW1 8NP',
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: FilledButton.tonalIcon(
+                              onPressed: _isResolvingAutomaticCoordinates
+                                  ? null
+                                  : _resolveCoordinatesAfterGoogleSelection,
+                              icon: const Icon(Icons.location_on_rounded),
+                              label: const Text('Find address on map'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   DropdownButtonFormField<String>(
                     initialValue: _category,
                     decoration: const InputDecoration(labelText: 'Category'),
@@ -732,24 +969,6 @@ class _AddPlacePageState extends State<AddPlacePage> {
                       }
                     },
                   ),
-                  _TextInput(
-                    controller: _latController,
-                    label: 'Latitude',
-                    keyboardType: const TextInputType.numberWithOptions(
-                      decimal: true,
-                      signed: true,
-                    ),
-                    validator: _validateLatitude,
-                  ),
-                  _TextInput(
-                    controller: _lngController,
-                    label: 'Longitude',
-                    keyboardType: const TextInputType.numberWithOptions(
-                      decimal: true,
-                      signed: true,
-                    ),
-                    validator: _validateLongitude,
-                  ),
                   _NumberStepper(
                     label: 'Rating',
                     value: _rating,
@@ -759,11 +978,15 @@ class _AddPlacePageState extends State<AddPlacePage> {
                     onChanged: (value) => setState(() => _rating = value),
                   ),
                   _NumberStepper(
-                    label: 'Price level (${_currencyCodeController.text.trim().toUpperCase()})',
+                    label: _currencyCodeController.text.trim().isEmpty
+                        ? 'Price level'
+                        : 'Price level (${_currencyCodeController.text.trim().toUpperCase()})',
                     value: _priceLevel,
                     min: 1,
                     max: 5,
-                    suffix: '€',
+                    suffix: _currencySymbolForCode(
+                      _currencyCodeController.text,
+                    ),
                     onChanged: (value) => setState(() => _priceLevel = value),
                   ),
                   _VibeSelector(
@@ -1035,6 +1258,91 @@ class _TextInput extends StatelessWidget {
           helperText: helperText,
           border: const OutlineInputBorder(),
         ),
+      ),
+    );
+  }
+}
+
+class _GooglePlaceLookupCard extends StatelessWidget {
+  const _GooglePlaceLookupCard({
+    required this.isSearching,
+    required this.results,
+    required this.enabled,
+    required this.onSearch,
+    required this.onSelected,
+  });
+
+  final bool isSearching;
+  final List<GooglePlaceSearchResult> results;
+  final bool enabled;
+  final VoidCallback onSearch;
+  final ValueChanged<GooglePlaceSearchResult> onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: const Color(0xFFEAF5FB),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: const Color(0xFFC9E2EE)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Find the correct place',
+            style: theme.textTheme.titleSmall?.copyWith(
+              color: const Color(0xFF102F40),
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            enabled
+                ? 'Search by name and city. Country and currency are filled after selection.'
+                : 'Sign in with your account to use the secure Google search.',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: const Color(0xFF58717E),
+            ),
+          ),
+          const SizedBox(height: 10),
+          OutlinedButton.icon(
+            onPressed: !enabled || isSearching ? null : onSearch,
+            icon: isSearching
+                ? const SizedBox.square(
+                    dimension: 16,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
+                : const Icon(Icons.travel_explore_rounded),
+            label: Text(isSearching ? 'Searching...' : 'Search Google Places'),
+          ),
+          if (results.isNotEmpty) ...[
+            const SizedBox(height: 12),
+            ...results.map(
+              (result) => Card(
+                margin: const EdgeInsets.only(bottom: 8),
+                clipBehavior: Clip.antiAlias,
+                child: ListTile(
+                  leading: const Icon(Icons.place_outlined),
+                  title: Text(result.name),
+                  subtitle: result.address.isEmpty ? null : Text(result.address),
+                  trailing: const Icon(Icons.chevron_right_rounded),
+                  onTap: () => onSelected(result),
+                ),
+              ),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              'Results provided by Google Maps. Selecting a result saves only its Google Place ID.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: const Color(0xFF58717E),
+              ),
+            ),
+          ],
+        ],
       ),
     );
   }
@@ -1389,26 +1697,14 @@ String? _validateCurrencyCode(String? value) {
       : 'Use a three-letter code, e.g. EUR, GBP or NOK.';
 }
 
-String? _validateLatitude(String? value) {
-  final parsedValue = _parseRequiredDouble(value);
-  if (parsedValue == null) {
-    return 'Enter a valid latitude.';
-  }
-
-  return parsedValue >= -90 && parsedValue <= 90
-      ? null
-      : 'Latitude must be between -90 and 90.';
-}
-
-String? _validateLongitude(String? value) {
-  final parsedValue = _parseRequiredDouble(value);
-  if (parsedValue == null) {
-    return 'Enter a valid longitude.';
-  }
-
-  return parsedValue >= -180 && parsedValue <= 180
-      ? null
-      : 'Longitude must be between -180 and 180.';
+String _currencySymbolForCode(String value) {
+  return switch (value.trim().toUpperCase()) {
+    'EUR' => '€',
+    'GBP' => '£',
+    'NOK' => ' kr',
+    'USD' => r'$',
+    _ => '',
+  };
 }
 
 String? _validateOptionalUrl(String? value) {
@@ -1511,8 +1807,12 @@ const _defaultVibes = {
 
 const _vibeSuggestionsByCategory = <String, List<String>>{
   'restaurant': ['date', 'family', 'friends', 'locals', 'wine'],
+  'fish_and_chips': ['casual', 'family', 'locals', 'takeaway'],
   'sushi': ['date', 'dinner', 'friends', 'takeaway'],
+  'ramen': ['casual', 'dinner', 'friends', 'solo', 'takeaway'],
   'chinese': ['family', 'friends', 'takeaway', 'delivery'],
+  'turkish': ['casual', 'dinner', 'friends', 'takeaway', 'delivery'],
+  'kebab': ['casual', 'friends', 'late-night', 'takeaway', 'delivery'],
   'indian': ['dinner', 'family', 'friends', 'delivery'],
   'pizzeria': ['casual', 'family', 'friends', 'takeaway'],
   'panzerotteria': ['street_food', 'takeaway', 'locals', 'casual'],

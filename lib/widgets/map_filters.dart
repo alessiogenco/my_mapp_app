@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_map_app/widgets/glass_panel.dart';
 
+// Includes the panel's inner padding, so the full "Want to go" filter fits.
+const mapToolbarMaxWidth = 590.0;
+
 class MapFilters extends StatelessWidget {
   const MapFilters({
     required this.selectedCategories,
@@ -83,6 +86,7 @@ class MapFilters extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlassPanel(
+      maxWidth: mapToolbarMaxWidth,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
@@ -199,7 +203,13 @@ class MapFilters extends StatelessWidget {
                     final category = option.value!;
                     return FilterChip(
                       selected: localSelection.contains(category),
-                      avatar: Text(option.emoji),
+                      avatar: option.assetPath == null
+                          ? Text(option.emoji)
+                          : Image.asset(
+                              option.assetPath!,
+                              width: 22,
+                              height: 22,
+                            ),
                       label: Text(option.label),
                       onSelected: (isSelected) {
                         setSheetState(() {
@@ -606,12 +616,14 @@ class _CategoryOption {
     required this.shortLabel,
     required this.label,
     required this.emoji,
+    this.assetPath,
   });
 
   final String? value;
   final String shortLabel;
   final String label;
   final String emoji;
+  final String? assetPath;
 }
 
 String _priceRangeLabel(int priceLevel) {
@@ -646,16 +658,42 @@ const _categoryOptions = [
     emoji: '🍝',
   ),
   _CategoryOption(
+    value: 'fish_and_chips',
+    shortLabel: 'Fish & chips',
+    label: 'Fish and chips',
+    emoji: '🐟',
+  ),
+  _CategoryOption(
     value: 'sushi',
     shortLabel: 'Sushi',
     label: 'Sushi',
     emoji: '🍣',
   ),
   _CategoryOption(
+    value: 'ramen',
+    shortLabel: 'Ramen',
+    label: 'Ramen',
+    emoji: '🍜',
+    assetPath: 'assets/markers/chinese_noodles.png',
+  ),
+  _CategoryOption(
     value: 'chinese',
     shortLabel: 'Chinese',
     label: 'Chinese',
-    emoji: '🥡',
+    emoji: '🍜',
+  ),
+  _CategoryOption(
+    value: 'turkish',
+    shortLabel: 'Turkish',
+    label: 'Turkish',
+    emoji: '🍢',
+  ),
+  _CategoryOption(
+    value: 'kebab',
+    shortLabel: 'Kebab',
+    label: 'Kebab',
+    emoji: '🥙',
+    assetPath: 'assets/markers/turkish_doner.png',
   ),
   _CategoryOption(
     value: 'indian',

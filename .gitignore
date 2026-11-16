@@ -53,5 +53,12 @@ app.*.map.json
 # configuration on each development machine, never in the repository.
 /supabase.env.json
 
+# Local Edge Function secrets. Production secrets belong only in Supabase.
+/supabase/functions/.env
+
+# Local developer tools. They are downloaded per machine and must not be
+# committed with the Flutter project.
+/.local-tools/
+
 # Local backups created by the place writer while entering data.
 /assets/data/backups/

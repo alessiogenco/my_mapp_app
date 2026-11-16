@@ -38,10 +38,16 @@ class PlaceMarker extends StatelessWidget {
                   ),
                 ],
               ),
-              child: Text(
-                emojiForCategory(place.category),
-                style: const TextStyle(fontSize: 19, height: 1),
-              ),
+              child: place.category == 'kebab'
+                  ? Image.asset(
+                      'assets/markers/turkish_doner.png',
+                      width: 21,
+                      height: 21,
+                    )
+                  : Text(
+                      emojiForCategory(place.category),
+                      style: const TextStyle(fontSize: 19, height: 1),
+                    ),
             ),
             const SizedBox(height: 4),
             Container(

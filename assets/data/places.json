@@ -276,6 +276,8 @@
     "id": "marla_ispirazioni_di_gusto",
     "name": "Marla ispirazioni di gusto",
     "city": "Alberobello",
+    "countryCode": "IT",
+    "currencyCode": "EUR",
     "category": "bakery_sweet",
     "area": "periphery",
     "rating": 7,
@@ -292,7 +294,8 @@
       "breakfast",
       "coffee",
       "coworkers",
-      "solo"
+      "solo",
+      "takeaway"
     ],
     "notes": "Una buona scelta per colazione, gelati e dolci, con un servizio curato.",
     "googleMapsUrl": "https://www.google.com/maps/place/Marl%C3%A0+Ispirazioni+di+gusto/@40.7875688,17.2291409,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3002740a0e5:0x3ad21508f536a52d!8m2!3d40.7875688!4d17.2317158!16s%2Fg%2F11yz9bz083?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D"
@@ -472,7 +475,9 @@
       "wine"
     ],
     "notes": "Ristorante caratteristico ricavato in un trullo, con piatti locali. Una scelta adatta soprattutto a chi vuole vivere un'esperienza tipica ad Alberobello.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Ristorante+Trullo+D'Oro/@40.7850323,17.2349625,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b26389a1aaf5:0x4a84b2b7b4063b5d!8m2!3d40.7850323!4d17.2375374!16s%2Fg%2F1tf211jj?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Ristorante+Trullo+D'Oro/@40.7850323,17.2349625,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b26389a1aaf5:0x4a84b2b7b4063b5d!8m2!3d40.7850323!4d17.2375374!16s%2Fg%2F1tf211jj?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D",
+    "countryCode": "IT",
+    "currencyCode": "EUR"
   },
   {
     "id": "profumi_dal_ponte",
@@ -1038,6 +1043,8 @@
     "id": "n24_bar_vin_con_cucina",
     "name": "N24 Bar à Vin - con cucina",
     "city": "Monopoli",
+    "countryCode": "IT",
+    "currencyCode": "EUR",
     "category": "restaurant",
     "area": "historicalCentre",
     "rating": 7,
@@ -2929,7 +2936,7 @@
       "lunch",
       "pizza"
     ],
-    "notes": "Popular with Dundee students for its events and football screenings. It has a good selection of beers and a solid casual menu of burgers, chicken wings and fries. A good nearby choice for an informal night out with friends.",
+    "notes": "A student favourite for sports screenings and regular events. The beer list and easy-going menu of burgers, wings and fries make it a dependable choice for a casual evening with friends.",
     "websiteUrl": "http://www.braesdundee.com/",
     "googleMapsUrl": "https://www.google.com/maps/place/Braes+Dundee/@56.4745185,-3.0492328,12z/data=!3m1!5s0x48865cbf3273594d:0xa1452588f3e2fa5a!4m10!1m2!2m1!1sBraes!3m6!1s0x48865cbf3204abe1:0xe7dbcfd4f50eecd3!8m2!3d56.456647!4d-2.9788781!15sCgVCcmFlc1oHIgVicmFlc5IBA3B1YpoBI0NoWkRTVWhOTUc5blMwVkpRMEZuU1VOd2FuUlVXVUZuRUFF4AEA-gEECAAQPg!16s%2Fg%2F1vlqpsb2?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D"
   },
@@ -2963,7 +2970,7 @@
       "outdoor_seating",
       "panini"
     ],
-    "notes": "One of the main pubs around the University of Dundee campus, ideal for pints from local and international breweries with friends. The food menu includes a solid selection of burgers; try the \"Scot Man\" burger with haggis. It is also a good place to watch football, with plenty of indoor and outdoor tables and a lively atmosphere.",
+    "notes": "A lively campus-side pub for pints with friends and football on screen. The burger menu includes the \"Scot Man\" with haggis, while the indoor and outdoor tables make it easy to settle in.",
     "websiteUrl": "http://www.dukescorner.co.uk/",
     "googleMapsUrl": "https://www.google.com/maps/place/Duke's+Corner/@56.4599999,-2.9837598,17z/data=!3m2!4b1!5s0x48865cc0b66cb5e5:0xca77318641942638!4m6!3m5!1s0x48865cc0b4292f83:0xfa6a699b8cddd525!8m2!3d56.46!4d-2.9788889!16s%2Fg%2F1hc1qpn6g?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D"
   },
@@ -2996,7 +3003,7 @@
       "locals",
       "panini"
     ],
-    "notes": "A relaxed pub near the University of Dundee campus, ideal for a pint with friends and a lively night out. Often a good choice for live music.",
+    "notes": "A relaxed pub within easy reach of the university, ideal for a pint with friends and an energetic evening. Check the programme for regular live music.",
     "websiteUrl": "https://www.belhaven.co.uk/pubs/angus/molly-malones?utm_source=g_places&utm_medium=locations&utm_campaign=UC_pubpage",
     "googleMapsUrl": "https://www.google.com/maps/place/Molly+Malones/@56.4596324,-2.9824831,17z/data=!4m6!3m5!1s0x48865cc74d74df5d:0xea8df40fcfa18f0b!8m2!3d56.4595756!4d-2.9796976!16s%2Fg%2F1v16pwkv?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D"
   },
@@ -3031,7 +3038,7 @@
       "street_food",
       "takeaway"
     ],
-    "notes": "A Dundee takeaway institution, known for panini, pizza, cakes and local Scottish pies. It is often open through the night and has several branches around town, making it a convenient option for a quick meal in the city centre.",
+    "notes": "A Dundee takeaway institution known for panini, pizza, cakes and Scottish pies. Its late opening hours and several branches make it handy when you need food in the city centre.",
     "websiteUrl": "http://clarksbakery.co.uk/",
     "googleMapsUrl": "https://www.google.com/maps/place/Clark's+Bakery+Ltd/@56.4593276,-2.9946023,18z/data=!4m6!3m5!1s0x488643192f059807:0xf4d5278b7d722ecd!8m2!3d56.4593276!4d-2.9933148!16s%2Fg%2F1tqcksxw?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D"
   },
@@ -3066,7 +3073,7 @@
       "locals",
       "takeaway"
     ],
-    "notes": "A good Neapolitan-style pizzeria in Dundee, with Italian ingredients and local pizza variations. Its delivery service is reliable. Although it can feel slightly overpriced for the standard pizza size, it is still a good option in Dundee.",
+    "notes": "A Dundee pizzeria built around Neapolitan-style dough, Italian produce and a few local variations. Delivery is dependable; the pizzas can feel slightly small for the price, but it remains a solid option.",
     "websiteUrl": "http://www.luigispizzeria.co.uk/",
     "googleMapsUrl": "https://www.google.com/maps/place/Luigi's+Pizzeria/@56.471891,-2.9790112,17z/data=!3m1!4b1!4m6!3m5!1s0x48865cdd1a5c6933:0x48e8bdbbd0b236c6!8m2!3d56.471891!4d-2.9764363!16s%2Fg%2F1tf2rt4q?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
   },
@@ -3097,7 +3104,7 @@
       "locals",
       "street_food"
     ],
-    "notes": "A casual Indian restaurant in Dundee with a buffet that makes it easy to try dishes from starters to desserts. The choice is wide, the food is good quality and the fixed menu price offers good value. There are plenty of indoor tables, so booking is usually unnecessary.",
+    "notes": "A casual Indian buffet where it is easy to sample dishes from starters through to desserts. The wide choice and fixed price offer good value, and the large dining room usually means booking is unnecessary.",
     "websiteUrl": "http://www.taza.co.uk/",
     "googleMapsUrl": "https://www.google.com/maps/place/Taza+Restaurant/@56.4595866,-2.9744063,16.57z/data=!4m14!1m7!3m6!1s0x48865cdd1a5c6933:0x48e8bdbbd0b236c6!2sLuigi's+Pizzeria!8m2!3d56.471891!4d-2.9764363!16s%2Fg%2F1tf2rt4q!3m5!1s0x48865ceda8b27f87:0x1d9ff89ccab6f40!8m2!3d56.4615573!4d-2.9629642!16s%2Fg%2F1tdq5l3p?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
   },
@@ -3128,7 +3135,7 @@
       "friends",
       "solo"
     ],
-    "notes": "A coffee bar near Dundee railway station serving a decent espresso and good local pastries. It has plenty of seating across two floors, making it suitable for breakfast, meeting friends or a casual date. Worth a visit for its selection of Italian products.",
+    "notes": "Near Dundee railway station, this coffee bar serves espresso and local pastries over two floors. It is comfortable for breakfast, meeting friends or a casual date, with a small selection of Italian products to browse.",
     "websiteUrl": "http://empirestatecoffee.co.uk/",
     "googleMapsUrl": "https://www.google.com/maps/place/Empire+State+Coffee+Artisan+Roasters/@56.4590168,-2.9714846,17z/data=!3m1!4b1!4m14!1m7!3m6!1s0x48865cdd1a5c6933:0x48e8bdbbd0b236c6!2sLuigi's+Pizzeria!8m2!3d56.471891!4d-2.9764363!16s%2Fg%2F1tf2rt4q!3m5!1s0x48865ceab0465509:0xdf371c6a8a52a00!8m2!3d56.4590168!4d-2.9697559!16s%2Fg%2F11xnb6ncm?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
   },
@@ -3161,7 +3168,7 @@
       "solo",
       "takeaway"
     ],
-    "notes": "A British chain of Italian-style coffee shops with a decent espresso. A convenient choice for breakfast, a coffee with friends or a takeaway coffee.",
+    "notes": "An Italian-style coffee-shop chain with a reliable espresso. Handy for breakfast, a catch-up with friends or a takeaway coffee between plans.",
     "websiteUrl": "https://caffenero.com/uk/store/dundee-471/?utm_source=GMB&utm_medium=organic&utm_campaign=dundee",
     "googleMapsUrl": "https://www.google.com/maps/place/Caff%C3%A8+Nero/@56.4625731,-2.9699004,19z/data=!4m6!3m5!1s0x48865cebad301505:0x5ec09a637de5b7bc!8m2!3d56.4626888!4d-2.9688289!16s%2Fg%2F1hc2_r3lq?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
   },
@@ -3194,7 +3201,7 @@
       "friends",
       "takeaway"
     ],
-    "notes": "A casual Peking-style restaurant in Dundee, recommended by locals and Chinese friends. It offers good-quality food and a wide choice of dishes; try the duck and noodles. There is plenty of indoor seating, but booking is advisable.",
+    "notes": "A casual Peking-style restaurant with a wide menu of familiar Chinese dishes. The duck and noodles are worth considering. There is ample indoor seating, though a reservation helps at peak times.",
     "websiteUrl": "http://www.mandaringarden.co.uk/",
     "googleMapsUrl": "https://www.google.com/maps/place/Mandarin+Garden/@56.4590732,-2.977923,19z/data=!4m6!3m5!1s0x48865cc09dc33aa9:0xdad2a2d25b8babab!8m2!3d56.4588464!4d-2.9771947!16s%2Fg%2F1tfh470j?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
   },
@@ -3225,7 +3232,7 @@
       "street_food",
       "takeaway"
     ],
-    "notes": "Super Snack is a popular Dundee sandwich shop, well known for its wide selection of panini. Near the University of Dundee campus, it is a convenient fast-lunch option for students and local workers.",
+    "notes": "A popular Dundee sandwich shop with a wide range of panini. A short walk from campus, it is a handy fast-lunch stop for students and local workers.",
     "websiteUrl": "https://supersnackonline.co.uk/3pPI",
     "googleMapsUrl": "https://www.google.com/maps/place/Super+Snack/@56.4573399,-2.9763479,20z/data=!4m6!3m5!1s0x48865cbf0b5c76b7:0x4c876e2d01ce32b4!8m2!3d56.457374!4d-2.9759174!16s%2Fg%2F1tm8k4kz?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
   },
@@ -3254,7 +3261,7 @@
       "late-night",
       "locals"
     ],
-    "notes": "A popular student pub on Perth Road, close to the University of Dundee campus. With live music and a lively atmosphere, it is ideal for an evening with friends and a few pints.",
+    "notes": "A Perth Road pub popular with students. Live music and a lively crowd make it a natural stop for an evening of pints with friends.",
     "googleMapsUrl": "https://www.google.com/maps/place/The+George+Orwell/@56.4562091,-2.9864276,19z/data=!4m6!3m5!1s0x48865cb82e54fe91:0x5205a836bcce77b8!8m2!3d56.4561959!4d-2.9860775!16s%2Fg%2F11cn957tpv?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
   },
   {
@@ -3285,7 +3292,7 @@
       "solo",
       "takeaway"
     ],
-    "notes": "A Cantonese restaurant in Dundee that works well for takeaway. The noodles with pork, beef or duck are good, and the overall food quality is decent.",
+    "notes": "A Cantonese restaurant that works especially well for takeaway. Choose from noodles with pork, beef or duck for a straightforward, satisfying meal.",
     "googleMapsUrl": "https://www.google.com/maps/place/Canton+House/@56.4561134,-2.9938649,21z/data=!4m6!3m5!1s0x488643498ae874f5:0xb1ba2e0ebecd4ae7!8m2!3d56.4561396!4d-2.9936993!16s%2Fg%2F1hc0tdrsn?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
   },
   {
@@ -3322,7 +3329,7 @@
       "outdoor_seating",
       "wine"
     ],
-    "notes": "A restaurant and cocktail bar on Perth Road, close to the University of Dundee campus. Located inside Dundee Contemporary Arts, alongside its cinema, it has plenty of indoor seating and suits dinner with family or friends, a date, or cocktails.",
+    "notes": "Inside Dundee Contemporary Arts on Perth Road, the venue pairs dining with cocktails beside the cinema. Its generous indoor seating works for dinner with family or friends, a date or drinks after a film.",
     "googleMapsUrl": "https://www.google.com/maps/place/Dundee+Contemporary+Arts/@56.4571324,-2.9756964,19z/data=!4m9!1m2!2m1!1sgelato+dundee!3m5!1s0x48865cbfa109cec7:0x61fe186f99fa91bc!8m2!3d56.4573264!4d-2.9750128!16zL20vMGRyNWN4?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
   },
   {
@@ -3355,7 +3362,7 @@
       "touristy",
       "wine"
     ],
-    "notes": "A restaurant and cocktail bar inside one of Scotland's most iconic buildings. It offers excellent views over the River Tay and good-quality food, especially salmon and other seafood. A strong choice for a more formal dinner with friends or coworkers.",
+    "notes": "At V&A Dundee, the in-house dining room and cocktail bar overlook the River Tay. Seafood, especially salmon, suits a more formal dinner or an after-work gathering.",
     "googleMapsUrl": "https://www.google.com/maps/place/V%26A+Dundee/@56.457242,-2.9718152,17z/data=!3m1!5s0x48865c94e92b6cc7:0x135cd97e78f83fe1!4m9!1m2!2m1!1sgelato+dundee!3m5!1s0x48865c94ef2e1813:0xdbe239afe0c5eb00!8m2!3d56.4574567!4d-2.9670241!16s%2Fg%2F11g4bq1cjf?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
   },
   {
@@ -3389,7 +3396,7 @@
       "late-night",
       "locals"
     ],
-    "notes": "A hidden gem in Dundee for cocktails in an unusual setting. Worth visiting for the quality of the drinks and its distinctive atmosphere.",
+    "notes": "A discreet Dundee cocktail bar with an unusual setting and a distinctive atmosphere. Visit for carefully made drinks away from the busier venues.",
     "googleMapsUrl": "https://www.google.com/maps/place/Draffens/@56.459489,-2.9712946,21z/data=!4m6!3m5!1s0x48865ceab02ac58b:0xdb0b4524e656e6fb!8m2!3d56.459443!4d-2.9711987!16s%2Fg%2F11hb3p_9r9?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
   },
   {
@@ -3418,7 +3425,7 @@
       "friends",
       "takeaway"
     ],
-    "notes": "One of Dundee's best-known Chinese restaurants, recommended by local and Chinese diners. It serves good-quality food and classic starters; try the noodles and dumplings. A Chinese supermarket downstairs is useful for buying Chinese ingredients and products.",
+    "notes": "One of Dundee's best-known Chinese restaurants, serving classic starters alongside noodles and dumplings. The Chinese supermarket downstairs is useful for picking up ingredients and pantry items after dinner.",
     "websiteUrl": "http://manchurianchineserestaurant.co.uk/NO4G",
     "googleMapsUrl": "https://www.google.com/maps/place/The+Manchurian+%7C+Dim+Sum+Restaurant+%E7%BF%A0%E7%AB%B9%E8%BB%92/@56.463622,-2.9692811,18z/data=!3m1!5s0x48865ceb77e57317:0xcea701ddaa9cf708!4m6!3m5!1s0x48865ceb9e030737:0xbc3d738240d3d55c!8m2!3d56.4618734!4d-2.9659176!16s%2Fg%2F11b67h73ym?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
   },
@@ -3428,7 +3435,7 @@
     "city": "Dundee",
     "countryCode": "GB",
     "currencyCode": "GBP",
-    "category": "restaurant",
+    "category": "turkish",
     "area": "cityCentre",
     "rating": 7,
     "priceLevel": 2,
@@ -3451,8 +3458,646 @@
       "street_food",
       "takeaway"
     ],
-    "notes": "Popular turkish restaurant in Dundee with a good selection of meat and kebab. Ideal for a dinner with friends and coworkers. Fully recommended the lamb and the grilled meat. Plenty tables inside but recommended the reservation",
+    "notes": "A popular Turkish restaurant with a broad choice of kebabs and grilled meat. The lamb is a highlight, and the spacious dining room works well for groups. Reserve ahead for busy evenings.",
     "websiteUrl": "https://milas.has.restaurant/menu",
     "googleMapsUrl": "https://www.google.com/maps/place/Milas/@56.4594405,-2.9709512,20z/data=!4m6!3m5!1s0x48865dff0b9e082b:0x967e1474bfa97b54!8m2!3d56.4594405!4d-2.9706293!16s%2Fg%2F11n_yktwkb?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "tailend_restaurant_st_andrews",
+    "name": "Tailend Restaurant St Andrews",
+    "city": "St Andrews",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "fish_and_chips",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 2,
+    "foodTags": [
+      "fish_and_chips"
+    ],
+    "ratingDetails": {
+      "food": 8,
+      "location": 8,
+      "service": 7,
+      "value": 8
+    },
+    "lat": 56.340203,
+    "lng": -2.79799,
+    "vibes": [
+      "authentic",
+      "beer",
+      "casual",
+      "coworkers",
+      "cozy",
+      "date",
+      "dinner",
+      "family",
+      "friends",
+      "gluten_free",
+      "locals",
+      "wine"
+    ],
+    "notes": "A St Andrews favourite for fish and chips, with fresh seafood and a light, crisp fry. The menu includes gluten-free options. There is plenty of seating, but expect a queue before being shown to a table at busy times.",
+    "websiteUrl": "http://www.thetailend.co.uk/",
+    "googleMapsUrl": "https://maps.google.com/?cid=9584853735249473315&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJeY5wUYVXhkgRI--egbA9BIU"
+  },
+  {
+    "id": "mozza_st_andrews",
+    "name": "Mozza - St Andrews",
+    "city": "St Andrews",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "pizzeria",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 2,
+    "foodTags": [
+      "pizza"
+    ],
+    "ratingDetails": {
+      "food": 8,
+      "location": 7,
+      "service": 8,
+      "value": 8
+    },
+    "lat": 56.339371,
+    "lng": -2.798412,
+    "vibes": [
+      "authentic",
+      "beer",
+      "casual",
+      "date",
+      "family",
+      "friends",
+      "locals",
+      "pizza",
+      "street_food",
+      "takeaway",
+      "wine"
+    ],
+    "notes": "A popular St Andrews pizzeria whose menu features Italian ingredients such as 'nduja and Parma ham. The soft Neapolitan dough pairs well with a thoughtful wine list, including Primitivo and Negroamaro. Reserve ahead, even though there are plenty of tables.",
+    "websiteUrl": "https://mozza.co.uk/",
+    "googleMapsUrl": "https://maps.google.com/?cid=2268411890664804559&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJD1MstJpXhkgRzxBZk5gEex8"
+  },
+  {
+    "id": "jannettas_gelateria",
+    "name": "Jannettas Gelateria",
+    "city": "St Andrews",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "gelateria",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 1,
+    "foodTags": [
+      "gelato"
+    ],
+    "ratingDetails": {
+      "food": 7,
+      "location": 6,
+      "service": 7,
+      "value": 8
+    },
+    "lat": 56.339738,
+    "lng": -2.791576,
+    "vibes": [
+      "family",
+      "friends",
+      "street_food",
+      "takeaway",
+      "touristy"
+    ],
+    "notes": "A St Andrews gelateria with a generous choice of flavours and carefully made gelato. An easy stop for a sweet break while walking around the town.",
+    "websiteUrl": "http://www.jannettas.co.uk/",
+    "googleMapsUrl": "https://maps.google.com/?cid=17059561124266844068&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJ45A22JFXhkgRpB_9A3W8v-w"
+  },
+  {
+    "id": "the_marshmallow_lady",
+    "name": "The Marshmallow Lady",
+    "city": "Edinburgh",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "bakery_sweet",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 1,
+    "foodTags": [
+      "marshmallow"
+    ],
+    "ratingDetails": {
+      "food": 7,
+      "location": 7,
+      "service": 7,
+      "value": 7
+    },
+    "lat": 55.9623459,
+    "lng": -3.196237,
+    "vibes": [
+      "authentic",
+      "breakfast",
+      "casual",
+      "date",
+      "family",
+      "friends",
+      "locals",
+      "solo",
+      "street_food",
+      "takeaway"
+    ],
+    "notes": "A sweet Edinburgh stop for chocolate-covered marshmallows in different flavours. Ideal to take away while exploring the city, with a friendly atmosphere if you prefer to pause for a coffee.",
+    "websiteUrl": "http://www.themarshmallowlady.com/",
+    "googleMapsUrl": "https://www.google.com/maps/place/The+Marshmallow+Lady/@55.9584572,-3.2347629,13z/data=!4m6!3m5!1s0x4887c7ed2485374d:0x6f844c1b254f85f4!8m2!3d55.9623459!4d-3.196237!16s%2Fg%2F1hf5w_7db?hl=en&entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D",
+    "googlePlaceId": "ChIJTTeFJO3Hh0gR9IVPJRtMhG8"
+  },
+  {
+    "id": "ramen_ramen",
+    "name": "Ramen Ramen",
+    "city": "Edinburgh",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "ramen",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 2,
+    "ratingDetails": {
+      "food": 8,
+      "location": 8,
+      "service": 8,
+      "value": 8
+    },
+    "lat": 55.954132,
+    "lng": -3.187486,
+    "vibes": [
+      "authentic",
+      "coworkers",
+      "cozy",
+      "date",
+      "dinner",
+      "family",
+      "friends",
+      "locals",
+      "vegan"
+    ],
+    "notes": "A convincing ramen option in Edinburgh, with carefully prepared bowls and a cosy setting for dinner. The friendly, efficient service adds to the relaxed experience.",
+    "googleMapsUrl": "https://maps.google.com/?cid=17703796778879094766&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJ-Q9--NXHh0gR7g_LJF-FsPU"
+  },
+  {
+    "id": "xuan",
+    "name": "Xuan",
+    "city": "Bari",
+    "countryCode": "IT",
+    "currencyCode": "EUR",
+    "category": "sushi",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 2,
+    "foodTags": [
+      "sushi"
+    ],
+    "ratingDetails": {
+      "food": 7,
+      "location": 6,
+      "service": 7,
+      "value": 8
+    },
+    "lat": 41.12357,
+    "lng": 16.87587,
+    "vibes": [
+      "all-you-can-eat",
+      "casual",
+      "coworkers",
+      "date",
+      "dinner",
+      "family",
+      "friends",
+      "outdoor_seating",
+      "takeaway",
+      "wine"
+    ],
+    "notes": "Buon sushi a Bari in centro in cui provare modalita' \"all you can eat\". Staff cordiale e efficiente con sistema veloce per l'ordine.  Raccomandato anche per l'ottimo rapporto qualita' prezzo",
+    "googleMapsUrl": "https://maps.google.com/?cid=16323833800816298870&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJmVebzmfoRxMRdosrvlroieI"
+  },
+  {
+    "id": "the_alchemist_st_james_quarter",
+    "name": "The Alchemist St James Quarter",
+    "city": "Edinburgh",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "cocktail_bar",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 7,
+      "location": 8,
+      "service": 8,
+      "value": 7
+    },
+    "lat": 55.949706,
+    "lng": -3.183345,
+    "vibes": [
+      "authentic",
+      "cocktails",
+      "coworkers",
+      "cozy",
+      "date",
+      "friends",
+      "late-night"
+    ],
+    "notes": "A playful cocktail bar and restaurant known for theatrical drinks. Its central setting and welcoming staff make it well suited to a date or an evening out with friends.",
+    "websiteUrl": "https://thealchemistbars.com/venues/edinburgh/st-james-quarter/?utm_source=google&utm_medium=organic&utm_campaign=gmb",
+    "googleMapsUrl": "https://maps.google.com/?cid=11509068561647722355&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJVReNJ1HHh0gRc9-gEOFsuJ8"
+  },
+  {
+    "id": "the_elephant_house",
+    "name": "The Elephant House",
+    "city": "Edinburgh",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "coffee_bar",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 6,
+      "location": 8,
+      "service": 7,
+      "value": 7
+    },
+    "lat": 55.94757,
+    "lng": -3.191785,
+    "vibes": [
+      "breakfast",
+      "coffee",
+      "coworkers",
+      "date",
+      "family",
+      "friends",
+      "locals",
+      "solo"
+    ],
+    "notes": "An iconic Edinburgh café known for its connection with J. K. Rowling and the Harry Potter stories. Stop for a coffee in a memorable central setting, especially if you are a fan of the series.",
+    "websiteUrl": "https://elephanthousecafe.com/",
+    "googleMapsUrl": "https://maps.google.com/?cid=15327917486481461825&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJfeKY1ZrHh0gRQdI5QL6zt9Q"
+  },
+  {
+    "id": "celino_s_partick",
+    "name": "Celino's Partick",
+    "city": "Glasgow",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "restaurant",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 2,
+    "foodTags": [
+      "pizza"
+    ],
+    "ratingDetails": {
+      "food": 9,
+      "location": 8,
+      "service": 8,
+      "value": 8
+    },
+    "lat": 55.870695,
+    "lng": -4.302922,
+    "vibes": [
+      "aperitif",
+      "authentic",
+      "beer",
+      "cozy",
+      "date",
+      "dinner",
+      "family",
+      "friends",
+      "locals",
+      "lunch",
+      "pizza",
+      "puccie",
+      "wine"
+    ],
+    "notes": "A well-regarded Italian restaurant in Glasgow for traditional pizza, focaccia and a broad range of Italian dishes. The small in-house shop adds to the appeal, with products to take home. A warm choice for a date or dinner with friends.",
+    "websiteUrl": "http://www.celinos.com/",
+    "googleMapsUrl": "https://maps.google.com/?cid=4397085764820251778&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJG4juPttFiEgRgrQJ0zSWBT0"
+  },
+  {
+    "id": "franco_manca_cambridge",
+    "name": "Franco Manca Cambridge",
+    "city": "Cambridge",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "pizzeria",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 2,
+    "foodTags": [
+      "pizza"
+    ],
+    "ratingDetails": {
+      "food": 8,
+      "location": 7,
+      "service": 7,
+      "value": 8
+    },
+    "lat": 52.205811,
+    "lng": 0.119118,
+    "vibes": [
+      "aperitif",
+      "authentic",
+      "casual",
+      "date",
+      "family",
+      "friends",
+      "locals",
+      "pizza",
+      "wine"
+    ],
+    "notes": "A relaxed Cambridge pizzeria serving Neapolitan-style pizza made with Italian ingredients. The wood-fired oven gives the crust a pleasant char, and the broad menu suits different tastes. Cosy but spacious; book ahead during the busiest times. Friendly staff.",
+    "websiteUrl": "https://www.francomanca.co.uk/menu/",
+    "googleMapsUrl": "https://maps.google.com/?cid=17944818314501440190&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJq8TblL1w2EcRvkLIai7NCPk"
+  },
+  {
+    "id": "aromi_caffe_and_pizzeria",
+    "name": "Aromi Caffe and Pizzeria",
+    "city": "Cambridge",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "restaurant",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 7,
+      "location": 7,
+      "service": 7,
+      "value": 8
+    },
+    "lat": 52.204204,
+    "lng": 0.118779,
+    "vibes": [
+      "date",
+      "dinner",
+      "family",
+      "friends",
+      "locals",
+      "lunch",
+      "street_food",
+      "takeaway",
+      "wine"
+    ],
+    "notes": "A welcoming Italian spot for Sicilian specialities, including arancini made with quality ingredients. Especially good for takeaway; leave room for the cannoli or tiramisu.",
+    "websiteUrl": "http://www.aromi.co.uk/",
+    "googleMapsUrl": "https://maps.google.com/?cid=8749545378186038860&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJDfksD71w2EcRTI7wFCqhbHk"
+  },
+  {
+    "id": "le_caf_robuchon",
+    "name": "Le Café Robuchon",
+    "city": "London",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "bakery_sweet",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 9,
+      "location": 8,
+      "service": 8,
+      "value": 8
+    },
+    "lat": 51.506474,
+    "lng": -0.143758,
+    "vibes": [
+      "authentic",
+      "breakfast",
+      "casual",
+      "coffee",
+      "coworkers",
+      "hidden_gem",
+      "locals",
+      "street_food",
+      "takeaway"
+    ],
+    "notes": "A polished French patisserie with excellent classic and cube croissants. The bright, spacious room also serves sandwiches and focaccia, making it a strong option for a quick nearby lunch.",
+    "websiteUrl": "https://robuchonlondon.co.uk/",
+    "googleMapsUrl": "https://maps.google.com/?cid=12079393180637165334&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJy3bwIi0FdkgRFncnMhmgoqc"
+  },
+  {
+    "id": "haidilao_hot_pot",
+    "name": "Haidilao Hot Pot",
+    "city": "London",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "chinese",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 3,
+    "foodTags": [
+      "chinese_hot_pot"
+    ],
+    "ratingDetails": {
+      "food": 8,
+      "location": 8,
+      "service": 9,
+      "value": 8
+    },
+    "lat": 51.510299,
+    "lng": -0.132919,
+    "vibes": [
+      "authentic",
+      "beer",
+      "casual",
+      "coworkers",
+      "date",
+      "dinner",
+      "family",
+      "friends",
+      "locals",
+      "street_food"
+    ],
+    "notes": "A lively London hot-pot restaurant with an immersive Chinese atmosphere and a wide choice of meat, seafood and vegetables. Service is efficient and welcoming. It gets busy, so reserve ahead.",
+    "websiteUrl": "https://www.superhiinternational.com/",
+    "googleMapsUrl": "https://maps.google.com/?cid=8107044033030746231&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJqxBXczEFdkgRd3A_V5gBgnA"
+  },
+  {
+    "id": "kahve_dunyasi",
+    "name": "Kahve Dunyasi",
+    "city": "London",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "coffee_bar",
+    "area": "cityCentre",
+    "rating": 6,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 7,
+      "location": 6,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 51.509033,
+    "lng": -0.136261,
+    "vibes": [
+      "breakfast",
+      "coffee",
+      "coworkers",
+      "family",
+      "friends",
+      "solo"
+    ],
+    "notes": "A convenient Piccadilly Circus stop for Turkish coffee and a quick break. The espresso is a reliable alternative to its Turkish specialities.",
+    "websiteUrl": "https://www.kahvedunyasi.com/",
+    "googleMapsUrl": "https://maps.google.com/?cid=10456461460227930686&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJaUryvNYEdkgRPrpyIEzQHJE"
+  },
+  {
+    "id": "circolo_popolare",
+    "name": "Circolo Popolare",
+    "city": "London",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "restaurant",
+    "area": "cityCentre",
+    "rating": 9,
+    "priceLevel": 3,
+    "ratingDetails": {
+      "food": 9,
+      "location": 9,
+      "service": 9,
+      "value": 8
+    },
+    "lat": 51.517168,
+    "lng": -0.133861,
+    "vibes": [
+      "authentic",
+      "coworkers",
+      "date",
+      "dinner",
+      "family",
+      "friends",
+      "hidden_gem",
+      "locals",
+      "pizza",
+      "wine"
+    ],
+    "notes": "A lively Italian restaurant whose theatrical décor creates a memorable setting for a romantic dinner. The menu focuses on Italian ingredients, with pizza and main courses both worth exploring. Attentive staff help guests feel at ease.",
+    "websiteUrl": "https://www.circolopopolare.com/restaurants/circolopopolare-london?utm_source=google&utm_medium=organic&utm_campaign=mybusiness-website",
+    "googleMapsUrl": "https://maps.google.com/?cid=9331157722909174934&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJK4j9CagbdkgRluwkqYLufoE"
+  },
+  {
+    "id": "radio_rooftop",
+    "name": "Radio Rooftop",
+    "city": "London",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "cocktail_bar",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 2,
+    "foodTags": [
+      "cocktails"
+    ],
+    "ratingDetails": {
+      "food": 8,
+      "location": 9,
+      "service": 8,
+      "value": 7
+    },
+    "lat": 51.511763,
+    "lng": -0.118676,
+    "vibes": [
+      "beer",
+      "cocktails",
+      "date",
+      "dinner",
+      "friends",
+      "late-night",
+      "wine"
+    ],
+    "notes": "A London rooftop bar with panoramic city views and a broad cocktail list. Drinks are expensive, but the setting justifies a visit; weekdays are calmer than peak times. Service is attentive.",
+    "websiteUrl": "https://radiorooftop.com/",
+    "googleMapsUrl": "https://maps.google.com/?cid=10550504196204100833&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJZf-9xMsEdkgR4XwD4KrrapI"
+  },
+  {
+    "id": "amaro_bar_london",
+    "name": "AMARO BAR - London",
+    "city": "London",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "cocktail_bar",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 9,
+      "location": 8,
+      "service": 9,
+      "value": 8
+    },
+    "lat": 51.502254,
+    "lng": -0.188203,
+    "vibes": [
+      "aperitif",
+      "cocktails",
+      "coworkers",
+      "cozy",
+      "date",
+      "friends",
+      "late-night",
+      "locals"
+    ],
+    "notes": "A Kensington cocktail bar for Negronis and Italian-style drinks. Friendly, helpful service makes it a relaxed choice for an aperitivo or an evening drink.",
+    "websiteUrl": "http://www.amarobar.co.uk/",
+    "googleMapsUrl": "https://maps.google.com/?cid=8216524740612297804&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJz7KQWGEPdkgRTJRn9Lf1BnI"
+  },
+  {
+    "id": "ben_s_traditional_fish_chips",
+    "name": "Ben’s Traditional Fish & Chips",
+    "city": "London",
+    "countryCode": "GB",
+    "currencyCode": "GBP",
+    "category": "fish_and_chips",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 1,
+    "ratingDetails": {
+      "food": 7,
+      "location": 6,
+      "service": 7,
+      "value": 7
+    },
+    "lat": 51.515437,
+    "lng": -0.126595,
+    "vibes": [
+      "beer",
+      "casual",
+      "coworkers",
+      "dinner",
+      "family",
+      "friends",
+      "locals",
+      "lunch",
+      "solo",
+      "street_food"
+    ],
+    "notes": "A traditional London fish-and-chip restaurant with crisp cod and a varied menu. The setting feels authentic, and the staff are welcoming.",
+    "websiteUrl": "https://bensfishandchips.co.uk/",
+    "googleMapsUrl": "https://maps.google.com/?cid=10029128133900051832&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJoa4D0TIbdkgReCX9s-aeLos"
   }
 ]

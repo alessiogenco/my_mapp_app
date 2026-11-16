@@ -4,6 +4,10 @@ param(
 
     [switch] $Release,
 
+    # Use this on locked-down Windows PCs when the package list is already
+    # synchronized but Flutter cannot create desktop plugin symlinks.
+    [switch] $SkipPub,
+
     # Keep one browser origin while developing so browser-local data,
     # including the private Want to go list, survives app restarts.
     [int] $WebPort = 7357
@@ -73,6 +77,11 @@ if (Test-Path $SupabaseEnvFile) {
 
 if ($Release) {
     $FlutterArgs += "--release"
+}
+
+if ($SkipPub) {
+    $FlutterArgs += "--no-pub"
+    Write-Host "Uso le dipendenze gia sincronizzate, senza rigenerare i collegamenti plugin di Windows." -ForegroundColor DarkYellow
 }
 
 if ($Device -eq "chrome" -or $Device -eq "edge" -or $Device -eq "web-server") {

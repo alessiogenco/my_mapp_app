@@ -7,8 +7,12 @@ const _placesFilePath = 'assets/data/places.json';
 const _backupDirectoryPath = 'assets/data/backups';
 const _allowedCategories = {
   'restaurant',
+  'fish_and_chips',
   'sushi',
+  'ramen',
   'chinese',
+  'turkish',
+  'kebab',
   'indian',
   'pizzeria',
   'panzerotteria',
@@ -32,6 +36,9 @@ Future<void> main() async {
   final server = await HttpServer.bind(_host, _port);
   stdout.writeln('Place writer server running on http://$_host:$_port');
   stdout.writeln('Writing to $_placesFilePath');
+  stdout.writeln(
+    'Supported categories include Fish and chips, Ramen, Turkish and Kebab.',
+  );
 
   await for (final request in server) {
     await _handleRequest(request);

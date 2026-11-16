@@ -5,8 +5,12 @@ $PlacesPath = Join-Path $ProjectRoot "assets\data\places.json"
 
 $AllowedCategories = @(
     "restaurant",
+    "fish_and_chips",
     "sushi",
+    "ramen",
     "chinese",
+    "turkish",
+    "kebab",
     "indian",
     "pizzeria",
     "panzerotteria",

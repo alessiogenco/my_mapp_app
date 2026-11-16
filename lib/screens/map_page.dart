@@ -2,10 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:ui' as ui;
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 import 'package:my_map_app/config/map_config.dart';
+import 'package:my_map_app/config/social_config.dart';
 import 'package:my_map_app/data/place_repository.dart';
 import 'package:my_map_app/data/want_to_go_repository.dart';
 import 'package:my_map_app/models/place.dart';
@@ -14,7 +16,9 @@ import 'package:my_map_app/models/want_to_go_place.dart';
 import 'package:my_map_app/screens/account_page.dart';
 import 'package:my_map_app/screens/add_place_page.dart';
 import 'package:my_map_app/screens/friends_page.dart';
+import 'package:my_map_app/screens/notifications_page.dart';
 import 'package:my_map_app/screens/want_to_go_page.dart';
+import 'package:my_map_app/services/device_location_service.dart';
 import 'package:my_map_app/services/geocoding_service.dart';
 import 'package:my_map_app/widgets/glass_panel.dart';
 import 'package:my_map_app/widgets/map_filters.dart';
@@ -41,11 +45,14 @@ class _MapPageState extends State<MapPage> {
   static const _markerBackgroundLayerId = 'my-locals-place-backgrounds';
   static const _badgeLayerId = 'my-locals-place-badges';
   static const _labelLayerId = 'my-locals-place-labels';
+  static const _wantToGoLabelLayerId = 'my-locals-want-to-go-labels';
   static const _markerImagePrefix = 'my-locals-category-marker-';
   static const _wantToGoMarkerImageId = 'my-locals-want-to-go-marker';
   static const _defaultMarkerImageId = 'my-locals-default-marker';
   static const _labelImageId = 'my-locals-place-label';
   static const _wantToGoLabelImageId = 'my-locals-want-to-go-label';
+  static const _userLocationSourceId = 'my-locals-user-location-source';
+  static const _userLocationLayerId = 'my-locals-user-location-dot';
 
   final ViewportController _viewportController = ViewportController();
   MapboxMap? _mapboxMap;
@@ -63,6 +70,11 @@ class _MapPageState extends State<MapPage> {
   bool _isLoadingPlaces = true;
   bool _isSearchingCity = false;
   String? _placesError;
+  String? _accountAvatarUrl;
+  int _unreadNotificationCount = 0;
+  bool _isLocatingUser = false;
+  bool _isUserLocationVisible = false;
+  DeviceLocation? _userLocation;
 
   List<Place> get _filteredPlaces {
     return _places.where((place) {
@@ -206,12 +218,80 @@ class _MapPageState extends State<MapPage> {
     super.initState();
     _loadPlaces();
     _loadWantToGo();
+    _loadAccountAvatar();
+    _loadNotificationState();
   }
 
   @override
   void dispose() {
     _viewportController.dispose();
     super.dispose();
+  }
+
+  Future<void> _loadAccountAvatar() async {
+    if (!SocialConfig.isAvailable) return;
+    final user = SocialConfig.client.auth.currentUser;
+    if (user == null) {
+      if (mounted) setState(() => _accountAvatarUrl = null);
+      return;
+    }
+
+    try {
+      final profile = await SocialConfig.client
+          .from('profiles')
+          .select('avatar_url')
+          .eq('id', user.id)
+          .maybeSingle();
+      final metadata = user.userMetadata;
+      final avatarUrl = (profile?['avatar_url'] as String?) ??
+          (metadata?['avatar_url'] as String?) ??
+          (metadata?['picture'] as String?);
+      if (mounted) setState(() => _accountAvatarUrl = avatarUrl);
+    } catch (_) {
+      // The account entry point must still work when social data is unavailable.
+    }
+  }
+
+  Future<void> _loadNotificationState() async {
+    if (!SocialConfig.isAvailable) {
+      if (mounted) setState(() => _unreadNotificationCount = 0);
+      return;
+    }
+
+    final user = SocialConfig.client.auth.currentUser;
+    if (user == null) {
+      if (mounted) setState(() => _unreadNotificationCount = 0);
+      return;
+    }
+
+    try {
+      final profile = await SocialConfig.client
+          .from('profiles')
+          .select('notification_preference')
+          .eq('id', user.id)
+          .maybeSingle();
+      final preference = profile?['notification_preference']?.toString();
+      if (preference == 'off') {
+        if (mounted) setState(() => _unreadNotificationCount = 0);
+        return;
+      }
+
+      dynamic request = SocialConfig.client
+          .from('app_notifications')
+          .select('id')
+          .eq('recipient_id', user.id)
+          .isFilter('read_at', null);
+      if (preference != 'all') {
+        request = request.gte('importance', 2);
+      }
+      final rows = await request.limit(100);
+      if (mounted) {
+        setState(() => _unreadNotificationCount = (rows as List).length);
+      }
+    } catch (_) {
+      // The bell stays usable even before the optional notification migration.
+      if (mounted) setState(() => _unreadNotificationCount = 0);
+    }
   }
 
   Future<void> _loadPlaces() async {
@@ -373,6 +453,13 @@ class _MapPageState extends State<MapPage> {
       ),
       interactionID: 'my-locals-tap-label',
     );
+    mapboxMap.addInteraction(
+      TapInteraction(
+        FeaturesetDescriptor(layerId: _wantToGoLabelLayerId),
+        _onMapFeatureTap,
+      ),
+      interactionID: 'my-locals-tap-want-to-go-label',
+    );
   }
 
   Future<void> _onStyleLoaded(StyleLoadedEventData _) async {
@@ -425,6 +512,7 @@ class _MapPageState extends State<MapPage> {
           id: _labelLayerId,
           sourceId: _placesSourceId,
           slot: 'top',
+          filter: const ['==', ['get', 'kind'], 'catalog'],
           minZoom: 11,
           iconImageExpression: ['get', 'labelIcon'],
           iconTextFit: IconTextFit.BOTH,
@@ -449,6 +537,30 @@ class _MapPageState extends State<MapPage> {
           textAllowOverlap: false,
         ),
       );
+      await map.addLayer(
+        SymbolLayer(
+          id: _wantToGoLabelLayerId,
+          sourceId: _placesSourceId,
+          slot: 'top',
+          filter: const ['==', ['get', 'kind'], 'want'],
+          iconImageExpression: ['get', 'labelIcon'],
+          iconTextFit: IconTextFit.BOTH,
+          iconTextFitPadding: const <double>[3, 8, 3, 8],
+          iconOffset: const <double>[0, 1.1],
+          iconAllowOverlap: true,
+          iconIgnorePlacement: true,
+          textFieldExpression: ['get', 'name'],
+          textSize: 12,
+          textMaxWidth: 12,
+          textAnchor: TextAnchor.TOP,
+          textJustify: TextJustify.CENTER,
+          textOffset: const <double>[0, 2.2],
+          textColor: const Color(0xFF805400).toARGB32(),
+          textAllowOverlap: true,
+          textIgnorePlacement: true,
+        ),
+      );
+      await _configureUserLocationLayer(map);
       _isStyleReady = true;
       await _updateMapFeatures();
     } catch (error) {
@@ -461,7 +573,7 @@ class _MapPageState extends State<MapPage> {
       await _addAssetImage(
         map,
         _markerImageIdForCategory(category),
-        'assets/markers/$category.png',
+        _markerAssetPathForCategory(category),
       );
     }
     await _addAssetImage(
@@ -542,9 +654,27 @@ class _MapPageState extends State<MapPage> {
   }
 
   String _markerImageIdForCategory(String category) {
-    return allowedPlaceCategories.contains(category)
-        ? '$_markerImagePrefix$category'
-        : _defaultMarkerImageId;
+    if (!allowedPlaceCategories.contains(category)) {
+      return _defaultMarkerImageId;
+    }
+
+    // Distinct IDs ensure Mapbox does not reuse retired category markers.
+    return switch (category) {
+      'chinese' => '${_markerImagePrefix}chinese-noodles',
+      'ramen' => '${_markerImagePrefix}ramen-noodles',
+      'kebab' => '${_markerImagePrefix}kebab-doner',
+      _ => '$_markerImagePrefix$category',
+    };
+  }
+
+  String _markerAssetPathForCategory(String category) {
+    return switch (category) {
+      'fish_and_chips' => 'assets/markers/fish_and_chips.png',
+      'chinese' => 'assets/markers/chinese_noodles.png',
+      'ramen' => 'assets/markers/chinese_noodles.png',
+      'kebab' => 'assets/markers/turkish_doner.png',
+      _ => 'assets/markers/$category.png',
+    };
   }
 
   void _onMapFeatureTap(
@@ -603,6 +733,102 @@ class _MapPageState extends State<MapPage> {
       camera.center.coordinates.lng.toDouble(),
       (camera.zoom + delta).clamp(1, 22).toDouble(),
       animated: false,
+    );
+  }
+
+  Future<void> _goToMyLocation() async {
+    if (_isLocatingUser) return;
+    final map = _mapboxMap;
+    if (map == null) {
+      _showMessage('The map is still loading. Try again in a moment.');
+      return;
+    }
+
+    setState(() => _isLocatingUser = true);
+    try {
+      if (!kIsWeb) {
+        await map.location.updateSettings(
+          LocationComponentSettings(
+            enabled: true,
+            pulsingEnabled: true,
+            showAccuracyRing: true,
+          ),
+        );
+        _viewportController.moveTo(
+          FollowPuckViewportState(),
+          transition: const DefaultViewportTransition(),
+        );
+        if (mounted) setState(() => _isUserLocationVisible = true);
+        return;
+      }
+
+      final location = await getCurrentDeviceLocation();
+      if (!mounted) return;
+      setState(() {
+        _userLocation = location;
+        _isUserLocationVisible = true;
+      });
+      await _updateUserLocationFeature();
+      _moveMapTo(location.latitude, location.longitude, 15);
+    } on DeviceLocationException catch (error) {
+      _showMessage(error.message);
+    } catch (_) {
+      _showMessage('Could not start location. Check browser or device permissions.');
+    } finally {
+      if (mounted) setState(() => _isLocatingUser = false);
+    }
+  }
+
+  Future<void> _updateUserLocationFeature() async {
+    final map = _mapboxMap;
+    if (!_isStyleReady || map == null) return;
+
+    try {
+      await map.setStyleSourceProperty(
+        _userLocationSourceId,
+        'data',
+        _userLocationGeoJson(),
+      );
+    } catch (error) {
+      debugPrint('Could not update the user location marker: $error');
+    }
+  }
+
+  String _userLocationGeoJson() {
+    final location = _userLocation;
+    if (location == null) {
+      return jsonEncode({'type': 'FeatureCollection', 'features': const []});
+    }
+
+    return jsonEncode({
+      'type': 'FeatureCollection',
+      'features': [
+        {
+          'type': 'Feature',
+          'geometry': {
+            'type': 'Point',
+            'coordinates': [location.longitude, location.latitude],
+          },
+          'properties': const <String, dynamic>{},
+        },
+      ],
+    });
+  }
+
+  Future<void> _configureUserLocationLayer(MapboxMap map) async {
+    await map.addSource(
+      GeoJsonSource(id: _userLocationSourceId, data: _userLocationGeoJson()),
+    );
+    await map.addLayer(
+      CircleLayer(
+        id: _userLocationLayerId,
+        sourceId: _userLocationSourceId,
+        slot: 'top',
+        circleRadius: 8,
+        circleColor: const Color(0xFF2F80ED).toARGB32(),
+        circleStrokeWidth: 3,
+        circleStrokeColor: Colors.white.toARGB32(),
+      ),
     );
   }
 
@@ -764,46 +990,110 @@ class _MapPageState extends State<MapPage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    GlassPanel(
-                      child: TextField(
-                        enabled: !_isSearchingCity,
-                        style: const TextStyle(
-                          color: Color(0xFF173F54),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        decoration: InputDecoration(
-                          hintText: 'Search city (e.g. Milan)',
-                          hintStyle: const TextStyle(
-                            color: Color(0xFF587789),
-                            fontWeight: FontWeight.w500,
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        final citySearch = ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            maxWidth: mapToolbarMaxWidth,
                           ),
-                          border: InputBorder.none,
-                          prefixIcon: const Icon(
-                            Icons.location_on_rounded,
-                            color: Color(0xFF205A78),
-                            size: 21,
-                          ),
-                          suffixIcon: _isSearchingCity
-                              ? const Padding(
-                                  padding: EdgeInsets.all(10),
-                                  child: SizedBox.square(
-                                    dimension: 20,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                    ),
-                                  ),
-                                )
-                              : const Icon(
-                                  Icons.search_rounded,
-                                  color: Color(0xFF205A78),
+                          child: GlassPanel(
+                            maxWidth: mapToolbarMaxWidth,
+                            child: TextField(
+                              enabled: !_isSearchingCity,
+                              style: const TextStyle(
+                                color: Color(0xFF173F54),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              decoration: InputDecoration(
+                                hintText: 'Search city (e.g. Milan)',
+                                hintStyle: const TextStyle(
+                                  color: Color(0xFF587789),
+                                  fontWeight: FontWeight.w500,
                                 ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 11,
+                                border: InputBorder.none,
+                                prefixIcon: const Icon(
+                                  Icons.location_on_rounded,
+                                  color: Color(0xFF205A78),
+                                  size: 21,
+                                ),
+                                suffixIcon: _isSearchingCity
+                                    ? const Padding(
+                                        padding: EdgeInsets.all(10),
+                                        child: SizedBox.square(
+                                          dimension: 20,
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2,
+                                          ),
+                                        ),
+                                      )
+                                    : const Icon(
+                                        Icons.search_rounded,
+                                        color: Color(0xFF205A78),
+                                      ),
+                                contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 11,
+                                ),
+                              ),
+                              onSubmitted: _searchCity,
+                            ),
                           ),
-                        ),
-                        onSubmitted: _searchCity,
-                      ),
+                        );
+                        final accountAvatar = _MapAccountAvatar(
+                          avatarUrl: _accountAvatarUrl,
+                          onPressed: () async {
+                            await Navigator.of(context).push(
+                              MaterialPageRoute<void>(
+                                builder: (_) => const AccountPage(),
+                              ),
+                            );
+                            _loadAccountAvatar();
+                            _loadNotificationState();
+                          },
+                        );
+                        final accountControls = Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            _MapNotificationBell(
+                              unreadCount: _unreadNotificationCount,
+                              onPressed: () async {
+                                await Navigator.of(context).push(
+                                  MaterialPageRoute<void>(
+                                    builder: (_) => const NotificationsPage(),
+                                  ),
+                                );
+                                _loadNotificationState();
+                              },
+                            ),
+                            const SizedBox(width: 8),
+                            accountAvatar,
+                          ],
+                        );
+
+                        if (constraints.maxWidth >= 820) {
+                          return SizedBox(
+                            height: 54,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                citySearch,
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: accountControls,
+                                ),
+                              ],
+                            ),
+                          );
+                        }
+
+                        return Row(
+                          children: [
+                            Expanded(child: citySearch),
+                            const SizedBox(width: 10),
+                            accountControls,
+                          ],
+                        );
+                      },
                     ),
                     const SizedBox(height: 10),
                     MapFilters(
@@ -903,33 +1193,19 @@ class _MapPageState extends State<MapPage> {
           ),
           const SizedBox(height: 10),
           FloatingActionButton(
-            heroTag: 'account',
-            mini: true,
-            backgroundColor: Colors.white.withValues(alpha: 0.94),
-            foregroundColor: const Color(0xFF137DB8),
-            tooltip: 'Account',
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => const AccountPage(),
-                ),
-              );
-            },
-            child: const Icon(Icons.person_outline_rounded),
-          ),
-          const SizedBox(height: 10),
-          FloatingActionButton(
             heroTag: 'addPlace',
             mini: true,
             backgroundColor: Colors.white.withValues(alpha: 0.94),
             foregroundColor: const Color(0xFF137DB8),
             tooltip: 'Add place',
-            onPressed: () {
-              Navigator.of(context).push(
+            onPressed: () async {
+              await Navigator.of(context).push<void>(
                 MaterialPageRoute<void>(
                   builder: (_) => const AddPlacePage(),
                 ),
               );
+              if (!mounted) return;
+              await _loadPlaces();
             },
             child: const Icon(Icons.edit_location_alt_rounded),
           ),
@@ -942,6 +1218,29 @@ class _MapPageState extends State<MapPage> {
             tooltip: 'Want to go list',
             onPressed: _openWantToGo,
             child: const Icon(Icons.explore_outlined),
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton(
+            heroTag: 'myLocation',
+            mini: true,
+            backgroundColor: _isUserLocationVisible
+                ? const Color(0xFF137DB8)
+                : Colors.white.withValues(alpha: 0.94),
+            foregroundColor: _isUserLocationVisible
+                ? Colors.white
+                : const Color(0xFF137DB8),
+            tooltip: 'My location',
+            onPressed: _isLocatingUser ? null : _goToMyLocation,
+            child: _isLocatingUser
+                ? const SizedBox.square(
+                    dimension: 18,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
+                : Icon(
+                    _isUserLocationVisible
+                        ? Icons.my_location_rounded
+                        : Icons.location_searching_rounded,
+                  ),
           ),
           const SizedBox(height: 10),
           FloatingActionButton(
@@ -962,6 +1261,107 @@ class _MapPageState extends State<MapPage> {
             child: const Icon(Icons.remove),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _MapNotificationBell extends StatelessWidget {
+  const _MapNotificationBell({
+    required this.unreadCount,
+    required this.onPressed,
+  });
+
+  final int unreadCount;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final badgeLabel = unreadCount > 9 ? '9+' : unreadCount.toString();
+    return Tooltip(
+      message: 'Notifications',
+      child: Material(
+        color: Colors.white.withValues(alpha: 0.94),
+        shape: const CircleBorder(),
+        elevation: 3,
+        child: InkWell(
+          onTap: onPressed,
+          customBorder: const CircleBorder(),
+          child: SizedBox(
+            width: 50,
+            height: 50,
+            child: Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.center,
+              children: [
+                const Icon(
+                  Icons.notifications_none_rounded,
+                  color: Color(0xFF205A78),
+                  size: 25,
+                ),
+                if (unreadCount > 0)
+                  Positioned(
+                    top: 6,
+                    right: 5,
+                    child: Container(
+                      constraints: const BoxConstraints(minWidth: 17),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 4,
+                        vertical: 1,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFE55353),
+                        border: Border.all(color: Colors.white, width: 1.5),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        badgeLabel,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _MapAccountAvatar extends StatelessWidget {
+  const _MapAccountAvatar({required this.avatarUrl, required this.onPressed});
+
+  final String? avatarUrl;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final hasAvatar = avatarUrl != null && avatarUrl!.isNotEmpty;
+    return Tooltip(
+      message: 'Account',
+      child: Material(
+        color: Colors.white.withValues(alpha: 0.94),
+        shape: const CircleBorder(),
+        elevation: 3,
+        child: InkWell(
+          onTap: onPressed,
+          customBorder: const CircleBorder(),
+          child: Padding(
+            padding: const EdgeInsets.all(3),
+            child: CircleAvatar(
+              radius: 22,
+              foregroundImage:
+                  hasAvatar ? NetworkImage(avatarUrl!) : null,
+              child: const Icon(Icons.person_outline_rounded),
+            ),
+          ),
+        ),
       ),
     );
   }

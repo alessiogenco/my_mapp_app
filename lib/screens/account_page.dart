@@ -17,7 +17,9 @@ class _AccountPageState extends State<AccountPage> {
   final _displayNameController = TextEditingController();
 
   User? _user;
+  String? _avatarUrl;
   bool _shareRatings = false;
+  String _notificationPreference = 'important';
   bool _isLoading = true;
   bool _isSaving = false;
 
@@ -54,17 +56,30 @@ class _AccountPageState extends State<AccountPage> {
 
       final profile = await SocialConfig.client
           .from('profiles')
-          .select('handle, display_name, share_ratings_with_friends')
+          .select(
+            'handle, display_name, avatar_url, share_ratings_with_friends, notification_preference',
+          )
           .eq('id', user.id)
           .maybeSingle();
       if (!mounted) return;
 
-      _handleController.text = profile?['handle'] as String? ?? '';
+      final metadata = user.userMetadata;
+      _handleController.text = (profile?['handle'] as String?) ?? '';
       _displayNameController.text =
-          profile?['display_name'] as String? ?? '';
+          (profile?['display_name'] as String?) ??
+          (metadata?['full_name'] as String?) ??
+          (metadata?['name'] as String?) ??
+          '';
       setState(() {
         _user = user;
+        _avatarUrl =
+            (profile?['avatar_url'] as String?) ??
+            (metadata?['avatar_url'] as String?) ??
+            (metadata?['picture'] as String?);
         _shareRatings = profile?['share_ratings_with_friends'] == true;
+        _notificationPreference = _normaliseNotificationPreference(
+          profile?['notification_preference']?.toString(),
+        );
       });
     } on AuthException catch (error) {
       _showMessage(error.message);
@@ -118,6 +133,40 @@ class _AccountPageState extends State<AccountPage> {
     }
   }
 
+  Future<void> _signInWithGoogle() async {
+    if (_isSaving) return;
+    setState(() => _isSaving = true);
+    try {
+      await SocialConfig.client.auth.signInWithOAuth(
+        OAuthProvider.google,
+        redirectTo: Uri.base.origin,
+      );
+    } on AuthException catch (error) {
+      _showMessage(error.message);
+    } catch (_) {
+      _showMessage('Could not start Google sign-in. Try again.');
+    } finally {
+      if (mounted) setState(() => _isSaving = false);
+    }
+  }
+
+  Future<void> _linkGoogleAccount() async {
+    if (_isSaving) return;
+    setState(() => _isSaving = true);
+    try {
+      await SocialConfig.client.auth.linkIdentity(
+        OAuthProvider.google,
+        redirectTo: Uri.base.origin,
+      );
+    } on AuthException catch (error) {
+      _showMessage(error.message);
+    } catch (_) {
+      _showMessage('Could not start Google account linking. Try again.');
+    } finally {
+      if (mounted) setState(() => _isSaving = false);
+    }
+  }
+
   Future<void> _saveProfile() async {
     final user = _user;
     if (user == null || _isSaving || !_formKey.currentState!.validate()) {
@@ -130,7 +179,9 @@ class _AccountPageState extends State<AccountPage> {
         'id': user.id,
         'handle': _handleController.text.trim().toLowerCase(),
         'display_name': _displayNameController.text.trim(),
+        'avatar_url': _avatarUrl,
         'share_ratings_with_friends': _shareRatings,
+        'notification_preference': _notificationPreference,
       }, onConflict: 'id');
       _showMessage('Profile saved.');
     } on PostgrestException catch (error) {
@@ -152,6 +203,7 @@ class _AccountPageState extends State<AccountPage> {
         setState(() {
           _user = null;
           _shareRatings = false;
+          _notificationPreference = 'important';
         });
       }
     } catch (_) {
@@ -243,6 +295,15 @@ class _AccountPageState extends State<AccountPage> {
               child: const Text('Create account'),
             ),
           ),
+          const SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            child: OutlinedButton.icon(
+              onPressed: _isSaving ? null : _signInWithGoogle,
+              icon: const Icon(Icons.account_circle_outlined),
+              label: const Text('Continue with Google'),
+            ),
+          ),
         ],
       ),
     );
@@ -261,7 +322,13 @@ class _AccountPageState extends State<AccountPage> {
                 ),
           ),
           const SizedBox(height: 4),
-          Text(_user!.email ?? ''),
+          Row(
+            children: [
+              _ProfileAvatar(avatarUrl: _avatarUrl),
+              const SizedBox(width: 10),
+              Expanded(child: Text(_user!.email ?? '')),
+            ],
+          ),
           const SizedBox(height: 24),
           TextFormField(
             controller: _displayNameController,
@@ -292,11 +359,58 @@ class _AccountPageState extends State<AccountPage> {
             ),
           ),
           const SizedBox(height: 18),
+          Text(
+            'Notifications',
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+          ),
+          const SizedBox(height: 4),
+          const Text(
+            'Choose how much activity from friends should reach your bell.',
+          ),
+          const SizedBox(height: 8),
+          DropdownButtonFormField<String>(
+            value: _notificationPreference,
+            decoration: const InputDecoration(
+              labelText: 'Notification preference',
+            ),
+            items: const [
+              DropdownMenuItem(
+                value: 'important',
+                child: Text('Important only (recommended)'),
+              ),
+              DropdownMenuItem(
+                value: 'all',
+                child: Text('All activity'),
+              ),
+              DropdownMenuItem(
+                value: 'off',
+                child: Text('Off'),
+              ),
+            ],
+            onChanged: _isSaving
+                ? null
+                : (value) {
+                    if (value == null) return;
+                    setState(() => _notificationPreference = value);
+                  },
+          ),
+          const SizedBox(height: 18),
           SizedBox(
             width: double.infinity,
             child: FilledButton(
               onPressed: _isSaving ? null : _saveProfile,
               child: Text(_isSaving ? 'Saving…' : 'Save profile'),
+            ),
+          ),
+          const SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            child: OutlinedButton.icon(
+              onPressed: _isSaving ? null : _linkGoogleAccount,
+              icon: const Icon(Icons.link_rounded),
+              label: const Text('Link Google account'),
             ),
           ),
           const SizedBox(height: 10),
@@ -307,6 +421,29 @@ class _AccountPageState extends State<AccountPage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+String _normaliseNotificationPreference(String? value) {
+  if (value == 'important' || value == 'all' || value == 'off') {
+    return value!;
+  }
+  return 'important';
+}
+
+class _ProfileAvatar extends StatelessWidget {
+  const _ProfileAvatar({required this.avatarUrl});
+
+  final String? avatarUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    final url = avatarUrl;
+    return CircleAvatar(
+      radius: 20,
+      foregroundImage: url == null || url.isEmpty ? null : NetworkImage(url),
+      child: const Icon(Icons.person_outline_rounded),
     );
   }
 }

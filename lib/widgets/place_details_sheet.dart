@@ -368,10 +368,18 @@ class _CategoryPlaceholder extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  emojiForCategory(category),
-                  style: const TextStyle(fontSize: 58),
-                ),
+                category == 'kebab' || category == 'fish_and_chips'
+                    ? Image.asset(
+                        category == 'fish_and_chips'
+                            ? 'assets/markers/fish_and_chips.png'
+                            : 'assets/markers/turkish_doner.png',
+                        width: category == 'fish_and_chips' ? 96 : 58,
+                        height: category == 'fish_and_chips' ? 96 : 58,
+                      )
+                    : Text(
+                        emojiForCategory(category),
+                        style: const TextStyle(fontSize: 58),
+                      ),
                 const SizedBox(height: 8),
                 Text(
                   labelForCategory(category),
@@ -433,8 +441,12 @@ class _InfoPill extends StatelessWidget {
 List<Color> _colorsForCategory(String category) {
   return switch (category) {
     'coffee_bar' => const [Color(0xFF8A5A44), Color(0xFFD5A06F)],
+    'fish_and_chips' => const [Color(0xFF277E9C), Color(0xFF74C5C3)],
     'sushi' => const [Color(0xFF237E83), Color(0xFF75C5C2)],
-    'chinese' || 'indian' => const [Color(0xFFB85A38), Color(0xFFE6A95C)],
+    'chinese' || 'ramen' || 'indian' => const [
+      Color(0xFFB85A38),
+      Color(0xFFE6A95C),
+    ],
     'cocktail_bar' || 'beer_bar' || 'pub' => const [
       Color(0xFF5744A1),
       Color(0xFFB46EC4),

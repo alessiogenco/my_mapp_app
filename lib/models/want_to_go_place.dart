@@ -7,8 +7,10 @@ class WantToGoPlace {
     this.latitude,
     this.longitude,
     this.googleMapsUrl,
+    this.googlePlaceId,
     this.note,
-  });
+    this.priority = 2,
+  }) : assert(priority >= 1 && priority <= 3);
 
   final String id;
   final String name;
@@ -16,7 +18,9 @@ class WantToGoPlace {
   final double? latitude;
   final double? longitude;
   final String? googleMapsUrl;
+  final String? googlePlaceId;
   final String? note;
+  final int priority;
   final DateTime createdAt;
 
   bool get isVisibleOnMap => latitude != null && longitude != null;
@@ -32,7 +36,24 @@ class WantToGoPlace {
       latitude: latitude,
       longitude: longitude,
       googleMapsUrl: googleMapsUrl,
+      googlePlaceId: googlePlaceId,
       note: note,
+      priority: priority,
+      createdAt: createdAt,
+    );
+  }
+
+  WantToGoPlace withPriority(int priority) {
+    return WantToGoPlace(
+      id: id,
+      name: name,
+      city: city,
+      latitude: latitude,
+      longitude: longitude,
+      googleMapsUrl: googleMapsUrl,
+      googlePlaceId: googlePlaceId,
+      note: note,
+      priority: priority,
       createdAt: createdAt,
     );
   }
@@ -41,9 +62,11 @@ class WantToGoPlace {
     required String name,
     required String city,
     String? googleMapsUrl,
+    String? googlePlaceId,
     String? note,
     double? latitude,
     double? longitude,
+    int priority = 2,
   }) {
     final createdAt = DateTime.now();
     final normalizedName = name.trim();
@@ -57,7 +80,9 @@ class WantToGoPlace {
       googleMapsUrl:
           _optionalText(googleMapsUrl) ??
           _buildGoogleMapsSearchUrl(normalizedName, normalizedCity),
+      googlePlaceId: _optionalText(googlePlaceId),
       note: _optionalText(note),
+      priority: priority,
       createdAt: createdAt,
     );
   }
@@ -69,6 +94,7 @@ class WantToGoPlace {
     final createdAt = json['createdAt'];
     final latitude = json['latitude'];
     final longitude = json['longitude'];
+    final rawPriority = json['priority'];
 
     if (id is! String ||
         name is! String ||
@@ -83,6 +109,15 @@ class WantToGoPlace {
     final parsedDate = DateTime.tryParse(createdAt);
     if (parsedDate == null) {
       throw const FormatException('A Want to go place has an invalid date.');
+    }
+
+    final parsedPriority = rawPriority == null
+        ? 2
+        : rawPriority is int
+        ? rawPriority
+        : null;
+    if (parsedPriority == null || parsedPriority < 1 || parsedPriority > 3) {
+      throw const FormatException('A Want to go place has an invalid priority.');
     }
 
     final parsedLatitude = latitude is num ? latitude.toDouble() : null;
@@ -106,7 +141,9 @@ class WantToGoPlace {
       googleMapsUrl:
           _optionalText(json['googleMapsUrl']) ??
           _buildGoogleMapsSearchUrl(name.trim(), city.trim()),
+      googlePlaceId: _optionalText(json['googlePlaceId']),
       note: _optionalText(json['note']),
+      priority: parsedPriority,
       createdAt: parsedDate,
     );
   }
@@ -119,7 +156,9 @@ class WantToGoPlace {
       if (latitude != null) 'latitude': latitude,
       if (longitude != null) 'longitude': longitude,
       if (googleMapsUrl != null) 'googleMapsUrl': googleMapsUrl,
+      if (googlePlaceId != null) 'googlePlaceId': googlePlaceId,
       if (note != null) 'note': note,
+      'priority': priority,
       'createdAt': createdAt.toIso8601String(),
     };
   }

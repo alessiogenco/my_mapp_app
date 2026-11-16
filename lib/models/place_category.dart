@@ -1,7 +1,11 @@
 const allowedPlaceCategories = {
   'restaurant',
+  'fish_and_chips',
   'sushi',
+  'ramen',
   'chinese',
+  'turkish',
+  'kebab',
   'indian',
   'pizzeria',
   'panzerotteria',
@@ -22,8 +26,12 @@ bool isKnownPlaceCategory(String category) {
 String emojiForCategory(String category) {
   return switch (category) {
     'restaurant' => '\u{1F35D}',
+    'fish_and_chips' => '\u{1F41F}',
     'sushi' => '\u{1F363}',
-    'chinese' => '\u{1F961}',
+    'ramen' => '\u{1F35C}',
+    'chinese' => '\u{1F35C}',
+    'turkish' => '\u{1F362}',
+    'kebab' => '\u{1F959}',
     'indian' => '\u{1F35B}',
     'pizzeria' => '\u{1F355}',
     'panzerotteria' => '\u{1F95F}',
@@ -42,8 +50,12 @@ String emojiForCategory(String category) {
 String labelForCategory(String category) {
   return switch (category) {
     'restaurant' => 'Restaurant',
+    'fish_and_chips' => 'Fish and chips',
     'sushi' => 'Sushi',
+    'ramen' => 'Ramen',
     'chinese' => 'Chinese',
+    'turkish' => 'Turkish',
+    'kebab' => 'Kebab',
     'indian' => 'Indian',
     'pizzeria' => 'Pizzeria',
     'panzerotteria' => 'Panzerotteria',
