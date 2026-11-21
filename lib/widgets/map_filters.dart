@@ -241,7 +241,8 @@ class MapFilters extends StatelessWidget {
     final highestRating = availableRatings.reduce(
       (first, second) => first > second ? first : second,
     );
-    var localRange = ratingRange ??
+    var localRange =
+        ratingRange ??
         RangeValues(lowestRating.toDouble(), highestRating.toDouble());
 
     return showModalBottomSheet<void>(
@@ -431,9 +432,7 @@ class MapFilters extends StatelessWidget {
                   const SizedBox(width: 8),
                   FilledButton(
                     onPressed: () {
-                      onWantToGoCitiesChanged(
-                        Set.unmodifiable(localSelection),
-                      );
+                      onWantToGoCitiesChanged(Set.unmodifiable(localSelection));
                       Navigator.pop(sheetContext);
                     },
                     child: const Text('Done'),
@@ -658,9 +657,15 @@ const _categoryOptions = [
   ),
   _CategoryOption(
     value: 'sushi',
+    shortLabel: 'Sushi',
+    label: 'Sushi',
+    emoji: '🍣',
+  ),
+  _CategoryOption(
+    value: 'japanese',
     shortLabel: 'Japanese',
     label: 'Japanese',
-    emoji: '🍣',
+    emoji: '🍱',
   ),
   _CategoryOption(
     value: 'ramen',

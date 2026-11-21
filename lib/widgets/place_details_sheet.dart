@@ -443,6 +443,7 @@ List<Color> _colorsForCategory(String category) {
     'coffee_bar' => const [Color(0xFF8A5A44), Color(0xFFD5A06F)],
     'fish_and_chips' => const [Color(0xFF277E9C), Color(0xFF74C5C3)],
     'sushi' => const [Color(0xFF237E83), Color(0xFF75C5C2)],
+    'japanese' => const [Color(0xFF516A91), Color(0xFF9AB4D5)],
     'chinese' || 'ramen' || 'indian' => const [
       Color(0xFFB85A38),
       Color(0xFFE6A95C),

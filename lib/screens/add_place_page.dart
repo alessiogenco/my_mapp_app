@@ -1812,6 +1812,7 @@ const _vibeSuggestionsByCategory = <String, List<String>>{
   'restaurant': ['date', 'family', 'friends', 'locals', 'wine'],
   'fish_and_chips': ['casual', 'family', 'locals', 'takeaway'],
   'sushi': ['date', 'dinner', 'friends', 'takeaway'],
+  'japanese': ['date', 'dinner', 'friends', 'locals', 'wine'],
   'ramen': ['casual', 'dinner', 'friends', 'solo', 'takeaway'],
   'chinese': ['family', 'friends', 'takeaway', 'delivery'],
   'turkish': ['casual', 'dinner', 'friends', 'takeaway', 'delivery'],
