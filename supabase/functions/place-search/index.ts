@@ -421,53 +421,105 @@ Deno.serve(async (request) => {
       return json({});
     }
 
-    const searchUrl = new URL("https://api.geoapify.com/v1/geocode/search");
-    searchUrl.searchParams.set(
-      "text",
-      address ? `${venueName}, ${address}` : `${venueName}, ${city}`,
-    );
-    searchUrl.searchParams.set("format", "json");
-    searchUrl.searchParams.set("limit", "5");
-    if (countryCode) {
-      searchUrl.searchParams.set(
-        "filter",
-        `countrycode:${countryCode.toLowerCase()}`,
+    // Keep the entire automatic process within the configured 30 seconds,
+    // while reserving time for an address-only retry. Some open-map catalogs
+    // know the building but not Google's full venue label.
+    const lookupDeadline = Date.now() + maxCoordinateLookupDurationMs;
+    const searchGeoapify = async (
+      query: string,
+      limit: number,
+      maximumWaitMs: number,
+    ): Promise<GeoapifyGeocodingResponse | null> => {
+      const remainingMs = Math.min(
+        maximumWaitMs,
+        lookupDeadline - Date.now(),
       );
-    }
-    searchUrl.searchParams.set("apiKey", geoapifyApiKey);
+      if (remainingMs <= 0) return null;
 
-    let response: Response;
-    try {
-      response = await fetch(searchUrl, {
-        // Give the provider enough time to answer on a slow connection while
-        // still avoiding the long chain of fallback requests used previously.
-        signal: AbortSignal.timeout(maxCoordinateLookupDurationMs),
-      });
-    } catch (error) {
-      console.info("Fast coordinate lookup was unavailable", {
-        name: venueName,
-        city,
-        message: error instanceof Error ? error.name : "unknown",
-      });
-      return json({});
-    }
+      const searchUrl = new URL("https://api.geoapify.com/v1/geocode/search");
+      searchUrl.searchParams.set("text", query);
+      searchUrl.searchParams.set("format", "json");
+      searchUrl.searchParams.set("limit", limit.toString());
+      if (countryCode) {
+        searchUrl.searchParams.set(
+          "filter",
+          `countrycode:${countryCode.toLowerCase()}`,
+        );
+      }
+      searchUrl.searchParams.set("apiKey", geoapifyApiKey);
 
-    if (!response.ok) {
-      console.error("Fast coordinate lookup failed:", response.status);
-      return json({});
-    }
+      let response: Response;
+      try {
+        response = await fetch(searchUrl, {
+          signal: AbortSignal.timeout(remainingMs),
+        });
+      } catch (error) {
+        console.info("Coordinate lookup was unavailable", {
+          name: venueName,
+          city,
+          message: error instanceof Error ? error.name : "unknown",
+        });
+        return null;
+      }
 
-    const payload = (await response.json()) as GeoapifyGeocodingResponse;
-    logGeocodingCandidates("fast-name-and-city", payload.results, venueName);
-    const coordinates = selectReliableGeocodingResult(
-      payload.results,
-      venueName,
-      city,
-      address,
+      if (!response.ok) {
+        console.error("Coordinate lookup failed:", response.status);
+        return null;
+      }
+
+      return (await response.json()) as GeoapifyGeocodingResponse;
+    };
+
+    const namedPayload = await searchGeoapify(
+      address ? `${venueName}, ${address}` : `${venueName}, ${city}`,
+      5,
+      // Reserve ten seconds for the exact-address retry below.
+      Math.max(0, maxCoordinateLookupDurationMs - 10_000),
     );
-    if (coordinates) {
-      console.log("Fast coordinates resolved", { name: venueName, city });
-      return json(coordinates);
+    if (namedPayload) {
+      logGeocodingCandidates(
+        "venue-name-and-address",
+        namedPayload.results,
+        venueName,
+      );
+      const coordinates = selectReliableGeocodingResult(
+        namedPayload.results,
+        venueName,
+        city,
+        address,
+      );
+      if (coordinates) {
+        console.log("Venue coordinates resolved", { name: venueName, city });
+        return json(coordinates);
+      }
+    }
+
+    // Google may have identified a place which is absent from the open venue
+    // catalog. An exact street-and-number lookup still gives a reliable map
+    // point, and only one top-ranked result is considered to avoid guessing.
+    if (address) {
+      const addressPayload = await searchGeoapify(
+        address,
+        1,
+        maxCoordinateLookupDurationMs,
+      );
+      if (addressPayload) {
+        logGeocodingCandidates(
+          "street-address-only",
+          addressPayload.results,
+          "",
+        );
+        const coordinates = selectReliableGeocodingResult(
+          addressPayload.results,
+          "",
+          city,
+          address,
+        );
+        if (coordinates) {
+          console.log("Address coordinates resolved", { city });
+          return json(coordinates);
+        }
+      }
     }
 
     console.log("Fast coordinate lookup found no reliable match", {
