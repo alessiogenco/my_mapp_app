@@ -980,7 +980,10 @@ class _AddPlacePageState extends State<AddPlacePage> {
                   _NumberStepper(
                     label: _currencyCodeController.text.trim().isEmpty
                         ? 'Price level'
-                        : 'Price level (${_currencyCodeController.text.trim().toUpperCase()})',
+                        : 'Price level (${priceRangeFor(
+                            _priceLevel,
+                            _currencyCodeController.text,
+                          )})',
                     value: _priceLevel,
                     min: 1,
                     max: 5,

@@ -151,24 +151,44 @@ String currencySymbolFor(String currencyCode) {
   };
 }
 
-String priceLabelFor(int priceLevel, String currencyCode) {
+String priceRangeFor(int priceLevel, String currencyCode) {
   final currency = currencyCode.toUpperCase();
   final symbol = currencySymbolFor(currency);
-  final symbols = List.filled(priceLevel, symbol).join();
-  final range = switch (currency) {
+  return switch (currency) {
     'NOK' => switch (priceLevel) {
-      1 => '0–200 kr',
-      2 => '200–400 kr',
-      3 => '400–700 kr',
-      4 => '700–1000 kr',
-      _ => '1000 kr+',
+      1 => '0–150 kr',
+      2 => '150–350 kr',
+      3 => '350–750 kr',
+      4 => '750–1,100 kr',
+      _ => '1,100 kr+',
     },
-    'GBP' || 'USD' => switch (priceLevel) {
-      1 => '${symbol}0–15',
-      2 => '${symbol}15–35',
-      3 => '${symbol}35–70',
-      4 => '${symbol}70–100',
-      _ => '${symbol}100+',
+    'SEK' => switch (priceLevel) {
+      1 => '0–170 kr',
+      2 => '170–400 kr',
+      3 => '400–800 kr',
+      4 => '800–1,100 kr',
+      _ => '1,100 kr+',
+    },
+    'DKK' => switch (priceLevel) {
+      1 => '0–110 kr',
+      2 => '110–260 kr',
+      3 => '260–525 kr',
+      4 => '525–750 kr',
+      _ => '750 kr+',
+    },
+    'GBP' => switch (priceLevel) {
+      1 => '£0–13',
+      2 => '£13–30',
+      3 => '£30–60',
+      4 => '£60–85',
+      _ => '£85+',
+    },
+    'USD' => switch (priceLevel) {
+      1 => r'$0–17',
+      2 => r'$17–40',
+      3 => r'$40–80',
+      4 => r'$80–110',
+      _ => r'$110+',
     },
     _ => switch (priceLevel) {
       1 => '0–15$symbol',
@@ -178,7 +198,22 @@ String priceLabelFor(int priceLevel, String currencyCode) {
       _ => '100$symbol+',
     },
   };
-  return '$symbols · $range';
+}
+
+String priceLevelDescriptor(int priceLevel) {
+  return switch (priceLevel) {
+    1 => 'Budget',
+    2 => 'Moderate',
+    3 => 'Higher',
+    4 => 'Premium',
+    _ => 'Luxury',
+  };
+}
+
+String priceLabelFor(int priceLevel, String currencyCode) {
+  final symbol = currencySymbolFor(currencyCode);
+  final symbols = List.filled(priceLevel, symbol).join();
+  return '$symbols · ${priceRangeFor(priceLevel, currencyCode)}';
 }
 
 String _countryCodeFromJson(dynamic value) {

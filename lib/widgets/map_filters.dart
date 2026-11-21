@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_map_app/models/place.dart';
 import 'package:my_map_app/widgets/glass_panel.dart';
 
 // Includes the panel's inner padding, so the full "Want to go" filter fits.
@@ -628,15 +629,7 @@ class _CategoryOption {
 
 String _priceRangeLabel(int priceLevel) {
   final symbols = List.filled(priceLevel, '€').join();
-  final range = switch (priceLevel) {
-    1 => '0–15€',
-    2 => '15–35€',
-    3 => '35–70€',
-    4 => '70–100€',
-    _ => '100€+',
-  };
-
-  return '$symbols · $range';
+  return '$symbols · ${priceLevelDescriptor(priceLevel)}';
 }
 
 String _displayVibe(String vibe) {
