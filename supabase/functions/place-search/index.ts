@@ -214,13 +214,24 @@ function hasMatchingStreetAddress(
   submittedAddress: string,
 ): boolean {
   // The fallback accepts an address only when the returned result contains
-  // the submitted street/number. This lets a member provide a street address
-  // instead of raw coordinates without silently placing a venue elsewhere.
+  // the submitted street/number. Map sources can disagree about a unit suffix
+  // (for example, 21B versus 21A) for businesses in the same building, so the
+  // letter is not required after the street name and main building number have
+  // matched. The caller also verifies the city before accepting the point.
   const submittedStreet = normalizeForComparison(
     submittedAddress.split(",")[0] ?? submittedAddress,
   );
   const candidate = normalizeForComparison(candidateAddress);
-  return submittedStreet.length >= 4 && candidate.includes(submittedStreet);
+  if (submittedStreet.length < 4 || !candidate) return false;
+  if (candidate.includes(submittedStreet)) return true;
+
+  const streetAndNumber = submittedStreet.match(/^(.*?)[ ]+(\d+)[a-z]?$/i);
+  if (!streetAndNumber) return false;
+
+  const [, streetName, buildingNumber] = streetAndNumber;
+  if (streetName.length < 3) return false;
+  return candidate.includes(streetName) &&
+    new RegExp(`\\b${buildingNumber}[a-z]?\\b`, "i").test(candidate);
 }
 
 function selectReliableGeocodingResult(
