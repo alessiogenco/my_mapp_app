@@ -143,6 +143,16 @@ function venueNameWithoutTrailingCity(name: string, city: string): string {
   return venueName || cleanName;
 }
 
+// Google often indexes a venue by its short trading name, while people copy a
+// longer Maps label such as "Grains Majorstuen - Bakeri & Crêperie". Use the
+// meaningful part before a descriptive dash or pipe for the lookup only; the
+// full name stays untouched in the app and in the returned result.
+function venueNameForGoogleSearch(name: string): string {
+  const cleanName = name.trim();
+  const primaryName = cleanName.split(/\s+[-–—|]\s+/)[0]?.trim() ?? "";
+  return primaryName.length >= 3 ? primaryName : cleanName;
+}
+
 function hasSimilarGooglePlaceName(
   places: PlaceSearchResult[],
   requestedName: string,
@@ -515,7 +525,8 @@ Deno.serve(async (request) => {
   // The documented Text Search format is a natural-language location query
   // (for example, "pizza in New York"). It is more reliable than a long
   // comma-separated address-style string for independent venues.
-  const searchQuery = `${name} in ${city}`;
+  const googleSearchName = venueNameForGoogleSearch(name);
+  const searchQuery = `${googleSearchName} in ${city}`;
   const regionCode = countryCode.length > 0
     ? googleRegionCode(countryCode)
     : undefined;
@@ -611,7 +622,7 @@ Deno.serve(async (request) => {
             ].join(","),
           },
           body: JSON.stringify({
-            input: `${name}, ${city}`,
+            input: `${googleSearchName}, ${city}`,
             ...(countryCode.length > 0
               ? { includedRegionCodes: [countryCode] }
               : {}),
@@ -672,7 +683,7 @@ Deno.serve(async (request) => {
     }
     results = [...mergedByPlaceId.values()];
     console.log("Autocomplete fallback completed", {
-      query: name,
+      query: googleSearchName,
       city,
       countryCode,
       candidates: results.length,
