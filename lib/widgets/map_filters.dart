@@ -658,8 +658,8 @@ const _categoryOptions = [
   ),
   _CategoryOption(
     value: 'sushi',
-    shortLabel: 'Sushi',
-    label: 'Sushi',
+    shortLabel: 'Japanese',
+    label: 'Japanese',
     emoji: '🍣',
   ),
   _CategoryOption(

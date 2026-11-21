@@ -51,7 +51,7 @@ String labelForCategory(String category) {
   return switch (category) {
     'restaurant' => 'Restaurant',
     'fish_and_chips' => 'Fish and chips',
-    'sushi' => 'Sushi',
+    'sushi' => 'Japanese',
     'ramen' => 'Ramen',
     'chinese' => 'Chinese',
     'turkish' => 'Turkish',
