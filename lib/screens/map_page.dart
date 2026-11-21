@@ -670,6 +670,10 @@ class _MapPageState extends State<MapPage> {
   String _markerAssetPathForCategory(String category) {
     return switch (category) {
       'fish_and_chips' => 'assets/markers/fish_and_chips.png',
+      // Japanese shares the established sushi marker until a dedicated
+      // illustration is added. It must resolve to an existing asset so a new
+      // category never prevents Mapbox from loading every map marker.
+      'japanese' => 'assets/markers/sushi.png',
       'chinese' => 'assets/markers/chinese_noodles.png',
       'ramen' => 'assets/markers/chinese_noodles.png',
       'kebab' => 'assets/markers/turkish_doner.png',
