@@ -143,11 +143,11 @@ function venueNameWithoutTrailingCity(name: string, city: string): string {
   return venueName || cleanName;
 }
 
-// Google often indexes a venue by its short trading name, while people copy a
+// Map providers often index a venue by its short trading name, while people copy a
 // longer Maps label such as "Grains Majorstuen - Bakeri & Crêperie". Use the
 // meaningful part before a descriptive dash or pipe for the lookup only; the
 // full name stays untouched in the app and in the returned result.
-function venueNameForGoogleSearch(name: string): string {
+function venueNameForProviderSearch(name: string): string {
   const cleanName = name.trim();
   const primaryName = cleanName.split(/\s+[-–—|]\s+/)[0]?.trim() ?? "";
   return primaryName.length >= 3 ? primaryName : cleanName;
@@ -407,7 +407,9 @@ Deno.serve(async (request) => {
     // First look up the selected venue by name. If open map data has no safe
     // match, the app asks only for a street address and retries this same
     // automatic lookup; raw latitude and longitude are never requested.
-    const venueName = venueNameWithoutTrailingCity(name, city);
+    const venueName = venueNameForProviderSearch(
+      venueNameWithoutTrailingCity(name, city),
+    );
 
     if (!geoapifyApiKey) {
       return json({ error: "Map coordinates are not configured yet." }, 503);
@@ -525,7 +527,7 @@ Deno.serve(async (request) => {
   // The documented Text Search format is a natural-language location query
   // (for example, "pizza in New York"). It is more reliable than a long
   // comma-separated address-style string for independent venues.
-  const googleSearchName = venueNameForGoogleSearch(name);
+  const googleSearchName = venueNameForProviderSearch(name);
   const searchQuery = `${googleSearchName} in ${city}`;
   const regionCode = countryCode.length > 0
     ? googleRegionCode(countryCode)
