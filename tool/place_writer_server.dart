@@ -9,6 +9,7 @@ const _allowedCategories = {
   'restaurant',
   'fish_and_chips',
   'sushi',
+  'japanese',
   'ramen',
   'chinese',
   'turkish',
@@ -37,7 +38,7 @@ Future<void> main() async {
   stdout.writeln('Place writer server running on http://$_host:$_port');
   stdout.writeln('Writing to $_placesFilePath');
   stdout.writeln(
-    'Supported categories include Fish and chips, Ramen, Turkish and Kebab.',
+    'Supported categories include Sushi, Japanese, Ramen, Turkish and Kebab.',
   );
 
   await for (final request in server) {

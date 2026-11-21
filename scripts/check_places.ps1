@@ -7,6 +7,7 @@ $AllowedCategories = @(
     "restaurant",
     "fish_and_chips",
     "sushi",
+    "japanese",
     "ramen",
     "chinese",
     "turkish",
