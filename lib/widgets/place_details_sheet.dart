@@ -163,7 +163,7 @@ class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
                     iconColor: const Color(0xFFF6A800),
                   ),
                   _InfoPill(
-                    icon: Icons.payments_rounded,
+                    icon: Icons.sell_outlined,
                     label: priceLabelFor(place.priceLevel, place.currencyCode),
                   ),
                 ],

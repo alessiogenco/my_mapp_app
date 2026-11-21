@@ -211,8 +211,7 @@ String priceLevelDescriptor(int priceLevel) {
 }
 
 String priceLabelFor(int priceLevel, String currencyCode) {
-  final banknotes = List.filled(priceLevel, '💵').join();
-  return '$banknotes · ${priceRangeFor(priceLevel, currencyCode)}';
+  return priceRangeFor(priceLevel, currencyCode);
 }
 
 String _countryCodeFromJson(dynamic value) {

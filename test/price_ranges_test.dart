@@ -16,8 +16,8 @@ void main() {
     expect(priceRangeFor(2, 'DKK'), '110–260 kr');
     expect(priceRangeFor(3, 'USD'), r'$40–80');
 
-    expect(priceLabelFor(3, 'NOK'), '💵💵💵 · 350–750 kr');
-    expect(priceLabelFor(2, 'EUR'), '💵💵 · 15–35€');
-    expect(priceLabelFor(1, 'GBP'), '💵 · £0–13');
+    expect(priceLabelFor(3, 'NOK'), '350–750 kr');
+    expect(priceLabelFor(2, 'EUR'), '15–35€');
+    expect(priceLabelFor(1, 'GBP'), '£0–13');
   });
 }
