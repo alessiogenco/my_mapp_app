@@ -8,8 +8,13 @@ import 'package:my_map_app/config/social_config.dart';
 import 'package:my_map_app/models/place.dart';
 import 'package:my_map_app/models/place_area.dart';
 import 'package:my_map_app/models/place_category.dart';
+import 'package:my_map_app/screens/place_pin_picker_page.dart';
+import 'package:my_map_app/services/device_location_service.dart';
+import 'package:my_map_app/services/geocoding_service.dart';
 import 'package:my_map_app/social/google_place_search_result.dart';
 import 'package:my_map_app/social/google_place_search_service.dart';
+
+enum _PlaceEntryMode { atPlace, away }
 
 class AddPlacePage extends StatefulWidget {
   const AddPlacePage({super.key});
@@ -22,7 +27,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
   final _formKey = GlobalKey<FormState>();
   final _idController = TextEditingController();
   final _nameController = TextEditingController();
-  final _cityController = TextEditingController(text: 'Alberobello');
+  final _cityController = TextEditingController();
   final _countryCodeController = TextEditingController();
   final _currencyCodeController = TextEditingController();
   final _neighborhoodController = TextEditingController();
@@ -38,6 +43,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
   final _photoAssetController = TextEditingController();
   final _foodTagsController = TextEditingController();
   final _googlePlaceSearchService = const GooglePlaceSearchService();
+  final _geocodingService = const GeocodingService();
 
   String _category = 'restaurant';
   String _area = 'cityCentre';
@@ -56,11 +62,13 @@ class _AddPlacePageState extends State<AddPlacePage> {
   bool _isLoadingExistingPlaces = false;
   bool _isSavingToProject = false;
   bool _isSearchingGooglePlaces = false;
+  bool _isLocatingCurrentPlace = false;
   bool _isResolvingAutomaticCoordinates = false;
   bool _needsAddressLookup = false;
   bool _idWasEdited = false;
   bool _isAutoGeneratingId = false;
   List<GooglePlaceSearchResult> _googlePlaceResults = const [];
+  _PlaceEntryMode? _entryMode;
 
   @override
   void initState() {
@@ -174,9 +182,9 @@ class _AddPlacePageState extends State<AddPlacePage> {
     }
 
     setState(() {
-      _generatedJson = const JsonEncoder.withIndent('  ').convert(
-        place.toJson(),
-      );
+      _generatedJson = const JsonEncoder.withIndent(
+        '  ',
+      ).convert(place.toJson());
     });
   }
 
@@ -196,9 +204,9 @@ class _AddPlacePageState extends State<AddPlacePage> {
       } else {
         _draftPlaces.add(place);
       }
-      _generatedJson = const JsonEncoder.withIndent('  ').convert(
-        place.toJson(),
-      );
+      _generatedJson = const JsonEncoder.withIndent(
+        '  ',
+      ).convert(place.toJson());
       _exportJson = _buildExportJson();
     });
 
@@ -209,9 +217,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
       ..showSnackBar(
         SnackBar(
           content: Text(
-            existingIndex >= 0
-                ? 'Draft place updated.'
-                : 'Draft place added.',
+            existingIndex >= 0 ? 'Draft place updated.' : 'Draft place added.',
           ),
         ),
       );
@@ -230,6 +236,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
     _idController.clear();
     _isAutoGeneratingId = false;
     _nameController.clear();
+    _cityController.clear();
     _countryCodeController.clear();
     _currencyCodeController.clear();
     _neighborhoodController.clear();
@@ -252,6 +259,8 @@ class _AddPlacePageState extends State<AddPlacePage> {
       _serviceRating = 0;
       _valueRating = 0;
       _needsAddressLookup = false;
+      _googlePlaceResults = const [];
+      _entryMode = null;
     });
   }
 
@@ -292,9 +301,11 @@ class _AddPlacePageState extends State<AddPlacePage> {
         ..clear()
         ..addAll(place.vibes);
       _needsAddressLookup = false;
-      _generatedJson = const JsonEncoder.withIndent('  ').convert(
-        place.toJson(),
-      );
+      _googlePlaceResults = const [];
+      _entryMode = null;
+      _generatedJson = const JsonEncoder.withIndent(
+        '  ',
+      ).convert(place.toJson());
     });
   }
 
@@ -305,10 +316,17 @@ class _AddPlacePageState extends State<AddPlacePage> {
     });
   }
 
+  void _chooseEntryMode(_PlaceEntryMode mode) {
+    setState(() {
+      _entryMode = mode;
+      _googlePlaceResults = const [];
+    });
+  }
+
   String _buildExportJson() {
-    return const JsonEncoder.withIndent('  ').convert(
-      _draftPlaces.map((place) => place.toJson()).toList(),
-    );
+    return const JsonEncoder.withIndent(
+      '  ',
+    ).convert(_draftPlaces.map((place) => place.toJson()).toList());
   }
 
   Future<void> _copyJson() async {
@@ -368,11 +386,12 @@ class _AddPlacePageState extends State<AddPlacePage> {
         return;
       }
 
-      final places = decodedBody
-          .whereType<Map<String, dynamic>>()
-          .map(Place.fromJson)
-          .toList()
-        ..sort((a, b) => a.name.compareTo(b.name));
+      final places =
+          decodedBody
+              .whereType<Map<String, dynamic>>()
+              .map(Place.fromJson)
+              .toList()
+            ..sort((a, b) => a.name.compareTo(b.name));
 
       if (!mounted) {
         return;
@@ -471,9 +490,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
 
   List<String> get _suggestedVibes {
     final suggestions = _vibeSuggestionsByCategory[_category] ?? const [];
-    return suggestions
-        .where((vibe) => !_selectedVibes.contains(vibe))
-        .toList();
+    return suggestions.where((vibe) => !_selectedVibes.contains(vibe)).toList();
   }
 
   List<String> get _availableVibes {
@@ -482,8 +499,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
       ..._existingPlaces.expand((place) => place.vibes),
       ..._selectedVibes,
       ...(_vibeSuggestionsByCategory[_category] ?? const <String>[]),
-    }.map(_normalizeVibe).where((vibe) => vibe.isNotEmpty).toList()
-      ..sort();
+    }.map(_normalizeVibe).where((vibe) => vibe.isNotEmpty).toList()..sort();
 
     return dynamicVibes;
   }
@@ -523,8 +539,9 @@ class _AddPlacePageState extends State<AddPlacePage> {
                       const SizedBox(height: 18),
                       Text(
                         'Choose vibes',
-                        style: Theme.of(context).textTheme.titleLarge
-                            ?.copyWith(fontWeight: FontWeight.w800),
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
                       const SizedBox(height: 4),
                       const Text('Select existing tags, then tap Done.'),
@@ -613,9 +630,9 @@ class _AddPlacePageState extends State<AddPlacePage> {
       }
 
       setState(() {
-        _generatedJson = const JsonEncoder.withIndent('  ').convert(
-          place.toJson(),
-        );
+        _generatedJson = const JsonEncoder.withIndent(
+          '  ',
+        ).convert(place.toJson());
       });
       await _loadExistingPlacesFromWriter(showErrors: false);
       if (_isEditingExistingPlace) {
@@ -678,9 +695,97 @@ class _AddPlacePageState extends State<AddPlacePage> {
     }
   }
 
+  Future<void> _findNearbyAtCurrentLocation() async {
+    if (!SocialConfig.isAvailable ||
+        SocialConfig.client.auth.currentUser == null) {
+      _showSnackBar('Sign in before using secure Google place search.');
+      return;
+    }
+
+    setState(() {
+      _entryMode = _PlaceEntryMode.atPlace;
+      _isLocatingCurrentPlace = true;
+      _googlePlaceResults = const [];
+    });
+    try {
+      final location = await getCurrentDeviceLocation();
+      if (!mounted) return;
+      await _findNearbyPlaces(
+        latitude: location.latitude,
+        longitude: location.longitude,
+      );
+    } on DeviceLocationException catch (error) {
+      _showSnackBar(error.message);
+    } finally {
+      if (mounted) {
+        setState(() => _isLocatingCurrentPlace = false);
+      }
+    }
+  }
+
+  Future<void> _findNearbyPlaces({
+    required double latitude,
+    required double longitude,
+  }) async {
+    setState(() => _isSearchingGooglePlaces = true);
+    try {
+      final results = await _googlePlaceSearchService.searchNearby(
+        latitude: latitude,
+        longitude: longitude,
+      );
+      if (!mounted) return;
+      setState(() => _googlePlaceResults = results);
+      if (results.isEmpty) {
+        _showSnackBar('No food or drink places were found within 500 metres.');
+      }
+    } on GooglePlaceSearchException catch (error) {
+      _showSnackBar(error.message);
+    } finally {
+      if (mounted) {
+        setState(() => _isSearchingGooglePlaces = false);
+      }
+    }
+  }
+
+  Future<void> _choosePointOnMap() async {
+    final city = _cityController.text.trim();
+    if (city.length < 2) {
+      _showSnackBar('Enter the city first so the map opens in the right area.');
+      return;
+    }
+
+    CityLocation? cityLocation;
+    try {
+      cityLocation = await _geocodingService.searchCity(city);
+    } on GeocodingException {
+      _showSnackBar(
+        'Could not centre the map on that city. Check the spelling.',
+      );
+      return;
+    }
+    if (!mounted) return;
+    if (cityLocation == null) {
+      _showSnackBar('Could not find that city on the map. Check the spelling.');
+      return;
+    }
+    final initialLocation = cityLocation;
+
+    final pin = await Navigator.of(context).push<PlacePin>(
+      MaterialPageRoute(
+        builder: (_) => PlacePinPickerPage(
+          initialLatitude: initialLocation.latitude,
+          initialLongitude: initialLocation.longitude,
+        ),
+      ),
+    );
+    if (pin == null || !mounted) return;
+    await _findNearbyPlaces(latitude: pin.latitude, longitude: pin.longitude);
+  }
+
   void _selectGooglePlace(GooglePlaceSearchResult result) {
-    final query = '${_nameController.text.trim()} ${_cityController.text.trim()}'
-        .trim();
+    final query = result.address.isEmpty
+        ? result.name
+        : '${result.name}, ${result.address}';
     final mapsUrl = Uri.https('www.google.com', '/maps/search/', {
       'api': '1',
       'query': query,
@@ -693,6 +798,7 @@ class _AddPlacePageState extends State<AddPlacePage> {
       _googlePlaceIdController.text = result.placeId;
       _googleMapsUrlController.text = mapsUrl;
       _streetAddressController.text = result.address;
+      _nameController.text = result.name;
       _googlePlaceResults = const [];
       // A selected place must never retain coordinates from the previous
       // record. They are filled again only after a new safe lookup succeeds.
@@ -732,6 +838,9 @@ class _AddPlacePageState extends State<AddPlacePage> {
         }
         if (details.address != null) {
           _streetAddressController.text = details.address!;
+        }
+        if (details.city != null) {
+          _cityController.text = details.city!;
         }
         if (countryCode != null) {
           _countryCodeController.text = countryCode;
@@ -819,19 +928,17 @@ class _AddPlacePageState extends State<AddPlacePage> {
     final areaOptions = allowedPlaceAreas.toList()..sort();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Add place'),
-      ),
+      appBar: AppBar(title: const Text('Add place')),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
           children: [
             Text(
-              'Search and select the correct Google Place first. Country, '
-              'currency, Maps link and coordinates are completed automatically.',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: const Color(0xFF58717E),
-              ),
+              'Choose the place from nearby results, a map point or a name search. '
+              'Country, currency, Maps link and coordinates are completed automatically.',
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF58717E)),
             ),
             const SizedBox(height: 18),
             _ExistingPlaceEditor(
@@ -858,278 +965,327 @@ class _AddPlacePageState extends State<AddPlacePage> {
               key: _formKey,
               child: Column(
                 children: [
-                  _TextInput(
-                    controller: _nameController,
-                    label: 'Name',
-                    validator: _required,
-                  ),
-                  _TextInput(
-                    controller: _cityController,
-                    label: 'City',
-                    validator: _required,
-                  ),
-                  _GooglePlaceLookupCard(
-                    isSearching: _isSearchingGooglePlaces,
-                    results: _googlePlaceResults,
-                    enabled: SocialConfig.isAvailable &&
-                        SocialConfig.client.auth.currentUser != null,
-                    onSearch: _searchGooglePlaces,
-                    onSelected: _selectGooglePlace,
-                  ),
-                  _TextInput(
-                    controller: _googleMapsUrlController,
-                    label: 'Google Maps URL',
-                    helperText:
-                        'After Google selection, the official direct link replaces the temporary search link when available.',
-                    validator: _validateOptionalUrl,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: TextButton.icon(
-                      onPressed: _extractCoordinatesFromGoogleMapsUrl,
-                      icon: const Icon(Icons.my_location_rounded),
-                      label: const Text('Extract coordinates from link'),
+                  if (!_isEditingExistingPlace)
+                    _PlaceEntryChoiceCard(
+                      selectedMode: _entryMode,
+                      isLocating: _isLocatingCurrentPlace,
+                      onAtPlace: _findNearbyAtCurrentLocation,
+                      onAway: () => _chooseEntryMode(_PlaceEntryMode.away),
                     ),
-                  ),
-                  if (_isResolvingAutomaticCoordinates)
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 12),
-                      child: LinearProgressIndicator(),
+                  if (!_isEditingExistingPlace && _entryMode == null)
+                    const SizedBox(height: 12),
+                  if (_isEditingExistingPlace ||
+                      _entryMode == _PlaceEntryMode.away ||
+                      _googlePlaceIdController.text.trim().isNotEmpty) ...[
+                    _TextInput(
+                      controller: _nameController,
+                      label: 'Name',
+                      validator: _required,
                     ),
-                  if (_needsAddressLookup)
-                    Container(
-                      width: double.infinity,
-                      margin: const EdgeInsets.only(bottom: 12),
-                      padding: const EdgeInsets.all(14),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFFF6E8),
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: const Color(0xFFF0D29A)),
+                    _TextInput(
+                      controller: _cityController,
+                      label: 'City',
+                      validator: _required,
+                    ),
+                  ],
+                  if (_isEditingExistingPlace ||
+                      _entryMode == _PlaceEntryMode.away)
+                    _GooglePlaceLookupCard(
+                      title: 'Find the correct place',
+                      description:
+                          'Search by name and city, or choose an approximate point on the map.',
+                      actionLabel: 'Search Google Places',
+                      isSearching: _isSearchingGooglePlaces,
+                      results: _googlePlaceResults,
+                      enabled:
+                          SocialConfig.isAvailable &&
+                          SocialConfig.client.auth.currentUser != null,
+                      onSearch: _searchGooglePlaces,
+                      onSelected: _selectGooglePlace,
+                      footerAction: OutlinedButton.icon(
+                        onPressed: _isSearchingGooglePlaces
+                            ? null
+                            : _choosePointOnMap,
+                        icon: const Icon(Icons.map_outlined),
+                        label: const Text('Choose point on map'),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'This place is missing from open map data',
-                            style: TextStyle(fontWeight: FontWeight.w800),
-                          ),
-                          const SizedBox(height: 4),
-                          const Text(
-                            'Add only the street address. We will find the point automatically and do not save this field.',
-                          ),
-                          const SizedBox(height: 12),
-                          _TextInput(
-                            controller: _streetAddressController,
-                            label: 'Street address',
-                            helperText: 'For example: 30 Hawley Crescent, NW1 8NP',
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: FilledButton.tonalIcon(
-                              onPressed: _isResolvingAutomaticCoordinates
-                                  ? null
-                                  : _resolveCoordinatesAfterGoogleSelection,
-                              icon: const Icon(Icons.location_on_rounded),
-                              label: const Text('Find address on map'),
+                    ),
+                  if (_entryMode == _PlaceEntryMode.atPlace)
+                    _GooglePlaceLookupCard(
+                      title: 'Places near you',
+                      description:
+                          'We search food and drink venues within 500 metres of your current location.',
+                      actionLabel: 'Find places near me',
+                      isSearching:
+                          _isSearchingGooglePlaces || _isLocatingCurrentPlace,
+                      results: _googlePlaceResults,
+                      enabled:
+                          SocialConfig.isAvailable &&
+                          SocialConfig.client.auth.currentUser != null,
+                      onSearch: _findNearbyAtCurrentLocation,
+                      onSelected: _selectGooglePlace,
+                    ),
+                  if (_isEditingExistingPlace ||
+                      _googlePlaceIdController.text.trim().isNotEmpty) ...[
+                    _TextInput(
+                      controller: _googleMapsUrlController,
+                      label: 'Google Maps URL',
+                      helperText:
+                          'After Google selection, the official direct link replaces the temporary search link when available.',
+                      validator: _validateOptionalUrl,
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: TextButton.icon(
+                        onPressed: _extractCoordinatesFromGoogleMapsUrl,
+                        icon: const Icon(Icons.my_location_rounded),
+                        label: const Text('Extract coordinates from link'),
+                      ),
+                    ),
+                    if (_isResolvingAutomaticCoordinates)
+                      const Padding(
+                        padding: EdgeInsets.only(bottom: 12),
+                        child: LinearProgressIndicator(),
+                      ),
+                    if (_needsAddressLookup)
+                      Container(
+                        width: double.infinity,
+                        margin: const EdgeInsets.only(bottom: 12),
+                        padding: const EdgeInsets.all(14),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFFF6E8),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: const Color(0xFFF0D29A)),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'This place is missing from open map data',
+                              style: TextStyle(fontWeight: FontWeight.w800),
                             ),
+                            const SizedBox(height: 4),
+                            const Text(
+                              'Add only the street address. We will find the point automatically and do not save this field.',
+                            ),
+                            const SizedBox(height: 12),
+                            _TextInput(
+                              controller: _streetAddressController,
+                              label: 'Street address',
+                              helperText:
+                                  'For example: 30 Hawley Crescent, NW1 8NP',
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: FilledButton.tonalIcon(
+                                onPressed: _isResolvingAutomaticCoordinates
+                                    ? null
+                                    : _resolveCoordinatesAfterGoogleSelection,
+                                icon: const Icon(Icons.location_on_rounded),
+                                label: const Text('Find address on map'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    DropdownButtonFormField<String>(
+                      initialValue: _category,
+                      decoration: const InputDecoration(labelText: 'Category'),
+                      items: categoryOptions.map((category) {
+                        return DropdownMenuItem(
+                          value: category,
+                          child: Text(
+                            '${labelForCategory(category)} · $category',
                           ),
-                        ],
-                      ),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        if (value != null) {
+                          setState(() => _category = value);
+                        }
+                      },
                     ),
-                  DropdownButtonFormField<String>(
-                    initialValue: _category,
-                    decoration: const InputDecoration(labelText: 'Category'),
-                    items: categoryOptions.map((category) {
-                      return DropdownMenuItem(
-                        value: category,
-                        child: Text(
-                          '${labelForCategory(category)} · $category',
+                    const SizedBox(height: 12),
+                    DropdownButtonFormField<String>(
+                      initialValue: _area,
+                      decoration: const InputDecoration(labelText: 'Area'),
+                      items: areaOptions.map((area) {
+                        return DropdownMenuItem(
+                          value: area,
+                          child: Text(labelForArea(area)),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        if (value != null) {
+                          setState(() => _area = value);
+                        }
+                      },
+                    ),
+                    _NumberStepper(
+                      label: 'Rating',
+                      value: _rating,
+                      min: 0,
+                      max: 10,
+                      suffix: '/10',
+                      onChanged: (value) => setState(() => _rating = value),
+                    ),
+                    _NumberStepper(
+                      label: _currencyCodeController.text.trim().isEmpty
+                          ? 'Price level'
+                          : 'Price level (${priceRangeFor(_priceLevel, _currencyCodeController.text)})',
+                      value: _priceLevel,
+                      min: 1,
+                      max: 5,
+                      suffix: _currencySymbolForCode(
+                        _currencyCodeController.text,
+                      ),
+                      onChanged: (value) => setState(() => _priceLevel = value),
+                    ),
+                    _VibeSelector(
+                      selectedVibes: _selectedVibes,
+                      suggestedVibes: _suggestedVibes,
+                      customVibeController: _customVibeController,
+                      onChooseVibes: _showVibePicker,
+                      onAddSuggestedVibe: (vibe) {
+                        setState(() {
+                          _selectedVibes.add(vibe);
+                        });
+                      },
+                      onAddCustomVibe: _addCustomVibe,
+                      onRemoveVibe: (vibe) {
+                        setState(() {
+                          _selectedVibes.remove(vibe);
+                        });
+                      },
+                    ),
+                    _TextInput(
+                      controller: _notesController,
+                      label: 'Notes',
+                      minLines: 3,
+                      maxLines: 5,
+                      validator: _required,
+                    ),
+                    ExpansionTile(
+                      tilePadding: EdgeInsets.zero,
+                      title: const Text('More details (optional)'),
+                      subtitle: const Text(
+                        'Ratings, links and technical data for a richer profile.',
+                      ),
+                      children: [
+                        _TextInput(
+                          controller: _idController,
+                          label: 'ID',
+                          helperText:
+                              'Generated automatically. Change only when needed.',
+                          validator: _validateId,
                         ),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      if (value != null) {
-                        setState(() => _category = value);
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 12),
-                  DropdownButtonFormField<String>(
-                    initialValue: _area,
-                    decoration: const InputDecoration(labelText: 'Area'),
-                    items: areaOptions.map((area) {
-                      return DropdownMenuItem(
-                        value: area,
-                        child: Text(labelForArea(area)),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      if (value != null) {
-                        setState(() => _area = value);
-                      }
-                    },
-                  ),
-                  _NumberStepper(
-                    label: 'Rating',
-                    value: _rating,
-                    min: 0,
-                    max: 10,
-                    suffix: '/10',
-                    onChanged: (value) => setState(() => _rating = value),
-                  ),
-                  _NumberStepper(
-                    label: _currencyCodeController.text.trim().isEmpty
-                        ? 'Price level'
-                        : 'Price level (${priceRangeFor(
-                            _priceLevel,
-                            _currencyCodeController.text,
-                          )})',
-                    value: _priceLevel,
-                    min: 1,
-                    max: 5,
-                    suffix: _currencySymbolForCode(
-                      _currencyCodeController.text,
+                        _TextInput(
+                          controller: _neighborhoodController,
+                          label: 'Neighborhood',
+                          helperText: 'Optional, e.g. Poggiofranco.',
+                        ),
+                        _TextInput(
+                          controller: _foodTagsController,
+                          label: 'Food tags',
+                          helperText:
+                              'Optional. Comma-separated, e.g. meat, grill.',
+                        ),
+                        _DetailedRatingEditor(
+                          foodRating: _foodRating,
+                          locationRating: _locationRating,
+                          serviceRating: _serviceRating,
+                          valueRating: _valueRating,
+                          onFoodChanged: (value) {
+                            setState(() => _foodRating = value);
+                          },
+                          onLocationChanged: (value) {
+                            setState(() => _locationRating = value);
+                          },
+                          onServiceChanged: (value) {
+                            setState(() => _serviceRating = value);
+                          },
+                          onValueChanged: (value) {
+                            setState(() => _valueRating = value);
+                          },
+                        ),
+                        _TextInput(
+                          controller: _websiteUrlController,
+                          label: 'Website URL',
+                          helperText:
+                              'Optional. Add the official website if present.',
+                          validator: _validateOptionalUrl,
+                        ),
+                        _TextInput(
+                          controller: _instagramUrlController,
+                          label: 'Instagram URL',
+                          helperText:
+                              'Optional. Link to the official Instagram profile.',
+                          validator: _validateOptionalInstagramUrl,
+                        ),
+                        _TextInput(
+                          controller: _googlePlaceIdController,
+                          label: 'Google Place ID',
+                          helperText: 'Optional. Useful later with Places API.',
+                        ),
+                        _TextInput(
+                          controller: _photoAssetController,
+                          label: 'Photo asset',
+                          helperText: 'Optional. Leave empty for now.',
+                        ),
+                      ],
                     ),
-                    onChanged: (value) => setState(() => _priceLevel = value),
-                  ),
-                  _VibeSelector(
-                    selectedVibes: _selectedVibes,
-                    suggestedVibes: _suggestedVibes,
-                    customVibeController: _customVibeController,
-                    onChooseVibes: _showVibePicker,
-                    onAddSuggestedVibe: (vibe) {
-                      setState(() {
-                        _selectedVibes.add(vibe);
-                      });
-                    },
-                    onAddCustomVibe: _addCustomVibe,
-                    onRemoveVibe: (vibe) {
-                      setState(() {
-                        _selectedVibes.remove(vibe);
-                      });
-                    },
-                  ),
-                  _TextInput(
-                    controller: _notesController,
-                    label: 'Notes',
-                    minLines: 3,
-                    maxLines: 5,
-                    validator: _required,
-                  ),
-                  ExpansionTile(
-                    tilePadding: EdgeInsets.zero,
-                    title: const Text('More details (optional)'),
-                    subtitle: const Text(
-                      'Ratings, links and technical data for a richer profile.',
-                    ),
-                    children: [
-                      _TextInput(
-                        controller: _idController,
-                        label: 'ID',
-                        helperText: 'Generated automatically. Change only when needed.',
-                        validator: _validateId,
-                      ),
-                      _TextInput(
-                        controller: _neighborhoodController,
-                        label: 'Neighborhood',
-                        helperText: 'Optional, e.g. Poggiofranco.',
-                      ),
-                      _TextInput(
-                        controller: _foodTagsController,
-                        label: 'Food tags',
-                        helperText: 'Optional. Comma-separated, e.g. meat, grill.',
-                      ),
-                      _DetailedRatingEditor(
-                        foodRating: _foodRating,
-                        locationRating: _locationRating,
-                        serviceRating: _serviceRating,
-                        valueRating: _valueRating,
-                        onFoodChanged: (value) {
-                          setState(() => _foodRating = value);
-                        },
-                        onLocationChanged: (value) {
-                          setState(() => _locationRating = value);
-                        },
-                        onServiceChanged: (value) {
-                          setState(() => _serviceRating = value);
-                        },
-                        onValueChanged: (value) {
-                          setState(() => _valueRating = value);
-                        },
-                      ),
-                      _TextInput(
-                        controller: _websiteUrlController,
-                        label: 'Website URL',
-                        helperText:
-                            'Optional. Add the official website if present.',
-                        validator: _validateOptionalUrl,
-                      ),
-                      _TextInput(
-                        controller: _instagramUrlController,
-                        label: 'Instagram URL',
-                        helperText:
-                            'Optional. Link to the official Instagram profile.',
-                        validator: _validateOptionalInstagramUrl,
-                      ),
-                      _TextInput(
-                        controller: _googlePlaceIdController,
-                        label: 'Google Place ID',
-                        helperText: 'Optional. Useful later with Places API.',
-                      ),
-                      _TextInput(
-                        controller: _photoAssetController,
-                        label: 'Photo asset',
-                        helperText: 'Optional. Leave empty for now.',
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 18),
-                  SizedBox(
-                    width: double.infinity,
-                    child: FilledButton.icon(
-                      onPressed: _isSavingToProject
-                          ? null
-                          : _saveCurrentPlaceToProjectJson,
-                      icon: _isSavingToProject
-                          ? const SizedBox.square(
-                              dimension: 18,
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            )
-                          : const Icon(Icons.save_rounded),
-                      label: Text(
-                        _isSavingToProject
-                            ? 'Saving...'
-                            : _isEditingExistingPlace
-                                ? 'Update places.json'
-                                : 'Save to places.json',
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  ExpansionTile(
-                    tilePadding: EdgeInsets.zero,
-                    title: const Text('Manual JSON tools'),
-                    subtitle: const Text('Only needed when the local writer is unavailable.'),
-                    children: [
-                      SizedBox(
-                        width: double.infinity,
-                        child: OutlinedButton.icon(
-                          onPressed: _generateJson,
-                          icon: const Icon(Icons.data_object_rounded),
-                          label: const Text('Generate JSON'),
+                    const SizedBox(height: 18),
+                    SizedBox(
+                      width: double.infinity,
+                      child: FilledButton.icon(
+                        onPressed: _isSavingToProject
+                            ? null
+                            : _saveCurrentPlaceToProjectJson,
+                        icon: _isSavingToProject
+                            ? const SizedBox.square(
+                                dimension: 18,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : const Icon(Icons.save_rounded),
+                        label: Text(
+                          _isSavingToProject
+                              ? 'Saving...'
+                              : _isEditingExistingPlace
+                              ? 'Update places.json'
+                              : 'Save to places.json',
                         ),
                       ),
-                      const SizedBox(height: 10),
-                      SizedBox(
-                        width: double.infinity,
-                        child: OutlinedButton.icon(
-                          onPressed: _addCurrentPlaceToDrafts,
-                          icon: const Icon(Icons.playlist_add_rounded),
-                          label: const Text('Add to draft export'),
-                        ),
+                    ),
+                    const SizedBox(height: 6),
+                    ExpansionTile(
+                      tilePadding: EdgeInsets.zero,
+                      title: const Text('Manual JSON tools'),
+                      subtitle: const Text(
+                        'Only needed when the local writer is unavailable.',
                       ),
-                    ],
-                  ),
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                          child: OutlinedButton.icon(
+                            onPressed: _generateJson,
+                            icon: const Icon(Icons.data_object_rounded),
+                            label: const Text('Generate JSON'),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        SizedBox(
+                          width: double.infinity,
+                          child: OutlinedButton.icon(
+                            onPressed: _addCurrentPlaceToDrafts,
+                            icon: const Icon(Icons.playlist_add_rounded),
+                            label: const Text('Add to draft export'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ],
               ),
             ),
@@ -1198,9 +1354,9 @@ class _AddPlacePageState extends State<AddPlacePage> {
               Text(
                 'Copy this list once after adding multiple places. It is safer '
                 'than manually managing commas between single JSON blocks.',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: const Color(0xFF58717E),
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: const Color(0xFF58717E)),
               ),
               const SizedBox(height: 8),
               Container(
@@ -1232,7 +1388,6 @@ class _TextInput extends StatelessWidget {
     required this.controller,
     required this.label,
     this.helperText,
-    this.keyboardType,
     this.minLines,
     this.maxLines = 1,
     this.validator,
@@ -1241,7 +1396,6 @@ class _TextInput extends StatelessWidget {
   final TextEditingController controller;
   final String label;
   final String? helperText;
-  final TextInputType? keyboardType;
   final int? minLines;
   final int? maxLines;
   final String? Function(String?)? validator;
@@ -1252,7 +1406,6 @@ class _TextInput extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 12),
       child: TextFormField(
         controller: controller,
-        keyboardType: keyboardType,
         minLines: minLines,
         maxLines: maxLines,
         validator: validator,
@@ -1266,20 +1419,107 @@ class _TextInput extends StatelessWidget {
   }
 }
 
+class _PlaceEntryChoiceCard extends StatelessWidget {
+  const _PlaceEntryChoiceCard({
+    required this.selectedMode,
+    required this.isLocating,
+    required this.onAtPlace,
+    required this.onAway,
+  });
+
+  final _PlaceEntryMode? selectedMode;
+  final bool isLocating;
+  final VoidCallback onAtPlace;
+  final VoidCallback onAway;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: const Color(0xFFEAF5FB),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFC9E2EE)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Are you at the place?',
+            style: theme.textTheme.titleMedium?.copyWith(
+              color: const Color(0xFF102F40),
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Choose the quickest way to identify it. Your location is used only when you tap “I’m here”.',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: const Color(0xFF58717E),
+            ),
+          ),
+          const SizedBox(height: 14),
+          Row(
+            children: [
+              Expanded(
+                child: FilledButton.icon(
+                  onPressed: isLocating ? null : onAtPlace,
+                  icon: isLocating
+                      ? const SizedBox.square(
+                          dimension: 16,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : const Icon(Icons.my_location_rounded),
+                  label: Text(isLocating ? 'Locating...' : 'I’m here'),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: onAway,
+                  icon: const Icon(Icons.search_rounded),
+                  label: const Text('Not here'),
+                ),
+              ),
+            ],
+          ),
+          if (selectedMode == _PlaceEntryMode.away) ...[
+            const SizedBox(height: 10),
+            const Text(
+              'Search by name and city, or choose a point on the map.',
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
 class _GooglePlaceLookupCard extends StatelessWidget {
   const _GooglePlaceLookupCard({
+    required this.title,
+    required this.description,
+    required this.actionLabel,
     required this.isSearching,
     required this.results,
     required this.enabled,
     required this.onSearch,
     required this.onSelected,
+    this.footerAction,
   });
 
+  final String title;
+  final String description;
+  final String actionLabel;
   final bool isSearching;
   final List<GooglePlaceSearchResult> results;
   final bool enabled;
   final VoidCallback onSearch;
   final ValueChanged<GooglePlaceSearchResult> onSelected;
+  final Widget? footerAction;
 
   @override
   Widget build(BuildContext context) {
@@ -1296,7 +1536,7 @@ class _GooglePlaceLookupCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Find the correct place',
+            title,
             style: theme.textTheme.titleSmall?.copyWith(
               color: const Color(0xFF102F40),
               fontWeight: FontWeight.w800,
@@ -1305,7 +1545,7 @@ class _GooglePlaceLookupCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             enabled
-                ? 'Search by name and city. Country and currency are filled after selection.'
+                ? description
                 : 'Sign in with your account to use the secure Google search.',
             style: theme.textTheme.bodySmall?.copyWith(
               color: const Color(0xFF58717E),
@@ -1320,8 +1560,12 @@ class _GooglePlaceLookupCard extends StatelessWidget {
                     child: CircularProgressIndicator(strokeWidth: 2),
                   )
                 : const Icon(Icons.travel_explore_rounded),
-            label: Text(isSearching ? 'Searching...' : 'Search Google Places'),
+            label: Text(isSearching ? 'Searching...' : actionLabel),
           ),
+          if (footerAction != null) ...[
+            const SizedBox(height: 6),
+            footerAction!,
+          ],
           if (results.isNotEmpty) ...[
             const SizedBox(height: 12),
             ...results.map(
@@ -1331,7 +1575,9 @@ class _GooglePlaceLookupCard extends StatelessWidget {
                 child: ListTile(
                   leading: const Icon(Icons.place_outlined),
                   title: Text(result.name),
-                  subtitle: result.address.isEmpty ? null : Text(result.address),
+                  subtitle: result.address.isEmpty
+                      ? null
+                      : Text(result.address),
                   trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () => onSelected(result),
                 ),
@@ -1383,9 +1629,9 @@ class _ExistingPlaceEditor extends StatelessWidget {
         initiallyExpanded: selectedPlaceId != null,
         title: Text(
           'Edit an existing place',
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w800,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
         ),
         subtitle: const Text('Open this only when correcting a saved place.'),
         children: [

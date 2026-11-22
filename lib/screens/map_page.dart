@@ -20,6 +20,7 @@ import 'package:my_map_app/screens/notifications_page.dart';
 import 'package:my_map_app/screens/want_to_go_page.dart';
 import 'package:my_map_app/services/device_location_service.dart';
 import 'package:my_map_app/services/geocoding_service.dart';
+import 'package:my_map_app/social/google_place_search_service.dart';
 import 'package:my_map_app/widgets/glass_panel.dart';
 import 'package:my_map_app/widgets/map_filters.dart';
 import 'package:my_map_app/widgets/place_details_sheet.dart';
@@ -53,8 +54,11 @@ class _MapPageState extends State<MapPage> {
   static const _wantToGoLabelImageId = 'my-locals-want-to-go-label';
   static const _userLocationSourceId = 'my-locals-user-location-source';
   static const _userLocationLayerId = 'my-locals-user-location-dot';
+  static const _liveStatusCacheDuration = Duration(minutes: 5);
+  static const _maximumPlacesForLiveOpenFilter = 30;
 
   final ViewportController _viewportController = ViewportController();
+  final _googlePlaceSearchService = const GooglePlaceSearchService();
   MapboxMap? _mapboxMap;
   bool _isStyleReady = false;
 
@@ -63,6 +67,10 @@ class _MapPageState extends State<MapPage> {
   RangeValues? _ratingRange;
   Set<int> _selectedPriceLevels = {};
   Set<String> _selectedVibes = {};
+  bool _showOnlyOpenNow = false;
+  bool _isCheckingOpenNow = false;
+  final Map<String, _LiveOpenStatus> _liveOpenStatuses = {};
+  int _liveOpenStatusRequest = 0;
   Set<String> _wantToGoPlaceIds = {};
   List<WantToGoPlace> _placesToTry = [];
   bool _showOnlyWantToGo = false;
@@ -76,7 +84,7 @@ class _MapPageState extends State<MapPage> {
   bool _isUserLocationVisible = false;
   DeviceLocation? _userLocation;
 
-  List<Place> get _filteredPlaces {
+  List<Place> get _placesMatchingOtherFilters {
     return _places.where((place) {
       if (_selectedCategories.isNotEmpty &&
           !_selectedCategories.contains(place.category)) {
@@ -107,11 +115,20 @@ class _MapPageState extends State<MapPage> {
     }).toList();
   }
 
+  List<Place> get _filteredPlaces {
+    final places = _placesMatchingOtherFilters;
+    if (!_showOnlyOpenNow) return places;
+    return places
+        .where((place) => _liveOpenStatuses[place.id]?.isOpenNow == true)
+        .toList();
+  }
+
   bool get _hasCatalogFilters {
     return _selectedCategories.isNotEmpty ||
         _ratingRange != null ||
         _selectedPriceLevels.isNotEmpty ||
-        _selectedVibes.isNotEmpty;
+        _selectedVibes.isNotEmpty ||
+        _showOnlyOpenNow;
   }
 
   List<WantToGoPlace> get _visibleWantToGoPlaces {
@@ -194,10 +211,10 @@ class _MapPageState extends State<MapPage> {
     ];
     if (latitudes.isEmpty) return;
 
-    final latitude = latitudes.reduce((sum, value) => sum + value) /
-        latitudes.length;
-    final longitude = longitudes.reduce((sum, value) => sum + value) /
-        longitudes.length;
+    final latitude =
+        latitudes.reduce((sum, value) => sum + value) / latitudes.length;
+    final longitude =
+        longitudes.reduce((sum, value) => sum + value) / longitudes.length;
     _moveMapTo(latitude, longitude, latitudes.length == 1 ? 15 : 13);
   }
 
@@ -243,7 +260,8 @@ class _MapPageState extends State<MapPage> {
           .eq('id', user.id)
           .maybeSingle();
       final metadata = user.userMetadata;
-      final avatarUrl = (profile?['avatar_url'] as String?) ??
+      final avatarUrl =
+          (profile?['avatar_url'] as String?) ??
           (metadata?['avatar_url'] as String?) ??
           (metadata?['picture'] as String?);
       if (mounted) setState(() => _accountAvatarUrl = avatarUrl);
@@ -365,6 +383,154 @@ class _MapPageState extends State<MapPage> {
     }
   }
 
+  Future<void> _setShowOnlyOpenNow(bool enabled) async {
+    final request = ++_liveOpenStatusRequest;
+    if (!enabled) {
+      setState(() {
+        _showOnlyOpenNow = false;
+        _isCheckingOpenNow = false;
+      });
+      _refreshMapFeatures();
+      return;
+    }
+
+    if (!SocialConfig.isAvailable ||
+        SocialConfig.client.auth.currentUser == null) {
+      _showMessage('Sign in to filter places by live opening hours.');
+      return;
+    }
+
+    setState(() => _isCheckingOpenNow = true);
+    final visiblePlaces = await _placesInCurrentMapView();
+    if (!mounted || request != _liveOpenStatusRequest) return;
+
+    if (visiblePlaces.isEmpty) {
+      setState(() => _isCheckingOpenNow = false);
+      _showMessage('There are no places in the current map view.');
+      return;
+    }
+
+    if (visiblePlaces.length > _maximumPlacesForLiveOpenFilter) {
+      setState(() => _isCheckingOpenNow = false);
+      _showMessage(
+        'Zoom in a little more, then filter the $_maximumPlacesForLiveOpenFilter places currently on the map.',
+      );
+      return;
+    }
+
+    final placesWithGoogleIds = visiblePlaces
+        .where((place) => (place.googlePlaceId?.trim().isNotEmpty ?? false))
+        .toList(growable: false);
+    if (placesWithGoogleIds.isEmpty) {
+      setState(() => _isCheckingOpenNow = false);
+      _showMessage(
+        'Live opening hours are not available for these places yet.',
+      );
+      return;
+    }
+
+    final now = DateTime.now();
+    final placesToCheck = placesWithGoogleIds
+        .where((place) {
+          final cached = _liveOpenStatuses[place.id];
+          return cached == null ||
+              now.difference(cached.checkedAt) > _liveStatusCacheDuration;
+        })
+        .toList(growable: false);
+
+    if (placesToCheck.isNotEmpty) {
+      _showMessage(
+        'Checking live opening hours for ${placesToCheck.length} places on the map…',
+      );
+      await _loadLiveOpenStatuses(placesToCheck);
+    }
+
+    if (!mounted || request != _liveOpenStatusRequest) return;
+    final openCount = placesWithGoogleIds
+        .where((place) => _liveOpenStatuses[place.id]?.isOpenNow == true)
+        .length;
+    setState(() {
+      _showOnlyOpenNow = true;
+      _isCheckingOpenNow = false;
+    });
+    _refreshMapFeatures();
+    _showMessage(
+      switch (openCount) {
+        0 => 'No places are currently open in this map view.',
+        1 => 'Showing 1 place currently open.',
+        _ => 'Showing $openCount places currently open.',
+      },
+    );
+  }
+
+  Future<void> _loadLiveOpenStatuses(List<Place> places) async {
+    const workers = 4;
+    var nextPlaceIndex = 0;
+
+    Future<void> checkNextPlace() async {
+      while (nextPlaceIndex < places.length) {
+        final place = places[nextPlaceIndex++];
+        final placeId = place.googlePlaceId!.trim();
+        try {
+          final details = await _googlePlaceSearchService.loadPlaceDetails(
+            placeId: placeId,
+          );
+          _liveOpenStatuses[place.id] = _LiveOpenStatus(
+            isOpenNow:
+                details.businessStatus == 'OPERATIONAL' &&
+                details.isOpenNow == true,
+            checkedAt: DateTime.now(),
+          );
+        } on GooglePlaceSearchException catch (error) {
+          debugPrint(
+            'Could not check live opening hours for ${place.name}: ${error.message}',
+          );
+        }
+      }
+    }
+
+    await Future.wait(
+      List.generate(
+        places.length < workers ? places.length : workers,
+        (_) => checkNextPlace(),
+      ),
+    );
+  }
+
+  Future<List<Place>> _placesInCurrentMapView() async {
+    final map = _mapboxMap;
+    if (map == null) return const [];
+
+    try {
+      final camera = await map.getCameraState();
+      final bounds = await map.coordinateBoundsForCamera(
+        CameraOptions(
+          center: camera.center,
+          zoom: camera.zoom,
+          bearing: camera.bearing,
+          pitch: camera.pitch,
+        ),
+      );
+      final south = bounds.southwest.coordinates.lat.toDouble();
+      final north = bounds.northeast.coordinates.lat.toDouble();
+      final west = bounds.southwest.coordinates.lng.toDouble();
+      final east = bounds.northeast.coordinates.lng.toDouble();
+
+      return _placesMatchingOtherFilters
+          .where((place) {
+            final latitudeIsVisible = place.lat >= south && place.lat <= north;
+            final longitudeIsVisible = west <= east
+                ? place.lng >= west && place.lng <= east
+                : place.lng >= west || place.lng <= east;
+            return latitudeIsVisible && longitudeIsVisible;
+          })
+          .toList(growable: false);
+    } catch (error) {
+      debugPrint('Could not read the visible map area: $error');
+      return const [];
+    }
+  }
+
   Future<void> _loadWantToGo() async {
     try {
       final data = await widget.wantToGoRepository.load();
@@ -382,10 +548,7 @@ class _MapPageState extends State<MapPage> {
   Future<void> _saveWantToGo() async {
     try {
       await widget.wantToGoRepository.save(
-        WantToGoData(
-          mappedPlaceIds: _wantToGoPlaceIds,
-          places: _placesToTry,
-        ),
+        WantToGoData(mappedPlaceIds: _wantToGoPlaceIds, places: _placesToTry),
       );
     } catch (_) {
       _showMessage('Could not save your Want to go list. Try again.');
@@ -512,7 +675,11 @@ class _MapPageState extends State<MapPage> {
           id: _labelLayerId,
           sourceId: _placesSourceId,
           slot: 'top',
-          filter: const ['==', ['get', 'kind'], 'catalog'],
+          filter: const [
+            '==',
+            ['get', 'kind'],
+            'catalog',
+          ],
           minZoom: 11,
           iconImageExpression: ['get', 'labelIcon'],
           iconTextFit: IconTextFit.BOTH,
@@ -542,7 +709,11 @@ class _MapPageState extends State<MapPage> {
           id: _wantToGoLabelLayerId,
           sourceId: _placesSourceId,
           slot: 'top',
-          filter: const ['==', ['get', 'kind'], 'want'],
+          filter: const [
+            '==',
+            ['get', 'kind'],
+            'want',
+          ],
           iconImageExpression: ['get', 'labelIcon'],
           iconTextFit: IconTextFit.BOTH,
           iconTextFitPadding: const <double>[3, 8, 3, 8],
@@ -643,9 +814,10 @@ class _MapPageState extends State<MapPage> {
         ..strokeWidth = 1,
     );
 
-    final image = await recorder
-        .endRecording()
-        .toImage(size.toInt(), size.toInt());
+    final image = await recorder.endRecording().toImage(
+      size.toInt(),
+      size.toInt(),
+    );
     try {
       return await StyleImage.fromImage(image);
     } finally {
@@ -777,7 +949,9 @@ class _MapPageState extends State<MapPage> {
     } on DeviceLocationException catch (error) {
       _showMessage(error.message);
     } catch (_) {
-      _showMessage('Could not start location. Check browser or device permissions.');
+      _showMessage(
+        'Could not start location. Check browser or device permissions.',
+      );
     } finally {
       if (mounted) setState(() => _isLocatingUser = false);
     }
@@ -1107,6 +1281,8 @@ class _MapPageState extends State<MapPage> {
                       selectedVibes: _selectedVibes,
                       availableVibes: _availableVibes,
                       availableRatings: _availableRatings,
+                      showOnlyOpenNow: _showOnlyOpenNow,
+                      isCheckingOpenNow: _isCheckingOpenNow,
                       showOnlyWantToGo: _showOnlyWantToGo,
                       selectedWantToGoCities: _selectedWantToGoCities,
                       availableWantToGoCities: _availableWantToGoCities,
@@ -1139,6 +1315,7 @@ class _MapPageState extends State<MapPage> {
                         });
                         _refreshMapFeatures();
                       },
+                      onOpenNowOnlyChanged: _setShowOnlyOpenNow,
                       onWantToGoOnlyChanged: (value) {
                         setState(() {
                           _showOnlyWantToGo = value;
@@ -1164,6 +1341,9 @@ class _MapPageState extends State<MapPage> {
                           _ratingRange = null;
                           _selectedPriceLevels = {};
                           _selectedVibes = {};
+                          _showOnlyOpenNow = false;
+                          _isCheckingOpenNow = false;
+                          _liveOpenStatusRequest++;
                           _showOnlyWantToGo = false;
                           _selectedWantToGoCities = {};
                         });
@@ -1188,9 +1368,7 @@ class _MapPageState extends State<MapPage> {
             tooltip: 'Friends and affinity',
             onPressed: () {
               Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => const FriendsPage(),
-                ),
+                MaterialPageRoute<void>(builder: (_) => const FriendsPage()),
               );
             },
             child: const Icon(Icons.people_alt_outlined),
@@ -1204,9 +1382,7 @@ class _MapPageState extends State<MapPage> {
             tooltip: 'Add place',
             onPressed: () async {
               await Navigator.of(context).push<void>(
-                MaterialPageRoute<void>(
-                  builder: (_) => const AddPlacePage(),
-                ),
+                MaterialPageRoute<void>(builder: (_) => const AddPlacePage()),
               );
               if (!mounted) return;
               await _loadPlaces();
@@ -1268,6 +1444,13 @@ class _MapPageState extends State<MapPage> {
       ),
     );
   }
+}
+
+class _LiveOpenStatus {
+  const _LiveOpenStatus({required this.isOpenNow, required this.checkedAt});
+
+  final bool isOpenNow;
+  final DateTime checkedAt;
 }
 
 class _MapNotificationBell extends StatelessWidget {
@@ -1360,8 +1543,7 @@ class _MapAccountAvatar extends StatelessWidget {
             padding: const EdgeInsets.all(3),
             child: CircleAvatar(
               radius: 22,
-              foregroundImage:
-                  hasAvatar ? NetworkImage(avatarUrl!) : null,
+              foregroundImage: hasAvatar ? NetworkImage(avatarUrl!) : null,
               child: const Icon(Icons.person_outline_rounded),
             ),
           ),

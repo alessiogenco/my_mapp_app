@@ -62,3 +62,6 @@ app.*.map.json
 
 # Local backups created by the place writer while entering data.
 /assets/data/backups/
+
+# Portable project snapshots kept locally or copied to personal cloud storage.
+/backups/

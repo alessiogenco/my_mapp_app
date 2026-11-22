@@ -13,6 +13,8 @@ class MapFilters extends StatelessWidget {
     required this.selectedVibes,
     required this.availableVibes,
     required this.availableRatings,
+    required this.showOnlyOpenNow,
+    required this.isCheckingOpenNow,
     required this.showOnlyWantToGo,
     required this.selectedWantToGoCities,
     required this.availableWantToGoCities,
@@ -21,6 +23,7 @@ class MapFilters extends StatelessWidget {
     required this.onRatingRangeChanged,
     required this.onPriceLevelsChanged,
     required this.onVibesChanged,
+    required this.onOpenNowOnlyChanged,
     required this.onWantToGoOnlyChanged,
     required this.onWantToGoCitiesChanged,
     required this.onReset,
@@ -33,6 +36,8 @@ class MapFilters extends StatelessWidget {
   final Set<String> selectedVibes;
   final List<String> availableVibes;
   final List<int> availableRatings;
+  final bool showOnlyOpenNow;
+  final bool isCheckingOpenNow;
   final bool showOnlyWantToGo;
   final Set<String> selectedWantToGoCities;
   final List<String> availableWantToGoCities;
@@ -41,6 +46,7 @@ class MapFilters extends StatelessWidget {
   final ValueChanged<RangeValues?> onRatingRangeChanged;
   final ValueChanged<Set<int>> onPriceLevelsChanged;
   final ValueChanged<Set<String>> onVibesChanged;
+  final ValueChanged<bool> onOpenNowOnlyChanged;
   final ValueChanged<bool> onWantToGoOnlyChanged;
   final ValueChanged<Set<String>> onWantToGoCitiesChanged;
   final VoidCallback onReset;
@@ -50,6 +56,7 @@ class MapFilters extends StatelessWidget {
         ratingRange != null ||
         selectedPriceLevels.isNotEmpty ||
         selectedVibes.isNotEmpty ||
+        showOnlyOpenNow ||
         showOnlyWantToGo;
   }
 
@@ -131,6 +138,22 @@ class MapFilters extends StatelessWidget {
                     : 'Vibes · ${selectedVibes.length}',
                 isActive: selectedVibes.isNotEmpty,
                 onTap: () => _showVibesPicker(context),
+              ),
+            ),
+            const SizedBox(width: 3),
+            SizedBox(
+              width: isCheckingOpenNow ? 124 : 108,
+              child: _FilterButton(
+                icon: isCheckingOpenNow
+                    ? Icons.hourglass_top_rounded
+                    : showOnlyOpenNow
+                    ? Icons.storefront_rounded
+                    : Icons.storefront_outlined,
+                label: isCheckingOpenNow ? 'Checking…' : 'Open now',
+                isActive: showOnlyOpenNow,
+                onTap: isCheckingOpenNow
+                    ? () {}
+                    : () => onOpenNowOnlyChanged(!showOnlyOpenNow),
               ),
             ),
             const SizedBox(width: 3),

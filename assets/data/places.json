@@ -27,7 +27,8 @@
     "instagramUrl": "https://www.instagram.com/ristorantetrullogarden/",
     "googleMapsUrl": "https://www.google.com/maps/place/Trullo+Garden/@40.785522,17.2357839,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b263eb035c23:0xde0848980b828bcd!8m2!3d40.785522!4d17.2383588!16s%2Fg%2F11c1mzbhj0?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJI1wD62OyRxMRzYuCC5hICN4"
   },
   {
     "id": "cols",
@@ -58,7 +59,8 @@
     "notes": "Coffee bar attento alla ricerca sulle miscele, con proposte originali. Staff professionale e molto gentile.",
     "googleMapsUrl": "https://www.google.com/maps/place/Cols/@40.779568,17.232946,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3e1d225ca03:0x4eda899e119c9cf8!8m2!3d40.779568!4d17.2355209!16s%2Fg%2F11y6ys9ymc?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJA8ol0uGzRxMR-JycEZ6J2k4"
   },
   {
     "id": "ristorante_gli_ulivi",
@@ -87,7 +89,8 @@
     "websiteUrl": "https://www.ristorantegliulivialberobello.it/",
     "googleMapsUrl": "https://www.google.com/maps/place/Ristorante+Gli+Ulivi/@40.7851773,17.2438152,17z/data=!3m2!4b1!5s0x1347b2897c2fa45d:0xca06e24071096a49!4m6!3m5!1s0x1347b2897f8f7ac7:0xfbd8f48410c808ce!8m2!3d40.7851773!4d17.2463901!16s%2Fg%2F1tfn6f3j?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJx3qPf4myRxMRzgjIEIT02Ps"
   },
   {
     "id": "la_lira_focacceria",
@@ -118,7 +121,8 @@
     "notes": "Focapizza con impasto ben riuscito e numerose farciture. Non ci sono posti a sedere, ma il personale è molto cordiale.",
     "googleMapsUrl": "https://www.google.com/maps/place/La+Lira+Focacceria/@40.7828091,17.2351188,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b2635c92ecdb:0xbe30d958cc46adc7!8m2!3d40.7828091!4d17.2376937!16s%2Fg%2F1q6j6f530?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ2-ySXGOyRxMRx61GzFjZML4"
   },
   {
     "id": "republic_19",
@@ -149,7 +153,8 @@
     "instagramUrl": "https://www.instagram.com/republic19alberobello/",
     "googleMapsUrl": "https://www.google.com/maps/place/Republic+19/@40.7834163,17.2328717,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3f824f6f461:0x33a526d359af69f7!8m2!3d40.7834163!4d17.2354466!16s%2Fg%2F11j1z4mbpq?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJYfT2JPizRxMR92mvWdMmpTM"
   },
   {
     "id": "la_pagnottella",
@@ -180,7 +185,8 @@
     "notes": "Panini preparati con prodotti locali e una bella vista sulla zona storica.",
     "googleMapsUrl": "https://www.google.com/maps/place/La+Pagnottella+-+Alberobello/@40.7835631,17.2383164,20.33z/data=!4m6!3m5!1s0x1347b2637165fd53:0x6fbbb1a01a994228!8m2!3d40.7835429!4d17.2385513!16s%2Fg%2F11g9qt5nyg?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJU_1lcWOyRxMRKEKZGqCxu28"
   },
   {
     "id": "pub_crash",
@@ -208,7 +214,8 @@
     "notes": "Storico pub di Alberobello, tra i primi del paese. Panini, piadine e birre in un ambiente dal design originale.",
     "googleMapsUrl": "https://www.google.com/maps/place/Pub+%22Crash%22/@40.7873002,17.236749,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b26171da8c5b:0x966b40672e53d920!8m2!3d40.7873002!4d17.2393239!16s%2Fg%2F11cs2wwn80?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJW4zacWGyRxMRINlTLmdAa5Y"
   },
   {
     "id": "cibum_macelleria_ristogrill",
@@ -239,7 +246,8 @@
     "notes": "Carni locali e internazionali di livello, con una proposta ampia e ben curata. Buona carta dei vini, antipasti locali da provare, staff cordiale e molti coperti disponibili.",
     "googleMapsUrl": "https://www.google.com/maps/place/CIBUM+-+Macelleria+Ristogrill/@40.7811738,17.2422001,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b35de2ed0219:0x628ad593d2461916!8m2!3d40.7811738!4d17.244775!16s%2Fg%2F11j1m60ygr?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJGQLt4l2zRxMRFhlG0pPVimI"
   },
   {
     "id": "la_bottega_del_gelato",
@@ -270,7 +278,8 @@
     "websiteUrl": "https://labottegadelgelatoalberobello.com/",
     "googleMapsUrl": "https://www.google.com/maps/place/La+Bottega+del+Gelato/@40.7840541,17.2344495,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3e86ea05f9f:0x7bc4eaae284a6ad2!8m2!3d40.7840541!4d17.2370244!16s%2Fg%2F11s416ync3?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJn1-gbuizRxMR0mpKKK7qxHs"
   },
   {
     "id": "marla_ispirazioni_di_gusto",
@@ -298,7 +307,8 @@
       "takeaway"
     ],
     "notes": "Una buona scelta per colazione, gelati e dolci, con un servizio curato.",
-    "googleMapsUrl": "https://www.google.com/maps/place/Marl%C3%A0+Ispirazioni+di+gusto/@40.7875688,17.2291409,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3002740a0e5:0x3ad21508f536a52d!8m2!3d40.7875688!4d17.2317158!16s%2Fg%2F11yz9bz083?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/Marl%C3%A0+Ispirazioni+di+gusto/@40.7875688,17.2291409,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3002740a0e5:0x3ad21508f536a52d!8m2!3d40.7875688!4d17.2317158!16s%2Fg%2F11yz9bz083?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D",
+    "googlePlaceId": "ChIJ5aBAJwCzRxMRLaU29QgV0jo"
   },
   {
     "id": "bar_l_incontro_lounge",
@@ -328,7 +338,8 @@
     "notes": "Adatto sia alla colazione sia al doposerata, con cocktail ben fatti. Dispone di molti posti a sedere, all'interno e all'esterno.",
     "googleMapsUrl": "https://www.google.com/maps/place/Bar+%22L'incontro+Lounge%22/@40.781536,17.2411926,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b288112249ff:0xfb941f6c362be4a6!8m2!3d40.781536!4d17.2437675!16s%2Fg%2F12hlsj75p?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ_0kiEYiyRxMRpuQrNmwflPs"
   },
   {
     "id": "malart",
@@ -357,7 +368,8 @@
     "notes": "Birre artigianali ben selezionate nel centro di Alberobello.",
     "googleMapsUrl": "https://www.google.com/maps/place/Malart/@40.7817792,17.2343489,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b31636263221:0x28e169d46097bb5f!8m2!3d40.7817792!4d17.2369238!16s%2Fg%2F11t6g7zd3d?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJITImNhazRxMRX7uXYNRp4Sg"
   },
   {
     "id": "braceria_la_fontana",
@@ -387,7 +399,8 @@
     "notes": "Carne locale nel pieno centro storico, con tavoli anche all'esterno. Da provare le bombette.",
     "googleMapsUrl": "https://www.google.com/maps/place/Braceria+%22La+Fontana%22/@40.7829358,17.2344446,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b264a0719ef3:0x35408b65cc7d8482!8m2!3d40.7829358!4d17.2370195!16s%2Fg%2F11d_7v5md7?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ855xoGSyRxMRgoR9zGWLQDU"
   },
   {
     "id": "atelier_spiralis",
@@ -416,7 +429,8 @@
     "instagramUrl": "https://www.instagram.com/gianvito_barnaba/",
     "googleMapsUrl": "https://www.google.com/maps/place/Atelier+Spiralis/@40.782845,17.2349038,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b3ca8c150f9f:0x11a81f71a84a849b!8m2!3d40.782845!4d17.2374787!16s%2Fg%2F11tp51bk73?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJnw8VjMqzRxMRm4RKqHEfqBE"
   },
   {
     "id": "bagia_alberobello",
@@ -447,7 +461,8 @@
     "instagramUrl": "https://www.instagram.com/bagia_alberobello/",
     "googleMapsUrl": "https://www.google.com/maps/place/Bagi%C3%A0+Alberobello/@40.7827723,17.2350629,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b2635e2e0f01:0xcb0aba353d54007!8m2!3d40.7827723!4d17.2376378!16s%2Fg%2F11btvg99b0?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJAQ8uXmOyRxMRB0DVU6OrsAw"
   },
   {
     "id": "ristorante_trullo_d_oro",
@@ -477,7 +492,8 @@
     "notes": "Ristorante caratteristico ricavato in un trullo, con piatti locali. Una scelta adatta soprattutto a chi vuole vivere un'esperienza tipica ad Alberobello.",
     "googleMapsUrl": "https://www.google.com/maps/place/Ristorante+Trullo+D'Oro/@40.7850323,17.2349625,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b26389a1aaf5:0x4a84b2b7b4063b5d!8m2!3d40.7850323!4d17.2375374!16s%2Fg%2F1tf211jj?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ9aqhiWOyRxMRXTsGtLeyhEo"
   },
   {
     "id": "profumi_dal_ponte",
@@ -507,7 +523,8 @@
     "notes": "Bakery con una forte proposta di dolci lievitati, focaccia pugliese e taralli.",
     "googleMapsUrl": "https://www.google.com/maps/place/Profumi+dal+Ponte/@40.7847557,17.2294368,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b26570b8c2f9:0x8727fa8d1950dedd!8m2!3d40.7847557!4d17.2320117!16s%2Fg%2F11fxx4238q?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ-cK4cGWyRxMR3d5QGY36J4c"
   },
   {
     "id": "delizie",
@@ -536,7 +553,8 @@
     "websiteUrl": "https://www.facebook.com/pasticceriatedeschi/?locale=it_IT",
     "googleMapsUrl": "https://www.google.com/maps/place/Delizie/@40.7829999,17.2281993,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b264a046e00f:0x26e255fc897e204!8m2!3d40.7829999!4d17.2307742!16s%2Fg%2F1tdhhhfb?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJD-BGoGSyRxMRBOKXyF8lbgI"
   },
   {
     "id": "evo_ristorante",
@@ -568,7 +586,8 @@
     "websiteUrl": "https://www.evoristorante.com/",
     "googleMapsUrl": "https://www.google.com/maps/place/EVO+Ristorante/@40.7874591,17.2324609,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b2669b7e8803:0xa61ce6bd21a80af1!8m2!3d40.7874591!4d17.2350358!16s%2Fg%2F11bw795jks?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJA4h-m2ayRxMR8QqoIb3mHKY"
   },
   {
     "id": "casa_nova_il_ristorante",
@@ -600,7 +619,8 @@
     "websiteUrl": "http://www.casanovailristorante.it/",
     "googleMapsUrl": "https://www.google.com/maps/place/Casa+Nova+Il+Ristorante/@40.7826206,17.2349241,17z/data=!3m1!4b1!4m6!3m5!1s0x1347b2635a2ecc83:0x540b4e2c0e571965!8m2!3d40.7826206!4d17.237499!16s%2Fg%2F1tv6t318?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJg8wuWmOyRxMRZRlXDixOC1Q"
   },
   {
     "id": "gulp_bari",
@@ -631,7 +651,8 @@
     "websiteUrl": "http://www.gulpbari.it/",
     "googleMapsUrl": "https://www.google.com/maps/place/Gulp+%7C+Bari/@41.0987386,16.8499938,17z/data=!3m1!4b1!4m6!3m5!1s0x1347e91b1f7f7d49:0x27021c3024d4d8eb!8m2!3d41.0987386!4d16.8525687!16s%2Fg%2F11g_r_1zq?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJSX1_HxvpRxMR69jUJDAcAic"
   },
   {
     "id": "il_postaccio",
@@ -660,7 +681,8 @@
     "notes": "Storico riferimento barese per cicchetti e chupitos, in una buona zona residenziale della città.",
     "googleMapsUrl": "https://www.google.com/maps/place/Il+Postaccio/@41.0986276,16.8497863,17z/data=!3m1!4b1!4m6!3m5!1s0x1347e91b177c1fa3:0x941116f5fbf1c552!8m2!3d41.0986276!4d16.8523612!16s%2Fg%2F11cmj05cz6?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJox98FxvpRxMRUsXx-_UWEZQ"
   },
   {
     "id": "rosticceria_oriente",
@@ -691,7 +713,8 @@
     "instagramUrl": "https://www.instagram.com/rosticceriaoriente/",
     "googleMapsUrl": "https://maps.app.goo.gl/iB2H7AEokinYUS2s9",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJU0DgkP7oRxMRMMVVQJTeIu8"
   },
   {
     "id": "pizzeria_di_cosimo_mauro",
@@ -722,7 +745,8 @@
     "notes": "Un'istituzione barese per panzerotti, al forno o fritti, con varie dimensioni e farciture. Autentico e consigliato a chi vuole provare il panzerotto barese.",
     "googleMapsUrl": "https://maps.app.goo.gl/LwUW8jusxeKkSk3D7",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJNyVcnFXoRxMRjUcT16Wy8LI"
   },
   {
     "id": "le_officine_clandestine",
@@ -752,7 +776,8 @@
     "notes": "Pub in zona Campus a Bari, con una buona scelta di birre, antipasti e panini.",
     "googleMapsUrl": "https://maps.app.goo.gl/uaQ8qQHvN8T5XuuR7",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJQ-rMS1npRxMREqDAJqs5aos"
   },
   {
     "id": "factory_pub",
@@ -780,7 +805,8 @@
     "websiteUrl": "https://www.factorypub.it/",
     "googleMapsUrl": "https://maps.app.goo.gl/Xpss6wxnsHoNAeE2A",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ92WN9_foRxMR8PYfoWBrCl0"
   },
   {
     "id": "manicomio_drinks_foods",
@@ -810,7 +836,8 @@
     "notes": "Cocktail bar in pieno centro, aperto fino a tardi e adatto a serate con amici o per socializzare.",
     "googleMapsUrl": "https://maps.app.goo.gl/wre3JjNWv8jt63Se9",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ0eumYNfpRxMRHIHiswLw00w"
   },
   {
     "id": "timeout_play_around_food",
@@ -842,7 +869,8 @@
     "instagramUrl": "https://www.instagram.com/timeoutbari/",
     "googleMapsUrl": "https://maps.app.goo.gl/4eYHX7SU7x7c62dXA",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJWfJg7rnpRxMRXZkAb_QSO6A"
   },
   {
     "id": "piccinni_28",
@@ -874,7 +902,8 @@
     "instagramUrl": "https://www.instagram.com/piccinni28/",
     "googleMapsUrl": "https://maps.app.goo.gl/SqivwujjbJyhR7pY9",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJOxMhMmHoRxMRyYA0xW7YkSI"
   },
   {
     "id": "bakery_santa_rita",
@@ -906,7 +935,8 @@
     "notes": "Storica focacceria nella città vecchia, da scegliere per una delle focacce più autentiche di Bari. Validi anche i rustici.",
     "googleMapsUrl": "https://maps.app.goo.gl/b5deR31qRU7BLHxf8",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ51RI02PoRxMRmxbCmL5KsmE"
   },
   {
     "id": "gelateria_gentile",
@@ -939,7 +969,8 @@
     "websiteUrl": "http://www.gelateriagentile.it/",
     "googleMapsUrl": "https://maps.app.goo.gl/o4PziAdHXR6kq5TX8",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJv3W49GHoRxMRjwolza9lJFE"
   },
   {
     "id": "pizzeria_di_cosimo",
@@ -971,7 +1002,8 @@
     "notes": "Storica istituzione barese per panzerotti fritti e al forno, con diverse farciture. I posti esterni sono pochi, quindi il takeaway è spesso la soluzione migliore.",
     "googleMapsUrl": "https://maps.app.goo.gl/F6dRvF3Vi3uSg3Hb7",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJBbNpKmLoRxMRI50nqv6UNdI"
   },
   {
     "id": "pescaria",
@@ -1005,7 +1037,8 @@
     "websiteUrl": "https://www.pescaria.it/",
     "googleMapsUrl": "https://maps.app.goo.gl/9fjeVQdvxRjNXByD7",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJabkjppTLRxMR5yTG75usFwU"
   },
   {
     "id": "ristorante_bar_pizzeria_porto_rosso",
@@ -1037,7 +1070,8 @@
     "instagramUrl": "https://www.instagram.com/portorosso_monopoli/",
     "googleMapsUrl": "https://maps.app.goo.gl/C96gMT9BApWPDty39",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ91OyNQA1RhMRbNaZUKvrwd8"
   },
   {
     "id": "n24_bar_vin_con_cucina",
@@ -1069,7 +1103,8 @@
       "wine"
     ],
     "notes": "Ristorante e cocktail bar nel centro storico di Monopoli. La sera è una buona scelta per piatti locali di pesce, accompagnati da vino, e per cocktail nel dopocena.",
-    "googleMapsUrl": "https://www.google.com/maps/place/N24+Bar+%C3%A0+Vin+-+con+cucina/@40.9538708,17.3045155,18z/data=!4m6!3m5!1s0x13463526859197b7:0xe5852c608f414291!8m2!3d40.9536536!4d17.3055559!16s%2Fg%2F11g8gd91gn?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D"
+    "googleMapsUrl": "https://www.google.com/maps/place/N24+Bar+%C3%A0+Vin+-+con+cucina/@40.9538708,17.3045155,18z/data=!4m6!3m5!1s0x13463526859197b7:0xe5852c608f414291!8m2!3d40.9536536!4d17.3055559!16s%2Fg%2F11g8gd91gn?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D",
+    "googlePlaceId": "ChIJt5eRhSY1RhMRkUJBj2AsheU"
   },
   {
     "id": "arboris_belli_pizzeria_con_cucina",
@@ -1099,7 +1134,8 @@
     "notes": "Fuori dal centro storico di Alberobello, è frequentato dai locali per pizza e antipasti della tradizione.",
     "googleMapsUrl": "https://www.google.com/maps/place/Arboris+Belli+Pizzeria+con+cucina/@40.7651649,17.2172966,14z/data=!3m1!5s0x1347ad857a0b792b:0xa6cfc2837a339ba8!4m6!3m5!1s0x1347ad85779a99a9:0xa54ca325e815c13!8m2!3d40.7651635!4d17.2318605!16s%2Fg%2F1tr6pk9s?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJqZmad4WtRxMRE1yBXjLKVAo"
   },
   {
     "id": "pietranuda",
@@ -1129,7 +1165,8 @@
     "notes": "Qualità della carne e gentilezza del personale ne fanno un riferimento per assaggiare specialità locali in Valle d'Itria. Buona disponibilità di posti interni e, d'estate, anche all'esterno.",
     "googleMapsUrl": "https://www.google.com/maps/place/Pietranuda/@40.7547662,17.323749,17z/data=!3m2!4b1!5s0x1346528337a976fb:0x26b8f691778f933b!4m6!3m5!1s0x13465283366b18cb:0x6b71088614fa5f24!8m2!3d40.7547662!4d17.3263239!16s%2Fg%2F11bx56l841?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJyxhrNoNSRhMRJF_6FIYIcWs"
   },
   {
     "id": "serena_nardelli_lieviteria_artigianale_senza_lattosio",
@@ -1158,7 +1195,8 @@
     "instagramUrl": "https://www.instagram.com/serenanardelli_locorotondo/",
     "googleMapsUrl": "https://www.google.com/maps/place/SERENA+NARDELLI+Lieviteria+Artigianale+Senza+Lattosio/@40.7566044,17.3206876,15.75z/data=!4m6!3m5!1s0x134653bd59148739:0xaea6b618bad95f4b!8m2!3d40.7561968!4d17.3213507!16s%2Fg%2F11ysdcv7gr?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJOYcUWb1TRhMRS1_Zuhi2pq4"
   },
   {
     "id": "mandragora_pozioni_porzioni",
@@ -1194,7 +1232,8 @@
     "instagramUrl": "https://www.instagram.com/mandragora_pozionieporzioni/",
     "googleMapsUrl": "https://www.google.com/maps/place/Mandragora+Pozioni+%26+Porzioni/@40.7526655,17.3284151,21z/data=!4m6!3m5!1s0x1346532aa753cfa3:0xbeb30ce1cb8abcbc!8m2!3d40.7526866!4d17.3284132!16s%2Fg%2F11hzzqkhzb?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJo89TpypTRhMRvLyKy-EMs74"
   },
   {
     "id": "la_tradizione_fornello_pugliese",
@@ -1227,7 +1266,8 @@
     "instagramUrl": "https://www.instagram.com/latradizione.braceria/",
     "googleMapsUrl": "https://www.google.com/maps/place/La+Tradizione+-+Fornello+Pugliese/@40.8902801,16.8999091,12z/data=!4m6!3m5!1s0x1347bdd7461508e7:0xa58fffa0ee28980a!8m2!3d40.8902801!4d16.9489029!16s%2Fg%2F1tfdhvdt?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ5wgVRte9RxMRCpgo7qD_j6U"
   },
   {
     "id": "carloquinto",
@@ -1260,7 +1300,8 @@
     "instagramUrl": "https://www.instagram.com/carloquintomonopoli/",
     "googleMapsUrl": "https://www.google.com/maps/place/CarloQuinto/@40.9532671,17.3055993,19.29z/data=!4m6!3m5!1s0x134635269c102cdb:0xbc430babfd8a3d8c!8m2!3d40.9532201!4d17.3062614!16s%2Fg%2F11b6hqwtnn?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ2ywQnCY1RhMRjD2K_asLQ7w"
   },
   {
     "id": "baldovino_winebar",
@@ -1289,7 +1330,8 @@
     "instagramUrl": "https://www.instagram.com/baldovinowinebar/",
     "googleMapsUrl": "https://www.google.com/maps/place/Baldovino+Winebar/@40.9521135,17.3058007,20z/data=!4m6!3m5!1s0x134635243bcca207:0x1a4ff104f6ec45f3!8m2!3d40.9521135!4d17.3059921!16s%2Fg%2F11b6nm52gg?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJB6LMOyQ1RhMR80Xs9gTxTxo"
   },
   {
     "id": "francesco_urbano_chocol_atelier",
@@ -1320,7 +1362,8 @@
     "instagramUrl": "https://www.instagram.com/francesco__urbano/",
     "googleMapsUrl": "https://www.google.com/maps/place/Francesco+Urbano+Chocol-Atelier/@40.9557546,17.2833306,15z/data=!4m14!1m7!3m6!1s0x1347cb94a623b969:0x517ac9befc624e7!2sPescaria!8m2!3d40.9947147!4d17.219381!16s%2Fg%2F11c4bgffsv!3m5!1s0x1347c1e489a41b03:0x5902386e7a20dc49!8m2!3d40.9554681!4d17.2893983!16s%2Fg%2F11f57ssmwg?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJAxukieTBRxMRSdwgem44Alk"
   },
   {
     "id": "alchemy_bar_and_things",
@@ -1352,7 +1395,8 @@
     "instagramUrl": "https://www.instagram.com/alchemico.barecose/",
     "googleMapsUrl": "https://www.google.com/maps/place/Alchemy+Bar+and+Things/@40.9530193,17.3011289,18.75z/data=!4m8!3m7!1s0x1346352f51fd85bb:0x148698a126994e5b!8m2!3d40.9531201!4d17.3008986!9m1!1b1!16s%2Fg%2F11c549ss4n?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJu4X9US81RhMRW06ZJqGYhhQ"
   },
   {
     "id": "carn_risto_macelleria",
@@ -1382,7 +1426,8 @@
     "websiteUrl": "https://carne-risto.com/",
     "googleMapsUrl": "https://www.google.com/maps/place/Carn'%C3%A9+risto-macelleria/@40.7529562,17.3303095,20z/data=!4m10!1m2!2m1!1scarne'!3m6!1s0x13465283f9de78a9:0xaada14fca781a0df!8m2!3d40.7529562!4d17.330905!15sCgZjYXJuZSdaByIFY2FybmWSAQpyZXN0YXVyYW50mgEjQ2haRFNVaE5NRzluUzBWSlEwRm5TVVJNTFRWUFVtUjNFQUXgAQD6AQQIABAw!16s%2Fg%2F11dxl9ty16?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJqXje-YNSRhMR36CBp_wU2qo"
   },
   {
     "id": "l_arte_dell_arrosto_macelleria_braceria",
@@ -1411,7 +1456,8 @@
     "notes": "Macelleria in centro a Martina Franca, particolarmente consigliata per l'ampia scelta di bombette di qualità e per gli antipasti locali. Locale ampio con molti tavoli interni; disponibile anche il takeaway tramite Just Eat.",
     "googleMapsUrl": "https://www.google.com/maps/place/L%E2%80%99+Arte+dell%E2%80%99+Arrosto+Macelleria+Braceria/@40.7064763,17.3268307,15z/data=!4m6!3m5!1s0x13465308c25a9fc5:0x278321feb39b0389!8m2!3d40.7064358!4d17.3330141!16s%2Fg%2F11c5_1v4mm?entry=ttu&g_ep=EgoyMDI2MDgyNi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJxZ9awghTRhMRiQObs_4hgyc"
   },
   {
     "id": "maccaroni_trattoria_italianissima",
@@ -1443,7 +1489,8 @@
     "instagramUrl": "https://www.instagram.com/maccaroni.trattoria/",
     "googleMapsUrl": "https://www.google.com/maps/place/Maccaroni+-+Trattoria+Italianissima/@40.9452281,17.298572,16z/data=!4m6!3m5!1s0x134635002e18ef05:0x9cad5b07cf1f8564!8m2!3d40.9452281!4d17.307828!16s%2Fg%2F11ychflthr?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJBe8YLgA1RhMRZIUfzwdbrZw"
   },
   {
     "id": "diplomatico",
@@ -1475,7 +1522,8 @@
     "instagramUrl": "https://www.instagram.com/diplomatico_blend_experience/",
     "googleMapsUrl": "https://www.google.com/maps/place/Diplomatico/@40.9964027,17.2139636,16z/data=!4m6!3m5!1s0x1347cb91e10b2cf5:0x465caa9771f1c84e!8m2!3d40.9964027!4d17.2191134!16s%2Fg%2F11h53zc2gy?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ9SwL4ZHLRxMRTsjxcZeqXEY"
   },
   {
     "id": "savi",
@@ -1505,7 +1553,8 @@
     "instagramUrl": "https://www.instagram.com/savicreperia/",
     "googleMapsUrl": "https://www.google.com/maps/place/Sav%C3%AC/@41.0076134,16.8419686,11z/data=!4m6!3m5!1s0x1347c816bf2370bf:0x975afe3a806c902a!8m2!3d40.9607761!4d17.1200718!16s%2Fg%2F1td8fntz?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJv3AjvxbIRxMRKpBsgDr-Wpc"
   },
   {
     "id": "caf_mir",
@@ -1532,7 +1581,8 @@
     "notes": "Cocktail bar noto nel barese per chupitos originali e per la selezione di assenzi. Ideale per un dopocena divertente con amici a Rutigliano, con uno staff molto simpatico.",
     "googleMapsUrl": "https://www.google.com/maps/place/caf%C3%A8+mir%C3%B2/@41.0115275,17.0040322,17z/data=!3m1!4b1!4m6!3m5!1s0x1347c12d2d6ab3b1:0x16266f03da322128!8m2!3d41.0115275!4d17.0066071!16s%2Fg%2F11cmy79x12?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJsbNqLS3BRxMRKCEy2gNvJhY"
   },
   {
     "id": "400_gradi",
@@ -1564,7 +1614,8 @@
     "instagramUrl": "https://www.instagram.com/400gradipizzeriamatera/",
     "googleMapsUrl": "https://www.google.com/maps/place/400+Gradi/@40.6689803,16.5976144,15.75z/data=!4m6!3m5!1s0x13477fb85f20f6f1:0xc6a5bc158ee9a3df!8m2!3d40.6712262!4d16.6060683!16s%2Fg%2F11t5jmtfmy?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ8fYgX7h_RxMR36PpjhW8pcY"
   },
   {
     "id": "caffe_plebiscito",
@@ -1595,7 +1646,8 @@
     "notes": "Bar nel centro di Ginosa, valido per colazioni, aperitivi e cocktail nel dopocena.",
     "googleMapsUrl": "https://www.google.com/maps/place/Caff%C3%A8+Plebiscito/@40.5792057,16.7589175,20.25z/data=!4m6!3m5!1s0x134770e560e7df43:0x4d153f5b7a6bfef2!8m2!3d40.5793461!4d16.7590781!16s%2Fg%2F11f3s92yml?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJQ9_nYOVwRxMR8v5rels_FU0"
   },
   {
     "id": "ribecco_vito",
@@ -1626,7 +1678,8 @@
     "websiteUrl": "http://www.macelleriaribecco.it/",
     "googleMapsUrl": "https://www.google.com/maps/place/Ribecco+Vito/@40.5804403,16.7476836,16.46z/data=!4m10!1m2!2m1!1sMacelleria+GINOSA!3m6!1s0x134770e5677d7ca7:0x7d05d55de199b4b6!8m2!3d40.5798069!4d16.7528482!15sChFNYWNlbGxlcmlhIEdJTk9TQVoTIhFtYWNlbGxlcmlhIGdpbm9zYZIBDGJ1dGNoZXJfc2hvcJoBJENoZERTVWhOTUc5blMwVkpRMEZuU1VSaWVITXRTMmRCUlJBQuABAPoBBAgAEC0!16s%2Fg%2F1thbn1fg?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJp3x9Z-VwRxMRtrSZ4V3VBX0"
   },
   {
     "id": "feola_massimiliano_premiata_pizzeria_napoletana",
@@ -1659,7 +1712,8 @@
     "websiteUrl": "http://www.feolamassimiliano.com/",
     "googleMapsUrl": "https://www.google.com/maps/place/Feola+Massimiliano+%7C+Premiata+Pizzeria+Napoletana/@40.5743494,16.7524856,17z/data=!4m10!1m2!2m1!1spizzeria+ginosa!3m6!1s0x13477118bb8b3d5f:0xa97d869523fe1734!8m2!3d40.5743494!4d16.7572492!15sCg9waXp6ZXJpYSBnaW5vc2FaESIPcGl6emVyaWEgZ2lub3NhkgEQcGl6emFfcmVzdGF1cmFudOABAA!16s%2Fg%2F11t7rg668n?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJXz2LuxhxRxMRNBf-I5WGfak"
   },
   {
     "id": "la_barchetta_morsi_di_mare",
@@ -1688,7 +1742,8 @@
     "notes": "Ristorante di pesce a Campomarino di Maruggio. La qualità del pescato è buona, mentre servizio e tempi possono essere meno costanti.",
     "googleMapsUrl": "https://www.google.com/maps/place/La+Barchetta+-+Morsi+di+Mare/@40.3014767,17.5563831,15.71z/data=!4m8!3m7!1s0x1346e9215da40ffd:0xeebc3b8d18d984cf!8m2!3d40.2995422!4d17.5636216!9m1!1b1!16s%2Fg%2F11h1m45mxg?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ_Q-kXSHpRhMRz4TZGI07vO4"
   },
   {
     "id": "birreria_paninoteca_felix",
@@ -1721,7 +1776,8 @@
     "instagramUrl": "https://www.instagram.com/birreriapaninotecafelix/",
     "googleMapsUrl": "https://www.google.com/maps/place/Birreria+Paninoteca+Felix/@40.8871519,17.1596069,16.04z/data=!4m10!1m2!2m1!1spub+castelllana!3m6!1s0x1347b6eb087c0fcb:0xe7208566cf66118b!8m2!3d40.8837623!4d17.1692848!15sCg5wdWIgY2FzdGVsbGFuYVoQIg5wdWIgY2FzdGVsbGFuYZIBA3B1YuABAA!16s%2Fg%2F124ynfn6t?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJyw98COu2RxMRixFmz2aFIOc"
   },
   {
     "id": "bakery_spiga_d_oro_di_rivizzigno_pasquale",
@@ -1752,7 +1808,8 @@
     "websiteUrl": "http://www.panificiospigadoro.com/",
     "googleMapsUrl": "https://www.google.com/maps/place/Bakery+Spiga+D'Oro+Di+Rivizzigno+Pasquale/@40.8917574,17.3291163,13z/data=!4m6!3m5!1s0x13464af37c5026e3:0x34ce9d750f1e40a0!8m2!3d40.8915701!4d17.3292898!16s%2Fg%2F1v70yt7d?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ4yZQfPNKRhMRoEAeD3WdzjQ"
   },
   {
     "id": "pasticceria_caroli",
@@ -1782,7 +1839,8 @@
     "websiteUrl": "http://www.pasticceriacaroli.it/",
     "googleMapsUrl": "https://www.google.com/maps/place/Pasticceria+Caroli/@40.7578329,17.3198001,19z/data=!4m6!3m5!1s0x1346529dd93fcc37:0x2b1c60615785c201!8m2!3d40.7578329!4d17.3201829!16s%2Fg%2F1txv7pzt?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJN8w_2Z1SRhMRAcKFV2FgHCs"
   },
   {
     "id": "sweet_passion_micoli_di_vito_sas",
@@ -1814,7 +1872,8 @@
     "websiteUrl": "https://dolcepassionepasticceria.it/",
     "googleMapsUrl": "https://www.google.com/maps/place/Sweet+Passion+Micoli+Di+Vito+Sas/@40.7587512,17.3316987,17z/data=!4m6!3m5!1s0x13464d7e7bf4e34d:0xfba7fe46b32e52c5!8m2!3d40.7587403!4d17.3316656!16s%2Fg%2F1tf8jwtd?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJTeP0e35NRhMRxVIus0b-p_s"
   },
   {
     "id": "il_graffio",
@@ -1845,7 +1904,8 @@
     "instagramUrl": "https://www.instagram.com/il_graffio_/",
     "googleMapsUrl": "https://www.google.com/maps/place/Il+Graffio/@40.2951662,17.7826414,17z/data=!3m2!4b1!5s0x1346914a4fc182a1:0x34446b87a812d287!4m6!3m5!1s0x13469116dc69ce01:0x4c1a09eff9880341!8m2!3d40.2951662!4d17.7852163!16s%2Fg%2F11flg1d20p?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJAc5p3BaRRhMRQQOI-e8JGkw"
   },
   {
     "id": "fly_sunset_emotion",
@@ -1877,7 +1937,8 @@
     "instagramUrl": "https://www.instagram.com/flysunsetemotion/",
     "googleMapsUrl": "https://www.google.com/maps/place/Fly+Sunset+Emotion/@40.2658795,17.8270159,12z/data=!4m6!3m5!1s0x134699927dd2a82b:0x72c4f7c2a7bbd90d!8m2!3d40.265798!4d17.8851144!16s%2Fg%2F11g98mwdzw?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJK6jSfZKZRhMRDdm7p8L3xHI"
   },
   {
     "id": "caff_vergnano_1882",
@@ -1912,7 +1973,8 @@
     "websiteUrl": "http://www.caffevergnano.com/",
     "googleMapsUrl": "https://www.google.com/maps/place/Caff%C3%A8+Vergnano+1882/@41.1127528,16.8695445,15.75z/data=!4m10!1m2!2m1!1sCaff%C3%A8+Vergnano!3m6!1s0x1347e846099e537b:0x5f08efb1b04f362f!8m2!3d41.1105267!4d16.8836851!15sCg9DYWZmw6ggVmVyZ25hbm8iA4gBAVoRIg9jYWZmw6ggdmVyZ25hbm-SAQtjb2ZmZWVfc2hvcOABAA!16s%2Fg%2F1hc3rq2nr?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJe1OeCUboRxMRLzZPsLHvCF8"
   },
   {
     "id": "rem_restaurant_pizza",
@@ -1943,7 +2005,8 @@
     "websiteUrl": "https://remerestaurantepizza.it/",
     "googleMapsUrl": "https://www.google.com/maps/place/Rem%C3%A8+Restaurant+%26+Pizza/@40.2919957,17.9012672,11z/data=!4m6!3m5!1s0x13469c535dc136e5:0x778a25840aaf791e!8m2!3d40.2920378!4d17.9993438!16s%2Fg%2F11c5sr1mcp?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ5TbBXVOcRhMRHnmvCoQlinc"
   },
   {
     "id": "l_angolino_di_via_matteotti",
@@ -1974,7 +2037,8 @@
     "notes": "Locale a Lecce per provare puccia salentina con ingredienti locali. Ideale per un pranzo veloce; da abbinare alle birre artigianali salentine. La puccia con polpo è un punto forte.",
     "googleMapsUrl": "https://www.google.com/maps/place/L'angolino+di+Via+Matteotti/@40.3541331,18.1668275,15z/data=!4m6!3m5!1s0x13442ee41a9328f7:0x5f0c8a53aaaddc6e!8m2!3d40.3541331!4d18.173506!16s%2Fg%2F11b7hhjdw_?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ9yiTGuQuRBMRbtytqlOKDF8"
   },
   {
     "id": "le_due_sorelle_cucina_di_mare",
@@ -2006,7 +2070,8 @@
     "instagramUrl": "https://www.instagram.com/leduesorellecucinadimare/",
     "googleMapsUrl": "https://www.google.com/maps/place/Le+Due+Sorelle+cucina+di+mare/@40.2863961,18.3905291,13.5z/data=!3m1!5s0x134437fdf5c1f99b:0x16783ed052e980b4!4m6!3m5!1s0x134437fdf3e59437:0x7350f124f89e7977!8m2!3d40.273366!4d18.4274008!16s%2Fg%2F11f3hyq5b5?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJN5Tl8_03RBMRd3me-CTxUHM"
   },
   {
     "id": "al_trabucco_da_mimi",
@@ -2041,7 +2106,8 @@
     "instagramUrl": "https://www.instagram.com/altrabucco/",
     "googleMapsUrl": "https://www.google.com/maps/place/Al+Trabucco+da+Mim%C3%AC/@41.9451253,16.0263615,15.25z/data=!4m9!3m8!1s0x1337b1131a9047f5:0x53611acf602cc196!5m2!4m1!1i2!8m2!3d41.9476472!4d16.0303912!16s%2Fg%2F1vfhk3b0?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ9UeQGhOxNxMRlsEsYM8aYVM"
   },
   {
     "id": "il_vecchio_e_il_mare",
@@ -2076,7 +2142,8 @@
     "instagramUrl": "https://www.instagram.com/vecchioeilmare/",
     "googleMapsUrl": "https://www.google.com/maps/place/Il+vecchio+e+il+mare/@41.281216,16.4223297,16.29z/data=!3m1!5s0x1338040c19545839:0x7337e393d8bb3527!4m6!3m5!1s0x1338040c1c10142b:0xf306f5daff2b22aa!8m2!3d41.2805779!4d16.4224295!16s%2Fg%2F11b86qp505?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJKxQQHAwEOBMRqiIr_9r1BvM"
   },
   {
     "id": "caffe_letterario_monopoli",
@@ -2104,7 +2171,8 @@
     "notes": "Bar nel centro storico di Monopoli per espresso, colazioni anche internazionali e una pausa in un ambiente dal design ispirato ai caffè letterari.",
     "googleMapsUrl": "https://www.google.com/maps/place/Caff%C3%A8+Letterario+-+Monopoli/@40.9536649,17.3003534,17z/data=!4m10!1m2!2m1!1smnopoli+bar!3m6!1s0x13463519d6569b13:0xd4033c51061c82e3!8m2!3d40.9536589!4d17.3051372!15sCgxtb25vcG9saSBiYXJaDiIMbW9ub3BvbGkgYmFykgEEY2FmZZoBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQyMXJlRlZJWkZoVE1XeFpXVlU1TmxGNlZrTlhWRVl3Vkdwc2IxWlZSUkFC4AEA-gEECAAQOw!16s%2Fg%2F11f7t8k1k5?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJE5tW1hk1RhMR44IcBlE8A9Q"
   },
   {
     "id": "saleblu",
@@ -2137,7 +2205,8 @@
     "instagramUrl": "https://www.instagram.com/saleblu_lapeschiera/",
     "googleMapsUrl": "https://www.google.com/maps/place/Saleblu/@40.9014619,17.3549038,16z/data=!4m6!3m5!1s0x13464a72bc173889:0x59af48ae771528fb!8m2!3d40.9014619!4d17.3600536!16s%2Fg%2F11d_d3dhpp?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJiTgXvHJKRhMR-ygVd65Ir1k"
   },
   {
     "id": "dolcezze_fratelli_fittipaldi_cornettaro_il_baffone",
@@ -2168,7 +2237,8 @@
     "notes": "Istituzione barese per cornetti e sfoglie in zona Poggiofranco. Aperto anche di notte, è una tappa classica per il dopocena.",
     "googleMapsUrl": "https://www.google.com/maps/place/Dolcezze+-+Fratelli+Fittipaldi+(Cornettaro+Il+Baffone)/@41.0924641,16.8559922,17z/data=!4m10!1m2!2m1!1scornetteria!3m6!1s0x1347e908ddab265b:0x596ad95705626f4b!8m2!3d41.0925207!4d16.8605627!15sCgtjb3JuZXR0ZXJpYVoNIgtjb3JuZXR0ZXJpYZIBCWNha2Vfc2hvcOABAA!16s%2Fg%2F11btxctsmp?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJWyar3QjpRxMRS29iBVfZalk"
   },
   {
     "id": "focacceria_fiore_rosticceria",
@@ -2198,7 +2268,8 @@
     "notes": "Focacceria celebre a Bari per la focaccia barese al pomodoro. Perfetta per un pranzo veloce da asporto.",
     "googleMapsUrl": "https://www.google.com/maps/place/Focacceria+Fiore+Rosticceria/@41.097065,16.8531225,20z/data=!4m11!1m2!2m1!1scornetteria!3m7!1s0x1347e9052fa9ed03:0xaf5ee016ac6d7947!8m2!3d41.0972365!4d16.853888!9m1!1b1!16s%2Fg%2F11g887mgyg?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJA-2pLwXpRxMRR3ltrBbgXq8"
   },
   {
     "id": "il_rustico",
@@ -2227,7 +2298,8 @@
     "notes": "Locale molto noto per l'atmosfera cordiale e autenticamente barese. Propone un menu fisso di antipasti e pizza barese a prezzo fisso. Non accetta prenotazioni: occorre mettere in conto la fila e tempi di attesa variabili. Ambiente rustico, in stile osteria.",
     "googleMapsUrl": "https://www.google.com/maps/place/Il+Rustico/@41.1222092,16.8660427,17.5z/data=!3m1!5s0x1347e8f54e68dcdf:0x4ac455dd213a03ab!4m6!3m5!1s0x1347e8f54e10ca81:0x4d2cdcfa634fc570!8m2!3d41.12269!4d16.8642062!16s%2Fg%2F11b7q4fz6d?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJgcoQTvXoRxMRcMVPY_rcLE0"
   },
   {
     "id": "bacio_di_latte",
@@ -2259,7 +2331,8 @@
     "websiteUrl": "http://www.baciodilattebari.it/",
     "googleMapsUrl": "https://www.google.com/maps/place/Bacio+di+Latte/@41.1251481,16.8680207,19z/data=!4m10!1m2!2m1!1sbacio+di+latte!3m6!1s0x1347e9407fb1ff8b:0xf4ed3be62176c86!8m2!3d41.1251481!4d16.8692116!15sCg5iYWNpbyBkaSBsYXR0ZSIDiAEBWhAiDmJhY2lvIGRpIGxhdHRlkgELY29mZmVlX3Nob3DgAQA!16s%2Fg%2F11fjz9fzj7?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJi_-xf0DpRxMRhmwXYr7TTg8"
   },
   {
     "id": "pasticceria_fanelli_cornetteria",
@@ -2290,7 +2363,8 @@
     "notes": "Storica cornetteria in zona Campus, aperta fino a tardi. Offre cornetti baresi con numerose farciture ed è una tappa frequentata dagli universitari nel dopocena.",
     "googleMapsUrl": "https://www.google.com/maps/place/Pasticceria+Fanelli+Cornetteria/@41.1139218,16.8753482,17.25z/data=!4m6!3m5!1s0x1347e85ad8e03347:0x358a744ad1b7f90f!8m2!3d41.1138822!4d16.8758641!16s%2Fg%2F11ckx2d9k6?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJRzPg2FroRxMRD_m30Up0ijU"
   },
   {
     "id": "sfogliatelle_attanasio",
@@ -2320,7 +2394,8 @@
     "notes": "Una delle pasticcerie più iconiche di Napoli e d'Italia, celebre per sfogliatelle e specialità locali. Staff gentile e veloce; perfetta per una colazione rapida. La fila è spesso lunga, ma l'esperienza merita.",
     "googleMapsUrl": "https://www.google.com/maps/place/Sfogliatelle+Attanasio/@40.8581757,14.2342386,13.83z/data=!3m1!5s0x133b08142aba0261:0x4e1fc1e18d33ee9d!4m6!3m5!1s0x133b081682111c13:0x6d5c9e4e46ecba20!8m2!3d40.8532124!4d14.2689761!16s%2Fg%2F11b7grpcc4?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJExwRghYIOxMRILrsRk6eXG0"
   },
   {
     "id": "pizzeria_antonio_sorbillo",
@@ -2353,7 +2428,8 @@
     "notes": "Tra le pizze più celebri di Napoli e d'Italia, ormai una tappa fissa in città. Impasto leggero; da provare la pizza con friarielli e salsiccia.",
     "googleMapsUrl": "https://www.google.com/maps/place/Pizzeria+Antonio+Sorbillo/@40.8504865,14.2365609,15z/data=!3m1!5s0x133b084247a7173f:0x5e0bd3d1fdb20cdc!4m10!1m2!2m1!1sSorbillo!3m6!1s0x133b09779143de6f:0xd5e48b6ecdb5954b!8m2!3d40.8504865!4d14.2556153!15sCghTb3JiaWxsbyIDiAEBWgoiCHNvcmJpbGxvkgEQcGl6emFfcmVzdGF1cmFudJoBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQycHNTRk5GYUZGTlZrWjVZVVJTUjFGc09UWmtla0pWWVdwV05sWXpZeEFC4AEA-gEECAAQSQ!16s%2Fg%2F11sgx7xwgm?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJb95DkXcJOxMRS5W1zW6L5NU"
   },
   {
     "id": "locale_palermo_osteria_cocktail_bar",
@@ -2389,7 +2465,8 @@
     "websiteUrl": "https://www.localepalermo.it/",
     "googleMapsUrl": "https://www.google.com/maps/place/LOCALE+PALERMO+%E2%80%93+Osteria+%26+Cocktail+Bar/@38.122521,13.3587388,16z/data=!4m6!3m5!1s0x1319e5f5e7100001:0x3dcf08088853c98!8m2!3d38.1222471!4d13.3599809!16s%2Fg%2F11fy_4bkyx?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJAQAQ5_XlGRMRmDyFiIDw3AM"
   },
   {
     "id": "donnafrancalab_arancine_gourmet_e_pasticceria",
@@ -2419,7 +2496,8 @@
     "notes": "Arancine palermitane con un'ampia varietà di gusti. Una soluzione rapida e gustosa per chi è di passaggio a Palermo.",
     "googleMapsUrl": "https://www.google.com/maps/place/Donnafrancalab+-+arancine+gourmet+e+pasticceria/@38.118088,13.3596698,17z/data=!3m1!5s0x1319e5f545033351:0x1fb08af219d0be23!4m6!3m5!1s0x1319e5d093794021:0x5eb1f17d1472d731!8m2!3d38.1183428!4d13.359676!16s%2Fg%2F11k9rd29_r?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJIUB5k9DlGRMRMddyFH3xsV4"
   },
   {
     "id": "cannoli",
@@ -2449,7 +2527,8 @@
     "websiteUrl": "https://www.cannolieco.it/",
     "googleMapsUrl": "https://www.google.com/maps/place/Cannoli/@38.1183428,13.3571011,17z/data=!4m6!3m5!1s0x1319e5f54a6d2dc9:0xcdb5c62cc33180dd!8m2!3d38.1176916!4d13.3600794!16s%2Fg%2F11f3n2ylxw?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJyS1tSvXlGRMR3YAxwyzGtc0"
   },
   {
     "id": "m_mortadella_lab",
@@ -2482,7 +2561,8 @@
     "instagramUrl": "https://www.instagram.com/mortadellalab/",
     "googleMapsUrl": "https://www.google.com/maps/place/M%C3%B2+Mortadella+Lab/@44.493357,11.3376074,15.5z/data=!4m6!3m5!1s0x477fd58296a7146f:0x4aa7c22fe53b0628!8m2!3d44.4978179!4d11.3426615!16s%2Fg%2F11h2qnzxt0?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJbxSnloLVf0cRKAY75S_Cp0o"
   },
   {
     "id": "trattoria_da_adriano",
@@ -2515,7 +2595,8 @@
     "websiteUrl": "http://www.trattoriadaadriano.it/",
     "googleMapsUrl": "https://www.google.com/maps/place/Trattoria+Da+Adriano/@45.6950267,9.6641765,17z/data=!3m1!4b1!4m6!3m5!1s0x47815111e866fa71:0xc955fc7604cd5f5d!8m2!3d45.6950267!4d9.6667514!16s%2Fg%2F1td7m4ts?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJcfpm6BFRgUcRXV_NBHb8Vck"
   },
   {
     "id": "mercato_centrale_milano",
@@ -2542,7 +2623,8 @@
     "notes": "Mercato vicino alla stazione centrale di Milano, con un'ampia scelta di cucine italiane e internazionali. Pratico per una pausa pranzo veloce e per provare proposte diverse. Da considerare anche primi piatti e vini italiani.",
     "googleMapsUrl": "https://www.google.com/maps/place/Mercato+Centrale+Milano/@45.4746017,9.2079818,14.25z/data=!3m1!5s0x4786c6dac59b464b:0xb22ccd0f0ccc7685!4m6!3m5!1s0x4786c7a38316c785:0xf6da9a2008baf8be!8m2!3d45.4866698!4d9.2035192!16s%2Fg%2F11nxql3yk5?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJhccWg6PHhkcRvvi6CCCa2vY"
   },
   {
     "id": "passando_per_modena",
@@ -2575,7 +2657,8 @@
     "instagramUrl": "https://www.instagram.com/passandopermodena/",
     "googleMapsUrl": "https://www.google.com/maps/place/Passando+Per+Modena/@45.4025523,11.8733188,14.75z/data=!4m6!3m5!1s0x477eda53183b6357:0xaea6103598c2dd33!8m2!3d45.3999653!4d11.8755545!16s%2Fg%2F11fy2k36ct?entry=ttu&g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJV2M7GFPafkcRM93CmDUQpq4"
   },
   {
     "id": "busa_dei_briganti_pub_padova",
@@ -2605,7 +2688,8 @@
     "notes": "Pub a Padova per panini e burger, con una buona selezione di birre artigianali e commerciali. Ideale per una serata rilassata con amici.",
     "googleMapsUrl": "https://www.google.com/maps/place/Busa+dei+Briganti+Pub+Padova/@45.4114779,11.8621843,14z/data=!4m14!1m7!3m6!1s0x477eda53183b6357:0xaea6103598c2dd33!2sPassando+Per+Modena!8m2!3d45.3999653!4d11.8755545!16s%2Fg%2F11fy2k36ct!3m5!1s0x477eda385a7ccbd3:0x87f5eb87ad9dac21!8m2!3d45.4114779!4d11.8621843!16s%2Fg%2F11c5_4h960?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ08t8WjjafkcRIaydrYfr9Yc"
   },
   {
     "id": "la_mafaldina",
@@ -2638,7 +2722,8 @@
     "websiteUrl": "http://www.lamafaldina.it/",
     "googleMapsUrl": "https://www.google.com/maps/place/La+Mafaldina/@45.4103926,11.8714883,19.29z/data=!4m6!3m5!1s0x477edb460305bce9:0x4b50d51660e0ec89!8m2!3d45.4087482!4d11.8781975!16s%2Fg%2F11vfb5__x6?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJ6bwFA0bbfkcRiezgYBbVUEs"
   },
   {
     "id": "gelateria_portogallo",
@@ -2668,7 +2753,8 @@
     "websiteUrl": "https://www.gelaterieportogallo.it/",
     "googleMapsUrl": "https://www.google.com/maps/place/Gelateria+Portogallo/@45.4006929,11.8733855,17z/data=!3m1!4b1!4m6!3m5!1s0x477edbac397f9667:0x17dd69edcb443e91!8m2!3d45.4006929!4d11.8759604!16s%2Fg%2F11k6xvhsfx?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJZ5Z_OazbfkcRkT5Ey-1p3Rc"
   },
   {
     "id": "ichiban_ramen_padova",
@@ -2695,7 +2781,8 @@
     "notes": "Ristorante giapponese a Padova per un buon ramen, in un ambiente ispirato all'estetica anime. Interessante soprattutto per gli appassionati del genere.",
     "googleMapsUrl": "https://www.google.com/maps/place/Ichiban+Ramen+Padova/@45.4031507,11.8769769,18z/data=!4m10!1m2!2m1!1sramen!3m6!1s0x477edb1597be6921:0xf96e6e1a507426d9!8m2!3d45.4031507!4d11.8793587!15sCgVyYW1lbloHIgVyYW1lbpIBEHJhbWVuX3Jlc3RhdXJhbnSaASRDaGREU1VoTk1HOW5TMFZKUTBGblNVTXRkWEEyYnpGQlJSQULgAQD6AQQIABA8!16s%2Fg%2F11j7j2m_dk?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJIWm-lxXbfkcR2SZ0UBpubvk"
   },
   {
     "id": "paninoteca_da_antonio_e_daniele",
@@ -2729,7 +2816,8 @@
     "notes": "Paninoteca a Siracusa per carne locale; da provare il panino con carne di cavallo e condimenti a scelta. Buona opzione di passaggio o per mangiare a tarda serata.",
     "googleMapsUrl": "https://www.google.com/maps/place/Paninoteca+da+Antonio+e+Daniele/@37.0649649,15.2907047,16z/data=!4m15!1m8!3m7!1s0x1310bcbd6032335f:0x23f1662792d46f58!2s93014+Mussomeli,+Free+municipal+consortium+of+Caltanissetta,+Italy!3b1!8m2!3d37.5806461!4d13.7529698!16zL20vMGR6NXNk!3m5!1s0x1313cea00ebde689:0x1dc16ae37e69ec93!8m2!3d37.0658155!4d15.2892758!16s%2Fg%2F11bwkhqdv9?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJiea9DqDOExMRk-xpfuNqwR0"
   },
   {
     "id": "piazza_archimede_caffe_alta_pasticceria_siciliana",
@@ -2763,7 +2851,8 @@
     "notes": "Bar in posizione centralissima a Ortigia, consigliato per colazione con pasticceria siciliana ed espresso. Offre anche piatti caldi a pranzo e numerosi tavoli all'esterno.",
     "googleMapsUrl": "https://www.google.com/maps/place/Piazza+Archimede+Caffe+-+Alta+Pasticceria+Siciliana/@37.0649649,15.2907047,16z/data=!4m15!1m8!3m7!1s0x1310bcbd6032335f:0x23f1662792d46f58!2s93014+Mussomeli,+Free+municipal+consortium+of+Caltanissetta,+Italy!3b1!8m2!3d37.5806461!4d13.7529698!16zL20vMGR6NXNk!3m5!1s0x1313cc1eeb1f8c8b:0x1728b2d717fa5f72!8m2!3d37.0609731!4d15.2939211!16s%2Fg%2F11c438y71l?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJi4wf6x7MExMRcl_6F9eyKBc"
   },
   {
     "id": "farini",
@@ -2795,7 +2884,8 @@
     "websiteUrl": "https://farini.com/",
     "googleMapsUrl": "https://www.google.com/maps/place/Farini/@45.4368832,12.3309073,16z/data=!3m1!5s0x477eb1c4330a9783:0x4594f97b7aba072!4m6!3m5!1s0x477eb1db69410d2b:0xc2b4c400be9a10a1!8m2!3d45.4383468!4d12.3338932!16s%2Fg%2F11bx1qmcgx?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJKw1BaduxfkcRoRCavgDEtMI"
   },
   {
     "id": "i_porci_comodi",
@@ -2833,7 +2923,8 @@
     "websiteUrl": "https://iporcicomodi.da.delivery/",
     "googleMapsUrl": "https://www.google.com/maps/place/I+Porci+Comodi/@43.6771978,10.7694573,9z/data=!4m6!3m5!1s0x12d591a1c9512673:0x72c6bf64f8a00440!8m2!3d43.7179457!4d10.3982338!16s%2Fg%2F11c52b_m_x?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJcyZRyaGR1RIRQASg-GS_xnI"
   },
   {
     "id": "galleria_iginio_massari_verona",
@@ -2864,7 +2955,8 @@
     "websiteUrl": "https://www.iginiomassari.it/",
     "googleMapsUrl": "https://www.google.com/maps/place/Galleria+Iginio+Massari+Verona/@45.4439369,10.9947445,17z/data=!3m1!4b1!4m6!3m5!1s0x477f5f26c6bd1b4d:0xb51c5c201efe18f7!8m2!3d45.4439369!4d10.9973194!16s%2Fg%2F11qpt4hgv4?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJTRu9xiZff0cR9xj-HiBcHLU"
   },
   {
     "id": "eroica_caff_padova",
@@ -2901,7 +2993,8 @@
     "websiteUrl": "http://www.eroica.cc/it",
     "googleMapsUrl": "https://www.google.com/maps/place/Eroica+Caff%C3%A8+Padova/@45.40839,11.874195,17z/data=!3m1!4b1!4m6!3m5!1s0x477edb8e4876ea57:0x6c5b4808e3b84e2f!8m2!3d45.40839!4d11.874195!16s%2Fg%2F11h597tys7?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D",
     "countryCode": "IT",
-    "currencyCode": "EUR"
+    "currencyCode": "EUR",
+    "googlePlaceId": "ChIJV-p2SI7bfkcRL0644whIW2w"
   },
   {
     "id": "braes_dundee",
@@ -4099,5 +4192,676 @@
     "websiteUrl": "https://bensfishandchips.co.uk/",
     "googleMapsUrl": "https://maps.google.com/?cid=10029128133900051832&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
     "googlePlaceId": "ChIJoa4D0TIbdkgReCX9s-aeLos"
+  },
+  {
+    "id": "pust",
+    "name": "Pust",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "coffee_bar",
+    "area": "cityCentre",
+    "rating": 6,
+    "priceLevel": 1,
+    "foodTags": [
+      "coffee"
+    ],
+    "ratingDetails": {
+      "food": 6,
+      "location": 6,
+      "service": 5,
+      "value": 6
+    },
+    "lat": 59.930408,
+    "lng": 10.715279,
+    "vibes": [
+      "breakfast",
+      "casual",
+      "coffee",
+      "coworkers",
+      "friends",
+      "outdoor_seating",
+      "solo"
+    ],
+    "notes": "Nice coffe shop in Majorstuen area in Oslo. Ideal to taste different kind of coffee and for a pleasant break with friends. Recommended for a quick stop in that area. To consider the waiting time if crowded.",
+    "websiteUrl": "http://www.pustkaffebar.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=11847716250462676564&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJNzwWDtttQUYRVGZzbCiLa6Q"
+  },
+  {
+    "id": "grains_majorstuen",
+    "name": "Grains Majorstuen",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "bakery_sweet",
+    "area": "cityCentre",
+    "neighborhood": "Majorstuen",
+    "rating": 7,
+    "priceLevel": 1,
+    "foodTags": [
+      "croissants"
+    ],
+    "ratingDetails": {
+      "food": 8,
+      "location": 7,
+      "service": 6,
+      "value": 7
+    },
+    "lat": 59.930147,
+    "lng": 10.715897,
+    "vibes": [
+      "beer",
+      "breakfast",
+      "casual",
+      "coffee",
+      "coworkers",
+      "friends",
+      "locals",
+      "solo",
+      "takeaway"
+    ],
+    "notes": "Cosy pastry shop and bakery in Majorstuen. Excellent quality of the espresso coffee as well. Fully recommended for the quality of croissants and french pastry and crepes. Ideal for a quite atmosphere, for breakfast and a beer after work. Good place.",
+    "websiteUrl": "https://www.grains.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=2027750454802472801&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJZUKxuyFtQUYRYV-jj0sEJBw"
+  },
+  {
+    "id": "fuglen",
+    "name": "Fuglen",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "coffee_bar",
+    "area": "cityCentre",
+    "neighborhood": "Sentrum",
+    "rating": 7,
+    "priceLevel": 1,
+    "foodTags": [
+      "coffee"
+    ],
+    "ratingDetails": {
+      "food": 7,
+      "location": 7,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 59.917498,
+    "lng": 10.740059,
+    "vibes": [
+      "breakfast",
+      "casual",
+      "coffee",
+      "coworkers",
+      "friends",
+      "locals",
+      "outdoor_seating",
+      "solo"
+    ],
+    "notes": "Good coffee shop in Oslo with a great variety of coffee. Recommended the arabica one. Good quality of espesso coffee and croissants. Ideal for a break with friends and for a coffee tasting. Nice atmosphere with a good number of tables inside and outside.",
+    "websiteUrl": "http://www.fuglen.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=12811641708447730262&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJc8XN8nxuQUYRVgqbPUEYzLE"
+  },
+  {
+    "id": "campo_de_fiori",
+    "name": "Campo de' Fiori",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "restaurant",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 3,
+    "foodTags": [
+      "beef",
+      "pizza"
+    ],
+    "ratingDetails": {
+      "food": 8,
+      "location": 8,
+      "service": 9,
+      "value": 8
+    },
+    "lat": 59.923094,
+    "lng": 10.725904,
+    "vibes": [
+      "authentic",
+      "coworkers",
+      "cozy",
+      "date",
+      "family",
+      "friends",
+      "locals",
+      "pizza",
+      "wine"
+    ],
+    "notes": "Excellent roman and italian restaurant in Oslo where you can taste typical dishes with good quality of the products. Recommended the pizza roman style. Valuable le the courtesy of the staff really friendly. Good quality of wine and italian cocktails. Great team",
+    "websiteUrl": "http://www.campo.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=16125411185862393746&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJT8-HztdtQUYRkj9wlgn4yN8"
+  },
+  {
+    "id": "kanpai_izakaya",
+    "name": "Kanpai Izakaya",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "japanese",
+    "area": "cityCentre",
+    "rating": 9,
+    "priceLevel": 4,
+    "foodTags": [
+      "sushi"
+    ],
+    "ratingDetails": {
+      "food": 9,
+      "location": 9,
+      "service": 9,
+      "value": 8
+    },
+    "lat": 59.922386,
+    "lng": 10.731674,
+    "vibes": [
+      "authentic",
+      "coworkers",
+      "cozy",
+      "date",
+      "dinner",
+      "friends",
+      "hidden_gem",
+      "locals",
+      "sushi",
+      "wine"
+    ],
+    "notes": "Excellent and authentic japanese restaurant in Oslo with a pleasant and soft atmosphere. Ideal for a fine dinner with good company. High level of the sushi with fresh seafdood. It is noted also the great wine choise. The staff is super kind and helpful. Suggested for an authentic japanese experience in Oslo. Reservation is recommended. Definitely one of the best japanese restaurant in the city.",
+    "websiteUrl": "https://www.kanpai.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=3503828703713438736&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJL8ijAJFvQUYRECyoVqQZoDA"
+  },
+  {
+    "id": "bettola",
+    "name": "Bettola",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "cocktail_bar",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 2,
+    "foodTags": [
+      "cocktails"
+    ],
+    "ratingDetails": {
+      "food": 7,
+      "location": 7,
+      "service": 7,
+      "value": 7
+    },
+    "lat": 59.918713,
+    "lng": 10.761704,
+    "vibes": [
+      "aperitif",
+      "beer",
+      "cocktails",
+      "date",
+      "friends",
+      "late-night",
+      "wine"
+    ],
+    "notes": "Cosy cocktail bar in Oslo with a good selection of italian cocktails. Suggested the negroni cocktail. Good location and atmosphere for a pleasant night. Not the best option for an aperitif and the food choice but suggested for a drink nearby.",
+    "websiteUrl": "https://www.bettola.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=16884192369633473979&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJjR3ZamduQUYRuzVd_4CzUOo"
+  },
+  {
+    "id": "nedre_l_kka_cocktailbar_selskapslokaler",
+    "name": "Nedre Løkka Cocktailbar & Selskapslokaler",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "cocktail_bar",
+    "area": "cityCentre",
+    "neighborhood": "Grunerlokka",
+    "rating": 7,
+    "priceLevel": 2,
+    "foodTags": [
+      "cocktails"
+    ],
+    "ratingDetails": {
+      "food": 7,
+      "location": 7,
+      "service": 7,
+      "value": 7
+    },
+    "lat": 59.9188,
+    "lng": 10.759222,
+    "vibes": [
+      "beer",
+      "cocktails",
+      "coworkers",
+      "date",
+      "friends",
+      "late-night",
+      "outdoor_seating",
+      "wine"
+    ],
+    "notes": "Nice bar where to have a good cocktail in Oslo. Suggested for the post dinner in the Grunerlokka area. Good atmosphere and kind staff.",
+    "websiteUrl": "https://mymenuweb.com/int/restaurants/2007728/?utm_source=google_profile&utm_medium=google_profile&utm_campaign=admin",
+    "googleMapsUrl": "https://maps.google.com/?cid=17172900959904244909&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJK_v8GGduQUYRraQO5m9mUu4"
+  },
+  {
+    "id": "himkok_storgata_destilleri",
+    "name": "HIMKOK Storgata Destilleri",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "cocktail_bar",
+    "area": "cityCentre",
+    "neighborhood": "Sentrum",
+    "rating": 8,
+    "priceLevel": 2,
+    "foodTags": [
+      "cocktails"
+    ],
+    "ratingDetails": {
+      "food": 8,
+      "location": 8,
+      "service": 9,
+      "value": 8
+    },
+    "lat": 59.914098,
+    "lng": 10.751515,
+    "vibes": [
+      "beer",
+      "cocktails",
+      "cozy",
+      "date",
+      "friends",
+      "hidden_gem",
+      "late-night",
+      "locals",
+      "wine"
+    ],
+    "notes": "One of the best cocktail bar and distillery in the city. Hidden gem suggested for the quality of the drinks and the style of the location. Recommended the classic and revisited italian cocktails. Very kind and helpful staff with a lot of experience always availale for providing suggestions. Must to try if you are spending the night in Oslo.",
+    "websiteUrl": "http://www.himkok.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=6679656177791996322&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJUyV7KGJuQUYRohEJQ-fnslw"
+  },
+  {
+    "id": "posthallen_drinkhub",
+    "name": "Posthallen Drinkhub",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "cocktail_bar",
+    "area": "cityCentre",
+    "neighborhood": "Sentrum",
+    "rating": 7,
+    "priceLevel": 2,
+    "foodTags": [
+      "cocktails"
+    ],
+    "ratingDetails": {
+      "food": 7,
+      "location": 7,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 59.910696,
+    "lng": 10.745916,
+    "vibes": [
+      "aperitif",
+      "beer",
+      "cocktails",
+      "coworkers",
+      "date",
+      "friends",
+      "late-night",
+      "locals"
+    ],
+    "notes": "Great variety of cocktail bars in an old post office in Oslo. Excellent for tasting different options of food and drinks. Staff is kind. The place is large presents a lot of tables making this suitable for a quite night with friends.",
+    "websiteUrl": "https://www.posthallen.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=2035670117158063606&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJZ4bIIupvQUYR9o0VpS8nQBw"
+  },
+  {
+    "id": "d_gnvill_burger_bj_rvika",
+    "name": "Døgnvill Burger Bjørvika",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "pub",
+    "area": "cityCentre",
+    "rating": 6,
+    "priceLevel": 2,
+    "foodTags": [
+      "burgers"
+    ],
+    "ratingDetails": {
+      "food": 6,
+      "location": 7,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 59.908239,
+    "lng": 10.7536,
+    "vibes": [
+      "aperitif",
+      "beer",
+      "casual",
+      "dinner",
+      "family",
+      "friends",
+      "lunch",
+      "panini",
+      "solo"
+    ],
+    "notes": "American restaurant and pub in Oslo in front of the Operahuset. Good solution for having a burger with friends. The price/quality rate can be quite high for the choice of fodd offered. But burgers have a good quality of the meat. Suggested for lunch and dinner nearby.",
+    "websiteUrl": "https://www.dognvillburger.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=1752684175485584618&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJV3YvLQlvQUYR6kREs_jIUhg"
+  },
+  {
+    "id": "girotondo",
+    "name": "Girotondo",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "pizzeria",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 2,
+    "ratingDetails": {
+      "food": 8,
+      "location": 7,
+      "service": 8,
+      "value": 8
+    },
+    "lat": 59.915117,
+    "lng": 10.750032,
+    "vibes": [
+      "aperitif",
+      "authentic",
+      "beer",
+      "casual",
+      "coffee",
+      "dinner",
+      "family",
+      "friends",
+      "gluten_free",
+      "hidden_gem",
+      "locals",
+      "pizza",
+      "takeaway",
+      "wine"
+    ],
+    "notes": "Excellent italian pizzeria napolitan style in the city centre of Olso. Great selection of local italian products. Good quality of the pizza with good dough and crust crispy and soft. The pizzeria offers also guten free pizze and vegetarian ingredients. Here you can taste also classic aperitif and have excellent italian cocktails and wine. Staff is really kind and helpful. Reservation recommended.",
+    "websiteUrl": "https://www.girotondo.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=15757131286231906068&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJg3wyymNuQUYRFPcLg2uTrNo"
+  },
+  {
+    "id": "java_espresso_coffee_business_as",
+    "name": "Java espresso & coffee Business AS",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "coffee_bar",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 1,
+    "foodTags": [
+      "coffee"
+    ],
+    "ratingDetails": {
+      "food": 6,
+      "location": 6,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 59.924476,
+    "lng": 10.739645,
+    "vibes": [
+      "breakfast",
+      "coffee",
+      "coworkers",
+      "date",
+      "friends",
+      "locals",
+      "solo"
+    ],
+    "notes": "Good espresso coffee bar in Oslo. Great variety of coffe blends and good quality. Recommended for breakfast and for a coffee with friends.",
+    "websiteUrl": "https://www.javamocca.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=2554701586731377119&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJvUxVC3puQUYR3yFAyI4fdCM"
+  },
+  {
+    "id": "s_d_st_restaurant",
+    "name": "Südøst Restaurant",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "chinese",
+    "area": "cityCentre",
+    "rating": 8,
+    "priceLevel": 3,
+    "ratingDetails": {
+      "food": 8,
+      "location": 8,
+      "service": 9,
+      "value": 9
+    },
+    "lat": 59.918393,
+    "lng": 10.761454,
+    "vibes": [
+      "authentic",
+      "beer",
+      "coworkers",
+      "cozy",
+      "date",
+      "dinner",
+      "family",
+      "friends",
+      "lunch",
+      "outdoor_seating",
+      "sushi"
+    ],
+    "notes": "Great asian and chinese restaurant which offer an authentic cousine. Wide selection of dishes from starter to dessert. High quality of the food and preparation. Fully recommended for an asian experience in Oslo. Notable the service and the staff very helpful. A lot of tables indoor and outside.",
+    "websiteUrl": "https://www.sudost.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=16580473819213582907&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJ4fIDQmduQUYRO9LjaRetGeY"
+  },
+  {
+    "id": "talormade",
+    "name": "Talormade",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "bakery_sweet",
+    "area": "cityCentre",
+    "rating": 6,
+    "priceLevel": 1,
+    "foodTags": [
+      "doughnut"
+    ],
+    "ratingDetails": {
+      "food": 6,
+      "location": 6,
+      "service": 6,
+      "value": 5
+    },
+    "lat": 59.906649,
+    "lng": 10.757415,
+    "vibes": [
+      "breakfast",
+      "coffee",
+      "coworkers",
+      "date",
+      "family",
+      "friends",
+      "solo",
+      "takeaway"
+    ],
+    "notes": "Good coffe bar and pastry shop in Oslo with a coloreful location. The place offers a good variety of cakes and pastries, doughnut, and cookies. The coffee it is not bad. Good solution for a quick stop nearby.",
+    "websiteUrl": "http://www.talormade.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=12597659308121498604&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJ0diGEztvQUYR7KP5PWXg064"
+  },
+  {
+    "id": "mamma_pizza_nydalen",
+    "name": "Mamma Pizza Nydalen",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "pizzeria",
+    "area": "cityCentre",
+    "neighborhood": "Nydalen",
+    "rating": 7,
+    "priceLevel": 2,
+    "foodTags": [
+      "pizza"
+    ],
+    "ratingDetails": {
+      "food": 7,
+      "location": 6,
+      "service": 8,
+      "value": 7
+    },
+    "lat": 59.950227,
+    "lng": 10.764558,
+    "vibes": [
+      "beer",
+      "burgers",
+      "casual",
+      "dinner",
+      "family",
+      "friends",
+      "locals",
+      "lunch",
+      "outdoor_seating",
+      "pizza",
+      "takeaway"
+    ],
+    "notes": "Good italian pizzeria in Nydalen Oslo in a classic environment. Great selection of craft beers from various breweries. Good quality of the pizza napolitan style. Very friendly and helpful service and staff. Great number of tables inside and outside. To try if you are nearby and you desire italian food.",
+    "websiteUrl": "https://www.mammapizza.no/osteria-del-sole",
+    "googleMapsUrl": "https://maps.google.com/?cid=16444379499597152872&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJw-3_dQBvQUYRaEI0YQcsNuQ"
+  },
+  {
+    "id": "lille",
+    "name": "Lille Ó",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "restaurant",
+    "area": "cityCentre",
+    "neighborhood": "Nydalen",
+    "rating": 7,
+    "priceLevel": 3,
+    "foodTags": [
+      "beef"
+    ],
+    "ratingDetails": {
+      "food": 7,
+      "location": 7,
+      "service": 6,
+      "value": 6
+    },
+    "lat": 59.944753,
+    "lng": 10.770098,
+    "vibes": [
+      "authentic",
+      "beer",
+      "burgers",
+      "cocktails",
+      "family",
+      "friends",
+      "locals",
+      "lunch",
+      "wine"
+    ],
+    "notes": "Norwegian restaurant in Nydalen area in Oslo. Good quality of the meat and second courses. Good option also for a drink nearby. Nice atmosphere and cozy restaurant.",
+    "websiteUrl": "https://www.lille-o.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=6160674483044064666&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJk561PpxvQUYRmp2nOs0cf1U"
+  },
+  {
+    "id": "caf_t_rnstua",
+    "name": "Café Tårnstua",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "pizzeria",
+    "area": "periphery",
+    "neighborhood": "Tryvann",
+    "rating": 7,
+    "priceLevel": 2,
+    "foodTags": [
+      "pizza"
+    ],
+    "ratingDetails": {
+      "food": 8,
+      "location": 8,
+      "service": 7,
+      "value": 7
+    },
+    "lat": 59.984512,
+    "lng": 10.669737,
+    "vibes": [
+      "authentic",
+      "beer",
+      "burgers",
+      "casual",
+      "coworkers",
+      "family",
+      "friends",
+      "locals",
+      "lunch",
+      "panini",
+      "pizza",
+      "takeaway"
+    ],
+    "notes": "If you are in Trvann at Skimore you must try this pizzeria. It is an excellent option after skiing for a lunch with family and friends. The italian pizza is good with local products.Good also the burgers and the quality of the meat. Staff is friendly. Fully recommended.",
+    "googleMapsUrl": "https://maps.google.com/?cid=7956379109761824224&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJK8SXYotyQUYR4DWxR6W8am4"
+  },
+  {
+    "id": "koie_ramen",
+    "name": "Koie Ramen",
+    "city": "Oslo",
+    "countryCode": "NO",
+    "currencyCode": "NOK",
+    "category": "ramen",
+    "area": "cityCentre",
+    "rating": 7,
+    "priceLevel": 2,
+    "foodTags": [
+      "ramen"
+    ],
+    "ratingDetails": {
+      "food": 7,
+      "location": 7,
+      "service": 7,
+      "value": 8
+    },
+    "lat": 59.906813,
+    "lng": 10.756127,
+    "vibes": [
+      "authentic",
+      "beer",
+      "casual",
+      "coworkers",
+      "dinner",
+      "family",
+      "friends",
+      "locals",
+      "lunch"
+    ],
+    "notes": "Nice asian restaurant for ramen in Oslo. Good quality of pork meat and noodles. Overall good ramen with generous portions. The place looks pretty authentic and the staff is friendly. Good option for tasting ramen in Oslo. Suggested.",
+    "websiteUrl": "https://koieramen.no/",
+    "googleMapsUrl": "https://maps.google.com/?cid=5792812461453518343&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "googlePlaceId": "ChIJ9fdgp09vQUYRB6Zk9z00ZFA"
   }
 ]

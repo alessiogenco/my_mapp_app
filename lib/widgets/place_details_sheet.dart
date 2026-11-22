@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:my_map_app/models/place.dart';
 import 'package:my_map_app/models/place_area.dart';
 import 'package:my_map_app/models/place_category.dart';
 import 'package:my_map_app/services/maps_launcher_service.dart';
+import 'package:my_map_app/social/google_place_search_service.dart';
 import 'package:my_map_app/widgets/personal_place_rating_card.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -44,11 +47,50 @@ class PlaceDetailsSheet extends StatefulWidget {
 
 class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
   late bool _isWantToGo;
+  final _googlePlaceSearchService = const GooglePlaceSearchService();
+  String? _businessStatus;
+  bool? _isOpenNow;
+  String? _nextOpenTime;
+  String? _nextCloseTime;
+  int? _utcOffsetMinutes;
+  String? _businessStatusUnavailableMessage;
+  bool _isLoadingBusinessStatus = false;
 
   @override
   void initState() {
     super.initState();
     _isWantToGo = widget.initialIsWantToGo;
+    unawaited(_loadBusinessStatus());
+  }
+
+  Future<void> _loadBusinessStatus() async {
+    final placeId = widget.place.googlePlaceId?.trim() ?? '';
+    if (placeId.isEmpty) return;
+
+    setState(() => _isLoadingBusinessStatus = true);
+    try {
+      final details = await _googlePlaceSearchService.loadPlaceDetails(
+        placeId: placeId,
+      );
+      if (!mounted) return;
+      setState(() {
+        _businessStatus = details.businessStatus;
+        _isOpenNow = details.isOpenNow;
+        _nextOpenTime = details.nextOpenTime;
+        _nextCloseTime = details.nextCloseTime;
+        _utcOffsetMinutes = details.utcOffsetMinutes;
+        _businessStatusUnavailableMessage = details.businessStatus == null
+            ? 'Live opening hours are unavailable for this place.'
+            : null;
+      });
+    } on GooglePlaceSearchException catch (error) {
+      if (!mounted) return;
+      setState(() => _businessStatusUnavailableMessage = error.message);
+    } finally {
+      if (mounted) {
+        setState(() => _isLoadingBusinessStatus = false);
+      }
+    }
   }
 
   Future<void> _openGoogleMaps(BuildContext context) async {
@@ -72,9 +114,9 @@ class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
     );
 
     if (!opened && context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Could not open website.')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Could not open website.')));
     }
   }
 
@@ -137,12 +179,46 @@ class _PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
               const SizedBox(height: 14),
               _PlaceHero(place: place),
               const SizedBox(height: 18),
-              Text(
-                place.name,
-                style: theme.textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.w800,
-                  color: const Color(0xFF102F40),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                    child: Text(
+                      place.name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.w800,
+                        color: const Color(0xFF102F40),
+                      ),
+                    ),
+                  ),
+                  if (_isLoadingBusinessStatus) ...[
+                    const SizedBox(width: 8),
+                    const _BusinessStatusLoadingBadge(),
+                  ] else if (_businessStatus != null) ...[
+                    const SizedBox(width: 8),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: _BusinessStatusBadge(
+                        status: _businessStatus!,
+                        isOpenNow: _isOpenNow,
+                        nextOpenTime: _nextOpenTime,
+                        nextCloseTime: _nextCloseTime,
+                        utcOffsetMinutes: _utcOffsetMinutes,
+                      ),
+                    ),
+                  ] else if (_businessStatusUnavailableMessage != null) ...[
+                    const SizedBox(width: 8),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: _BusinessStatusUnavailableBadge(
+                        message: _businessStatusUnavailableMessage!,
+                      ),
+                    ),
+                  ],
+                ],
               ),
               const SizedBox(height: 10),
               Wrap(
@@ -406,6 +482,189 @@ class _CategoryPlaceholder extends StatelessWidget {
   }
 }
 
+class _BusinessStatusLoadingBadge extends StatelessWidget {
+  const _BusinessStatusLoadingBadge();
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      height: 24,
+      width: 24,
+      child: CircularProgressIndicator(strokeWidth: 2),
+    );
+  }
+}
+
+class _BusinessStatusUnavailableBadge extends StatelessWidget {
+  const _BusinessStatusUnavailableBadge({required this.message});
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: message,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF0F5F8),
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: const Color(0xFFD3E1E8)),
+        ),
+        child: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.info_outline_rounded,
+              size: 17,
+              color: Color(0xFF58717E),
+            ),
+            SizedBox(width: 5),
+            Text(
+              'Live status unavailable',
+              style: TextStyle(
+                color: Color(0xFF58717E),
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _BusinessStatusBadge extends StatelessWidget {
+  const _BusinessStatusBadge({
+    required this.status,
+    required this.isOpenNow,
+    required this.nextOpenTime,
+    required this.nextCloseTime,
+    required this.utcOffsetMinutes,
+  });
+
+  final String status;
+  final bool? isOpenNow;
+  final String? nextOpenTime;
+  final String? nextCloseTime;
+  final int? utcOffsetMinutes;
+
+  @override
+  Widget build(BuildContext context) {
+    final presentation = _presentationFor(context);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: presentation.background,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: presentation.border),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(presentation.icon, size: 17, color: presentation.foreground),
+          const SizedBox(width: 5),
+          Text(
+            presentation.label,
+            style: TextStyle(
+              color: presentation.foreground,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _BusinessStatusPresentation _presentationFor(BuildContext context) {
+    if (status == 'OPERATIONAL' && isOpenNow == true) {
+      final closingTime = _formatPlaceTime(context, nextCloseTime);
+      return _BusinessStatusPresentation(
+        label: closingTime == null
+            ? 'Open now'
+            : 'Open · closes at $closingTime',
+        icon: Icons.check_circle_rounded,
+        foreground: const Color(0xFF137333),
+        background: const Color(0xFFE6F4EA),
+        border: const Color(0xFFA8DAB5),
+      );
+    }
+    if (status == 'OPERATIONAL' && isOpenNow == false) {
+      final openingTime = _formatPlaceTime(context, nextOpenTime);
+      return _BusinessStatusPresentation(
+        label: openingTime == null
+            ? 'Closed now'
+            : 'Closed · opens at $openingTime',
+        icon: Icons.schedule_rounded,
+        foreground: const Color(0xFFB3261E),
+        background: const Color(0xFFFCE8E6),
+        border: const Color(0xFFF3B5B1),
+      );
+    }
+
+    return switch (status) {
+      'CLOSED_TEMPORARILY' => _BusinessStatusPresentation(
+        label: 'Temporarily closed',
+        icon: Icons.error_rounded,
+        foreground: const Color(0xFFB3261E),
+        background: const Color(0xFFFCE8E6),
+        border: const Color(0xFFF3B5B1),
+      ),
+      'CLOSED_PERMANENTLY' => _BusinessStatusPresentation(
+        label: 'Permanently closed',
+        icon: Icons.cancel_rounded,
+        foreground: const Color(0xFFB3261E),
+        background: const Color(0xFFFCE8E6),
+        border: const Color(0xFFF3B5B1),
+      ),
+      'FUTURE_OPENING' => _BusinessStatusPresentation(
+        label: 'Opening soon',
+        icon: Icons.schedule_rounded,
+        foreground: const Color(0xFF825500),
+        background: const Color(0xFFFFF3CD),
+        border: const Color(0xFFF2D68A),
+      ),
+      _ => _BusinessStatusPresentation(
+        label: 'Opening hours unavailable',
+        icon: Icons.info_outline_rounded,
+        foreground: const Color(0xFF58717E),
+        background: const Color(0xFFF0F5F8),
+        border: const Color(0xFFD3E1E8),
+      ),
+    };
+  }
+
+  String? _formatPlaceTime(BuildContext context, String? timestamp) {
+    if (timestamp == null || timestamp.isEmpty) return null;
+    final time = DateTime.tryParse(timestamp);
+    if (time == null) return null;
+    final placeTime = utcOffsetMinutes == null
+        ? time.toLocal()
+        : time.toUtc().add(Duration(minutes: utcOffsetMinutes!));
+    return MaterialLocalizations.of(context).formatTimeOfDay(
+      TimeOfDay.fromDateTime(placeTime),
+      alwaysUse24HourFormat: true,
+    );
+  }
+}
+
+class _BusinessStatusPresentation {
+  const _BusinessStatusPresentation({
+    required this.label,
+    required this.icon,
+    required this.foreground,
+    required this.background,
+    required this.border,
+  });
+
+  final String label;
+  final IconData icon;
+  final Color foreground;
+  final Color background;
+  final Color border;
+}
+
 class _InfoPill extends StatelessWidget {
   const _InfoPill({
     required this.icon,
@@ -444,18 +703,14 @@ List<Color> _colorsForCategory(String category) {
     'fish_and_chips' => const [Color(0xFF277E9C), Color(0xFF74C5C3)],
     'sushi' => const [Color(0xFF237E83), Color(0xFF75C5C2)],
     'japanese' => const [Color(0xFF516A91), Color(0xFF9AB4D5)],
-    'chinese' || 'ramen' || 'indian' => const [
-      Color(0xFFB85A38),
-      Color(0xFFE6A95C),
-    ],
-    'cocktail_bar' || 'beer_bar' || 'pub' => const [
-      Color(0xFF5744A1),
-      Color(0xFFB46EC4),
-    ],
-    'bakery_sweet' || 'bakery_savory' => const [
-      Color(0xFFE07A64),
-      Color(0xFFF3B46F),
-    ],
+    'chinese' ||
+    'ramen' ||
+    'indian' => const [Color(0xFFB85A38), Color(0xFFE6A95C)],
+    'cocktail_bar' ||
+    'beer_bar' ||
+    'pub' => const [Color(0xFF5744A1), Color(0xFFB46EC4)],
+    'bakery_sweet' ||
+    'bakery_savory' => const [Color(0xFFE07A64), Color(0xFFF3B46F)],
     'gelateria' => const [Color(0xFF4D9EB4), Color(0xFF7FD0C5)],
     _ => const [Color(0xFF1687C9), Color(0xFF53B9C9)],
   };

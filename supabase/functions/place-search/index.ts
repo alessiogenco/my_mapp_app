@@ -13,6 +13,8 @@ const corsHeaders = {
 // Applied separately to each signed-in member, not to the whole app.
 const maxLookupsPerDay = 100;
 const maxResults = 5;
+const maxNearbyResults = 15;
+const nearbyRadiusMeters = 500;
 const maxCoordinateLookupDurationMs = 30_000;
 // A place search can use Text Search and, only when needed, Autocomplete.
 // Keep their combined wait within the same user-visible limit.
@@ -25,6 +27,8 @@ type SearchRequest = {
   address?: unknown;
   countryCode?: unknown;
   placeId?: unknown;
+  latitude?: unknown;
+  longitude?: unknown;
 };
 
 type GoogleTextSearchResponse = {
@@ -51,6 +55,13 @@ type GoogleAutocompleteResponse = {
 type GooglePlaceDetailsResponse = {
   googleMapsUri?: string;
   formattedAddress?: string;
+  businessStatus?: string;
+  currentOpeningHours?: {
+    openNow?: boolean;
+    nextOpenTime?: string;
+    nextCloseTime?: string;
+  };
+  utcOffsetMinutes?: number;
   addressComponents?: Array<{
     shortText?: string;
     types?: string[];
@@ -95,6 +106,10 @@ function text(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function finiteNumber(value: unknown): number | null {
+  return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+
 // Google uses ccTLDs for response formatting. Most countries have the same
 // code as ISO 3166-1, but the United Kingdom is the important exception.
 function googleRegionCode(countryCode: string): string {
@@ -109,6 +124,29 @@ function countryCodeFromAddressComponents(
   );
   const countryCode = text(country?.shortText).toUpperCase();
   return /^[A-Z]{2}$/.test(countryCode) ? countryCode : "";
+}
+
+function cityFromAddressComponents(
+  addressComponents: GooglePlaceDetailsResponse["addressComponents"],
+): string {
+  // Google varies this type by country. `locality` is usual, while the UK
+  // commonly uses `postal_town`; the administrative levels are cautious
+  // fallbacks for places where Google returns no locality at all.
+  const preferredTypes = [
+    "locality",
+    "postal_town",
+    "sublocality",
+    "administrative_area_level_2",
+    "administrative_area_level_1",
+  ];
+  for (const type of preferredTypes) {
+    const component = addressComponents?.find((candidate) =>
+      candidate.types?.includes(type)
+    );
+    const city = text(component?.shortText);
+    if (city) return city;
+  }
+  return "";
 }
 
 function normalizeForComparison(value: string): string {
@@ -149,7 +187,11 @@ function venueNameWithoutTrailingCity(name: string, city: string): string {
 // full name stays untouched in the app and in the returned result.
 function venueNameForProviderSearch(name: string): string {
   const cleanName = name.trim();
-  const primaryName = cleanName.split(/\s+[-–—|]\s+/)[0]?.trim() ?? "";
+  // A leading # is commonly copied from a social-media label rather than
+  // being part of the venue's Maps name (for example, "# Talormade"). Keep
+  // the original name in the app, but do not send the hashtag to providers.
+  const withoutLeadingHashtag = cleanName.replace(/^#+\s*/, "");
+  const primaryName = withoutLeadingHashtag.split(/\s+[-–—|]\s+/)[0]?.trim() ?? "";
   return primaryName.length >= 3 ? primaryName : cleanName;
 }
 
@@ -218,10 +260,15 @@ function hasMatchingStreetAddress(
   // (for example, 21B versus 21A) for businesses in the same building, so the
   // letter is not required after the street name and main building number have
   // matched. The caller also verifies the city before accepting the point.
-  const submittedStreet = normalizeForComparison(
+  // Sources use both `67B` and `67 B` for a unit suffix. Treat the two
+  // spellings as the same address before either the exact or building-number
+  // comparison, while keeping the actual street and city checks below.
+  const normalizeStreet = (value: string): string =>
+    normalizeForComparison(value).replace(/\b(\d+)\s+([a-z])\b/g, "$1$2");
+  const submittedStreet = normalizeStreet(
     submittedAddress.split(",")[0] ?? submittedAddress,
   );
-  const candidate = normalizeForComparison(candidateAddress);
+  const candidate = normalizeStreet(candidateAddress);
   if (submittedStreet.length < 4 || !candidate) return false;
   if (candidate.includes(submittedStreet)) return true;
 
@@ -363,6 +410,7 @@ Deno.serve(async (request) => {
   const action = text(payload.action) || "search";
   if (
     action !== "search" &&
+    action !== "nearby" &&
     action !== "details" &&
     action !== "coordinates"
   ) {
@@ -374,6 +422,8 @@ Deno.serve(async (request) => {
   const city = text(payload.city);
   const address = text(payload.address);
   const countryCode = text(payload.countryCode).toUpperCase();
+  const latitude = finiteNumber(payload.latitude);
+  const longitude = finiteNumber(payload.longitude);
   if (action === "details" && (placeId.length < 8 || placeId.length > 220)) {
     return json({ error: "The selected Google Place ID is not valid." }, 400);
   }
@@ -382,6 +432,13 @@ Deno.serve(async (request) => {
     (name.length < 2 || city.length < 2 || name.length > 160 || city.length > 120)
   ) {
     return json({ error: "Enter a place name and city before searching." }, 400);
+  }
+  if (
+    action === "nearby" &&
+    (latitude == null || longitude == null || latitude < -90 || latitude > 90 ||
+      longitude < -180 || longitude > 180)
+  ) {
+    return json({ error: "Use a valid map location to find nearby places." }, 400);
   }
   if (countryCode.length > 0 && !/^[A-Z]{2}$/.test(countryCode)) {
     return json({ error: "Use a two-letter country code, such as GB or IT." }, 400);
@@ -394,7 +451,7 @@ Deno.serve(async (request) => {
   // A member consciously starts a Google search once per place. Loading the
   // selected place details and resolving its marker are required follow-up
   // steps, so they must not silently consume the daily search allowance.
-  if (action === "search") {
+  if (action === "search" || action === "nearby") {
     const { data: maySearch, error: quotaError } = await adminClient.rpc(
       "consume_place_lookup_quota",
       { p_user_id: user.id, p_limit: maxLookupsPerDay },
@@ -412,6 +469,66 @@ Deno.serve(async (request) => {
         429,
       );
     }
+  }
+
+  if (action === "nearby") {
+    let nearbyResponse: Response;
+    try {
+      nearbyResponse = await fetch(
+        "https://places.googleapis.com/v1/places:searchNearby",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Goog-Api-Key": googlePlacesApiKey,
+            "X-Goog-FieldMask":
+              "places.id,places.displayName,places.formattedAddress",
+          },
+          body: JSON.stringify({
+            // Keep the list focused on food and drink venues instead of every
+            // business around the selected point.
+            includedTypes: ["restaurant", "cafe", "bakery", "bar", "meal_takeaway"],
+            maxResultCount: maxNearbyResults,
+            rankPreference: "DISTANCE",
+            locationRestriction: {
+              circle: {
+                center: { latitude, longitude },
+                radius: nearbyRadiusMeters,
+              },
+            },
+          }),
+          signal: AbortSignal.timeout(8_000),
+        },
+      );
+    } catch (error) {
+      console.info("Nearby Place Search was unavailable", {
+        message: error instanceof Error ? error.name : "unknown",
+      });
+      return json({ error: "Nearby place search is temporarily unavailable." }, 503);
+    }
+
+    if (!nearbyResponse.ok) {
+      console.error(
+        "Google Nearby Search failed:",
+        nearbyResponse.status,
+        await nearbyResponse.text(),
+      );
+      return json({ error: "Google could not find nearby places right now." }, 502);
+    }
+
+    const nearbyPayload = (await nearbyResponse.json()) as GoogleTextSearchResponse;
+    const results: PlaceSearchResult[] = (nearbyPayload.places ?? [])
+      .map((place) => ({
+        placeId: place.id ?? "",
+        name: place.displayName?.text?.trim() ?? "",
+        address: place.formattedAddress?.trim() ?? "",
+      }))
+      .filter((place) => place.placeId.length > 0 && place.name.length > 0);
+    console.log("Nearby Place Search completed", {
+      results: results.length,
+      radiusMeters: nearbyRadiusMeters,
+    });
+    return json({ results });
   }
 
   if (action === "coordinates") {
@@ -550,7 +667,7 @@ Deno.serve(async (request) => {
             "X-Goog-Api-Key": googlePlacesApiKey,
             // Google Maps URI is the official deep link to the selected place.
             "X-Goog-FieldMask":
-              "googleMapsUri,formattedAddress,addressComponents",
+              "googleMapsUri,formattedAddress,addressComponents,businessStatus,currentOpeningHours,utcOffsetMinutes",
           },
           signal: AbortSignal.timeout(5_000),
         },
@@ -578,13 +695,34 @@ Deno.serve(async (request) => {
     const countryCode = countryCodeFromAddressComponents(
       detailsPayload.addressComponents,
     );
+    const city = cityFromAddressComponents(detailsPayload.addressComponents);
+    const businessStatus = text(detailsPayload.businessStatus);
+    const currentOpeningHours = detailsPayload.currentOpeningHours;
+    const rawUtcOffsetMinutes = detailsPayload.utcOffsetMinutes;
+    const utcOffsetMinutes = typeof rawUtcOffsetMinutes === "number" &&
+        Number.isFinite(rawUtcOffsetMinutes)
+      ? rawUtcOffsetMinutes
+      : null;
     console.log("Place Details completed", {
       placeId,
       hasGoogleMapsUrl: googleMapsUrl.length > 0,
       hasAddress: address.length > 0,
       countryCode,
+      city,
+      businessStatus,
+      openNow: currentOpeningHours?.openNow,
     });
-    return json({ googleMapsUrl, countryCode, address });
+    return json({
+      googleMapsUrl,
+      countryCode,
+      address,
+      city,
+      businessStatus,
+      openNow: currentOpeningHours?.openNow,
+      nextOpenTime: text(currentOpeningHours?.nextOpenTime),
+      nextCloseTime: text(currentOpeningHours?.nextCloseTime),
+      utcOffsetMinutes,
+    });
   }
 
   // The documented Text Search format is a natural-language location query
